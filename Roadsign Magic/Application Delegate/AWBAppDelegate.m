@@ -10,11 +10,13 @@
 
 @implementation AWBAppDelegate
 
-@synthesize window = _window;
+@synthesize window=_window;
+@synthesize mainNavigationController;
 
 - (void)dealloc
 {
     [_window release];
+    [mainNavigationController release];
     [super dealloc];
 }
 

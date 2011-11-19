@@ -10,9 +10,26 @@
 		06A95FEB14781B6000915359 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A95FEA14781B6000915359 /* UIKit.framework */; };
 		06A95FED14781B6000915359 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A95FEC14781B6000915359 /* Foundation.framework */; };
 		06A95FEF14781B6000915359 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A95FEE14781B6000915359 /* CoreGraphics.framework */; };
-		06A95FF514781B6000915359 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 06A95FF314781B6000915359 /* InfoPlist.strings */; };
-		06A95FF714781B6000915359 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A95FF614781B6000915359 /* main.m */; };
-		06A95FFB14781B6000915359 /* AWBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A95FFA14781B6000915359 /* AWBAppDelegate.m */; };
+		06A9600314781D1F00915359 /* AWBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A9600214781D1F00915359 /* AWBAppDelegate.m */; };
+		06A9600714781D6900915359 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 06A9600514781D6900915359 /* InfoPlist.strings */; };
+		06A9601114781DE100915359 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A9601014781DE100915359 /* main.m */; };
+		06A9601C1478207B00915359 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A9601B1478207B00915359 /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		06A9601E1478208300915359 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A9601D1478208300915359 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		06A960201478209000915359 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A9601F1478209000915359 /* MessageUI.framework */; };
+		06A960221478209C00915359 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A960211478209C00915359 /* QuartzCore.framework */; };
+		06A960241478224E00915359 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 06A960231478224E00915359 /* iTunesArtwork */; };
+		06A960281478228A00915359 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 06A960251478228A00915359 /* Icon-72.png */; };
+		06A960291478228A00915359 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 06A960261478228A00915359 /* Icon.png */; };
+		06A9602A1478228A00915359 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06A960271478228A00915359 /* Icon@2x.png */; };
+		06A960301478254100915359 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06A9602F1478254100915359 /* Default@2x.png */; };
+		06A960311478255200915359 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 06A9602D1478251600915359 /* Default.png */; };
+		06A960331478255E00915359 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 06A960321478255E00915359 /* Default-Portrait~ipad.png */; };
+		06A960351478256700915359 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 06A960341478256700915359 /* Default-Landscape~ipad.png */; };
+		06A960441478265700915359 /* FontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A9603F1478265700915359 /* FontLabel.m */; };
+		06A960451478265700915359 /* FontLabelStringDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A960401478265700915359 /* FontLabelStringDrawing.m */; };
+		06A960461478265700915359 /* FontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A960411478265700915359 /* FontManager.m */; };
+		06A960471478265700915359 /* ZAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A960421478265700915359 /* ZAttributedString.m */; };
+		06A960481478265700915359 /* ZFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A960431478265700915359 /* ZFont.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,12 +37,35 @@
 		06A95FEA14781B6000915359 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		06A95FEC14781B6000915359 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		06A95FEE14781B6000915359 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		06A95FF214781B6000915359 /* Roadsign Magic-Info.plist */ = {isa = PBXFileReference; path = "Roadsign Magic-Info.plist"; sourceTree = "<group>"; };
-		06A95FF414781B6000915359 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		06A95FF614781B6000915359 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		06A95FF814781B6000915359 /* Roadsign Magic-Prefix.pch */ = {isa = PBXFileReference; path = "Roadsign Magic-Prefix.pch"; sourceTree = "<group>"; };
-		06A95FF914781B6000915359 /* AWBAppDelegate.h */ = {isa = PBXFileReference; path = AWBAppDelegate.h; sourceTree = "<group>"; };
-		06A95FFA14781B6000915359 /* AWBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AWBAppDelegate.m; sourceTree = "<group>"; };
+		06A9600114781D1F00915359 /* AWBAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBAppDelegate.h; path = "Application Delegate/AWBAppDelegate.h"; sourceTree = "<group>"; };
+		06A9600214781D1F00915359 /* AWBAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBAppDelegate.m; path = "Application Delegate/AWBAppDelegate.m"; sourceTree = "<group>"; };
+		06A9600614781D6900915359 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		06A9600D14781D9800915359 /* Roadsign Magic-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Roadsign Magic-Info.plist"; sourceTree = "<group>"; };
+		06A9600F14781DE100915359 /* Roadsign Magic-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Roadsign Magic-Prefix.pch"; sourceTree = "<group>"; };
+		06A9601014781DE100915359 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		06A9601B1478207B00915359 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		06A9601D1478208300915359 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		06A9601F1478209000915359 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		06A960211478209C00915359 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		06A960231478224E00915359 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = "Resources/App Icons and Launch Images/iTunesArtwork"; sourceTree = "<group>"; };
+		06A960251478228A00915359 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "Resources/App Icons and Launch Images/Icon-72.png"; sourceTree = "<group>"; };
+		06A960261478228A00915359 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = "Resources/App Icons and Launch Images/Icon.png"; sourceTree = "<group>"; };
+		06A960271478228A00915359 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "Resources/App Icons and Launch Images/Icon@2x.png"; sourceTree = "<group>"; };
+		06A9602D1478251600915359 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
+		06A9602F1478254100915359 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
+		06A960321478255E00915359 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "../Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		06A960341478256700915359 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "../Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		06A960391478265700915359 /* FontLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FontLabel.h; path = "Transforms and Drawing/zFont/FontLabel.h"; sourceTree = "<group>"; };
+		06A9603A1478265700915359 /* FontLabelStringDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FontLabelStringDrawing.h; path = "Transforms and Drawing/zFont/FontLabelStringDrawing.h"; sourceTree = "<group>"; };
+		06A9603B1478265700915359 /* FontManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FontManager.h; path = "Transforms and Drawing/zFont/FontManager.h"; sourceTree = "<group>"; };
+		06A9603C1478265700915359 /* ZAttributedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZAttributedString.h; path = "Transforms and Drawing/zFont/ZAttributedString.h"; sourceTree = "<group>"; };
+		06A9603D1478265700915359 /* ZAttributedStringPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZAttributedStringPrivate.h; path = "Transforms and Drawing/zFont/ZAttributedStringPrivate.h"; sourceTree = "<group>"; };
+		06A9603E1478265700915359 /* ZFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZFont.h; path = "Transforms and Drawing/zFont/ZFont.h"; sourceTree = "<group>"; };
+		06A9603F1478265700915359 /* FontLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FontLabel.m; path = "Transforms and Drawing/zFont/FontLabel.m"; sourceTree = "<group>"; };
+		06A960401478265700915359 /* FontLabelStringDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FontLabelStringDrawing.m; path = "Transforms and Drawing/zFont/FontLabelStringDrawing.m"; sourceTree = "<group>"; };
+		06A960411478265700915359 /* FontManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FontManager.m; path = "Transforms and Drawing/zFont/FontManager.m"; sourceTree = "<group>"; };
+		06A960421478265700915359 /* ZAttributedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZAttributedString.m; path = "Transforms and Drawing/zFont/ZAttributedString.m"; sourceTree = "<group>"; };
+		06A960431478265700915359 /* ZFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZFont.m; path = "Transforms and Drawing/zFont/ZFont.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +73,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06A960221478209C00915359 /* QuartzCore.framework in Frameworks */,
+				06A960201478209000915359 /* MessageUI.framework in Frameworks */,
+				06A9601E1478208300915359 /* Accounts.framework in Frameworks */,
+				06A9601C1478207B00915359 /* Twitter.framework in Frameworks */,
 				06A95FEB14781B6000915359 /* UIKit.framework in Frameworks */,
 				06A95FED14781B6000915359 /* Foundation.framework in Frameworks */,
 				06A95FEF14781B6000915359 /* CoreGraphics.framework in Frameworks */,
@@ -46,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				06A95FF014781B6000915359 /* Roadsign Magic */,
+				06A9601214781E2C00915359 /* Resources */,
 				06A95FE914781B6000915359 /* Frameworks */,
 				06A95FE714781B6000915359 /* Products */,
 			);
@@ -62,6 +107,10 @@
 		06A95FE914781B6000915359 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				06A960211478209C00915359 /* QuartzCore.framework */,
+				06A9601F1478209000915359 /* MessageUI.framework */,
+				06A9601D1478208300915359 /* Accounts.framework */,
+				06A9601B1478207B00915359 /* Twitter.framework */,
 				06A95FEA14781B6000915359 /* UIKit.framework */,
 				06A95FEC14781B6000915359 /* Foundation.framework */,
 				06A95FEE14781B6000915359 /* CoreGraphics.framework */,
@@ -72,8 +121,8 @@
 		06A95FF014781B6000915359 /* Roadsign Magic */ = {
 			isa = PBXGroup;
 			children = (
-				06A95FF914781B6000915359 /* AWBAppDelegate.h */,
-				06A95FFA14781B6000915359 /* AWBAppDelegate.m */,
+				06A960361478262300915359 /* Views and User Interface */,
+				06A9600414781D2400915359 /* Application Delegate */,
 				06A95FF114781B6000915359 /* Supporting Files */,
 			);
 			path = "Roadsign Magic";
@@ -82,12 +131,119 @@
 		06A95FF114781B6000915359 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				06A95FF214781B6000915359 /* Roadsign Magic-Info.plist */,
-				06A95FF314781B6000915359 /* InfoPlist.strings */,
-				06A95FF614781B6000915359 /* main.m */,
-				06A95FF814781B6000915359 /* Roadsign Magic-Prefix.pch */,
+				06A9600D14781D9800915359 /* Roadsign Magic-Info.plist */,
+				06A9600514781D6900915359 /* InfoPlist.strings */,
+				06A9600F14781DE100915359 /* Roadsign Magic-Prefix.pch */,
+				06A9601014781DE100915359 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		06A9600414781D2400915359 /* Application Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				06A9600114781D1F00915359 /* AWBAppDelegate.h */,
+				06A9600214781D1F00915359 /* AWBAppDelegate.m */,
+			);
+			name = "Application Delegate";
+			sourceTree = "<group>";
+		};
+		06A9601214781E2C00915359 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				06A9601814781ED000915359 /* Typefaces */,
+				06A9601514781E8B00915359 /* Roadsign Graphics */,
+				06A9601414781E7700915359 /* Buttons and Icons */,
+				06A9601314781E6200915359 /* App Icons and Launch Images */,
+				06A960231478224E00915359 /* iTunesArtwork */,
+			);
+			name = Resources;
+			path = "Roadsign Magic";
+			sourceTree = "<group>";
+		};
+		06A9601314781E6200915359 /* App Icons and Launch Images */ = {
+			isa = PBXGroup;
+			children = (
+				06A960341478256700915359 /* Default-Landscape~ipad.png */,
+				06A960321478255E00915359 /* Default-Portrait~ipad.png */,
+				06A9602F1478254100915359 /* Default@2x.png */,
+				06A9602D1478251600915359 /* Default.png */,
+				06A960251478228A00915359 /* Icon-72.png */,
+				06A960261478228A00915359 /* Icon.png */,
+				06A960271478228A00915359 /* Icon@2x.png */,
+			);
+			name = "App Icons and Launch Images";
+			sourceTree = "<group>";
+		};
+		06A9601414781E7700915359 /* Buttons and Icons */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Buttons and Icons";
+			sourceTree = "<group>";
+		};
+		06A9601514781E8B00915359 /* Roadsign Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				06A9601714781EBB00915359 /* Background Thumbnails */,
+				06A9601614781EA300915359 /* Background Full Size */,
+			);
+			name = "Roadsign Graphics";
+			sourceTree = "<group>";
+		};
+		06A9601614781EA300915359 /* Background Full Size */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Background Full Size";
+			sourceTree = "<group>";
+		};
+		06A9601714781EBB00915359 /* Background Thumbnails */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Background Thumbnails";
+			sourceTree = "<group>";
+		};
+		06A9601814781ED000915359 /* Typefaces */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Typefaces;
+			sourceTree = "<group>";
+		};
+		06A960361478262300915359 /* Views and User Interface */ = {
+			isa = PBXGroup;
+			children = (
+				06A960371478263100915359 /* Transforms and Drawing */,
+			);
+			name = "Views and User Interface";
+			sourceTree = "<group>";
+		};
+		06A960371478263100915359 /* Transforms and Drawing */ = {
+			isa = PBXGroup;
+			children = (
+				06A960381478264200915359 /* zFont */,
+			);
+			name = "Transforms and Drawing";
+			sourceTree = "<group>";
+		};
+		06A960381478264200915359 /* zFont */ = {
+			isa = PBXGroup;
+			children = (
+				06A960391478265700915359 /* FontLabel.h */,
+				06A9603A1478265700915359 /* FontLabelStringDrawing.h */,
+				06A9603B1478265700915359 /* FontManager.h */,
+				06A9603C1478265700915359 /* ZAttributedString.h */,
+				06A9603D1478265700915359 /* ZAttributedStringPrivate.h */,
+				06A9603E1478265700915359 /* ZFont.h */,
+				06A9603F1478265700915359 /* FontLabel.m */,
+				06A960401478265700915359 /* FontLabelStringDrawing.m */,
+				06A960411478265700915359 /* FontManager.m */,
+				06A960421478265700915359 /* ZAttributedString.m */,
+				06A960431478265700915359 /* ZFont.m */,
+			);
+			name = zFont;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,7 +297,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06A95FF514781B6000915359 /* InfoPlist.strings in Resources */,
+				06A9600714781D6900915359 /* InfoPlist.strings in Resources */,
+				06A960241478224E00915359 /* iTunesArtwork in Resources */,
+				06A960281478228A00915359 /* Icon-72.png in Resources */,
+				06A960291478228A00915359 /* Icon.png in Resources */,
+				06A9602A1478228A00915359 /* Icon@2x.png in Resources */,
+				06A960301478254100915359 /* Default@2x.png in Resources */,
+				06A960311478255200915359 /* Default.png in Resources */,
+				06A960331478255E00915359 /* Default-Portrait~ipad.png in Resources */,
+				06A960351478256700915359 /* Default-Landscape~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,18 +316,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06A95FF714781B6000915359 /* main.m in Sources */,
-				06A95FFB14781B6000915359 /* AWBAppDelegate.m in Sources */,
+				06A9600314781D1F00915359 /* AWBAppDelegate.m in Sources */,
+				06A9601114781DE100915359 /* main.m in Sources */,
+				06A960441478265700915359 /* FontLabel.m in Sources */,
+				06A960451478265700915359 /* FontLabelStringDrawing.m in Sources */,
+				06A960461478265700915359 /* FontManager.m in Sources */,
+				06A960471478265700915359 /* ZAttributedString.m in Sources */,
+				06A960481478265700915359 /* ZFont.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		06A95FF314781B6000915359 /* InfoPlist.strings */ = {
+		06A9600514781D6900915359 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				06A95FF414781B6000915359 /* en */,
+				06A9600614781D6900915359 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -175,7 +344,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					armv7,
+					armv6,
+				);
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -190,7 +362,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -200,16 +372,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ARCHS = (
+					armv7,
+					armv6,
+				);
+				CODE_SIGN_IDENTITY = "iPhone Developer: Adam Buckley (UMUZ9AP3AR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Adam Buckley (UMUZ9AP3AR)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "9B4F5F01-935D-4A69-8F62-C3D6D8BDA107";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9B4F5F01-935D-4A69-8F62-C3D6D8BDA107";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -222,6 +400,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Roadsign Magic/Roadsign Magic-Prefix.pch";
 				INFOPLIST_FILE = "Roadsign Magic/Roadsign Magic-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -233,10 +412,59 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Roadsign Magic/Roadsign Magic-Prefix.pch";
 				INFOPLIST_FILE = "Roadsign Magic/Roadsign Magic-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				"OTHER_CFLAGS[arch=armv6]" = (
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"-mno-thumb",
+				);
+				"OTHER_CFLAGS[arch=armv7]" = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
+		};
+		06A9601914781F9F00915359 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					armv7,
+					armv6,
+				);
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Adam Buckley";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Adam Buckley";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "61CCC2FE-AAC4-4A77-8F1E-76028E998408";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "61CCC2FE-AAC4-4A77-8F1E-76028E998408";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Distribution;
+		};
+		06A9601A14781F9F00915359 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Roadsign Magic/Roadsign Magic-Prefix.pch";
+				INFOPLIST_FILE = "Roadsign Magic/Roadsign Magic-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				"OTHER_CFLAGS[arch=armv6]" = (
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"-mno-thumb",
+				);
+				"OTHER_CFLAGS[arch=armv7]" = "-DNS_BLOCK_ASSERTIONS=1";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Distribution;
 		};
 /* End XCBuildConfiguration section */
 
@@ -246,6 +474,7 @@
 			buildConfigurations = (
 				06A95FFC14781B6000915359 /* Debug */,
 				06A95FFD14781B6000915359 /* Release */,
+				06A9601914781F9F00915359 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -255,6 +484,7 @@
 			buildConfigurations = (
 				06A95FFF14781B6000915359 /* Debug */,
 				06A9600014781B6000915359 /* Release */,
+				06A9601A14781F9F00915359 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
