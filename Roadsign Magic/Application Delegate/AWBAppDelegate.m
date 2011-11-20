@@ -7,6 +7,7 @@
 //
 
 #import "AWBAppDelegate.h"
+#import "AWBRoadsignMagicMainViewController.h"
 
 @implementation AWBAppDelegate
 
@@ -23,8 +24,23 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+//    // Override point for customization after application launch.
+//    self.window.backgroundColor = [UIColor whiteColor];
+    
+    AWBRoadsignMagicMainViewController *viewController = [[AWBRoadsignMagicMainViewController alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    [viewController release];
+    
+    navController.navigationBar.barStyle = UIBarStyleBlack;
+    navController.navigationBar.translucent = YES;
+    navController.navigationBarHidden = YES;
+    navController.toolbar.barStyle = UIBarStyleBlack;
+    navController.toolbar.translucent = YES;
+    navController.toolbarHidden = NO;
+    self.mainNavigationController = navController;
+    self.window.rootViewController = navController;    
+    [navController release];    
+    
     [self.window makeKeyAndVisible];
     return YES;
 }

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0668E198147920BA0089937B /* BritishRoadsign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0668E197147920BA0089937B /* BritishRoadsign.ttf */; };
+		0668E19B147921060089937B /* Concrete@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0668E199147921060089937B /* Concrete@2x.jpg */; };
+		0668E19C147921060089937B /* 832.9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0668E19A147921060089937B /* 832.9@2x.png */; };
+		0668E1A3147929FF0089937B /* AWBRoadsignMagicMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0668E1A2147929FF0089937B /* AWBRoadsignMagicMainViewController.m */; };
 		06A95FEB14781B6000915359 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A95FEA14781B6000915359 /* UIKit.framework */; };
 		06A95FED14781B6000915359 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A95FEC14781B6000915359 /* Foundation.framework */; };
 		06A95FEF14781B6000915359 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A95FEE14781B6000915359 /* CoreGraphics.framework */; };
@@ -99,6 +103,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0668E197147920BA0089937B /* BritishRoadsign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = BritishRoadsign.ttf; path = Resources/Typefaces/BritishRoadsign.ttf; sourceTree = "<group>"; };
+		0668E199147921060089937B /* Concrete@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Concrete@2x.jpg"; path = "Resources/Concrete@2x.jpg"; sourceTree = "<group>"; };
+		0668E19A147921060089937B /* 832.9@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "832.9@2x.png"; path = "Resources/832.9@2x.png"; sourceTree = "<group>"; };
+		0668E1A1147929FF0089937B /* AWBRoadsignMagicMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBRoadsignMagicMainViewController.h; path = AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainViewController.h; sourceTree = "<group>"; };
+		0668E1A2147929FF0089937B /* AWBRoadsignMagicMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBRoadsignMagicMainViewController.m; path = AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainViewController.m; sourceTree = "<group>"; };
 		06A95FE614781B6000915359 /* Roadsign Magic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Roadsign Magic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		06A95FEA14781B6000915359 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		06A95FEC14781B6000915359 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -249,6 +258,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0668E185147920400089937B /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0668E1A414792A150089937B /* AWBRoadsignMagicMainViewController */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		0668E1A414792A150089937B /* AWBRoadsignMagicMainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0668E1A1147929FF0089937B /* AWBRoadsignMagicMainViewController.h */,
+				0668E1A2147929FF0089937B /* AWBRoadsignMagicMainViewController.m */,
+			);
+			name = AWBRoadsignMagicMainViewController;
+			sourceTree = "<group>";
+		};
 		06A95FDB14781B6000915359 = {
 			isa = PBXGroup;
 			children = (
@@ -287,6 +313,7 @@
 				06A9600414781D2400915359 /* Application Delegate */,
 				B5E0450D1478492F006A8D5C /* Model */,
 				06A960361478262300915359 /* Views and User Interface */,
+				0668E185147920400089937B /* View Controllers */,
 				B5E0450414784861006A8D5C /* Helpers and Miscellaneous */,
 				06A95FF114781B6000915359 /* Supporting Files */,
 			);
@@ -316,6 +343,8 @@
 		06A9601214781E2C00915359 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0668E199147921060089937B /* Concrete@2x.jpg */,
+				0668E19A147921060089937B /* 832.9@2x.png */,
 				06A9601814781ED000915359 /* Typefaces */,
 				06A9601514781E8B00915359 /* Roadsign Graphics */,
 				06A9601414781E7700915359 /* Buttons and Icons */,
@@ -375,6 +404,7 @@
 		06A9601814781ED000915359 /* Typefaces */ = {
 			isa = PBXGroup;
 			children = (
+				0668E197147920BA0089937B /* BritishRoadsign.ttf */,
 			);
 			name = Typefaces;
 			sourceTree = "<group>";
@@ -732,6 +762,9 @@
 				B5E04501147847C0006A8D5C /* 1x@2x.png in Resources */,
 				B5E04502147847C0006A8D5C /* 4x.png in Resources */,
 				B5E04503147847C0006A8D5C /* 4x@2x.png in Resources */,
+				0668E198147920BA0089937B /* BritishRoadsign.ttf in Resources */,
+				0668E19B147921060089937B /* Concrete@2x.jpg in Resources */,
+				0668E19C147921060089937B /* 832.9@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -779,6 +812,7 @@
 				B5E0452114784EA1006A8D5C /* AWBSettingsGroup.m in Sources */,
 				B5E0452414784F97006A8D5C /* AWBFontTableCell.m in Sources */,
 				B5E0452714784FDD006A8D5C /* AWBCollageFont.m in Sources */,
+				0668E1A3147929FF0089937B /* AWBRoadsignMagicMainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,7 +6,6 @@
 //  Copyright 2011 Callcredit. All rights reserved.
 //
 
-#import <AssetsLibrary/AssetsLibrary.h>
 #import "AWBSetting.h"
 #import "AWBSettingsGroup.h"
 #import "AWBSwitchCell.h"
