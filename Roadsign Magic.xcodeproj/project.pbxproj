@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0668E198147920BA0089937B /* BritishRoadsign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0668E197147920BA0089937B /* BritishRoadsign.ttf */; };
-		0668E19C147921060089937B /* 832.9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0668E19A147921060089937B /* 832.9@2x.png */; };
 		0668E1A3147929FF0089937B /* AWBRoadsignMagicMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0668E1A2147929FF0089937B /* AWBRoadsignMagicMainViewController.m */; };
 		0668E1A7147976F90089937B /* concrete@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0668E1A6147976F90089937B /* concrete@2x.jpg */; };
 		06A07989147A79FF0065A6DB /* AWBRoadsignMagicViewController+Carousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A07988147A79FF0065A6DB /* AWBRoadsignMagicViewController+Carousel.m */; };
@@ -277,7 +276,6 @@
 
 /* Begin PBXFileReference section */
 		0668E197147920BA0089937B /* BritishRoadsign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = BritishRoadsign.ttf; path = Resources/Typefaces/BritishRoadsign.ttf; sourceTree = "<group>"; };
-		0668E19A147921060089937B /* 832.9@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "832.9@2x.png"; path = "Resources/832.9@2x.png"; sourceTree = "<group>"; };
 		0668E1A1147929FF0089937B /* AWBRoadsignMagicMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBRoadsignMagicMainViewController.h; path = AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainViewController.h; sourceTree = "<group>"; };
 		0668E1A2147929FF0089937B /* AWBRoadsignMagicMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBRoadsignMagicMainViewController.m; path = AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainViewController.m; sourceTree = "<group>"; };
 		0668E1A6147976F90089937B /* concrete@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "concrete@2x.jpg"; sourceTree = "<group>"; };
@@ -704,7 +702,6 @@
 			isa = PBXGroup;
 			children = (
 				0668E1A5147976F90089937B /* Textures */,
-				0668E19A147921060089937B /* 832.9@2x.png */,
 				06A9601814781ED000915359 /* Typefaces */,
 				06A9601514781E8B00915359 /* Roadsign Graphics */,
 				06A9601414781E7700915359 /* Buttons and Icons */,
@@ -1427,7 +1424,6 @@
 				B5E04502147847C0006A8D5C /* 4x.png in Resources */,
 				B5E04503147847C0006A8D5C /* 4x@2x.png in Resources */,
 				0668E198147920BA0089937B /* BritishRoadsign.ttf in Resources */,
-				0668E19C147921060089937B /* 832.9@2x.png in Resources */,
 				0668E1A7147976F90089937B /* concrete@2x.jpg in Resources */,
 				06A0799D147A82310065A6DB /* asphalt@2x.jpg in Resources */,
 				06A079BB147AB51A0065A6DB /* asphaltyellow@2x.jpg in Resources */,
