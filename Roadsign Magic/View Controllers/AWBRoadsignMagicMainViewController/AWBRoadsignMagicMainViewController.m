@@ -12,26 +12,34 @@
 #import "FontLabel.h"
 #import "FontLabelStringDrawing.h"
 #import "FontManager.h"
+#import "AWBRoadsignMagicViewController+Carousel.h"
 
 #define ZOOM_VIEW_TAG 100
 
-@interface AWBRoadsignMagicMainViewController (ViewHandlingMethods)
-- (void)pickImageNamed:(NSString *)name;
-- (NSArray *)normalToolbarButtons;
-@end
+
 
 @implementation AWBRoadsignMagicMainViewController
 
 @synthesize signBackgroundPickerButton, toolbarSpacing, textButton;
+@synthesize carouselSubcategory, carouselCategory, slideUpView, items;
 
 - (void)viewWillAppear:(BOOL)animated
 {
     self.toolbarItems = [self normalToolbarButtons];
 }
 
+//- (void)viewDidLoad
+//{
+//    [super viewDidLoad];
+//    [self initialiseCarousel];
+//}
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    self.slideUpView = nil;
+    self.carouselSubcategory = nil;
+    self.carouselCategory = nil;
     self.signBackgroundPickerButton = nil;
     self.toolbarSpacing = nil;
     self.textButton = nil;
@@ -57,12 +65,23 @@
     float newScale = ((currentZoomScaleIsMin || (currentZoomScale <= mainScrollView.minimumZoomScale)) ? mainScrollView.minimumZoomScale : currentZoomScale);
     [mainScrollView setZoomScale:newScale];
     [self scrollViewDidZoom:mainScrollView];
+        
+    if (slideUpView) {        
+        CGRect frame = slideUpView.frame;
+        if (thumbViewShowing) {
+            frame.origin.y = (self.view.bounds.size.height - self.navigationController.toolbar.bounds.size.height - frame.size.height);            
+        } else {
+            frame.origin.y = (self.view.bounds.size.height);                        
+        }
+        slideUpView.frame = frame;
+    }
 }
 
 - (void)loadView {
     [super loadView];
     self.wantsFullScreenLayout = YES;
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Concrete.jpg"]];
+    //self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"concrete.jpg"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageFromFile:@"concrete.jpg"]];
     mainScrollView = [[UIScrollView alloc] initWithFrame:[[self view] bounds]];
     [mainScrollView setDelegate:self];
     [mainScrollView setBouncesZoom:YES];
@@ -71,10 +90,54 @@
     
     [[self view] addSubview:mainScrollView];
     
-    [self pickImageNamed:@"WeCanDoIt"];
+    //[self pickImageNamed:@"WeCanDoIt"];
 }
 
+
+- (void)toggleThumbView {
+    UIButton *button = (UIButton *)self.signBackgroundPickerButton.customView;
+    [self performSelector:@selector(doHighlight:) withObject:button afterDelay:0];
+    
+    if (!slideUpView) {
+        [self initialiseCarousel];
+    }
+    
+//    CGRect frame = [slideUpView frame];
+//    if (thumbViewShowing) {
+//        frame.origin.y += (slideUpView.bounds.size.height + self.navigationController.toolbar.bounds.size.height);
+//    } else {
+//        frame.origin.y -= (slideUpView.bounds.size.height + self.navigationController.toolbar.bounds.size.height);
+//    }
+    CGRect frame = slideUpView.frame;
+    if (!thumbViewShowing) {
+        frame.origin.y = (self.view.bounds.size.height - self.navigationController.toolbar.bounds.size.height - frame.size.height);            
+    } else {
+        frame.origin.y = (self.view.bounds.size.height);                        
+    }
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.3];
+    [slideUpView setFrame:frame];
+    [UIView commitAnimations];
+    
+    thumbViewShowing = !thumbViewShowing;
+}
+
+- (void)doHighlight:(UIButton*)b {
+    [b setSelected:thumbViewShowing];
+}
+
+
 - (void)dealloc {
+    //it's a good idea to set these to nil here to avoid
+	//sending messages to a deallocated viewcontroller
+	carouselSubcategory.delegate = nil;
+	carouselSubcategory.dataSource = nil;
+    
+    [items release];
+    [slideUpView release];
+    [carouselCategory release];
+    [carouselSubcategory release];
     [toolbarSpacing release];
     [signBackgroundPickerButton release];
     [mainScrollView release];
@@ -110,7 +173,7 @@
     
     [[mainScrollView viewWithTag:ZOOM_VIEW_TAG] removeFromSuperview];
     
-    UIImage *image = [UIImage imageFromFile:@"832.9@2x.png"];
+    UIImage *image = [UIImage imageFromFile:name];
     
     UIImageView *zoomView = [[UIImageView alloc] initWithImage:image];
     [zoomView setTag:ZOOM_VIEW_TAG];
@@ -125,19 +188,19 @@
     [mainScrollView setContentOffset:CGPointZero];
     
     
-    FontLabel *label = [[FontLabel alloc] initWithFrame:CGRectMake(400, 150, 500, 300) fontName:@"BritishRoadsign" pointSize:40.0f];
-	label.textColor = [UIColor blackColor];
-	label.text = @"Sleepy\nTime";
-    label.textAlignment = UITextAlignmentCenter;
-	label.lineBreakMode = UILineBreakModeTailTruncation;
-	label.backgroundColor = [UIColor greenColor];
-	label.numberOfLines = 0;
-	[label sizeToFit];
-	label.backgroundColor = nil;
-	label.opaque = NO;
-    label.transform = CGAffineTransformMakeScale(1.75, 1.75);
-	[zoomView addSubview:label];
-	[label release];   
+//    FontLabel *label = [[FontLabel alloc] initWithFrame:CGRectMake(400, 150, 500, 300) fontName:@"BritishRoadsign" pointSize:40.0f];
+//	label.textColor = [UIColor blackColor];
+//	label.text = @"Sleepy\nTime";
+//    label.textAlignment = UITextAlignmentCenter;
+//	label.lineBreakMode = UILineBreakModeTailTruncation;
+//	label.backgroundColor = [UIColor greenColor];
+//	label.numberOfLines = 0;
+//	[label sizeToFit];
+//	label.backgroundColor = nil;
+//	label.opaque = NO;
+//    label.transform = CGAffineTransformMakeScale(1.75, 1.75);
+//	[zoomView addSubview:label];
+//	[label release];   
     
     [UIView animateWithDuration:1.0 
                           delay:0.0 options:UIViewAnimationOptionAllowUserInteraction

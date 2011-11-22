@@ -13,7 +13,20 @@
 + (UIImage*)imageFromFile:(NSString*)aFileName 
 {
     NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
-    return [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", bundlePath, aFileName]];
+    NSString *imageFilename = [NSString stringWithFormat:@"%@/%@", bundlePath, aFileName];
+    UIImage *image = [UIImage imageWithContentsOfFile:imageFilename];
+    if (!image) {
+//        NSString *pathExtension = [imageFilename pathExtension];
+//        NSString *alternativeFilename = [imageFilename stringByDeletingPathExtension];
+//        NSString *newFilename = [NSString stringWithFormat:@"%@@2x.%@", alternativeFilename, pathExtension];
+//        NSLog(@"%@", newFilename);
+        image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@@2x.%@", [imageFilename stringByDeletingPathExtension], [imageFilename pathExtension]]];
+//        if (image && (image.scale > 1.0)) {
+//            image = [UIImage imageWithCGImage:image.CGImage scale:1.0 orientation:UIImageOrientationUp];
+//        }
+    }
+//    NSLog(@"Image Scale: %f", image.scale);
+    return image;
 }
 
 @end

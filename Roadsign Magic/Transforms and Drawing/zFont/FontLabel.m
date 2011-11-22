@@ -38,6 +38,9 @@
 
 - (id)initWithFrame:(CGRect)frame zFont:(ZFont *)font {
 	if ((self = [super initWithFrame:frame])) {
+        CATiledLayer *layerForView = (CATiledLayer *)self.layer;
+        layerForView.levelsOfDetailBias = 4;
+        layerForView.levelsOfDetail = 4;
 		zFont = [font retain];
 	}
 	return self;
@@ -185,6 +188,10 @@
 		}
 	}
 	return bounds;
+}
+
++ (Class)layerClass {
+    return [CATiledLayer class]; 
 }
 
 - (void)dealloc {
