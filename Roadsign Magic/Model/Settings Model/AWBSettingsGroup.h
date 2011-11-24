@@ -17,6 +17,7 @@ static NSString *const kAWBInfoKeyCollageUseBackgroundTexture = @"CollageUseBack
 static NSString *const kAWBInfoKeyCollageBorder = @"CollageBorder";
 static NSString *const kAWBInfoKeyCollageBorderColor = @"CollageBorderColor";
 static NSString *const kAWBInfoKeyTextColor = @"TextColor";
+static NSString *const kAWBInfoKeyTextAlignment = @"TextAlignment";
 static NSString *const kAWBInfoKeyTextFontName = @"TextFontName";
 static NSString *const kAWBInfoKeyImageShadows = @"ImageShadows";
 static NSString *const kAWBInfoKeyTextShadows = @"TextShadows";
@@ -94,6 +95,7 @@ static NSString *const kAWBInfoKeySnapToGridSize = @"SnapToGridSize";
 - (void)notifySlaveSettingsOfMasterSwitchSettingValue:(BOOL)masterSwitchValue;
 
 + (AWBSettingsGroup *)textColorPickerSettingsGroupWithInfo:(NSDictionary *)info;
++ (AWBSettingsGroup *)textAlignmentPickerSettingsGroupWithInfo:(NSDictionary *)info;
 + (AWBSettingsGroup *)textEditSettingsGroupWithInfo:(NSDictionary *)info;
 
 @end

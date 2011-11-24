@@ -107,7 +107,7 @@
 
 + (AWBSettings *)textSettingsWithInfo:(NSDictionary *)info
 {
-    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup textEditSettingsGroupWithInfo:info], [AWBSettingsGroup textColorPickerSettingsGroupWithInfo:info], nil];
+    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup textEditSettingsGroupWithInfo:info], [AWBSettingsGroup textAlignmentPickerSettingsGroupWithInfo:info], [AWBSettingsGroup textColorPickerSettingsGroupWithInfo:info], nil];
     return [[[self alloc] initWithSettingsGroups:settings title:@"Add Text Settings"] autorelease];
 }
 

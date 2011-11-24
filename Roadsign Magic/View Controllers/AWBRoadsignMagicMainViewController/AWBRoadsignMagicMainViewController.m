@@ -112,9 +112,9 @@
     scrollView.scrollEnabled = !scrollLocked;
     self.mainScrollView = scrollView;
     [scrollView release];
-    [[self view] addSubview:self.mainScrollView ];
+    [[self view] addSubview:self.mainScrollView];
     
-    UIImageView *backgroundView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    UIImageView *backgroundView = [[UIImageView alloc] initWithFrame:self.mainScrollView.bounds];
     backgroundView.userInteractionEnabled = YES;
     self.signBackgroundView = backgroundView;
     [self.mainScrollView addSubview:self.signBackgroundView];

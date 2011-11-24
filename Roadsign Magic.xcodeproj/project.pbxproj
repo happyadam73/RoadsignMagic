@@ -17,6 +17,12 @@
 		06978EF4147D60C800171A51 /* AWBRoadsignMagicSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06978EF3147D60C800171A51 /* AWBRoadsignMagicSettingsTableViewController.m */; };
 		06978EF7147E55E500171A51 /* AWBRoadsignMagicMainController+Text.m in Sources */ = {isa = PBXBuildFile; fileRef = 06978EF6147E55E400171A51 /* AWBRoadsignMagicMainController+Text.m */; };
 		06978EFA147E58C400171A51 /* AWBRoadsignMagicMainController+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = 06978EF9147E58C400171A51 /* AWBRoadsignMagicMainController+UI.m */; };
+		06978F01147E76C200171A51 /* centeralignment.png in Resources */ = {isa = PBXBuildFile; fileRef = 06978EFB147E76C200171A51 /* centeralignment.png */; };
+		06978F02147E76C200171A51 /* centeralignment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06978EFC147E76C200171A51 /* centeralignment@2x.png */; };
+		06978F03147E76C200171A51 /* leftalignment.png in Resources */ = {isa = PBXBuildFile; fileRef = 06978EFD147E76C200171A51 /* leftalignment.png */; };
+		06978F04147E76C200171A51 /* leftalignment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06978EFE147E76C200171A51 /* leftalignment@2x.png */; };
+		06978F05147E76C200171A51 /* rightalignment.png in Resources */ = {isa = PBXBuildFile; fileRef = 06978EFF147E76C200171A51 /* rightalignment.png */; };
+		06978F06147E76C200171A51 /* rightalignment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06978F00147E76C200171A51 /* rightalignment@2x.png */; };
 		06A07989147A79FF0065A6DB /* AWBRoadsignMagicViewController+Carousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A07988147A79FF0065A6DB /* AWBRoadsignMagicViewController+Carousel.m */; };
 		06A0799D147A82310065A6DB /* asphalt@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 06A0799C147A82310065A6DB /* asphalt@2x.jpg */; };
 		06A95FEB14781B6000915359 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A95FEA14781B6000915359 /* UIKit.framework */; };
@@ -298,6 +304,12 @@
 		06978EF6147E55E400171A51 /* AWBRoadsignMagicMainController+Text.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AWBRoadsignMagicMainController+Text.m"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainController+Text.m"; sourceTree = "<group>"; };
 		06978EF8147E58C300171A51 /* AWBRoadsignMagicMainController+UI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AWBRoadsignMagicMainController+UI.h"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainController+UI.h"; sourceTree = "<group>"; };
 		06978EF9147E58C400171A51 /* AWBRoadsignMagicMainController+UI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AWBRoadsignMagicMainController+UI.m"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainController+UI.m"; sourceTree = "<group>"; };
+		06978EFB147E76C200171A51 /* centeralignment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = centeralignment.png; sourceTree = "<group>"; };
+		06978EFC147E76C200171A51 /* centeralignment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "centeralignment@2x.png"; sourceTree = "<group>"; };
+		06978EFD147E76C200171A51 /* leftalignment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leftalignment.png; sourceTree = "<group>"; };
+		06978EFE147E76C200171A51 /* leftalignment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leftalignment@2x.png"; sourceTree = "<group>"; };
+		06978EFF147E76C200171A51 /* rightalignment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rightalignment.png; sourceTree = "<group>"; };
+		06978F00147E76C200171A51 /* rightalignment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rightalignment@2x.png"; sourceTree = "<group>"; };
 		06A07987147A79FF0065A6DB /* AWBRoadsignMagicViewController+Carousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AWBRoadsignMagicViewController+Carousel.h"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicViewController+Carousel.h"; sourceTree = "<group>"; };
 		06A07988147A79FF0065A6DB /* AWBRoadsignMagicViewController+Carousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AWBRoadsignMagicViewController+Carousel.m"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicViewController+Carousel.m"; sourceTree = "<group>"; };
 		06A0799C147A82310065A6DB /* asphalt@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "asphalt@2x.jpg"; sourceTree = "<group>"; };
@@ -1204,6 +1216,12 @@
 				B5E044FF147847C0006A8D5C /* 4x@2x.png */,
 				06978EEA147D2BCB00171A51 /* locked.png */,
 				06978EEB147D2BCB00171A51 /* locked@2x.png */,
+				06978EFB147E76C200171A51 /* centeralignment.png */,
+				06978EFC147E76C200171A51 /* centeralignment@2x.png */,
+				06978EFD147E76C200171A51 /* leftalignment.png */,
+				06978EFE147E76C200171A51 /* leftalignment@2x.png */,
+				06978EFF147E76C200171A51 /* rightalignment.png */,
+				06978F00147E76C200171A51 /* rightalignment@2x.png */,
 			);
 			name = Icons;
 			path = "Resources/Buttons and Icons/Icons";
@@ -1644,6 +1662,12 @@
 				06F15FCD147BC0E8007071D0 /* 25015@2x.png in Resources */,
 				06978EEC147D2BCB00171A51 /* locked.png in Resources */,
 				06978EED147D2BCB00171A51 /* locked@2x.png in Resources */,
+				06978F01147E76C200171A51 /* centeralignment.png in Resources */,
+				06978F02147E76C200171A51 /* centeralignment@2x.png in Resources */,
+				06978F03147E76C200171A51 /* leftalignment.png in Resources */,
+				06978F04147E76C200171A51 /* leftalignment@2x.png in Resources */,
+				06978F05147E76C200171A51 /* rightalignment.png in Resources */,
+				06978F06147E76C200171A51 /* rightalignment@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

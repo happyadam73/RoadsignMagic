@@ -123,6 +123,7 @@
         [self setBackgroundColor:[UIColor clearColor]];
         [self.labelView setBackgroundColor:[UIColor clearColor]];
         [self.labelView setTextAlignment:UITextAlignmentCenter];
+        //[self.labelView setTextAlignment:UITextAlignmentLeft];
         [self.labelView setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
         [self.labelView setText:[lines componentsJoinedByString:@"\r\n"]];
         [self rotateAndScale];

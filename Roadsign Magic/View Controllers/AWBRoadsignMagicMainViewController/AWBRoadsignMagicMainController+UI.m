@@ -149,10 +149,9 @@
             if (self.labelTextLine1 || self.labelTextLine2 || self.labelTextLine3) {
                 NSMutableArray *lines = [self textLabelLines];
                 if ([lines count] > 0) {
-                    AWBTransformableLabel *label = [[AWBTransformableLabel alloc] initWithTextLines:lines font:self.roadsignFont offset:CGPointZero rotation:0.0 scale:1.0 horizontalFlip:NO color:self.labelTextColor];
-                    
-                    [label setCenter:self.signBackgroundView.center];                    
+                    AWBTransformableLabel *label = [[AWBTransformableLabel alloc] initWithTextLines:lines font:self.roadsignFont offset:CGPointZero rotation:0.0 scale:1.0 horizontalFlip:NO color:self.labelTextColor];                    
                     [self applySettingsToLabel:label];
+                    label.center = [self.signBackgroundView convertPoint:self.signBackgroundView.center fromView:self.signBackgroundView.superview];
                     [self.signBackgroundView addSubview:label];
                     totalLabelSubviews += 1;
                     [label release];                        
