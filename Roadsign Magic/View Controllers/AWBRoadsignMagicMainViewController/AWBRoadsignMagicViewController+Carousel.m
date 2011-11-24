@@ -9,18 +9,14 @@
 #import "AWBRoadsignMagicViewController+Carousel.h"
 #import "UIImage+NonCached.h"
 #import "UIColor+SignColors.h"
-
-//#define NUMBER_OF_ITEMS (IS_IPAD? 7: 7)
-//#define NUMBER_OF_VISIBLE_ITEMS (IS_IPAD? 28: 14)
-//#define ITEM_SPACING (IS_IPAD? 400: 200)
-//#define INCLUDE_PLACEHOLDERS YES
+#import "NSString+Helpers.h"
 
 @implementation AWBRoadsignMagicMainViewController (Carousel)
 
 #pragma mark -
 #pragma mark iCarousel methods
 
-- (void)initialiseCarousel
+- (void)initialiseSlideupView
 {
     self.items = [NSMutableArray array];
     [items addObject:[NSNumber numberWithInteger:15]];
@@ -29,38 +25,24 @@
     [items addObject:[NSNumber numberWithInteger:19]];
     [items addObject:[NSNumber numberWithInteger:10]];
     [items addObject:[NSNumber numberWithInteger:15]];
-    
-//    for (int i = 0; i < NUMBER_OF_ITEMS; i++)
-//    {
-//        [items addObject:[NSNumber numberWithInt:i]];
-//    }
-    
     selectedCategory = 0;
     
-    //create carousel
+    //slideup view background
     CGRect backgroundFrame = CGRectMake(0.0, self.view.bounds.size.height-(self.navigationController.toolbar.bounds.size.height)-180.0, self.view.bounds.size.width, 180);
     UIView *backgroundView = [[UIView alloc] initWithFrame:backgroundFrame];
     backgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageFromFile:@"asphalt.jpg"]];
 	backgroundView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
-//    backgroundView.layer.borderWidth = 1.0;
-//    backgroundView.layer.borderColor = [[UIColor yellowSignBackgroundColor] CGColor];
-    backgroundView.alpha = 0.8;
-        
-    iCarousel *tempCarousel = [[iCarousel alloc] initWithFrame:CGRectMake(0.0, 70.0, backgroundFrame.size.width, 100.0)];
-	self.carouselSubcategory = tempCarousel;
-    [tempCarousel release];
-	carouselSubcategory.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
-    carouselSubcategory.type = iCarouselTypeLinear;
-	carouselSubcategory.delegate = self;
-	carouselSubcategory.dataSource = self;
-    
-    CGRect categoryFrame = CGRectMake(0.0, 15.0, backgroundFrame.size.width, 50.0);
-    UIView *categoryBackgroundView = [[UIView alloc] initWithFrame:categoryFrame];
-    categoryBackgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageFromFile:@"asphaltyellow.jpg"]];
-	categoryBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
-    categoryBackgroundView.alpha = 1.0;
-    
-    tempCarousel = [[iCarousel alloc] initWithFrame:categoryFrame];
+    backgroundView.alpha = 0.9;
+
+    //category carousel background
+    UIView *categoryBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(-5.0, 0.0, (backgroundFrame.size.width+10.0), 65.0)];
+    categoryBackgroundView.backgroundColor = nil;
+    categoryBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
+    categoryBackgroundView.layer.borderWidth = 2.0;
+    categoryBackgroundView.layer.borderColor = [[UIColor yellowSignBackgroundColor] CGColor];
+
+    //category carousel
+    iCarousel *tempCarousel = [[iCarousel alloc] initWithFrame:CGRectMake(0.0, 7.0, backgroundFrame.size.width, 50.0)];
 	self.carouselCategory = tempCarousel;
     [tempCarousel release];
 	carouselCategory.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
@@ -69,7 +51,16 @@
 	carouselCategory.dataSource = self; 
     [carouselCategory scrollToItemAtIndex:selectedCategory animated:YES];
     
-	//add carousels to view
+    //subcategory carousel
+    tempCarousel = [[iCarousel alloc] initWithFrame:CGRectMake(0.0, 70.0, backgroundFrame.size.width, 100.0)];
+	self.carouselSubcategory = tempCarousel;
+    [tempCarousel release];
+	carouselSubcategory.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
+    carouselSubcategory.type = iCarouselTypeLinear;
+	carouselSubcategory.delegate = self;
+	carouselSubcategory.dataSource = self;
+    
+	//add views together
     [backgroundView addSubview:categoryBackgroundView];
     [backgroundView addSubview:carouselSubcategory];
     [backgroundView addSubview:carouselCategory];
@@ -77,7 +68,6 @@
 	[self.view addSubview:backgroundView];
     [categoryBackgroundView release];
     [backgroundView release];
-    
 }
 
 - (NSUInteger)numberOfItemsInCarousel:(iCarousel *)carousel
@@ -95,14 +85,12 @@
     if (carousel == self.carouselCategory) {
         return [items count];
     } else {
-        return [[items objectAtIndex:selectedCategory] integerValue];
+        return (IS_IPAD ? 12 : 6);
     } 
 }
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSUInteger)index
 {
-    //create a numbered view
-    //NSUInteger imageNumber = (NSUInteger)fmodf(index, 7.0)+1;
     CGFloat alpha = 1.0;
     NSString *filename = nil;
 
@@ -111,23 +99,22 @@
         if (index == selectedCategory) {
             alpha = 1.0;
         } else {
-            alpha = 0.65;
+            alpha = 0.5;
         }
     } else {
         NSString *imageNumberString = [[NSString stringWithFormat:@"%d", (index+1)] stringByPaddingTheLeftToLength:3 withString:@"0" startingAtIndex:0];
         filename = [NSString stringWithFormat:@"1%d%@.png", selectedCategory, imageNumberString];    
-        NSLog(@"%@", filename);
+        alpha = 1.0;
     }
     
-//    NSString *filename = [NSString stringWithFormat:@"sign%d0%d.png", category, imageNumber];
 	UIView *view = [[[UIImageView alloc] initWithImage:[UIImage imageFromFile:filename]] autorelease];
     view.alpha = alpha;
 
     if (carousel == self.carouselCategory) {
         if (index == selectedCategory) {
-//            view.layer.borderWidth = 1.0;
-//            view.layer.borderColor = [[UIColor whiteColor] CGColor];
-            view.layer.backgroundColor = [self.slideUpView.backgroundColor CGColor];
+            view.layer.borderWidth = 1.0;
+            view.layer.cornerRadius = 5.0;
+            view.layer.borderColor = [[UIColor yellowSignBackgroundColor] CGColor];
         }
     }
     
@@ -147,21 +134,7 @@
 {
 	//note: placeholder views are only displayed if wrapping is disabled
     return 0;
-	//return INCLUDE_PLACEHOLDERS? 2: 0;
 }
-
-//- (UIView *)carousel:(iCarousel *)carousel placeholderViewAtIndex:(NSUInteger)index
-//{
-//	//create a placeholder view
-//	UIView *view = [[[UIImageView alloc] initWithImage:[UIImage imageFromFile:@"page.png"]] autorelease];
-//	UILabel *label = [[[UILabel alloc] initWithFrame:view.bounds] autorelease];
-//	label.text = (index == 0)? @"[": @"]";
-//	label.backgroundColor = [UIColor clearColor];
-//	label.textAlignment = UITextAlignmentCenter;
-//	label.font = [label.font fontWithSize:50];
-//	//[view addSubview:label];
-//	return view;
-//}
 
 - (CGFloat)carouselItemWidth:(iCarousel *)carousel
 {
@@ -208,22 +181,11 @@
     } else {
         NSString *imageNumberString = [[NSString stringWithFormat:@"%d", (index+1)] stringByPaddingTheLeftToLength:3 withString:@"0" startingAtIndex:0];
         NSString *filename = [NSString stringWithFormat:@"2%d%@.png", selectedCategory, imageNumberString];    
-        NSLog(@"%@", filename);
-        [self pickImageNamed:filename];
+        [self updateSignBackgroundWithImageFromFile:filename];
     }
 }
 
 @end
 
-@implementation NSString (LeftPadding)
 
-- (NSString *)stringByPaddingTheLeftToLength:(NSUInteger) newLength withString:(NSString *) padString startingAtIndex:(NSUInteger) padIndex
-{
-    if ([self length] <= newLength)
-        return [[@"" stringByPaddingToLength:newLength - [self length] withString:padString startingAtIndex:padIndex] stringByAppendingString:self];
-    else
-        return [[self copy] autorelease];
-}
-
-@end
 

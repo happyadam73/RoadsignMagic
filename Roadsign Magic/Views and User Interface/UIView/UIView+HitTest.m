@@ -1,6 +1,6 @@
 //
 //  UIView+HitTest.m
-//  Collage Maker
+//  Roadsign Magic
 //
 //  Created by Adam Buckley on 14/08/2011.
 //  Copyright 2011 Callcredit. All rights reserved.

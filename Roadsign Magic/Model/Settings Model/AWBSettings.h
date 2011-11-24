@@ -1,6 +1,6 @@
 //
 //  AWBSettings.h
-//  Collage Maker
+//  Roadsign Magic
 //
 //  Created by Adam Buckley on 06/09/2011.
 //  Copyright 2011 Callcredit. All rights reserved.
@@ -39,5 +39,10 @@
 - (void)visibleSettingsGroupsHaveChanged;
 
 - (NSMutableDictionary *)infoFromSettings;
+
++ (AWBSettings *)mainSettingsWithInfo:(NSDictionary *)info;
++ (AWBSettings *)textSettingsWithInfo:(NSDictionary *)info;
++ (AWBSettings *)editTextSettingsWithInfo:(NSDictionary *)info;
++ (AWBSettings *)editSingleTextSettingsWithInfo:(NSDictionary *)info;
 
 @end

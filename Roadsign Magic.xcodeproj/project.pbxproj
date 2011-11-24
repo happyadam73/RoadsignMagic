@@ -7,12 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06420DFB147C10D800E6CE9A /* NSString+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 06420DFA147C10D800E6CE9A /* NSString+Helpers.m */; };
+		06420DFF147C15DB00E6CE9A /* AWBRoadsignMagicMainViewController+Gestures.m in Sources */ = {isa = PBXBuildFile; fileRef = 06420DFE147C15DA00E6CE9A /* AWBRoadsignMagicMainViewController+Gestures.m */; };
 		0668E198147920BA0089937B /* BritishRoadsign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0668E197147920BA0089937B /* BritishRoadsign.ttf */; };
 		0668E1A3147929FF0089937B /* AWBRoadsignMagicMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0668E1A2147929FF0089937B /* AWBRoadsignMagicMainViewController.m */; };
 		0668E1A7147976F90089937B /* concrete@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0668E1A6147976F90089937B /* concrete@2x.jpg */; };
+		06978EEC147D2BCB00171A51 /* locked.png in Resources */ = {isa = PBXBuildFile; fileRef = 06978EEA147D2BCB00171A51 /* locked.png */; };
+		06978EED147D2BCB00171A51 /* locked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06978EEB147D2BCB00171A51 /* locked@2x.png */; };
+		06978EF4147D60C800171A51 /* AWBRoadsignMagicSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06978EF3147D60C800171A51 /* AWBRoadsignMagicSettingsTableViewController.m */; };
+		06978EF7147E55E500171A51 /* AWBRoadsignMagicMainController+Text.m in Sources */ = {isa = PBXBuildFile; fileRef = 06978EF6147E55E400171A51 /* AWBRoadsignMagicMainController+Text.m */; };
+		06978EFA147E58C400171A51 /* AWBRoadsignMagicMainController+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = 06978EF9147E58C400171A51 /* AWBRoadsignMagicMainController+UI.m */; };
 		06A07989147A79FF0065A6DB /* AWBRoadsignMagicViewController+Carousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A07988147A79FF0065A6DB /* AWBRoadsignMagicViewController+Carousel.m */; };
 		06A0799D147A82310065A6DB /* asphalt@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 06A0799C147A82310065A6DB /* asphalt@2x.jpg */; };
-		06A079BB147AB51A0065A6DB /* asphaltyellow@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 06A079BA147AB51A0065A6DB /* asphaltyellow@2x.jpg */; };
 		06A95FEB14781B6000915359 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A95FEA14781B6000915359 /* UIKit.framework */; };
 		06A95FED14781B6000915359 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A95FEC14781B6000915359 /* Foundation.framework */; };
 		06A95FEF14781B6000915359 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A95FEE14781B6000915359 /* CoreGraphics.framework */; };
@@ -275,14 +281,26 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		06420DF9147C10D800E6CE9A /* NSString+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Helpers.h"; path = "String Handling/NSString+Helpers.h"; sourceTree = "<group>"; };
+		06420DFA147C10D800E6CE9A /* NSString+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Helpers.m"; path = "String Handling/NSString+Helpers.m"; sourceTree = "<group>"; };
+		06420DFD147C15DA00E6CE9A /* AWBRoadsignMagicMainViewController+Gestures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AWBRoadsignMagicMainViewController+Gestures.h"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainViewController+Gestures.h"; sourceTree = "<group>"; };
+		06420DFE147C15DA00E6CE9A /* AWBRoadsignMagicMainViewController+Gestures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AWBRoadsignMagicMainViewController+Gestures.m"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainViewController+Gestures.m"; sourceTree = "<group>"; };
 		0668E197147920BA0089937B /* BritishRoadsign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = BritishRoadsign.ttf; path = Resources/Typefaces/BritishRoadsign.ttf; sourceTree = "<group>"; };
 		0668E1A1147929FF0089937B /* AWBRoadsignMagicMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBRoadsignMagicMainViewController.h; path = AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainViewController.h; sourceTree = "<group>"; };
 		0668E1A2147929FF0089937B /* AWBRoadsignMagicMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBRoadsignMagicMainViewController.m; path = AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainViewController.m; sourceTree = "<group>"; };
 		0668E1A6147976F90089937B /* concrete@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "concrete@2x.jpg"; sourceTree = "<group>"; };
+		06978EEA147D2BCB00171A51 /* locked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locked.png; sourceTree = "<group>"; };
+		06978EEB147D2BCB00171A51 /* locked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "locked@2x.png"; sourceTree = "<group>"; };
+		06978EEF147D42A900171A51 /* ToDo.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = ToDo.rtf; sourceTree = "<group>"; };
+		06978EF2147D60C800171A51 /* AWBRoadsignMagicSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBRoadsignMagicSettingsTableViewController.h; sourceTree = "<group>"; };
+		06978EF3147D60C800171A51 /* AWBRoadsignMagicSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBRoadsignMagicSettingsTableViewController.m; sourceTree = "<group>"; };
+		06978EF5147E55E400171A51 /* AWBRoadsignMagicMainController+Text.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AWBRoadsignMagicMainController+Text.h"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainController+Text.h"; sourceTree = "<group>"; };
+		06978EF6147E55E400171A51 /* AWBRoadsignMagicMainController+Text.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AWBRoadsignMagicMainController+Text.m"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainController+Text.m"; sourceTree = "<group>"; };
+		06978EF8147E58C300171A51 /* AWBRoadsignMagicMainController+UI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AWBRoadsignMagicMainController+UI.h"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainController+UI.h"; sourceTree = "<group>"; };
+		06978EF9147E58C400171A51 /* AWBRoadsignMagicMainController+UI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AWBRoadsignMagicMainController+UI.m"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainController+UI.m"; sourceTree = "<group>"; };
 		06A07987147A79FF0065A6DB /* AWBRoadsignMagicViewController+Carousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AWBRoadsignMagicViewController+Carousel.h"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicViewController+Carousel.h"; sourceTree = "<group>"; };
 		06A07988147A79FF0065A6DB /* AWBRoadsignMagicViewController+Carousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AWBRoadsignMagicViewController+Carousel.m"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicViewController+Carousel.m"; sourceTree = "<group>"; };
 		06A0799C147A82310065A6DB /* asphalt@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "asphalt@2x.jpg"; sourceTree = "<group>"; };
-		06A079BA147AB51A0065A6DB /* asphaltyellow@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "asphaltyellow@2x.jpg"; sourceTree = "<group>"; };
 		06A95FE614781B6000915359 /* Roadsign Magic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Roadsign Magic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		06A95FEA14781B6000915359 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		06A95FEC14781B6000915359 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -522,36 +540,36 @@
 		B5E044A3147844C3006A8D5C /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 		B5E044A914784609006A8D5C /* AWBTransforms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBTransforms.h; sourceTree = "<group>"; };
 		B5E044AA14784609006A8D5C /* AWBTransforms.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBTransforms.m; sourceTree = "<group>"; };
-		B5E044AC14784609006A8D5C /* UIImage+NonCached.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+NonCached.h"; sourceTree = "<group>"; };
-		B5E044AD14784609006A8D5C /* UIImage+NonCached.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+NonCached.m"; sourceTree = "<group>"; };
-		B5E044AE14784609006A8D5C /* UIImage+Scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Scale.h"; sourceTree = "<group>"; };
-		B5E044AF14784609006A8D5C /* UIImage+Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Scale.m"; sourceTree = "<group>"; };
+		B5E044AC14784609006A8D5C /* UIImage+NonCached.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "UIImage+NonCached.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B5E044AD14784609006A8D5C /* UIImage+NonCached.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "UIImage+NonCached.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B5E044AE14784609006A8D5C /* UIImage+Scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "UIImage+Scale.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B5E044AF14784609006A8D5C /* UIImage+Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "UIImage+Scale.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B5E044B51478471F006A8D5C /* AWBBusyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBBusyView.h; sourceTree = "<group>"; };
-		B5E044B61478471F006A8D5C /* AWBBusyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBBusyView.m; sourceTree = "<group>"; };
-		B5E044B81478471F006A8D5C /* AWBColorPickerSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBColorPickerSegmentedControl.h; sourceTree = "<group>"; };
-		B5E044B91478471F006A8D5C /* AWBColorPickerSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBColorPickerSegmentedControl.m; sourceTree = "<group>"; };
-		B5E044BA1478471F006A8D5C /* AWBColorPickerTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBColorPickerTableCell.h; sourceTree = "<group>"; };
-		B5E044BB1478471F006A8D5C /* AWBColorPickerTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBColorPickerTableCell.m; sourceTree = "<group>"; };
-		B5E044BC1478471F006A8D5C /* AWBDrilldownCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBDrilldownCell.h; sourceTree = "<group>"; };
-		B5E044BD1478471F006A8D5C /* AWBDrilldownCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBDrilldownCell.m; sourceTree = "<group>"; };
-		B5E044C01478471F006A8D5C /* AWBImageAndTextTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBImageAndTextTableCell.h; sourceTree = "<group>"; };
-		B5E044C11478471F006A8D5C /* AWBImageAndTextTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBImageAndTextTableCell.m; sourceTree = "<group>"; };
-		B5E044C21478471F006A8D5C /* AWBQualitySliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBQualitySliderCell.h; sourceTree = "<group>"; };
-		B5E044C31478471F006A8D5C /* AWBQualitySliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBQualitySliderCell.m; sourceTree = "<group>"; };
-		B5E044C41478471F006A8D5C /* AWBSegmentControlCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBSegmentControlCell.h; sourceTree = "<group>"; };
-		B5E044C51478471F006A8D5C /* AWBSegmentControlCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBSegmentControlCell.m; sourceTree = "<group>"; };
-		B5E044C61478471F006A8D5C /* AWBSettingTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBSettingTableCell.h; sourceTree = "<group>"; };
-		B5E044C71478471F006A8D5C /* AWBSettingTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBSettingTableCell.m; sourceTree = "<group>"; };
-		B5E044C81478471F006A8D5C /* AWBSubtitleTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBSubtitleTableCell.h; sourceTree = "<group>"; };
-		B5E044C91478471F006A8D5C /* AWBSubtitleTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBSubtitleTableCell.m; sourceTree = "<group>"; };
-		B5E044CA1478471F006A8D5C /* AWBSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBSwitchCell.h; sourceTree = "<group>"; };
-		B5E044CB1478471F006A8D5C /* AWBSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBSwitchCell.m; sourceTree = "<group>"; };
-		B5E044CC1478471F006A8D5C /* AWBTextEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBTextEditCell.h; sourceTree = "<group>"; };
-		B5E044CD1478471F006A8D5C /* AWBTextEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBTextEditCell.m; sourceTree = "<group>"; };
-		B5E044CE1478471F006A8D5C /* AWBTextValueTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBTextValueTableCell.h; sourceTree = "<group>"; };
-		B5E044CF1478471F006A8D5C /* AWBTextValueTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBTextValueTableCell.m; sourceTree = "<group>"; };
-		B5E044D31478471F006A8D5C /* AWBLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBLabel.h; sourceTree = "<group>"; };
-		B5E044D41478471F006A8D5C /* AWBLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBLabel.m; sourceTree = "<group>"; };
+		B5E044B61478471F006A8D5C /* AWBBusyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AWBBusyView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B5E044B81478471F006A8D5C /* AWBColorPickerSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AWBColorPickerSegmentedControl.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B5E044B91478471F006A8D5C /* AWBColorPickerSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AWBColorPickerSegmentedControl.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B5E044BA1478471F006A8D5C /* AWBColorPickerTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AWBColorPickerTableCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B5E044BB1478471F006A8D5C /* AWBColorPickerTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AWBColorPickerTableCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B5E044BC1478471F006A8D5C /* AWBDrilldownCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AWBDrilldownCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B5E044BD1478471F006A8D5C /* AWBDrilldownCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AWBDrilldownCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B5E044C01478471F006A8D5C /* AWBImageAndTextTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AWBImageAndTextTableCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B5E044C11478471F006A8D5C /* AWBImageAndTextTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AWBImageAndTextTableCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B5E044C21478471F006A8D5C /* AWBQualitySliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AWBQualitySliderCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B5E044C31478471F006A8D5C /* AWBQualitySliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AWBQualitySliderCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B5E044C41478471F006A8D5C /* AWBSegmentControlCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AWBSegmentControlCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B5E044C51478471F006A8D5C /* AWBSegmentControlCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AWBSegmentControlCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B5E044C61478471F006A8D5C /* AWBSettingTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AWBSettingTableCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B5E044C71478471F006A8D5C /* AWBSettingTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AWBSettingTableCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B5E044C81478471F006A8D5C /* AWBSubtitleTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AWBSubtitleTableCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B5E044C91478471F006A8D5C /* AWBSubtitleTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AWBSubtitleTableCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B5E044CA1478471F006A8D5C /* AWBSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AWBSwitchCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B5E044CB1478471F006A8D5C /* AWBSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AWBSwitchCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B5E044CC1478471F006A8D5C /* AWBTextEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AWBTextEditCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B5E044CD1478471F006A8D5C /* AWBTextEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AWBTextEditCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B5E044CE1478471F006A8D5C /* AWBTextValueTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AWBTextValueTableCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B5E044CF1478471F006A8D5C /* AWBTextValueTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AWBTextValueTableCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B5E044D31478471F006A8D5C /* AWBLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AWBLabel.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B5E044D41478471F006A8D5C /* AWBLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AWBLabel.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B5E044D71478471F006A8D5C /* AWBTransformableImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBTransformableImageView.h; sourceTree = "<group>"; };
 		B5E044D81478471F006A8D5C /* AWBTransformableImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBTransformableImageView.m; sourceTree = "<group>"; };
 		B5E044D91478471F006A8D5C /* AWBTransformableLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBTransformableLabel.h; sourceTree = "<group>"; };
@@ -559,30 +577,30 @@
 		B5E044DB1478471F006A8D5C /* AWBTransformableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBTransformableView.h; sourceTree = "<group>"; };
 		B5E044DD1478471F006A8D5C /* UIColor+SignColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+SignColors.h"; sourceTree = "<group>"; };
 		B5E044DE1478471F006A8D5C /* UIColor+SignColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+SignColors.m"; sourceTree = "<group>"; };
-		B5E044E01478471F006A8D5C /* UIView+Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Animation.h"; sourceTree = "<group>"; };
-		B5E044E11478471F006A8D5C /* UIView+Animation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Animation.m"; sourceTree = "<group>"; };
+		B5E044E01478471F006A8D5C /* UIView+Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "UIView+Animation.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B5E044E11478471F006A8D5C /* UIView+Animation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "UIView+Animation.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B5E044E21478471F006A8D5C /* UIView+Hierarchy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Hierarchy.h"; sourceTree = "<group>"; };
 		B5E044E31478471F006A8D5C /* UIView+Hierarchy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Hierarchy.m"; sourceTree = "<group>"; };
-		B5E044E41478471F006A8D5C /* UIView+HitTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+HitTest.h"; sourceTree = "<group>"; };
-		B5E044E51478471F006A8D5C /* UIView+HitTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HitTest.m"; sourceTree = "<group>"; };
+		B5E044E41478471F006A8D5C /* UIView+HitTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "UIView+HitTest.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B5E044E51478471F006A8D5C /* UIView+HitTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "UIView+HitTest.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B5E044FC147847C0006A8D5C /* 1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1x.png; sourceTree = "<group>"; };
 		B5E044FD147847C0006A8D5C /* 1x@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1x@2x.png"; sourceTree = "<group>"; };
 		B5E044FE147847C0006A8D5C /* 4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4x.png; sourceTree = "<group>"; };
 		B5E044FF147847C0006A8D5C /* 4x@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "4x@2x.png"; sourceTree = "<group>"; };
-		B5E0450614784861006A8D5C /* AWBDeviceHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBDeviceHelper.h; sourceTree = "<group>"; };
-		B5E0450714784861006A8D5C /* AWBDeviceHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBDeviceHelper.m; sourceTree = "<group>"; };
+		B5E0450614784861006A8D5C /* AWBDeviceHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AWBDeviceHelper.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B5E0450714784861006A8D5C /* AWBDeviceHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AWBDeviceHelper.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B5E0450914784861006A8D5C /* FileHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileHelpers.h; sourceTree = "<group>"; };
 		B5E0450A14784861006A8D5C /* FileHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileHelpers.m; sourceTree = "<group>"; };
-		B5E0451914784EA1006A8D5C /* AWBSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBSetting.h; sourceTree = "<group>"; };
-		B5E0451A14784EA1006A8D5C /* AWBSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBSetting.m; sourceTree = "<group>"; };
-		B5E0451B14784EA1006A8D5C /* AWBSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBSettings.h; sourceTree = "<group>"; };
-		B5E0451C14784EA1006A8D5C /* AWBSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBSettings.m; sourceTree = "<group>"; };
-		B5E0451D14784EA1006A8D5C /* AWBSettingsGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBSettingsGroup.h; sourceTree = "<group>"; };
-		B5E0451E14784EA1006A8D5C /* AWBSettingsGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBSettingsGroup.m; sourceTree = "<group>"; };
-		B5E0452214784F97006A8D5C /* AWBFontTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBFontTableCell.h; sourceTree = "<group>"; };
-		B5E0452314784F97006A8D5C /* AWBFontTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBFontTableCell.m; sourceTree = "<group>"; };
+		B5E0451914784EA1006A8D5C /* AWBSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AWBSetting.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B5E0451A14784EA1006A8D5C /* AWBSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AWBSetting.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B5E0451B14784EA1006A8D5C /* AWBSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AWBSettings.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B5E0451C14784EA1006A8D5C /* AWBSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AWBSettings.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B5E0451D14784EA1006A8D5C /* AWBSettingsGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AWBSettingsGroup.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B5E0451E14784EA1006A8D5C /* AWBSettingsGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AWBSettingsGroup.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B5E0452214784F97006A8D5C /* AWBFontTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AWBFontTableCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B5E0452314784F97006A8D5C /* AWBFontTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AWBFontTableCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B5E0452514784FDD006A8D5C /* AWBCollageFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBCollageFont.h; sourceTree = "<group>"; };
-		B5E0452614784FDD006A8D5C /* AWBCollageFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBCollageFont.m; sourceTree = "<group>"; };
+		B5E0452614784FDD006A8D5C /* AWBCollageFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AWBCollageFont.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -603,9 +621,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		06420DFC147C10DE00E6CE9A /* String Handling */ = {
+			isa = PBXGroup;
+			children = (
+				06420DF9147C10D800E6CE9A /* NSString+Helpers.h */,
+				06420DFA147C10D800E6CE9A /* NSString+Helpers.m */,
+			);
+			name = "String Handling";
+			sourceTree = "<group>";
+		};
 		0668E185147920400089937B /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				06978EF1147D60C800171A51 /* AWBRoadsignMagicSettingsViewController */,
 				0668E1A414792A150089937B /* AWBRoadsignMagicMainViewController */,
 			);
 			path = "View Controllers";
@@ -618,6 +646,12 @@
 				0668E1A2147929FF0089937B /* AWBRoadsignMagicMainViewController.m */,
 				06A07987147A79FF0065A6DB /* AWBRoadsignMagicViewController+Carousel.h */,
 				06A07988147A79FF0065A6DB /* AWBRoadsignMagicViewController+Carousel.m */,
+				06420DFD147C15DA00E6CE9A /* AWBRoadsignMagicMainViewController+Gestures.h */,
+				06420DFE147C15DA00E6CE9A /* AWBRoadsignMagicMainViewController+Gestures.m */,
+				06978EF5147E55E400171A51 /* AWBRoadsignMagicMainController+Text.h */,
+				06978EF6147E55E400171A51 /* AWBRoadsignMagicMainController+Text.m */,
+				06978EF8147E58C300171A51 /* AWBRoadsignMagicMainController+UI.h */,
+				06978EF9147E58C400171A51 /* AWBRoadsignMagicMainController+UI.m */,
 			);
 			name = AWBRoadsignMagicMainViewController;
 			sourceTree = "<group>";
@@ -627,15 +661,24 @@
 			children = (
 				0668E1A6147976F90089937B /* concrete@2x.jpg */,
 				06A0799C147A82310065A6DB /* asphalt@2x.jpg */,
-				06A079BA147AB51A0065A6DB /* asphaltyellow@2x.jpg */,
 			);
 			name = Textures;
 			path = Resources/Textures;
 			sourceTree = "<group>";
 		};
+		06978EF1147D60C800171A51 /* AWBRoadsignMagicSettingsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				06978EF2147D60C800171A51 /* AWBRoadsignMagicSettingsTableViewController.h */,
+				06978EF3147D60C800171A51 /* AWBRoadsignMagicSettingsTableViewController.m */,
+			);
+			path = AWBRoadsignMagicSettingsViewController;
+			sourceTree = "<group>";
+		};
 		06A95FDB14781B6000915359 = {
 			isa = PBXGroup;
 			children = (
+				06978EEF147D42A900171A51 /* ToDo.rtf */,
 				06A95FF014781B6000915359 /* Roadsign Magic */,
 				06A9601214781E2C00915359 /* Resources */,
 				06A95FE914781B6000915359 /* Frameworks */,
@@ -1159,6 +1202,8 @@
 				B5E044FD147847C0006A8D5C /* 1x@2x.png */,
 				B5E044FE147847C0006A8D5C /* 4x.png */,
 				B5E044FF147847C0006A8D5C /* 4x@2x.png */,
+				06978EEA147D2BCB00171A51 /* locked.png */,
+				06978EEB147D2BCB00171A51 /* locked@2x.png */,
 			);
 			name = Icons;
 			path = "Resources/Buttons and Icons/Icons";
@@ -1282,6 +1327,7 @@
 			children = (
 				B5E0450514784861006A8D5C /* Device */,
 				B5E0450814784861006A8D5C /* File Handling */,
+				06420DFC147C10DE00E6CE9A /* String Handling */,
 			);
 			path = "Helpers and Miscellaneous";
 			sourceTree = "<group>";
@@ -1426,7 +1472,6 @@
 				0668E198147920BA0089937B /* BritishRoadsign.ttf in Resources */,
 				0668E1A7147976F90089937B /* concrete@2x.jpg in Resources */,
 				06A0799D147A82310065A6DB /* asphalt@2x.jpg in Resources */,
-				06A079BB147AB51A0065A6DB /* asphaltyellow@2x.jpg in Resources */,
 				06F15E89147BC0AE007071D0 /* 00@2x.png in Resources */,
 				06F15E8A147BC0AE007071D0 /* 10001@2x.png in Resources */,
 				06F15E8B147BC0AE007071D0 /* 10002@2x.png in Resources */,
@@ -1597,6 +1642,8 @@
 				06F15FCB147BC0E8007071D0 /* 25013@2x.png in Resources */,
 				06F15FCC147BC0E8007071D0 /* 25014@2x.png in Resources */,
 				06F15FCD147BC0E8007071D0 /* 25015@2x.png in Resources */,
+				06978EEC147D2BCB00171A51 /* locked.png in Resources */,
+				06978EED147D2BCB00171A51 /* locked@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1646,6 +1693,11 @@
 				B5E0452714784FDD006A8D5C /* AWBCollageFont.m in Sources */,
 				0668E1A3147929FF0089937B /* AWBRoadsignMagicMainViewController.m in Sources */,
 				06A07989147A79FF0065A6DB /* AWBRoadsignMagicViewController+Carousel.m in Sources */,
+				06420DFB147C10D800E6CE9A /* NSString+Helpers.m in Sources */,
+				06420DFF147C15DB00E6CE9A /* AWBRoadsignMagicMainViewController+Gestures.m in Sources */,
+				06978EF4147D60C800171A51 /* AWBRoadsignMagicSettingsTableViewController.m in Sources */,
+				06978EF7147E55E500171A51 /* AWBRoadsignMagicMainController+Text.m in Sources */,
+				06978EFA147E58C400171A51 /* AWBRoadsignMagicMainController+UI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,9 +10,5 @@
 #import "AWBRoadsignMagicMainViewController.h"
 
 @interface AWBRoadsignMagicMainViewController (Carousel) <iCarouselDataSource, iCarouselDelegate>
-- (void)initialiseCarousel;
-@end
-
-@interface NSString (LeftPadding)
-- (NSString *)stringByPaddingTheLeftToLength:(NSUInteger) newLength withString:(NSString *) padString startingAtIndex:(NSUInteger) padIndex;
+- (void)initialiseSlideupView;
 @end

@@ -1,6 +1,6 @@
 //
 //  AWBSettings.m
-//  Collage Maker
+//  Roadsign Magic
 //
 //  Created by Adam Buckley on 06/09/2011.
 //  Copyright 2011 Callcredit. All rights reserved.
@@ -96,5 +96,32 @@
     
     return [info autorelease];
 }
+
++ (AWBSettings *)mainSettingsWithInfo:(NSDictionary *)info
+{
+//    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup lockAndLayoutSettingsGroupWithInfo:info], [AWBSettingsGroup shadowsAndBordersDrilldownSettingsGroupWithInfo:info], [AWBSettingsGroup qualitySliderSettingsGroupWithInfo:info], nil];
+    AWBSettings *mainSettings = [[self alloc] initWithSettingsGroups:nil title:@"Collage Settings"];
+    
+    return [mainSettings autorelease];
+}
+
++ (AWBSettings *)textSettingsWithInfo:(NSDictionary *)info
+{
+    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup textEditSettingsGroupWithInfo:info], [AWBSettingsGroup textColorPickerSettingsGroupWithInfo:info], nil];
+    return [[[self alloc] initWithSettingsGroups:settings title:@"Add Text Settings"] autorelease];
+}
+
++ (AWBSettings *)editTextSettingsWithInfo:(NSDictionary *)info
+{
+    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup textColorPickerSettingsGroupWithInfo:info], nil];
+    return [[[self alloc] initWithSettingsGroups:settings title:@"Edit Text Labels"] autorelease];
+}
+
++ (AWBSettings *)editSingleTextSettingsWithInfo:(NSDictionary *)info
+{
+    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup textEditSettingsGroupWithInfo:info], [AWBSettingsGroup textColorPickerSettingsGroupWithInfo:info], nil];
+    return [[[self alloc] initWithSettingsGroups:settings title:@"Edit Text Label"] autorelease];
+}
+
 
 @end

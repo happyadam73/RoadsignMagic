@@ -1,6 +1,6 @@
 //
 //  AWBTransforms.h
-//  CollageMaker
+//  Roadsign Magic
 //
 //  Created by Adam Buckley on 11/08/2011.
 //  Copyright 2011 Callcredit. All rights reserved.

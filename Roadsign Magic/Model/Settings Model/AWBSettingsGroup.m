@@ -1,6 +1,6 @@
 //
 //  AWBSettingsGroup.m
-//  Collage Maker
+//  Roadsign Magic
 //
 //  Created by Adam Buckley on 06/09/2011.
 //  Copyright 2011 Callcredit. All rights reserved.
@@ -100,5 +100,18 @@
     [visibleSettings release];
     [super dealloc];
 }
+
++ (AWBSettingsGroup *)textColorPickerSettingsGroupWithInfo:(NSDictionary *)info
+{
+    return [[[self alloc] initWithSettings:[NSMutableArray arrayWithObject:[AWBSetting colorSettingWithValue:[info objectForKey:kAWBInfoKeyTextColor] andKey:kAWBInfoKeyTextColor]] header:@"Text Colour" footer:nil] autorelease];
+}
+
++ (AWBSettingsGroup *)textEditSettingsGroupWithInfo:(NSDictionary *)info
+{
+    NSMutableArray *textEditSettings = [NSMutableArray arrayWithObjects:[AWBSetting textEditSettingWithText:@"Line 1" value:[info objectForKey:kAWBInfoKeyLabelTextLine1] key:kAWBInfoKeyLabelTextLine1], [AWBSetting textEditSettingWithText:@"Line 2" value:[info objectForKey:kAWBInfoKeyLabelTextLine2] key:kAWBInfoKeyLabelTextLine2], [AWBSetting textEditSettingWithText:@"Line 3" value:[info objectForKey:kAWBInfoKeyLabelTextLine3] key:kAWBInfoKeyLabelTextLine3], nil];
+    
+    return [[[self alloc] initWithSettings:textEditSettings header:@"Label Text" footer:nil] autorelease];
+}
+
 
 @end

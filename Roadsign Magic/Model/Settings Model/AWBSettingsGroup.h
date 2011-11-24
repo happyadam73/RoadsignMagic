@@ -1,6 +1,6 @@
 //
 //  AWBSettingsGroup.h
-//  Collage Maker
+//  Roadsign Magic
 //
 //  Created by Adam Buckley on 06/09/2011.
 //  Copyright 2011 Callcredit. All rights reserved.
@@ -47,6 +47,10 @@ static NSString *const kAWBInfoKeyObjectPlacementIndex = @"ObjectPlacementIndex"
 static NSString *const kAWBAllPhotosGroupName = @"All Photos";
 static NSString *const kAWBAllPhotosGroupPersistentID = @"+MM/AllPhotos";
 static NSString *const kAWBInfoKeyAddContentOnCreation = @"AddContentOnCreation";
+static NSString *const kAWBInfoKeyLockCanvas = @"LockCanvas";
+static NSString *const kAWBInfoKeyScrollLocked = @"ScrollLocked";
+static NSString *const kAWBInfoKeySnapToGrid = @"SnapToGrid";
+static NSString *const kAWBInfoKeySnapToGridSize = @"SnapToGridSize";
 
 @class AWBSetting;
 @class AWBSettings;
@@ -88,6 +92,9 @@ static NSString *const kAWBInfoKeyAddContentOnCreation = @"AddContentOnCreation"
 - (id)initWithSettings:(NSMutableArray *)aSettings header:(NSString *)aHeader footer:(NSString *)aFooter;
 - (void)masterSwitchSettingHasChangedValue:(AWBSetting *)setting;
 - (void)notifySlaveSettingsOfMasterSwitchSettingValue:(BOOL)masterSwitchValue;
+
++ (AWBSettingsGroup *)textColorPickerSettingsGroupWithInfo:(NSDictionary *)info;
++ (AWBSettingsGroup *)textEditSettingsGroupWithInfo:(NSDictionary *)info;
 
 @end
 
