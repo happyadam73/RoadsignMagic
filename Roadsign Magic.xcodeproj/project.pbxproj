@@ -15,14 +15,24 @@
 		06978EEC147D2BCB00171A51 /* locked.png in Resources */ = {isa = PBXBuildFile; fileRef = 06978EEA147D2BCB00171A51 /* locked.png */; };
 		06978EED147D2BCB00171A51 /* locked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06978EEB147D2BCB00171A51 /* locked@2x.png */; };
 		06978EF4147D60C800171A51 /* AWBRoadsignMagicSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06978EF3147D60C800171A51 /* AWBRoadsignMagicSettingsTableViewController.m */; };
-		06978EF7147E55E500171A51 /* AWBRoadsignMagicMainController+Text.m in Sources */ = {isa = PBXBuildFile; fileRef = 06978EF6147E55E400171A51 /* AWBRoadsignMagicMainController+Text.m */; };
-		06978EFA147E58C400171A51 /* AWBRoadsignMagicMainController+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = 06978EF9147E58C400171A51 /* AWBRoadsignMagicMainController+UI.m */; };
+		06978EF7147E55E500171A51 /* AWBRoadsignMagicMainViewController+Text.m in Sources */ = {isa = PBXBuildFile; fileRef = 06978EF6147E55E400171A51 /* AWBRoadsignMagicMainViewController+Text.m */; };
+		06978EFA147E58C400171A51 /* AWBRoadsignMagicMainViewController+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = 06978EF9147E58C400171A51 /* AWBRoadsignMagicMainViewController+UI.m */; };
 		06978F01147E76C200171A51 /* centeralignment.png in Resources */ = {isa = PBXBuildFile; fileRef = 06978EFB147E76C200171A51 /* centeralignment.png */; };
 		06978F02147E76C200171A51 /* centeralignment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06978EFC147E76C200171A51 /* centeralignment@2x.png */; };
 		06978F03147E76C200171A51 /* leftalignment.png in Resources */ = {isa = PBXBuildFile; fileRef = 06978EFD147E76C200171A51 /* leftalignment.png */; };
 		06978F04147E76C200171A51 /* leftalignment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06978EFE147E76C200171A51 /* leftalignment@2x.png */; };
 		06978F05147E76C200171A51 /* rightalignment.png in Resources */ = {isa = PBXBuildFile; fileRef = 06978EFF147E76C200171A51 /* rightalignment.png */; };
 		06978F06147E76C200171A51 /* rightalignment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06978F00147E76C200171A51 /* rightalignment@2x.png */; };
+		06978F09147E8D7D00171A51 /* AWBRoadsignMagicViewController+Sign.m in Sources */ = {isa = PBXBuildFile; fileRef = 06978F08147E8D7B00171A51 /* AWBRoadsignMagicViewController+Sign.m */; };
+		06978F0C147E8D9500171A51 /* AWBRoadsignMagicViewController+Edit.m in Sources */ = {isa = PBXBuildFile; fileRef = 06978F0B147E8D9400171A51 /* AWBRoadsignMagicViewController+Edit.m */; };
+		06978F0F147E8DB600171A51 /* AWBRoadsignMagicViewController+Delete.m in Sources */ = {isa = PBXBuildFile; fileRef = 06978F0E147E8DB500171A51 /* AWBRoadsignMagicViewController+Delete.m */; };
+		06978F12147E8DD000171A51 /* AWBRoadsignMagicViewController+Action.m in Sources */ = {isa = PBXBuildFile; fileRef = 06978F11147E8DCF00171A51 /* AWBRoadsignMagicViewController+Action.m */; };
+		06978F15147E8DE700171A51 /* AWBRoadsignMagicViewController+Symbol.m in Sources */ = {isa = PBXBuildFile; fileRef = 06978F14147E8DE500171A51 /* AWBRoadsignMagicViewController+Symbol.m */; };
+		06978F18147E8E0800171A51 /* AWBRoadsignMagicViewController+Toolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 06978F17147E8E0600171A51 /* AWBRoadsignMagicViewController+Toolbar.m */; };
+		06978F1D147EB5E300171A51 /* symbols-down.png in Resources */ = {isa = PBXBuildFile; fileRef = 06978F19147EB5DE00171A51 /* symbols-down.png */; };
+		06978F1E147EB5E300171A51 /* symbols-down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06978F1A147EB5E000171A51 /* symbols-down@2x.png */; };
+		06978F1F147EB5E300171A51 /* symbols-up.png in Resources */ = {isa = PBXBuildFile; fileRef = 06978F1B147EB5E100171A51 /* symbols-up.png */; };
+		06978F20147EB5E300171A51 /* symbols-up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06978F1C147EB5E200171A51 /* symbols-up@2x.png */; };
 		06A07989147A79FF0065A6DB /* AWBRoadsignMagicViewController+Carousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A07988147A79FF0065A6DB /* AWBRoadsignMagicViewController+Carousel.m */; };
 		06A0799D147A82310065A6DB /* asphalt@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 06A0799C147A82310065A6DB /* asphalt@2x.jpg */; };
 		06A95FEB14781B6000915359 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A95FEA14781B6000915359 /* UIKit.framework */; };
@@ -300,16 +310,32 @@
 		06978EEF147D42A900171A51 /* ToDo.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = ToDo.rtf; sourceTree = "<group>"; };
 		06978EF2147D60C800171A51 /* AWBRoadsignMagicSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBRoadsignMagicSettingsTableViewController.h; sourceTree = "<group>"; };
 		06978EF3147D60C800171A51 /* AWBRoadsignMagicSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBRoadsignMagicSettingsTableViewController.m; sourceTree = "<group>"; };
-		06978EF5147E55E400171A51 /* AWBRoadsignMagicMainController+Text.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AWBRoadsignMagicMainController+Text.h"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainController+Text.h"; sourceTree = "<group>"; };
-		06978EF6147E55E400171A51 /* AWBRoadsignMagicMainController+Text.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AWBRoadsignMagicMainController+Text.m"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainController+Text.m"; sourceTree = "<group>"; };
-		06978EF8147E58C300171A51 /* AWBRoadsignMagicMainController+UI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AWBRoadsignMagicMainController+UI.h"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainController+UI.h"; sourceTree = "<group>"; };
-		06978EF9147E58C400171A51 /* AWBRoadsignMagicMainController+UI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AWBRoadsignMagicMainController+UI.m"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainController+UI.m"; sourceTree = "<group>"; };
+		06978EF5147E55E400171A51 /* AWBRoadsignMagicMainViewController+Text.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AWBRoadsignMagicMainViewController+Text.h"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainViewController+Text.h"; sourceTree = "<group>"; };
+		06978EF6147E55E400171A51 /* AWBRoadsignMagicMainViewController+Text.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AWBRoadsignMagicMainViewController+Text.m"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainViewController+Text.m"; sourceTree = "<group>"; };
+		06978EF8147E58C300171A51 /* AWBRoadsignMagicMainViewController+UI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AWBRoadsignMagicMainViewController+UI.h"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainViewController+UI.h"; sourceTree = "<group>"; };
+		06978EF9147E58C400171A51 /* AWBRoadsignMagicMainViewController+UI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AWBRoadsignMagicMainViewController+UI.m"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainViewController+UI.m"; sourceTree = "<group>"; };
 		06978EFB147E76C200171A51 /* centeralignment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = centeralignment.png; sourceTree = "<group>"; };
 		06978EFC147E76C200171A51 /* centeralignment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "centeralignment@2x.png"; sourceTree = "<group>"; };
 		06978EFD147E76C200171A51 /* leftalignment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leftalignment.png; sourceTree = "<group>"; };
 		06978EFE147E76C200171A51 /* leftalignment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leftalignment@2x.png"; sourceTree = "<group>"; };
 		06978EFF147E76C200171A51 /* rightalignment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rightalignment.png; sourceTree = "<group>"; };
 		06978F00147E76C200171A51 /* rightalignment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rightalignment@2x.png"; sourceTree = "<group>"; };
+		06978F07147E8D7A00171A51 /* AWBRoadsignMagicViewController+Sign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AWBRoadsignMagicViewController+Sign.h"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicViewController+Sign.h"; sourceTree = "<group>"; };
+		06978F08147E8D7B00171A51 /* AWBRoadsignMagicViewController+Sign.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AWBRoadsignMagicViewController+Sign.m"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicViewController+Sign.m"; sourceTree = "<group>"; };
+		06978F0A147E8D9300171A51 /* AWBRoadsignMagicViewController+Edit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AWBRoadsignMagicViewController+Edit.h"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicViewController+Edit.h"; sourceTree = "<group>"; };
+		06978F0B147E8D9400171A51 /* AWBRoadsignMagicViewController+Edit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AWBRoadsignMagicViewController+Edit.m"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicViewController+Edit.m"; sourceTree = "<group>"; };
+		06978F0D147E8DB400171A51 /* AWBRoadsignMagicViewController+Delete.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AWBRoadsignMagicViewController+Delete.h"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicViewController+Delete.h"; sourceTree = "<group>"; };
+		06978F0E147E8DB500171A51 /* AWBRoadsignMagicViewController+Delete.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AWBRoadsignMagicViewController+Delete.m"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicViewController+Delete.m"; sourceTree = "<group>"; };
+		06978F10147E8DCD00171A51 /* AWBRoadsignMagicViewController+Action.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AWBRoadsignMagicViewController+Action.h"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicViewController+Action.h"; sourceTree = "<group>"; };
+		06978F11147E8DCF00171A51 /* AWBRoadsignMagicViewController+Action.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AWBRoadsignMagicViewController+Action.m"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicViewController+Action.m"; sourceTree = "<group>"; };
+		06978F13147E8DE400171A51 /* AWBRoadsignMagicViewController+Symbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AWBRoadsignMagicViewController+Symbol.h"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicViewController+Symbol.h"; sourceTree = "<group>"; };
+		06978F14147E8DE500171A51 /* AWBRoadsignMagicViewController+Symbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AWBRoadsignMagicViewController+Symbol.m"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicViewController+Symbol.m"; sourceTree = "<group>"; };
+		06978F16147E8E0400171A51 /* AWBRoadsignMagicViewController+Toolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AWBRoadsignMagicViewController+Toolbar.h"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicViewController+Toolbar.h"; sourceTree = "<group>"; };
+		06978F17147E8E0600171A51 /* AWBRoadsignMagicViewController+Toolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AWBRoadsignMagicViewController+Toolbar.m"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicViewController+Toolbar.m"; sourceTree = "<group>"; };
+		06978F19147EB5DE00171A51 /* symbols-down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "symbols-down.png"; sourceTree = "<group>"; };
+		06978F1A147EB5E000171A51 /* symbols-down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "symbols-down@2x.png"; sourceTree = "<group>"; };
+		06978F1B147EB5E100171A51 /* symbols-up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "symbols-up.png"; sourceTree = "<group>"; };
+		06978F1C147EB5E200171A51 /* symbols-up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "symbols-up@2x.png"; sourceTree = "<group>"; };
 		06A07987147A79FF0065A6DB /* AWBRoadsignMagicViewController+Carousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AWBRoadsignMagicViewController+Carousel.h"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicViewController+Carousel.h"; sourceTree = "<group>"; };
 		06A07988147A79FF0065A6DB /* AWBRoadsignMagicViewController+Carousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AWBRoadsignMagicViewController+Carousel.m"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicViewController+Carousel.m"; sourceTree = "<group>"; };
 		06A0799C147A82310065A6DB /* asphalt@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "asphalt@2x.jpg"; sourceTree = "<group>"; };
@@ -656,14 +682,26 @@
 			children = (
 				0668E1A1147929FF0089937B /* AWBRoadsignMagicMainViewController.h */,
 				0668E1A2147929FF0089937B /* AWBRoadsignMagicMainViewController.m */,
+				06978F10147E8DCD00171A51 /* AWBRoadsignMagicViewController+Action.h */,
+				06978F11147E8DCF00171A51 /* AWBRoadsignMagicViewController+Action.m */,
 				06A07987147A79FF0065A6DB /* AWBRoadsignMagicViewController+Carousel.h */,
 				06A07988147A79FF0065A6DB /* AWBRoadsignMagicViewController+Carousel.m */,
+				06978F0D147E8DB400171A51 /* AWBRoadsignMagicViewController+Delete.h */,
+				06978F0E147E8DB500171A51 /* AWBRoadsignMagicViewController+Delete.m */,
+				06978F0A147E8D9300171A51 /* AWBRoadsignMagicViewController+Edit.h */,
+				06978F0B147E8D9400171A51 /* AWBRoadsignMagicViewController+Edit.m */,
 				06420DFD147C15DA00E6CE9A /* AWBRoadsignMagicMainViewController+Gestures.h */,
 				06420DFE147C15DA00E6CE9A /* AWBRoadsignMagicMainViewController+Gestures.m */,
-				06978EF5147E55E400171A51 /* AWBRoadsignMagicMainController+Text.h */,
-				06978EF6147E55E400171A51 /* AWBRoadsignMagicMainController+Text.m */,
-				06978EF8147E58C300171A51 /* AWBRoadsignMagicMainController+UI.h */,
-				06978EF9147E58C400171A51 /* AWBRoadsignMagicMainController+UI.m */,
+				06978F07147E8D7A00171A51 /* AWBRoadsignMagicViewController+Sign.h */,
+				06978F08147E8D7B00171A51 /* AWBRoadsignMagicViewController+Sign.m */,
+				06978F13147E8DE400171A51 /* AWBRoadsignMagicViewController+Symbol.h */,
+				06978F14147E8DE500171A51 /* AWBRoadsignMagicViewController+Symbol.m */,
+				06978EF5147E55E400171A51 /* AWBRoadsignMagicMainViewController+Text.h */,
+				06978EF6147E55E400171A51 /* AWBRoadsignMagicMainViewController+Text.m */,
+				06978F16147E8E0400171A51 /* AWBRoadsignMagicViewController+Toolbar.h */,
+				06978F17147E8E0600171A51 /* AWBRoadsignMagicViewController+Toolbar.m */,
+				06978EF8147E58C300171A51 /* AWBRoadsignMagicMainViewController+UI.h */,
+				06978EF9147E58C400171A51 /* AWBRoadsignMagicMainViewController+UI.m */,
 			);
 			name = AWBRoadsignMagicMainViewController;
 			sourceTree = "<group>";
@@ -1205,6 +1243,10 @@
 				B5E0447814784406006A8D5C /* button-down@2x.png */,
 				B5E0447914784406006A8D5C /* button-up.png */,
 				B5E0447A14784406006A8D5C /* button-up@2x.png */,
+				06978F19147EB5DE00171A51 /* symbols-down.png */,
+				06978F1A147EB5E000171A51 /* symbols-down@2x.png */,
+				06978F1B147EB5E100171A51 /* symbols-up.png */,
+				06978F1C147EB5E200171A51 /* symbols-up@2x.png */,
 				B5E0447B14784406006A8D5C /* delete.png */,
 				B5E0447C14784406006A8D5C /* settings.png */,
 				B5E0447D14784406006A8D5C /* settings@2x.png */,
@@ -1668,6 +1710,10 @@
 				06978F04147E76C200171A51 /* leftalignment@2x.png in Resources */,
 				06978F05147E76C200171A51 /* rightalignment.png in Resources */,
 				06978F06147E76C200171A51 /* rightalignment@2x.png in Resources */,
+				06978F1D147EB5E300171A51 /* symbols-down.png in Resources */,
+				06978F1E147EB5E300171A51 /* symbols-down@2x.png in Resources */,
+				06978F1F147EB5E300171A51 /* symbols-up.png in Resources */,
+				06978F20147EB5E300171A51 /* symbols-up@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1720,8 +1766,14 @@
 				06420DFB147C10D800E6CE9A /* NSString+Helpers.m in Sources */,
 				06420DFF147C15DB00E6CE9A /* AWBRoadsignMagicMainViewController+Gestures.m in Sources */,
 				06978EF4147D60C800171A51 /* AWBRoadsignMagicSettingsTableViewController.m in Sources */,
-				06978EF7147E55E500171A51 /* AWBRoadsignMagicMainController+Text.m in Sources */,
-				06978EFA147E58C400171A51 /* AWBRoadsignMagicMainController+UI.m in Sources */,
+				06978EF7147E55E500171A51 /* AWBRoadsignMagicMainViewController+Text.m in Sources */,
+				06978EFA147E58C400171A51 /* AWBRoadsignMagicMainViewController+UI.m in Sources */,
+				06978F09147E8D7D00171A51 /* AWBRoadsignMagicViewController+Sign.m in Sources */,
+				06978F0C147E8D9500171A51 /* AWBRoadsignMagicViewController+Edit.m in Sources */,
+				06978F0F147E8DB600171A51 /* AWBRoadsignMagicViewController+Delete.m in Sources */,
+				06978F12147E8DD000171A51 /* AWBRoadsignMagicViewController+Action.m in Sources */,
+				06978F15147E8DE700171A51 /* AWBRoadsignMagicViewController+Symbol.m in Sources */,
+				06978F18147E8E0800171A51 /* AWBRoadsignMagicViewController+Toolbar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

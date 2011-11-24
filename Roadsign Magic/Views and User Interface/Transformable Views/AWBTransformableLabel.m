@@ -60,6 +60,7 @@
     NSString *labelFontName = [aDecoder decodeObjectForKey:@"labelFontName"];
     CGFloat labelFontSize = [aDecoder decodeFloatForKey:@"labelFontSize"];
     UIColor *labelColor = [aDecoder decodeObjectForKey:@"labelColor"];
+    UITextAlignment alignment = [aDecoder decodeIntegerForKey:@"labelTextAlignment"];
     CGFloat labelOffsetX = [aDecoder decodeFloatForKey:@"labelOffsetX"];
     CGFloat labelOffsetY = [aDecoder decodeFloatForKey:@"labelOffsetY"];
     CGFloat labelRotation = [aDecoder decodeFloatForKey:@"labelRotation"];
@@ -69,7 +70,7 @@
     ZFont *labelFont = [[FontManager sharedManager] zFontWithName:labelFontName pointSize:labelFontSize];
     CGPoint offset = CGPointMake(labelOffsetX, labelOffsetY);
     
-    self = [self initWithTextLines:[labelText componentsSeparatedByString:@"\r\n"] font:labelFont offset:offset rotation:labelRotation scale:labelScale horizontalFlip:labelHFlip color:labelColor];
+    self = [self initWithTextLines:[labelText componentsSeparatedByString:@"\r\n"] font:labelFont offset:offset rotation:labelRotation scale:labelScale horizontalFlip:labelHFlip color:labelColor alignment:alignment];
     
     [self setCenter:offset];
     return  self;
@@ -77,15 +78,15 @@
 
 - (id)initWithText:(NSString *)text offset:(CGPoint) point rotation:(CGFloat)rotation scale:(CGFloat)scale
 {
-    return [self initWithText:text font:[ZFont fontWithUIFont:[UIFont systemFontOfSize:28.0]] offset:point rotation:rotation scale:scale horizontalFlip:NO color:[UIColor blackColor]];
+    return [self initWithText:text font:[ZFont fontWithUIFont:[UIFont systemFontOfSize:28.0]] offset:point rotation:rotation scale:scale horizontalFlip:NO color:[UIColor blackColor] alignment:UITextAlignmentCenter];
 }
 
-- (id)initWithText:(NSString *)text font:(ZFont *)font offset:(CGPoint) point rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip color:(UIColor *)color
+- (id)initWithText:(NSString *)text font:(ZFont *)font offset:(CGPoint) point rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip color:(UIColor *)color alignment:(UITextAlignment)alignment
 {
-    return [self initWithTextLines:[NSArray arrayWithObject:text] font:font offset:point rotation:rotation scale:scale horizontalFlip:flip color:color];
+    return [self initWithTextLines:[NSArray arrayWithObject:text] font:font offset:point rotation:rotation scale:scale horizontalFlip:flip color:color alignment:alignment];
 }
 
-- (id)initWithTextLines:(NSArray *)lines font:(ZFont *)font offset:(CGPoint) point rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip color:(UIColor *)color
+- (id)initWithTextLines:(NSArray *)lines font:(ZFont *)font offset:(CGPoint) point rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip color:(UIColor *)color alignment:(UITextAlignment)alignment
 {
     ZFont *textFont = font;
     if (!textFont) {
@@ -122,8 +123,7 @@
         [self.labelView setTextColor:color];
         [self setBackgroundColor:[UIColor clearColor]];
         [self.labelView setBackgroundColor:[UIColor clearColor]];
-        [self.labelView setTextAlignment:UITextAlignmentCenter];
-        //[self.labelView setTextAlignment:UITextAlignmentLeft];
+        [self.labelView setTextAlignment:alignment];
         [self.labelView setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
         [self.labelView setText:[lines componentsJoinedByString:@"\r\n"]];
         [self rotateAndScale];
@@ -197,6 +197,7 @@
     [aCoder encodeObject:self.labelView.font.fontName forKey:@"labelFontName"];
     [aCoder encodeFloat:self.labelView.font.pointSize forKey:@"labelFontSize"];
     [aCoder encodeObject:self.labelView.textColor forKey:@"labelColor"];
+    [aCoder encodeInteger:self.labelView.textAlignment forKey:@"labelTextAlignment"];
     [aCoder encodeFloat:self.center.x forKey:@"labelOffsetX"];
     [aCoder encodeFloat:self.center.y forKey:@"labelOffsetY"];
     [aCoder encodeFloat:self.quantisedRotation forKey:@"labelRotation"];

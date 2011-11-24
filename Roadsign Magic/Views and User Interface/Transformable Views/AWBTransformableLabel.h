@@ -33,8 +33,8 @@
 - (void)initialiseLayerRotation:(CGFloat)rotation scale:(CGFloat)scale;
 - (id)initWithText:(NSString *)text offset:(CGPoint) point;
 - (id)initWithText:(NSString *)text offset:(CGPoint) point rotation:(CGFloat)rotation scale:(CGFloat)scale;
-- (id)initWithText:(NSString *)text font:(ZFont *)font offset:(CGPoint) point rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip color:(UIColor *)color;
-- (id)initWithTextLines:(NSArray *)lines font:(ZFont *)font offset:(CGPoint) point rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip color:(UIColor *)color;
+- (id)initWithText:(NSString *)text font:(ZFont *)font offset:(CGPoint) point rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip color:(UIColor *)color alignment:(UITextAlignment)alignment;
+- (id)initWithTextLines:(NSArray *)lines font:(ZFont *)font offset:(CGPoint) point rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip color:(UIColor *)color alignment:(UITextAlignment)alignment;
 - (void)setTextBackgroundColor:(UIColor *)backgroundColor;
 - (void)addViewShadow;
 - (void)removeViewShadow;

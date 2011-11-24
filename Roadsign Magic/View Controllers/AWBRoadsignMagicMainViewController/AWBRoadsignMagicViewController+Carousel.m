@@ -10,6 +10,7 @@
 #import "UIImage+NonCached.h"
 #import "UIColor+SignColors.h"
 #import "NSString+Helpers.h"
+#import "AWBRoadsignMagicViewController+Sign.h"
 
 @implementation AWBRoadsignMagicMainViewController (Carousel)
 
@@ -18,13 +19,13 @@
 
 - (void)initialiseSlideupView
 {
-    self.items = [NSMutableArray array];
-    [items addObject:[NSNumber numberWithInteger:15]];
-    [items addObject:[NSNumber numberWithInteger:9]];
-    [items addObject:[NSNumber numberWithInteger:14]];
-    [items addObject:[NSNumber numberWithInteger:19]];
-    [items addObject:[NSNumber numberWithInteger:10]];
-    [items addObject:[NSNumber numberWithInteger:15]];
+    self.signBackgroundItems = [NSMutableArray array];
+    [signBackgroundItems addObject:[NSNumber numberWithInteger:15]];
+    [signBackgroundItems addObject:[NSNumber numberWithInteger:9]];
+    [signBackgroundItems addObject:[NSNumber numberWithInteger:14]];
+    [signBackgroundItems addObject:[NSNumber numberWithInteger:19]];
+    [signBackgroundItems addObject:[NSNumber numberWithInteger:10]];
+    [signBackgroundItems addObject:[NSNumber numberWithInteger:15]];
     selectedCategory = 0;
     
     //slideup view background
@@ -73,9 +74,9 @@
 - (NSUInteger)numberOfItemsInCarousel:(iCarousel *)carousel
 {
     if (carousel == self.carouselCategory) {
-        return [items count];
+        return [signBackgroundItems count];
     } else {
-        return [[items objectAtIndex:selectedCategory] integerValue];
+        return [[signBackgroundItems objectAtIndex:selectedCategory] integerValue];
     }    
 }
 
@@ -83,7 +84,7 @@
 {
     //limit the number of items views loaded concurrently (for performance reasons)
     if (carousel == self.carouselCategory) {
-        return [items count];
+        return [signBackgroundItems count];
     } else {
         return (IS_IPAD ? 12 : 6);
     } 

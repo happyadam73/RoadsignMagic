@@ -11,8 +11,8 @@
 #import "ZFont.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface AWBRoadsignMagicMainViewController : UIViewController <UIScrollViewDelegate> {
-    
+@interface AWBRoadsignMagicMainViewController : UIViewController 
+{    
     UIScrollView *mainScrollView;
     UIImageView *signBackgroundView;
     iCarousel *carouselSubcategory;
@@ -22,8 +22,17 @@
     UIBarButtonItem *signBackgroundPickerButton;
     UIBarButtonItem *textButton;
     UIBarButtonItem *toolbarSpacing;
-    
-    NSMutableArray *items;
+    UIBarButtonItem *editButton;
+    UIBarButtonItem *cancelButton;
+    UIBarButtonItem *deleteButton;
+    UIBarButtonItem *editTextButton;
+    UIBarButtonItem *selectNoneOrAllButton;    
+    UIBarButtonItem *addSymbolButton;
+    UIBarButtonItem *actionButton;
+    UIBarButtonItem *settingsButton;
+    UIBarButtonItem *fixedToolbarSpacing;
+        
+    NSMutableArray *signBackgroundItems;
     NSUInteger selectedCategory;
     BOOL thumbViewShowing;
     ZFont *roadsignFont;
@@ -52,6 +61,7 @@
     NSString *labelTextLine3;
     UIColor *labelTextColor;
     NSString *labelTextFont;
+    UITextAlignment labelTextAlignment;
     
     NSUInteger totalSelectedInEditMode;
     NSUInteger totalSelectedLabelsInEditMode; 
@@ -61,10 +71,19 @@
 @property (nonatomic, retain) UIBarButtonItem *signBackgroundPickerButton;
 @property (nonatomic, retain) UIBarButtonItem *textButton;
 @property (nonatomic, retain) UIBarButtonItem *toolbarSpacing;
+@property (nonatomic, retain) UIBarButtonItem *editButton;
+@property (nonatomic, retain) UIBarButtonItem *cancelButton;
+@property (nonatomic, retain) UIBarButtonItem *deleteButton;
+@property (nonatomic, retain) UIBarButtonItem *editTextButton;
+@property (nonatomic, retain) UIBarButtonItem *selectNoneOrAllButton;    
+@property (nonatomic, retain) UIBarButtonItem *addSymbolButton;
+@property (nonatomic, retain) UIBarButtonItem *actionButton;
+@property (nonatomic, retain) UIBarButtonItem *settingsButton;
+@property (nonatomic, retain) UIBarButtonItem *fixedToolbarSpacing;
 @property (nonatomic, retain) iCarousel *carouselSubcategory;
 @property (nonatomic, retain) iCarousel *carouselCategory;
 @property (nonatomic, retain) UIView *slideUpView;
-@property (nonatomic, retain) NSMutableArray *items;
+@property (nonatomic, retain) NSMutableArray *signBackgroundItems;
 @property (nonatomic, retain) UIImageView *signBackgroundView;
 @property (nonatomic, retain) UIScrollView *mainScrollView;
 @property (nonatomic, retain) UIRotationGestureRecognizer *rotationGestureRecognizer;
@@ -87,11 +106,7 @@
 @property (nonatomic, retain) NSString *labelTextLine3;
 @property (nonatomic, retain) UIColor *labelTextColor;
 @property (nonatomic, retain) NSString *labelTextFont;
-
-- (void)updateSignBackgroundWithImageFromFile:(NSString *)name;
-- (NSArray *)normalToolbarButtons;
-- (CGRect)zoomRectForScale:(float)scale withCenter:(CGPoint)center;
-- (void)toggleThumbView ;
+@property (nonatomic, assign) UITextAlignment labelTextAlignment;
 
 @end
 

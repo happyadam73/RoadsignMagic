@@ -7,7 +7,7 @@
 //
 
 #import "AWBRoadsignMagicMainViewController+Gestures.h"
-#import "AWBRoadsignMagicMainController+UI.h"
+#import "AWBRoadsignMagicMainViewController+UI.h"
 #import "AWBTransforms.h"
 #import "AWBTransformableView.h"
 
