@@ -62,11 +62,11 @@
 - (UIBarButtonItem *)signBackgroundPickerButton
 {
     if (!signBackgroundPickerButton) {
-        UIImage* image = [UIImage imageNamed:@"button-up"];
+        UIImage* image = [UIImage imageNamed:@"signs-up"];
         CGRect frame = CGRectMake(0, 0, image.size.width, image.size.height);
         UIButton* button = [[UIButton alloc] initWithFrame:frame];
         [button setBackgroundImage:image forState:UIControlStateNormal];
-        image = [UIImage imageNamed:@"button-down"];
+        image = [UIImage imageNamed:@"signs-down"];
         [button setBackgroundImage:image forState:UIControlStateHighlighted];
         [button setBackgroundImage:image forState:UIControlStateSelected];
         [button addTarget:self action:@selector(toggleThumbView:) forControlEvents:UIControlEventTouchUpInside];

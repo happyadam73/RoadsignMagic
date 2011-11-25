@@ -33,6 +33,10 @@
 		06978F1E147EB5E300171A51 /* symbols-down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06978F1A147EB5E000171A51 /* symbols-down@2x.png */; };
 		06978F1F147EB5E300171A51 /* symbols-up.png in Resources */ = {isa = PBXBuildFile; fileRef = 06978F1B147EB5E100171A51 /* symbols-up.png */; };
 		06978F20147EB5E300171A51 /* symbols-up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06978F1C147EB5E200171A51 /* symbols-up@2x.png */; };
+		06978F23147EE09800171A51 /* anchored.png in Resources */ = {isa = PBXBuildFile; fileRef = 06978F21147EE09500171A51 /* anchored.png */; };
+		06978F24147EE09800171A51 /* anchored@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06978F22147EE09700171A51 /* anchored@2x.png */; };
+		06978F28147FB0AB00171A51 /* AWBRoadsignBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 06978F27147FB0AB00171A51 /* AWBRoadsignBackground.m */; };
+		06978F2B147FB27D00171A51 /* AWBRoadsignBackgroundGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 06978F2A147FB27D00171A51 /* AWBRoadsignBackgroundGroup.m */; };
 		06A07989147A79FF0065A6DB /* AWBRoadsignMagicViewController+Carousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A07988147A79FF0065A6DB /* AWBRoadsignMagicViewController+Carousel.m */; };
 		06A0799D147A82310065A6DB /* asphalt@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 06A0799C147A82310065A6DB /* asphalt@2x.jpg */; };
 		06A95FEB14781B6000915359 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A95FEA14781B6000915359 /* UIKit.framework */; };
@@ -251,10 +255,10 @@
 		B5E0449414784406006A8D5C /* whitebutton.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E0447314784406006A8D5C /* whitebutton.png */; };
 		B5E0449514784406006A8D5C /* whitebutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E0447414784406006A8D5C /* whitebutton@2x.png */; };
 		B5E0449614784406006A8D5C /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E0447614784406006A8D5C /* blank.png */; };
-		B5E0449714784406006A8D5C /* button-down.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E0447714784406006A8D5C /* button-down.png */; };
-		B5E0449814784406006A8D5C /* button-down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E0447814784406006A8D5C /* button-down@2x.png */; };
-		B5E0449914784406006A8D5C /* button-up.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E0447914784406006A8D5C /* button-up.png */; };
-		B5E0449A14784406006A8D5C /* button-up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E0447A14784406006A8D5C /* button-up@2x.png */; };
+		B5E0449714784406006A8D5C /* signs-down.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E0447714784406006A8D5C /* signs-down.png */; };
+		B5E0449814784406006A8D5C /* signs-down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E0447814784406006A8D5C /* signs-down@2x.png */; };
+		B5E0449914784406006A8D5C /* signs-up.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E0447914784406006A8D5C /* signs-up.png */; };
+		B5E0449A14784406006A8D5C /* signs-up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E0447A14784406006A8D5C /* signs-up@2x.png */; };
 		B5E0449B14784406006A8D5C /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E0447B14784406006A8D5C /* delete.png */; };
 		B5E0449C14784406006A8D5C /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E0447C14784406006A8D5C /* settings.png */; };
 		B5E0449D14784406006A8D5C /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E0447D14784406006A8D5C /* settings@2x.png */; };
@@ -336,6 +340,12 @@
 		06978F1A147EB5E000171A51 /* symbols-down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "symbols-down@2x.png"; sourceTree = "<group>"; };
 		06978F1B147EB5E100171A51 /* symbols-up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "symbols-up.png"; sourceTree = "<group>"; };
 		06978F1C147EB5E200171A51 /* symbols-up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "symbols-up@2x.png"; sourceTree = "<group>"; };
+		06978F21147EE09500171A51 /* anchored.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = anchored.png; sourceTree = "<group>"; };
+		06978F22147EE09700171A51 /* anchored@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "anchored@2x.png"; sourceTree = "<group>"; };
+		06978F26147FB0AB00171A51 /* AWBRoadsignBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBRoadsignBackground.h; path = "Roadsigns Model/AWBRoadsignBackground.h"; sourceTree = "<group>"; };
+		06978F27147FB0AB00171A51 /* AWBRoadsignBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBRoadsignBackground.m; path = "Roadsigns Model/AWBRoadsignBackground.m"; sourceTree = "<group>"; };
+		06978F29147FB27D00171A51 /* AWBRoadsignBackgroundGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBRoadsignBackgroundGroup.h; path = "Roadsigns Model/AWBRoadsignBackgroundGroup.h"; sourceTree = "<group>"; };
+		06978F2A147FB27D00171A51 /* AWBRoadsignBackgroundGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBRoadsignBackgroundGroup.m; path = "Roadsigns Model/AWBRoadsignBackgroundGroup.m"; sourceTree = "<group>"; };
 		06A07987147A79FF0065A6DB /* AWBRoadsignMagicViewController+Carousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AWBRoadsignMagicViewController+Carousel.h"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicViewController+Carousel.h"; sourceTree = "<group>"; };
 		06A07988147A79FF0065A6DB /* AWBRoadsignMagicViewController+Carousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AWBRoadsignMagicViewController+Carousel.m"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicViewController+Carousel.m"; sourceTree = "<group>"; };
 		06A0799C147A82310065A6DB /* asphalt@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "asphalt@2x.jpg"; sourceTree = "<group>"; };
@@ -565,10 +575,10 @@
 		B5E0447314784406006A8D5C /* whitebutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whitebutton.png; sourceTree = "<group>"; };
 		B5E0447414784406006A8D5C /* whitebutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whitebutton@2x.png"; sourceTree = "<group>"; };
 		B5E0447614784406006A8D5C /* blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank.png; sourceTree = "<group>"; };
-		B5E0447714784406006A8D5C /* button-down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-down.png"; sourceTree = "<group>"; };
-		B5E0447814784406006A8D5C /* button-down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-down@2x.png"; sourceTree = "<group>"; };
-		B5E0447914784406006A8D5C /* button-up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-up.png"; sourceTree = "<group>"; };
-		B5E0447A14784406006A8D5C /* button-up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-up@2x.png"; sourceTree = "<group>"; };
+		B5E0447714784406006A8D5C /* signs-down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signs-down.png"; sourceTree = "<group>"; };
+		B5E0447814784406006A8D5C /* signs-down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signs-down@2x.png"; sourceTree = "<group>"; };
+		B5E0447914784406006A8D5C /* signs-up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signs-up.png"; sourceTree = "<group>"; };
+		B5E0447A14784406006A8D5C /* signs-up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signs-up@2x.png"; sourceTree = "<group>"; };
 		B5E0447B14784406006A8D5C /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
 		B5E0447C14784406006A8D5C /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		B5E0447D14784406006A8D5C /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
@@ -723,6 +733,17 @@
 				06978EF3147D60C800171A51 /* AWBRoadsignMagicSettingsTableViewController.m */,
 			);
 			path = AWBRoadsignMagicSettingsViewController;
+			sourceTree = "<group>";
+		};
+		06978F25147FB06F00171A51 /* Roadsigns Model */ = {
+			isa = PBXGroup;
+			children = (
+				06978F26147FB0AB00171A51 /* AWBRoadsignBackground.h */,
+				06978F27147FB0AB00171A51 /* AWBRoadsignBackground.m */,
+				06978F29147FB27D00171A51 /* AWBRoadsignBackgroundGroup.h */,
+				06978F2A147FB27D00171A51 /* AWBRoadsignBackgroundGroup.m */,
+			);
+			name = "Roadsigns Model";
 			sourceTree = "<group>";
 		};
 		06A95FDB14781B6000915359 = {
@@ -1239,10 +1260,10 @@
 			isa = PBXGroup;
 			children = (
 				B5E0447614784406006A8D5C /* blank.png */,
-				B5E0447714784406006A8D5C /* button-down.png */,
-				B5E0447814784406006A8D5C /* button-down@2x.png */,
-				B5E0447914784406006A8D5C /* button-up.png */,
-				B5E0447A14784406006A8D5C /* button-up@2x.png */,
+				B5E0447714784406006A8D5C /* signs-down.png */,
+				B5E0447814784406006A8D5C /* signs-down@2x.png */,
+				B5E0447914784406006A8D5C /* signs-up.png */,
+				B5E0447A14784406006A8D5C /* signs-up@2x.png */,
 				06978F19147EB5DE00171A51 /* symbols-down.png */,
 				06978F1A147EB5E000171A51 /* symbols-down@2x.png */,
 				06978F1B147EB5E100171A51 /* symbols-up.png */,
@@ -1258,6 +1279,8 @@
 				B5E044FF147847C0006A8D5C /* 4x@2x.png */,
 				06978EEA147D2BCB00171A51 /* locked.png */,
 				06978EEB147D2BCB00171A51 /* locked@2x.png */,
+				06978F21147EE09500171A51 /* anchored.png */,
+				06978F22147EE09700171A51 /* anchored@2x.png */,
 				06978EFB147E76C200171A51 /* centeralignment.png */,
 				06978EFC147E76C200171A51 /* centeralignment@2x.png */,
 				06978EFD147E76C200171A51 /* leftalignment.png */,
@@ -1413,6 +1436,7 @@
 		B5E0450D1478492F006A8D5C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				06978F25147FB06F00171A51 /* Roadsigns Model */,
 				B5E0451814784EA1006A8D5C /* Settings Model */,
 			);
 			path = Model;
@@ -1516,10 +1540,10 @@
 				B5E0449414784406006A8D5C /* whitebutton.png in Resources */,
 				B5E0449514784406006A8D5C /* whitebutton@2x.png in Resources */,
 				B5E0449614784406006A8D5C /* blank.png in Resources */,
-				B5E0449714784406006A8D5C /* button-down.png in Resources */,
-				B5E0449814784406006A8D5C /* button-down@2x.png in Resources */,
-				B5E0449914784406006A8D5C /* button-up.png in Resources */,
-				B5E0449A14784406006A8D5C /* button-up@2x.png in Resources */,
+				B5E0449714784406006A8D5C /* signs-down.png in Resources */,
+				B5E0449814784406006A8D5C /* signs-down@2x.png in Resources */,
+				B5E0449914784406006A8D5C /* signs-up.png in Resources */,
+				B5E0449A14784406006A8D5C /* signs-up@2x.png in Resources */,
 				B5E0449B14784406006A8D5C /* delete.png in Resources */,
 				B5E0449C14784406006A8D5C /* settings.png in Resources */,
 				B5E0449D14784406006A8D5C /* settings@2x.png in Resources */,
@@ -1714,6 +1738,8 @@
 				06978F1E147EB5E300171A51 /* symbols-down@2x.png in Resources */,
 				06978F1F147EB5E300171A51 /* symbols-up.png in Resources */,
 				06978F20147EB5E300171A51 /* symbols-up@2x.png in Resources */,
+				06978F23147EE09800171A51 /* anchored.png in Resources */,
+				06978F24147EE09800171A51 /* anchored@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1774,6 +1800,8 @@
 				06978F12147E8DD000171A51 /* AWBRoadsignMagicViewController+Action.m in Sources */,
 				06978F15147E8DE700171A51 /* AWBRoadsignMagicViewController+Symbol.m in Sources */,
 				06978F18147E8E0800171A51 /* AWBRoadsignMagicViewController+Toolbar.m in Sources */,
+				06978F28147FB0AB00171A51 /* AWBRoadsignBackground.m in Sources */,
+				06978F2B147FB27D00171A51 /* AWBRoadsignBackgroundGroup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

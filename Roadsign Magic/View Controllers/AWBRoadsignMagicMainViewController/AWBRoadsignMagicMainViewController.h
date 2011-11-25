@@ -33,7 +33,8 @@
     UIBarButtonItem *fixedToolbarSpacing;
         
     NSMutableArray *signBackgroundItems;
-    NSUInteger selectedCategory;
+    NSArray *signBackgroundCategories;
+    NSUInteger selectedSignBackgroundCategory;
     BOOL thumbViewShowing;
     ZFont *roadsignFont;
     
@@ -84,6 +85,7 @@
 @property (nonatomic, retain) iCarousel *carouselCategory;
 @property (nonatomic, retain) UIView *slideUpView;
 @property (nonatomic, retain) NSMutableArray *signBackgroundItems;
+@property (nonatomic, retain) NSArray *signBackgroundCategories;
 @property (nonatomic, retain) UIImageView *signBackgroundView;
 @property (nonatomic, retain) UIScrollView *mainScrollView;
 @property (nonatomic, retain) UIRotationGestureRecognizer *rotationGestureRecognizer;

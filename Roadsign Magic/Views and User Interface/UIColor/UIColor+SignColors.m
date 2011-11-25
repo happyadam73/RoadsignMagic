@@ -10,6 +10,82 @@
 
 @implementation UIColor (SignColors)
 
++ (id)colorWithSignColorCode:(AWBSignColorCode)colorCode
+{
+    UIColor *color = nil;
+    switch (colorCode) {
+        case kAWBSignColorCodeBlackBackgroundColor:
+            color = [UIColor blackColor];
+            break;
+        case kAWBSignColorCodeWhiteBackgroundColor:
+            color = [UIColor whiteColor];
+            break;
+        case kAWBSignColorCodeDarkGreenSignBackgroundColor:
+            color = [UIColor darkGreenSignBackgroundColor];
+            break;
+        case kAWBSignColorCodeRedSignBackgroundColor:
+            color = [UIColor redSignBackgroundColor];
+            break;
+        case kAWBSignColorCodeBlueSignBackgroundColor:
+            color = [UIColor blueSignBackgroundColor];
+            break;
+        case kAWBSignColorCodeYellowSignBackgroundColor:
+            color = [UIColor yellowSignBackgroundColor];
+            break;
+        case kAWBSignColorCodeBrownSignBackgroundColor:
+            color = [UIColor brownSignBackgroundColor];
+            break;
+        case kAWBSignColorCodeLightGreenSignBackgroundColor:
+            color = [UIColor lightGreenSignBackgroundColor];
+            break;
+        case kAWBSignColorCodeOrangeSignBackgroundColor:
+            color = [UIColor orangeSignBackgroundColor];
+            break;
+        default:
+            color = [UIColor whiteColor];
+            break;
+    }
+    return color;
+}
+
++ (id)foregroundColorWithBackgroundSignColorCode:(AWBSignColorCode)colorCode
+{
+    UIColor *color = nil;
+    switch (colorCode) {
+        case kAWBSignColorCodeBlackBackgroundColor:
+            color = [UIColor whiteColor];
+            break;
+        case kAWBSignColorCodeWhiteBackgroundColor:
+            color = [UIColor blackColor];
+            break;
+        case kAWBSignColorCodeDarkGreenSignBackgroundColor:
+            color = [UIColor whiteColor];
+            break;
+        case kAWBSignColorCodeRedSignBackgroundColor:
+            color = [UIColor whiteColor];
+            break;
+        case kAWBSignColorCodeBlueSignBackgroundColor:
+            color = [UIColor whiteColor];
+            break;
+        case kAWBSignColorCodeYellowSignBackgroundColor:
+            color = [UIColor blackColor];
+            break;
+        case kAWBSignColorCodeBrownSignBackgroundColor:
+            color = [UIColor whiteColor];
+            break;
+        case kAWBSignColorCodeLightGreenSignBackgroundColor:
+            color = [UIColor whiteColor];
+            break;
+        case kAWBSignColorCodeOrangeSignBackgroundColor:
+            color = [UIColor blackColor];
+            break;
+        default:
+            color = [UIColor whiteColor];
+            break;
+    }
+    return color;    
+}
+
 + (id)darkGreenSignBackgroundColor
 {
     return [UIColor colorWithRed:0.0/255.0 green:112.0/255.0 blue:60.0/255.0 alpha:1.0];

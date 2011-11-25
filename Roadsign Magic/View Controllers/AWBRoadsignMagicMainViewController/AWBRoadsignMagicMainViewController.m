@@ -23,7 +23,7 @@
 
 @synthesize mainScrollView, signBackgroundView;
 @synthesize signBackgroundPickerButton, toolbarSpacing, textButton, editButton, editTextButton, cancelButton, deleteButton, selectNoneOrAllButton, addSymbolButton, actionButton, settingsButton, fixedToolbarSpacing;
-@synthesize carouselSubcategory, carouselCategory, slideUpView, signBackgroundItems;
+@synthesize carouselSubcategory, carouselCategory, slideUpView, signBackgroundItems, signBackgroundCategories;
 @synthesize rotationGestureRecognizer, panGestureRecognizer, pinchGestureRecognizer, singleTapGestureRecognizer, doubleTapGestureRecognizer, swipeGestureRecognizer, longPressGestureRecognizer;
 @synthesize roadsignFont, selectionMarquee, selectionMarquee2;
 @synthesize labelTextColor, labelTextFont, labelTextLine1, labelTextLine2, labelTextLine3, labelTextAlignment;
@@ -133,7 +133,7 @@
     [[self.signBackgroundView layer] addSublayer:self.selectionMarquee];
     [[self.signBackgroundView layer] addSublayer:self.selectionMarquee2];
     
-    lockedView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"locked"]];
+    lockedView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"anchored"]];
     lockedView.center = CGPointMake(self.view.bounds.size.width - 20.0, 40.0);
     lockedView.hidden = !scrollLocked;
     [self.view addSubview:lockedView];
@@ -146,6 +146,7 @@
     [self deallocGestureRecognizers];
 	carouselSubcategory.delegate = nil;
 	carouselSubcategory.dataSource = nil;
+    [signBackgroundCategories release];
     [roadsignFont release];
     [signBackgroundItems release];
     [slideUpView release];

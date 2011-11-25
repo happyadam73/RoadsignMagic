@@ -9,8 +9,22 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+typedef enum {
+    kAWBSignColorCodeBlackBackgroundColor,
+    kAWBSignColorCodeWhiteBackgroundColor,
+    kAWBSignColorCodeDarkGreenSignBackgroundColor,
+    kAWBSignColorCodeRedSignBackgroundColor,
+    kAWBSignColorCodeBlueSignBackgroundColor,
+    kAWBSignColorCodeYellowSignBackgroundColor,
+    kAWBSignColorCodeBrownSignBackgroundColor,
+    kAWBSignColorCodeLightGreenSignBackgroundColor,
+    kAWBSignColorCodeOrangeSignBackgroundColor
+} AWBSignColorCode;
+
 @interface UIColor (SignColors) 
 
++ (id)colorWithSignColorCode:(AWBSignColorCode)colorCode;
++ (id)foregroundColorWithBackgroundSignColorCode:(AWBSignColorCode)colorCode;
 + (id)darkGreenSignBackgroundColor;
 + (id)redSignBackgroundColor;
 + (id)blueSignBackgroundColor;

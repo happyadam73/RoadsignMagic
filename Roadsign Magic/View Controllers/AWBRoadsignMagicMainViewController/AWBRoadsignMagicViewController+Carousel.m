@@ -11,6 +11,8 @@
 #import "UIColor+SignColors.h"
 #import "NSString+Helpers.h"
 #import "AWBRoadsignMagicViewController+Sign.h"
+#import "AWBRoadsignBackgroundGroup.h"
+#import "AWBRoadsignBackground.h"
 
 @implementation AWBRoadsignMagicMainViewController (Carousel)
 
@@ -19,14 +21,8 @@
 
 - (void)initialiseSlideupView
 {
-    self.signBackgroundItems = [NSMutableArray array];
-    [signBackgroundItems addObject:[NSNumber numberWithInteger:15]];
-    [signBackgroundItems addObject:[NSNumber numberWithInteger:9]];
-    [signBackgroundItems addObject:[NSNumber numberWithInteger:14]];
-    [signBackgroundItems addObject:[NSNumber numberWithInteger:19]];
-    [signBackgroundItems addObject:[NSNumber numberWithInteger:10]];
-    [signBackgroundItems addObject:[NSNumber numberWithInteger:15]];
-    selectedCategory = 0;
+    self.signBackgroundCategories = [AWBRoadsignBackgroundGroup allSignBackgroundCategories];   
+    selectedSignBackgroundCategory = 0;
     
     //slideup view background
     CGRect backgroundFrame = CGRectMake(0.0, self.view.bounds.size.height-(self.navigationController.toolbar.bounds.size.height)-180.0, self.view.bounds.size.width, 180);
@@ -50,7 +46,7 @@
     carouselCategory.type = iCarouselTypeLinear;
 	carouselCategory.delegate = self;
 	carouselCategory.dataSource = self; 
-    [carouselCategory scrollToItemAtIndex:selectedCategory animated:YES];
+    [carouselCategory scrollToItemAtIndex:selectedSignBackgroundCategory animated:YES];
     
     //subcategory carousel
     tempCarousel = [[iCarousel alloc] initWithFrame:CGRectMake(0.0, 70.0, backgroundFrame.size.width, 100.0)];
@@ -74,9 +70,10 @@
 - (NSUInteger)numberOfItemsInCarousel:(iCarousel *)carousel
 {
     if (carousel == self.carouselCategory) {
-        return [signBackgroundItems count];
+        return [self.signBackgroundCategories count];
     } else {
-        return [[signBackgroundItems objectAtIndex:selectedCategory] integerValue];
+        AWBRoadsignBackgroundGroup *signGroup = [self.signBackgroundCategories objectAtIndex:selectedSignBackgroundCategory];
+        return [signGroup.signBackgrounds count];
     }    
 }
 
@@ -84,7 +81,7 @@
 {
     //limit the number of items views loaded concurrently (for performance reasons)
     if (carousel == self.carouselCategory) {
-        return [signBackgroundItems count];
+        return [self.signBackgroundCategories count];
     } else {
         return (IS_IPAD ? 12 : 6);
     } 
@@ -96,15 +93,17 @@
     NSString *filename = nil;
 
     if (carousel == self.carouselCategory) {
-        filename = [NSString stringWithFormat:@"0%d.png", index];
-        if (index == selectedCategory) {
+        AWBRoadsignBackgroundGroup *signGroup = [self.signBackgroundCategories objectAtIndex:index];
+        filename = signGroup.thumbnailImageFilename;
+        if (index == selectedSignBackgroundCategory) {
             alpha = 1.0;
         } else {
             alpha = 0.5;
         }
-    } else {
-        NSString *imageNumberString = [[NSString stringWithFormat:@"%d", (index+1)] stringByPaddingTheLeftToLength:3 withString:@"0" startingAtIndex:0];
-        filename = [NSString stringWithFormat:@"1%d%@.png", selectedCategory, imageNumberString];    
+    } else {        
+        AWBRoadsignBackgroundGroup *signGroup = [self.signBackgroundCategories objectAtIndex:selectedSignBackgroundCategory];
+        AWBRoadsignBackground *signBackground = [signGroup.signBackgrounds objectAtIndex:index];
+        filename = signBackground.thumbnailImageFilename;
         alpha = 1.0;
     }
     
@@ -112,22 +111,13 @@
     view.alpha = alpha;
 
     if (carousel == self.carouselCategory) {
-        if (index == selectedCategory) {
+        if (index == selectedSignBackgroundCategory) {
             view.layer.borderWidth = 1.0;
             view.layer.cornerRadius = 5.0;
             view.layer.borderColor = [[UIColor yellowSignBackgroundColor] CGColor];
         }
     }
     
-//    if (IS_IPAD) {
-//        view.transform = CGAffineTransformMakeScale(2.0, 2.0); 
-//    }  
-//	UILabel *label = [[[UILabel alloc] initWithFrame:view.bounds] autorelease];
-//	label.text = [[items objectAtIndex:index] stringValue];
-//	label.backgroundColor = [UIColor clearColor];
-//	label.textAlignment = UITextAlignmentCenter;
-//	label.font = [label.font fontWithSize:50];
-	//[view addSubview:label];
 	return view;
 }
 
@@ -176,12 +166,13 @@
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
 {
     if (carousel == self.carouselCategory) {
-        selectedCategory = index;
+        selectedSignBackgroundCategory = index;
         [self.carouselCategory reloadData];
         [self.carouselSubcategory reloadData];
     } else {
-        NSString *imageNumberString = [[NSString stringWithFormat:@"%d", (index+1)] stringByPaddingTheLeftToLength:3 withString:@"0" startingAtIndex:0];
-        NSString *filename = [NSString stringWithFormat:@"2%d%@.png", selectedCategory, imageNumberString];    
+        AWBRoadsignBackgroundGroup *signGroup = [self.signBackgroundCategories objectAtIndex:selectedSignBackgroundCategory];
+        AWBRoadsignBackground *signBackground = [signGroup.signBackgrounds objectAtIndex:index];
+        NSString *filename = signBackground.fullsizeImageFilename;        
         [self updateSignBackgroundWithImageFromFile:filename];
     }
 }
