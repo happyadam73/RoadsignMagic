@@ -8,6 +8,8 @@
 
 #import "AWBAppDelegate.h"
 #import "AWBRoadsignMagicMainViewController.h"
+#import "AWBRoadsignMagicMainViewController+UI.h"
+#import "AWBRoadsignMagicSettingsTableViewController.h"
 
 @implementation AWBAppDelegate
 
@@ -26,14 +28,19 @@
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
 //    // Override point for customization after application launch.
 //    self.window.backgroundColor = [UIColor whiteColor];
-    
+
     AWBRoadsignMagicMainViewController *viewController = [[AWBRoadsignMagicMainViewController alloc] init];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    AWBRoadsignMagicSettingsTableViewController *settingsController = [[AWBRoadsignMagicSettingsTableViewController alloc] initWithSettings:[AWBSettings mainSettingsWithInfo:[viewController settingsInfo]] settingsInfo:[viewController settingsInfo] rootController:nil]; 
+    settingsController.controllerType = AWBSettingsControllerTypeMainSettings;  
+    settingsController.navigationItem.title = @"My Signs";
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsController];
+    [navController pushViewController:viewController animated:YES];
     [viewController release];
+    [settingsController release];
     
     navController.navigationBar.barStyle = UIBarStyleBlack;
     navController.navigationBar.translucent = YES;
-    navController.navigationBarHidden = YES;
+    navController.navigationBarHidden = NO;
     navController.toolbar.barStyle = UIBarStyleBlack;
     navController.toolbar.translucent = YES;
     navController.toolbarHidden = NO;

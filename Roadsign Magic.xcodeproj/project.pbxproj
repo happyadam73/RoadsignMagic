@@ -62,6 +62,7 @@
 		06A960461478265700915359 /* FontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A960411478265700915359 /* FontManager.m */; };
 		06A960471478265700915359 /* ZAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A960421478265700915359 /* ZAttributedString.m */; };
 		06A960481478265700915359 /* ZFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A960431478265700915359 /* ZFont.m */; };
+		06E37436147FF42600EA536C /* AWBLockedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E37435147FF42600EA536C /* AWBLockedView.m */; };
 		06F15E89147BC0AE007071D0 /* 00@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06F15E68147BC0AE007071D0 /* 00@2x.png */; };
 		06F15E8A147BC0AE007071D0 /* 10001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06F15E6A147BC0AE007071D0 /* 10001@2x.png */; };
 		06F15E8B147BC0AE007071D0 /* 10002@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06F15E6B147BC0AE007071D0 /* 10002@2x.png */; };
@@ -382,6 +383,8 @@
 		06A960411478265700915359 /* FontManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FontManager.m; path = "Transforms and Drawing/zFont/FontManager.m"; sourceTree = "<group>"; };
 		06A960421478265700915359 /* ZAttributedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZAttributedString.m; path = "Transforms and Drawing/zFont/ZAttributedString.m"; sourceTree = "<group>"; };
 		06A960431478265700915359 /* ZFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZFont.m; path = "Transforms and Drawing/zFont/ZFont.m"; sourceTree = "<group>"; };
+		06E37434147FF42600EA536C /* AWBLockedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBLockedView.h; path = "Views and User Interface/LockedView/AWBLockedView.h"; sourceTree = "<group>"; };
+		06E37435147FF42600EA536C /* AWBLockedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBLockedView.m; path = "Views and User Interface/LockedView/AWBLockedView.m"; sourceTree = "<group>"; };
 		06F15E68147BC0AE007071D0 /* 00@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "00@2x.png"; sourceTree = "<group>"; };
 		06F15E6A147BC0AE007071D0 /* 10001@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "10001@2x.png"; sourceTree = "<group>"; };
 		06F15E6B147BC0AE007071D0 /* 10002@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "10002@2x.png"; sourceTree = "<group>"; };
@@ -873,6 +876,7 @@
 		06A960361478262300915359 /* Views and User Interface */ = {
 			isa = PBXGroup;
 			children = (
+				06E37432147FF3F600EA536C /* LockedView */,
 				B5E044B41478471F006A8D5C /* ProgressView */,
 				B5E044B71478471F006A8D5C /* Table Cells and Controls */,
 				B5E044D01478471F006A8D5C /* Transformable Views */,
@@ -910,6 +914,15 @@
 				06A960431478265700915359 /* ZFont.m */,
 			);
 			name = zFont;
+			sourceTree = "<group>";
+		};
+		06E37432147FF3F600EA536C /* LockedView */ = {
+			isa = PBXGroup;
+			children = (
+				06E37434147FF42600EA536C /* AWBLockedView.h */,
+				06E37435147FF42600EA536C /* AWBLockedView.m */,
+			);
+			name = LockedView;
 			sourceTree = "<group>";
 		};
 		06F15E67147BC0AE007071D0 /* 0 Blue Rectangular Backgrounds */ = {
@@ -1802,6 +1815,7 @@
 				06978F18147E8E0800171A51 /* AWBRoadsignMagicViewController+Toolbar.m in Sources */,
 				06978F28147FB0AB00171A51 /* AWBRoadsignBackground.m in Sources */,
 				06978F2B147FB27D00171A51 /* AWBRoadsignBackgroundGroup.m in Sources */,
+				06E37436147FF42600EA536C /* AWBLockedView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

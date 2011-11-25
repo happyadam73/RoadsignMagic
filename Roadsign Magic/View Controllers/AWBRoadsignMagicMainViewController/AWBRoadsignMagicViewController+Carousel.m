@@ -172,6 +172,8 @@
     } else {
         AWBRoadsignBackgroundGroup *signGroup = [self.signBackgroundCategories objectAtIndex:selectedSignBackgroundCategory];
         AWBRoadsignBackground *signBackground = [signGroup.signBackgrounds objectAtIndex:index];
+        self.selectedSignBackground = signBackground;
+        self.labelTextColor = [UIColor foregroundColorWithBackgroundSignColorCode:signBackground.primaryColorCode];
         NSString *filename = signBackground.fullsizeImageFilename;        
         [self updateSignBackgroundWithImageFromFile:filename];
     }

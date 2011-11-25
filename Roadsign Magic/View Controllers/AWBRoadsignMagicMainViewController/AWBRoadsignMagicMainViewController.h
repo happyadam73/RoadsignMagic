@@ -10,6 +10,8 @@
 #import "iCarousel.h"
 #import "ZFont.h"
 #import <QuartzCore/QuartzCore.h>
+#import "AWBRoadsignBackground.h"
+#import "AWBLockedView.h"
 
 @interface AWBRoadsignMagicMainViewController : UIViewController 
 {    
@@ -35,6 +37,8 @@
     NSMutableArray *signBackgroundItems;
     NSArray *signBackgroundCategories;
     NSUInteger selectedSignBackgroundCategory;
+    AWBRoadsignBackground *selectedSignBackground;
+    
     BOOL thumbViewShowing;
     ZFont *roadsignFont;
     
@@ -45,16 +49,16 @@
     UITapGestureRecognizer *doubleTapGestureRecognizer;
     UISwipeGestureRecognizer *swipeGestureRecognizer;
     UILongPressGestureRecognizer *longPressGestureRecognizer;
+    UILongPressGestureRecognizer *longDoublePressGestureRecognizer;
+    
     UIView <AWBTransformableView> *capturedView;
     CGPoint capturedCenterOffset;
     
     CAShapeLayer *selectionMarquee;
     CAShapeLayer *selectionMarquee2;
-    UIImageView *lockedView;
-    BOOL scrollLocked;
+    AWBLockedView *lockedView;
     BOOL snapToGrid;
     CGFloat snapToGridSize;
-    BOOL lockCanvas;
     CGFloat exportQuality;
     
     NSString *labelTextLine1;
@@ -95,13 +99,13 @@
 @property (nonatomic, retain) UITapGestureRecognizer *doubleTapGestureRecognizer;
 @property (nonatomic, retain) UISwipeGestureRecognizer *swipeGestureRecognizer;
 @property (nonatomic, retain) UILongPressGestureRecognizer *longPressGestureRecognizer;
+@property (nonatomic, retain) UILongPressGestureRecognizer *longDoublePressGestureRecognizer;
 @property (nonatomic, retain) ZFont *roadsignFont;
 @property (nonatomic, retain) CAShapeLayer *selectionMarquee;
 @property (nonatomic, retain) CAShapeLayer *selectionMarquee2;
-@property (nonatomic, assign) BOOL scrollLocked;
+@property (nonatomic, retain) AWBLockedView *lockedView;
 @property (nonatomic, assign) BOOL snapToGrid;
 @property (nonatomic, assign) CGFloat snapToGridSize;
-@property (nonatomic, assign) BOOL lockCanvas;
 @property (nonatomic, assign) CGFloat exportQuality;
 @property (nonatomic, retain) NSString *labelTextLine1;
 @property (nonatomic, retain) NSString *labelTextLine2;
@@ -109,6 +113,8 @@
 @property (nonatomic, retain) UIColor *labelTextColor;
 @property (nonatomic, retain) NSString *labelTextFont;
 @property (nonatomic, assign) UITextAlignment labelTextAlignment;
+@property (nonatomic, retain) AWBRoadsignBackground *selectedSignBackground;
+
 
 @end
 

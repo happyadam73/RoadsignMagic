@@ -24,20 +24,23 @@
 @synthesize mainScrollView, signBackgroundView;
 @synthesize signBackgroundPickerButton, toolbarSpacing, textButton, editButton, editTextButton, cancelButton, deleteButton, selectNoneOrAllButton, addSymbolButton, actionButton, settingsButton, fixedToolbarSpacing;
 @synthesize carouselSubcategory, carouselCategory, slideUpView, signBackgroundItems, signBackgroundCategories;
-@synthesize rotationGestureRecognizer, panGestureRecognizer, pinchGestureRecognizer, singleTapGestureRecognizer, doubleTapGestureRecognizer, swipeGestureRecognizer, longPressGestureRecognizer;
+@synthesize rotationGestureRecognizer, panGestureRecognizer, pinchGestureRecognizer, singleTapGestureRecognizer, doubleTapGestureRecognizer, swipeGestureRecognizer, longPressGestureRecognizer, longDoublePressGestureRecognizer;
 @synthesize roadsignFont, selectionMarquee, selectionMarquee2;
 @synthesize labelTextColor, labelTextFont, labelTextLine1, labelTextLine2, labelTextLine3, labelTextAlignment;
-@synthesize exportQuality, lockCanvas, snapToGrid, snapToGridSize, scrollLocked;
+@synthesize exportQuality, snapToGrid, snapToGridSize, lockedView;
+@synthesize selectedSignBackground;
 
 - (void)viewWillAppear:(BOOL)animated
 {
     self.toolbarItems = [self normalToolbarButtons];
+    self.navigationItem.rightBarButtonItem = self.editButton;
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     [self dereferenceGestureRecognizers];
+    self.lockedView = nil;
     self.selectionMarquee = nil;
     self.selectionMarquee2 = nil;
     self.roadsignFont = nil;
@@ -69,8 +72,8 @@
 {
     [super viewDidLoad];
     snapToGrid = YES;
-    snapToGridSize = 50.0;
-        
+    snapToGridSize = 40.0;
+    labelTextAlignment = UITextAlignmentCenter;
     [self initialiseGestureRecognizers];
 }
 
@@ -101,15 +104,17 @@
         slideUpView.frame = frame;
     }
     
-    lockedView.center = CGPointMake(self.view.bounds.size.width - 20.0, 40.0);
+    //lockedView.center = CGPointMake(self.view.bounds.size.width - 20.0, 40.0);
 }
 
 - (void)loadView {
     [super loadView];
     
     ZFont *font = [[FontManager sharedManager] zFontWithName:@"BritishRoadsign" pointSize:40.0];
+    //ZFont *font = [ZFont fontWithUIFont:[UIFont fontWithName:@"Thonburi-Bold" size:40.0]];
+    
     self.roadsignFont = font;
-    scrollLocked = NO;
+    //scrollLocked = NO;
 
     self.wantsFullScreenLayout = YES;
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageFromFile:@"concrete.jpg"]];
@@ -119,7 +124,7 @@
     scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     scrollView.backgroundColor = [UIColor clearColor];
     scrollView.canCancelContentTouches = NO;
-    scrollView.scrollEnabled = !scrollLocked;
+    scrollView.scrollEnabled = YES;
     self.mainScrollView = scrollView;
     [scrollView release];
     [[self view] addSubview:self.mainScrollView];
@@ -133,10 +138,13 @@
     [[self.signBackgroundView layer] addSublayer:self.selectionMarquee];
     [[self.signBackgroundView layer] addSublayer:self.selectionMarquee2];
     
-    lockedView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"anchored"]];
-    lockedView.center = CGPointMake(self.view.bounds.size.width - 20.0, 40.0);
-    lockedView.hidden = !scrollLocked;
-    [self.view addSubview:lockedView];
+    AWBLockedView *view = [[AWBLockedView alloc] initWithObjectsLocked:NO canvasAnchored:NO];
+    self.lockedView = view;
+    [view release];
+    self.navigationItem.titleView = lockedView;
+//    lockedView.center = CGPointMake(self.view.bounds.size.width - 20.0, 40.0);
+//    lockedView.hidden = !scrollLocked;
+//    [self.view addSubview:lockedView];
     
 }
 
@@ -146,6 +154,7 @@
     [self deallocGestureRecognizers];
 	carouselSubcategory.delegate = nil;
 	carouselSubcategory.dataSource = nil;
+    [selectedSignBackground release];
     [signBackgroundCategories release];
     [roadsignFont release];
     [signBackgroundItems release];
@@ -173,6 +182,7 @@
     [labelTextLine1 release];
     [labelTextLine2 release];
     [labelTextLine3 release];
+    [lockedView release];
     [super dealloc];
 }
 

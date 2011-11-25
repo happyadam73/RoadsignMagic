@@ -21,6 +21,7 @@
     float minWidthScale  = ((mainScrollView.bounds.size.width)  / signBackgroundView.bounds.size.width) * 0.96;
     float minHeightScale  = ((mainScrollView.bounds.size.height)  / signBackgroundView.bounds.size.height) * 0.96;
     [mainScrollView setMinimumZoomScale:MIN(minWidthScale, minHeightScale)];
+    [mainScrollView setMaximumZoomScale:2.0];
     [mainScrollView setZoomScale:MIN(minWidthScale, minHeightScale)];
     [mainScrollView setContentOffset:CGPointZero];
     

@@ -102,8 +102,8 @@
 
 - (void)setCollageDrawingAidsFromSettingsInfo:(NSDictionary *)info
 {
-    self.lockCanvas = [[info objectForKey:kAWBInfoKeyLockCanvas] boolValue];
-    self.scrollLocked = [[info objectForKey:kAWBInfoKeyScrollLocked] boolValue];
+    self.lockedView.objectsLocked = [[info objectForKey:kAWBInfoKeyLockCanvas] boolValue];
+    self.lockedView.canvasAnchored = [[info objectForKey:kAWBInfoKeyScrollLocked] boolValue];
     self.snapToGrid = [[info objectForKey:kAWBInfoKeySnapToGrid] boolValue];
     self.snapToGridSize = [[info objectForKey:kAWBInfoKeySnapToGridSize] floatValue];
 }
@@ -112,8 +112,8 @@
 {
     NSMutableDictionary *info = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                  [NSNumber numberWithFloat:self.exportQuality], kAWBInfoKeyExportQualityValue, 
-                                 [NSNumber numberWithBool:self.lockCanvas], kAWBInfoKeyLockCanvas, 
-                                 [NSNumber numberWithBool:self.scrollLocked], kAWBInfoKeyScrollLocked, 
+                                 [NSNumber numberWithBool:self.lockedView.objectsLocked], kAWBInfoKeyLockCanvas, 
+                                 [NSNumber numberWithBool:self.lockedView.canvasAnchored], kAWBInfoKeyScrollLocked, 
                                  [NSNumber numberWithBool:self.snapToGrid], kAWBInfoKeySnapToGrid, 
                                  [NSNumber numberWithFloat:self.snapToGridSize], kAWBInfoKeySnapToGridSize, 
                                  [NSNumber numberWithInteger:self.labelTextAlignment], kAWBInfoKeyTextAlignment,
@@ -242,8 +242,9 @@
     //        lockedView.alpha = 0.5;
     //    }
     
-    [self.navigationController setToolbarHidden:hideMenus animated:YES];
     [[UIApplication sharedApplication] setStatusBarHidden:hideMenus withAnimation:UIStatusBarAnimationSlide];
+    [self.navigationController setToolbarHidden:hideMenus animated:YES];
+    [self.navigationController setNavigationBarHidden:hideMenus animated:YES];    
 }
 
 - (void)toggleThumbView:(id)sender 
@@ -285,8 +286,9 @@
     return view;
 }
 
-
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView {
+    snapToGridSize = 40.0/mainScrollView.zoomScale;
+
     CGFloat offsetX = (scrollView.bounds.size.width > scrollView.contentSize.width)? 
     (scrollView.bounds.size.width - scrollView.contentSize.width) * 0.5 : 0.0;
     CGFloat offsetY = (scrollView.bounds.size.height > scrollView.contentSize.height)? 
@@ -298,7 +300,7 @@
 - (CGRect)zoomRectForScale:(float)scale withCenter:(CGPoint)center
 {    
     CGRect zoomRect;
-    
+        
     // the zoom rect is in the content view's coordinates. 
     //    At a zoom scale of 1.0, it would be the size of the imageScrollView's bounds.
     //    As the zoom scale decreases, so more content is visible, the size of the rect grows.

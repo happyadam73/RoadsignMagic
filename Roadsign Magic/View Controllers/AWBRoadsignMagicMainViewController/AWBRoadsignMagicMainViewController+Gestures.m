@@ -63,6 +63,11 @@
     [longPressRecognizer release];
     [self.view addGestureRecognizer:self.longPressGestureRecognizer];
     
+    UILongPressGestureRecognizer *longDoublePressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongDoublePresses:)];
+    longDoublePressRecognizer.numberOfTouchesRequired = 2;
+    self.longDoublePressGestureRecognizer = longDoublePressRecognizer;
+    [longDoublePressRecognizer release];
+    [self.view addGestureRecognizer:self.longDoublePressGestureRecognizer];
 }
 
 - (void)deallocGestureRecognizers
@@ -74,6 +79,7 @@
     [doubleTapGestureRecognizer release];
     [swipeGestureRecognizer release];
     [longPressGestureRecognizer release];
+    [longDoublePressGestureRecognizer release];
 }
 
 - (void)dereferenceGestureRecognizers
@@ -85,10 +91,14 @@
     self.doubleTapGestureRecognizer = nil;
     self.swipeGestureRecognizer = nil; 
     self.longPressGestureRecognizer = nil;
+    self.longDoublePressGestureRecognizer = nil;
 }
 
 - (void)handleRotations:(UIRotationGestureRecognizer *)paramSender
 {
+    if (self.lockedView.objectsLocked) {
+        return;
+    }
 //    if (self.isCollageInEditMode || self.collageObjectLocator.lockCollage) {
 //        return;
 //    } else {
@@ -124,6 +134,9 @@
 
 - (void)handlePinches:(UIPinchGestureRecognizer *)paramSender
 {
+    if (self.lockedView.objectsLocked) {
+        return;
+    }
     
 //    if (self.isCollageInEditMode || self.collageObjectLocator.lockCollage) {
 //        return;
@@ -163,9 +176,9 @@
 
 - (void)handlePanGestures:(UIPanGestureRecognizer *)paramSender
 {
-//    if (self.collageObjectLocator.lockCollage) {
-//        return;
-//    }
+    if (self.lockedView.objectsLocked) {
+        return;
+    }
 //    
 //    if (!self.isCollageInEditMode && !self.isImporting) {
 //        [self setNavigationBarsHidden:YES animated:NO];
@@ -219,17 +232,18 @@
 - (void)handleDoubleTaps:(UITapGestureRecognizer *)paramSender
 {
     
-    if (paramSender.state == UIGestureRecognizerStateEnded) {
+    if ((paramSender.state == UIGestureRecognizerStateEnded) && (mainScrollView.minimumZoomScale != mainScrollView.maximumZoomScale)) {
         CGPoint point = [paramSender locationInView:self.mainScrollView];
         if (CGRectContainsPoint(self.signBackgroundView.frame, point)) {
-            float newScale = 1.0;
+            float newScale;
             if (mainScrollView.zoomScale == mainScrollView.minimumZoomScale) {
-                newScale = 1.0;
+                newScale = mainScrollView.maximumZoomScale;
             } else {
                 newScale = mainScrollView.minimumZoomScale;
             }
             
-            CGRect zoomRect = [self zoomRectForScale:newScale withCenter:point];
+            CGPoint centerPoint = [self.signBackgroundView convertPoint:point fromView:mainScrollView];
+            CGRect zoomRect = [self zoomRectForScale:newScale withCenter:centerPoint];
             [mainScrollView zoomToRect:zoomRect animated:YES];
         }
         
@@ -270,9 +284,9 @@
 
 - (void)handleLeftAndRightSwipes:(UISwipeGestureRecognizer *)paramSender
 {
-//    if (self.collageObjectLocator.lockCollage) {
-//        return;
-//    }
+    if (self.lockedView.objectsLocked) {
+        return;
+    }
 //    
 //    if (!self.isCollageInEditMode && !self.isImporting) {
 //        [self setNavigationBarsHidden:YES animated:NO];
@@ -290,12 +304,17 @@
 - (void)handleLongPresses:(UILongPressGestureRecognizer *)paramSender
 {
     if (paramSender.state == UIGestureRecognizerStateEnded) {
-        scrollLocked = !scrollLocked;
-        mainScrollView.scrollEnabled = !scrollLocked;
-        lockedView.hidden = !scrollLocked;
+        lockedView.canvasAnchored = !lockedView.canvasAnchored;
+        mainScrollView.scrollEnabled = !lockedView.canvasAnchored;
     }
 }
 
+- (void)handleLongDoublePresses:(UILongPressGestureRecognizer *)paramSender
+{
+    if (paramSender.state == UIGestureRecognizerStateEnded) {
+        lockedView.objectsLocked = !lockedView.objectsLocked;
+    }
+}
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer 
 {

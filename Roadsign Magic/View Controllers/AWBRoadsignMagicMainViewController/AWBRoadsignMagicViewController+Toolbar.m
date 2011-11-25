@@ -123,7 +123,7 @@
 {
     if (!editButton) {
         editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(enableEditMode:)];
-        editButton.style = UIBarButtonItemStyleBordered;
+        editButton.style = UIBarButtonItemStylePlain;
     }
     return editButton;    
 }
