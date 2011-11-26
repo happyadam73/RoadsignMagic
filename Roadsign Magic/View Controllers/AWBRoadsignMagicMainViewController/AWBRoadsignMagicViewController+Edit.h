@@ -10,4 +10,10 @@
 
 @interface AWBRoadsignMagicMainViewController (Edit)
 
+- (void)objectTappedInEditMode:(UIView <AWBTransformableView> *)view;
+- (void)enableEditMode:(id)sender;
+- (void)resetEditMode:(id)sender;
+- (void)selectAllOrNoneInEditMode:(id)sender;
+- (void)updateUserInterfaceWithTotalSelectedInEditMode;
+
 @end

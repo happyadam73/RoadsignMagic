@@ -10,49 +10,81 @@
 
 @implementation AWBLockedView
 
-@synthesize objectsLocked, canvasAnchored;
+@synthesize objectsLocked, canvasAnchored, delegate;
 
 - (id)initWithObjectsLocked:(BOOL)locked canvasAnchored:(BOOL)anchored
 {
-    self = [super initWithFrame:CGRectMake(0.0, 0.0, 50.0, 20.0)];    
+    self = [super initWithFrame:CGRectMake(0.0, 0.0, 68.0, 26.0)];    
     if (self) {
-        canvasAnchoredView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 20.0, 20.0)];
-        canvasAnchoredView.image = [UIImage imageNamed:@"anchored"];
-        objectsLockedView = [[UIImageView alloc] initWithFrame:CGRectMake(30.0, 0.0, 20.0, 20.0)];
-        objectsLockedView.image = [UIImage imageNamed:@"locked"];
-        [self addSubview:canvasAnchoredView];
-        [self addSubview:objectsLockedView];
-        canvasAnchoredView.hidden = !anchored;
-        objectsLockedView.hidden = !locked;
+        canvasAnchoredButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        canvasAnchoredButton.frame = CGRectMake(0.0, 0.0, 26.0, 26.0);
+        [canvasAnchoredButton setImage:[UIImage imageNamed:@"unanchored"] forState:UIControlStateNormal];
+        [canvasAnchoredButton setImage:[UIImage imageNamed:@"anchored"] forState:UIControlStateHighlighted];
+        [canvasAnchoredButton setImage:[UIImage imageNamed:@"anchored"] forState:UIControlStateSelected];
+        canvasAnchoredButton.showsTouchWhenHighlighted = YES;
+        [canvasAnchoredButton addTarget:self action:@selector(toggleAnchor) forControlEvents:UIControlEventTouchUpInside];
+
+        objectsLockedButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        objectsLockedButton.frame = CGRectMake(42.0, 0.0, 26.0, 26.0);
+        [objectsLockedButton setImage:[UIImage imageNamed:@"unlocked"] forState:UIControlStateNormal];
+        [objectsLockedButton setImage:[UIImage imageNamed:@"locked"] forState:UIControlStateHighlighted];
+        [objectsLockedButton setImage:[UIImage imageNamed:@"locked"] forState:UIControlStateSelected];
+        objectsLockedButton.showsTouchWhenHighlighted = YES;
+        [objectsLockedButton addTarget:self action:@selector(toggleLock) forControlEvents:UIControlEventTouchUpInside];
+        
+        self.canvasAnchored = anchored;
+        self.objectsLocked = locked;
+        [self addSubview:canvasAnchoredButton];
+        [self addSubview:objectsLockedButton];
     }
     return self; 
 }
 
 - (void)dealloc
 {
-    [objectsLockedView release];
-    [canvasAnchoredView release];
+    [objectsLockedButton release];
+    [canvasAnchoredButton release];
     [super dealloc];
 }
 
 - (BOOL)objectsLocked
 {
-    return !objectsLockedView.hidden;
+    return objectsLockedButton.selected;
 }
 
 - (void)setObjectsLocked:(BOOL)locked
 {
-    objectsLockedView.hidden = !locked;
+    objectsLockedButton.selected = locked;
+    objectsLockedButton.alpha = (locked ? 1.0 : 0.5);
+    
+    if([delegate respondsToSelector:@selector(awbLockedView:didSetLock:)]) {
+        [delegate awbLockedView:self didSetLock:locked];
+	}  
 }
 
 - (BOOL)canvasAnchored
 {
-    return !canvasAnchoredView.hidden;
+    return canvasAnchoredButton.selected;
 }
 
 - (void)setCanvasAnchored:(BOOL)anchored
 {
-    canvasAnchoredView.hidden = !anchored;
+    canvasAnchoredButton.selected = anchored;
+    canvasAnchoredButton.alpha = (anchored ? 1.0 : 0.5);
+    
+    if([delegate respondsToSelector:@selector(awbLockedView:didSetAnchor:)]) {
+        [delegate awbLockedView:self didSetAnchor:anchored];
+	}
+}
+
+- (void)toggleLock
+{
+    self.objectsLocked = !self.objectsLocked;
+}
+
+- (void)toggleAnchor
+{
+    self.canvasAnchored = !self.canvasAnchored;
 }
 
 @end

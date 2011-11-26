@@ -1,21 +1,24 @@
 //
 //  AWBTransformableLabel.m
-//  CollageMaker
+//  Roadsign Magic
 //
 //  Created by Adam Buckley on 10/08/2011.
 //  Copyright 2011 Callcredit. All rights reserved.
 //
 
-#import "AWBTransformableLabel.h"
+#import "AWBTransformableZFontLabel.h"
 #import "AWBTransforms.h"
 #import "UIView+Animation.h"
+#import "FontLabelStringDrawing.h"
+#import "FontManager.h"
 
 #define BORDER_HEIGHT_RATIO 24.0
 #define SHADOW_OFFSET_HEIGHT_RATIO 8.0
 #define QUANTISED_ROTATION (M_PI_4/2.0)
 #define MAX_SCALE_PIXELS 1536
+#define DEFAULT_FONT_POINT_SIZE 40.0
 
-@implementation AWBTransformableLabel
+@implementation AWBTransformableZFontLabel
 
 @synthesize rotationAngleInRadians, currentScale, pendingRotationAngleInRadians, horizontalFlip;
 @synthesize roundedBorder, viewBorderColor, viewShadowColor, addShadow, addBorder;
@@ -33,13 +36,14 @@
     currentScale = scale;
     horizontalFlip = NO;  
     
-    //CGSize screenSize = [[UIScreen mainScreen] applicationFrame].size;    
+//    CGSize screenSize = [[UIScreen mainScreen] applicationFrame].size;    
     CGFloat minLength = MIN(self.frame.size.width, self.frame.size.height);
     CGFloat maxLength = MAX(self.frame.size.width, self.frame.size.height);
     
     minScale = MAX((48.0/maxLength),((DEVICE_IS_IPAD ? 32.0 : 24.0)/minLength));    
+    //maxScale = (MAX(screenSize.width, screenSize.height))/maxLength;
     maxScale = MAX_SCALE_PIXELS/maxLength;
-
+    
     [self setUserInteractionEnabled:YES];
     self.clipsToBounds = NO;
     self.layer.masksToBounds = NO;
@@ -64,7 +68,7 @@
     CGFloat labelScale = [aDecoder decodeFloatForKey:@"labelScale"];
     BOOL labelHFlip = [aDecoder decodeBoolForKey:@"labelHFlip"];
         
-    UIFont *labelFont = [UIFont fontWithName:labelFontName size:labelFontSize];
+    ZFont *labelFont = [[FontManager sharedManager] zFontWithName:labelFontName pointSize:labelFontSize];
     CGPoint offset = CGPointMake(labelOffsetX, labelOffsetY);
     
     self = [self initWithTextLines:[labelText componentsSeparatedByString:@"\r\n"] font:labelFont offset:offset rotation:labelRotation scale:labelScale horizontalFlip:labelHFlip color:labelColor alignment:alignment];
@@ -75,19 +79,19 @@
 
 - (id)initWithText:(NSString *)text offset:(CGPoint) point rotation:(CGFloat)rotation scale:(CGFloat)scale
 {
-    return [self initWithText:text font:[UIFont systemFontOfSize:28.0] offset:point rotation:rotation scale:scale horizontalFlip:NO color:[UIColor blackColor] alignment:UITextAlignmentCenter];
+    return [self initWithText:text font:[ZFont fontWithUIFont:[UIFont systemFontOfSize:28.0]] offset:point rotation:rotation scale:scale horizontalFlip:NO color:[UIColor blackColor] alignment:UITextAlignmentCenter];
 }
 
-- (id)initWithText:(NSString *)text font:(UIFont *)font offset:(CGPoint) point rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip color:(UIColor *)color alignment:(UITextAlignment)alignment
+- (id)initWithText:(NSString *)text font:(ZFont *)font offset:(CGPoint) point rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip color:(UIColor *)color alignment:(UITextAlignment)alignment
 {
     return [self initWithTextLines:[NSArray arrayWithObject:text] font:font offset:point rotation:rotation scale:scale horizontalFlip:flip color:color alignment:alignment];
 }
 
-- (id)initWithTextLines:(NSArray *)lines font:(UIFont *)font offset:(CGPoint) point rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip color:(UIColor *)color alignment:(UITextAlignment)alignment
+- (id)initWithTextLines:(NSArray *)lines font:(ZFont *)font offset:(CGPoint) point rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip color:(UIColor *)color alignment:(UITextAlignment)alignment
 {
-    UIFont *textFont = font;
+    ZFont *textFont = font;
     if (!textFont) {
-        textFont = [UIFont systemFontOfSize:28.0];
+        textFont = [ZFont fontWithUIFont:[UIFont systemFontOfSize:DEFAULT_FONT_POINT_SIZE]];
     }
     if (!color) {
         color = [UIColor darkGrayColor];
@@ -103,7 +107,7 @@
         
         initialHeight = frameHeight;
         
-        AWBLabel *label = [[AWBLabel alloc] initWithFrame:CGRectMake(0.0, 0.0, frameWidth, frameHeight)];
+        FontLabel *label = [[FontLabel alloc] initWithFrame:CGRectMake(0.0, 0.0, frameWidth, frameHeight) zFont:textFont];
         label.layer.masksToBounds = YES;
         self.labelView = label;
         [label release];
@@ -116,7 +120,7 @@
         }        
         [self initialiseLayerRotation:rotation scale:scale];
         [self setHorizontalFlip:flip];
-        [self.labelView setFont:textFont];
+        //[self.labelView setFont:textFont];
         [self.labelView setTextColor:color];
         [self setBackgroundColor:[UIColor clearColor]];
         [self.labelView setBackgroundColor:[UIColor clearColor]];
@@ -129,7 +133,7 @@
 }
 
 
-- (void)updateTextDimensionsWithLines:(NSArray *)lines font:(UIFont *)font
+- (void)updateTextDimensionsWithLines:(NSArray *)lines font:(ZFont *)font
 {
     CGSize textLineSize;
     maxWidth = 0;
@@ -137,7 +141,7 @@
     totalHeight = 0;
     
     for (NSString *textLine in lines) {
-        textLineSize = [textLine sizeWithFont:font];  
+        textLineSize = [textLine sizeWithZFont:font];  
         if (textLineSize.width > maxWidth) {
             maxWidth = textLineSize.width;
         }
@@ -148,23 +152,24 @@
     }  
 }
 
-- (void)updateLabelTextLines:(NSArray *)lines withFont:(UIFont *)font
+- (void)updateLabelTextLines:(NSArray *)lines withFont:(ZFont *)font
 {    
     [self updateTextDimensionsWithLines:lines font:font];
     CGRect newBounds = CGRectMake(0.0, 0.0, (1.2 * maxWidth) + (0.25 * maxHeight), (1.1 * totalHeight) + 10.0);
-    [self.labelView setFont:font];
+    [self.labelView setZFont:font];
     [self.labelView setText:[lines componentsJoinedByString:@"\r\n"]];
     [self setBounds:newBounds];
     [self.labelView setBounds:newBounds];
     self.labelView.center = CGPointMake((newBounds.size.width/2.0), (newBounds.size.height/2.0));
     
-    CGSize screenSize = [[UIScreen mainScreen] applicationFrame].size;    
+//    CGSize screenSize = [[UIScreen mainScreen] applicationFrame].size;    
     CGFloat minLabelLength = MIN(newBounds.size.width, newBounds.size.height);
     CGFloat maxLabelLength = MAX(newBounds.size.width, newBounds.size.height);
     initialHeight = newBounds.size.height;    
 
     minScale = MAX((48.0/maxLabelLength),((DEVICE_IS_IPAD ? 32.0 : 24.0)/minLabelLength));    
-    maxScale = (MAX(screenSize.width, screenSize.height))/maxLabelLength;
+    //maxScale = (MAX(screenSize.width, screenSize.height))/maxLabelLength;
+    maxScale = MAX_SCALE_PIXELS/maxLabelLength;
 
     [self setCurrentScale:currentScale];
     borderThickness = (minLabelLength/BORDER_HEIGHT_RATIO);
@@ -179,7 +184,7 @@
     [self rotateAndScale];
 }
 
-- (void)updateLabelTextWithFont:(UIFont *)font
+- (void)updateLabelTextWithFont:(ZFont *)font
 {
     if (font) {
         [self updateLabelTextLines:[self.labelView.text componentsSeparatedByString:@"\r\n"] withFont:font];        

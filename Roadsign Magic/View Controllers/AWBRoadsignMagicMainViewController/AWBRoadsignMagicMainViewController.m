@@ -15,8 +15,8 @@
 #import "AWBRoadsignMagicViewController+Carousel.h"
 #import "AWBRoadsignMagicMainViewController+Gestures.h"
 #import "FontManager.h"
-#import "AWBTransformableLabel.h"
-#import "AWBRoadsignMagicViewController+Toolbar.h"
+#import "AWBTransformableZFontLabel.h"
+#import "AWBRoadsignMagicMainViewController+Toolbar.h"
 #import "AWBRoadsignMagicMainViewController+UI.h"
 
 @implementation AWBRoadsignMagicMainViewController
@@ -28,7 +28,7 @@
 @synthesize roadsignFont, selectionMarquee, selectionMarquee2;
 @synthesize labelTextColor, labelTextFont, labelTextLine1, labelTextLine2, labelTextLine3, labelTextAlignment;
 @synthesize exportQuality, snapToGrid, snapToGridSize, lockedView;
-@synthesize selectedSignBackground;
+@synthesize selectedSignBackground, isSignInEditMode;
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -72,7 +72,7 @@
 {
     [super viewDidLoad];
     snapToGrid = YES;
-    snapToGridSize = 40.0;
+    snapToGridSize = SNAP_TO_GRID_SIZE;
     labelTextAlignment = UITextAlignmentCenter;
     [self initialiseGestureRecognizers];
 }
@@ -104,17 +104,15 @@
         slideUpView.frame = frame;
     }
     
-    //lockedView.center = CGPointMake(self.view.bounds.size.width - 20.0, 40.0);
 }
 
 - (void)loadView {
     [super loadView];
     
-    ZFont *font = [[FontManager sharedManager] zFontWithName:@"BritishRoadsign" pointSize:40.0];
-    //ZFont *font = [ZFont fontWithUIFont:[UIFont fontWithName:@"Thonburi-Bold" size:40.0]];
+    ZFont *font = [[FontManager sharedManager] zFontWithName:@"BritishRoadsign" pointSize:DEFAULT_FONT_POINT_SIZE];
+    //ZFont *font = [ZFont fontWithUIFont:[UIFont fontWithName:@"Thonburi-Bold" size:DEFAULT_FONT_POINT_SIZE]];
     
     self.roadsignFont = font;
-    //scrollLocked = NO;
 
     self.wantsFullScreenLayout = YES;
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageFromFile:@"concrete.jpg"]];
@@ -140,6 +138,7 @@
     
     AWBLockedView *view = [[AWBLockedView alloc] initWithObjectsLocked:NO canvasAnchored:NO];
     self.lockedView = view;
+    self.lockedView.delegate = self;
     [view release];
     self.navigationItem.titleView = lockedView;
 //    lockedView.center = CGPointMake(self.view.bounds.size.width - 20.0, 40.0);
@@ -186,5 +185,9 @@
     [super dealloc];
 }
 
+- (void)awbLockedView:(AWBLockedView *)lockedView didSetAnchor:(BOOL)anchored
+{
+    self.mainScrollView.scrollEnabled = !anchored;
+}
 
 @end

@@ -10,6 +10,7 @@
 #import "AWBRoadsignMagicMainViewController+UI.h"
 #import "AWBTransforms.h"
 #import "AWBTransformableView.h"
+#import "AWBRoadsignMagicViewController+Edit.h"
 
 @implementation AWBRoadsignMagicMainViewController (Gestures)
 
@@ -96,17 +97,14 @@
 
 - (void)handleRotations:(UIRotationGestureRecognizer *)paramSender
 {
-    if (self.lockedView.objectsLocked) {
+    if (self.isSignInEditMode || self.lockedView.objectsLocked) {
         return;
+    } else {
+        if (!self.navigationController.toolbarHidden) {
+            [self toggleFullscreen];
+        }
     }
-//    if (self.isCollageInEditMode || self.collageObjectLocator.lockCollage) {
-//        return;
-//    } else {
-//        if (!self.isImporting) {
-//            [self setNavigationBarsHidden:YES animated:NO];
-//        }
-//    }
-//    
+    
     if (paramSender.state == UIGestureRecognizerStateBegan) {
         CGPoint point = [paramSender locationInView:self.signBackgroundView]; 
         capturedView = [self.signBackgroundView topTransformableViewAtPoint:point];
@@ -134,18 +132,15 @@
 
 - (void)handlePinches:(UIPinchGestureRecognizer *)paramSender
 {
-    if (self.lockedView.objectsLocked) {
+
+    if (self.isSignInEditMode || self.lockedView.objectsLocked) {
         return;
+    } else {
+        if (!self.navigationController.toolbarHidden) {
+            [self toggleFullscreen];
+        }
     }
     
-//    if (self.isCollageInEditMode || self.collageObjectLocator.lockCollage) {
-//        return;
-//    } else {
-//        if (!self.isImporting) {
-//            [self setNavigationBarsHidden:YES animated:NO];
-//        }
-//    }
-//    
     if (paramSender.state == UIGestureRecognizerStateBegan) {
         CGPoint point = [paramSender locationInView:self.signBackgroundView]; 
         capturedView = [self.signBackgroundView topTransformableViewAtPoint:point];
@@ -179,11 +174,11 @@
     if (self.lockedView.objectsLocked) {
         return;
     }
-//    
-//    if (!self.isCollageInEditMode && !self.isImporting) {
-//        [self setNavigationBarsHidden:YES animated:NO];
-//    }
-//    
+    
+    if (!self.isSignInEditMode && !self.navigationController.toolbarHidden) {
+        [self toggleFullscreen];
+    }
+
     CGPoint point = [paramSender locationInView:self.signBackgroundView]; 
     
     if (paramSender.state == UIGestureRecognizerStateBegan) {
@@ -215,22 +210,22 @@
 
 - (void)handleSingleTaps:(UITapGestureRecognizer *)paramSender
 {
-    [self toggleFullscreen];
-//    if (self.isCollageInEditMode) {
-//        CGPoint point = [paramSender locationInView:self.view]; 
-//        UIView <AWBTransformableView> *view = [[self view] topTransformableViewAtPoint:point];
-//        if (view) {
-//            [self objectTappedInEditMode:view];            
-//        }
-//    } else {
-//        if (!self.isImporting) {
-//            [self setNavigationBarsHidden:!self.navigationController.navigationBar.hidden animated:self.isLevel1AnimationsEnabled];
-//        }        
-//    }
+    if (self.isSignInEditMode) {
+        CGPoint point = [paramSender locationInView:self.signBackgroundView]; 
+        UIView <AWBTransformableView> *view = [self.signBackgroundView topTransformableViewAtPoint:point];
+        if (view) {
+            [self objectTappedInEditMode:view];            
+        }
+    } else {
+        [self toggleFullscreen];
+    }
 }
 
 - (void)handleDoubleTaps:(UITapGestureRecognizer *)paramSender
 {
+    if (!self.isSignInEditMode && !self.navigationController.toolbarHidden) {
+        [self toggleFullscreen];
+    }
     
     if ((paramSender.state == UIGestureRecognizerStateEnded) && (mainScrollView.minimumZoomScale != mainScrollView.maximumZoomScale)) {
         CGPoint point = [paramSender locationInView:self.mainScrollView];
@@ -246,52 +241,19 @@
             CGRect zoomRect = [self zoomRectForScale:newScale withCenter:centerPoint];
             [mainScrollView zoomToRect:zoomRect animated:YES];
         }
-        
-//        UIView <AWBTransformableView> *view = [[self view] topTransformableViewAtPoint:point];
-//        
-//        if (view) {
-//            if ([view isInFront]) {
-//                [[self view] sendSubviewToBack:view];
-//            } else {
-//                [[self view] bringSubviewToFront:view];                
-//            }
-//        }        
     }
- 
-    
-//    if (self.collageObjectLocator.lockCollage) {
-//        return;
-//    }
-//    
-//    if (paramSender.state == UIGestureRecognizerStateEnded) {
-//        
-//        if (!self.isCollageInEditMode && !self.isImporting) {
-//            [self setNavigationBarsHidden:YES animated:NO];
-//        }
-//        
-//        CGPoint point = [paramSender locationInView:self.view]; 
-//        UIView <AWBTransformableView> *view = [[self view] topTransformableViewAtPoint:point];
-//        
-//        if (view) {
-//            if ([view isInFront]) {
-//                [[self view] sendSubviewToBack:view];
-//            } else {
-//                [[self view] bringSubviewToFront:view];                
-//            }
-//        }        
-//    }
 }
 
 - (void)handleLeftAndRightSwipes:(UISwipeGestureRecognizer *)paramSender
 {
-    if (self.lockedView.objectsLocked) {
+    if (self.isSignInEditMode || self.lockedView.objectsLocked) {
         return;
+    } else {
+        if (!self.navigationController.toolbarHidden) {
+            [self toggleFullscreen];
+        }
     }
-//    
-//    if (!self.isCollageInEditMode && !self.isImporting) {
-//        [self setNavigationBarsHidden:YES animated:NO];
-//    }
-//    
+    
     CGPoint point = [paramSender locationInView:self.signBackgroundView]; 
     UIView <AWBTransformableView> *view = [self.signBackgroundView topTransformableViewAtPoint:point];
     

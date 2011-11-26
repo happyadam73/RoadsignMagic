@@ -16,8 +16,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         CATiledLayer *layerForView = (CATiledLayer *)self.layer;
-        layerForView.levelsOfDetailBias = 4;
-        //layerForView.levelsOfDetail = 4;
+        layerForView.levelsOfDetailBias = 2;
+        layerForView.levelsOfDetail = 2;
     }
     return self;
 }

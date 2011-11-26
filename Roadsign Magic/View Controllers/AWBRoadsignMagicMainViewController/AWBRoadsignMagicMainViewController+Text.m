@@ -45,8 +45,8 @@
         FontLabel *selectedLabel = nil;
         for(UIView <AWBTransformableView> *view in [[[self view] subviews] reverseObjectEnumerator]) {
             if ([view conformsToProtocol:@protocol(AWBTransformableView)]) {
-                if ((view.alpha == SELECTED_ALPHA) && [view isKindOfClass:[AWBTransformableLabel class]]) {
-                    selectedLabel = [(AWBTransformableLabel *)view labelView];
+                if ((view.alpha == SELECTED_ALPHA) && [view isKindOfClass:[AWBTransformableZFontLabel class]]) {
+                    selectedLabel = [(AWBTransformableZFontLabel *)view labelView];
                     break;
                 }
             }            

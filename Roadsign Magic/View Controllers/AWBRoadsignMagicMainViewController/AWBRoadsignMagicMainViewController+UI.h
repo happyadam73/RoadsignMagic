@@ -8,7 +8,7 @@
 
 #import "AWBRoadsignMagicMainViewController.h"
 #import "AWBRoadsignMagicSettingsTableViewController.h"
-#import "AWBTransformableLabel.h"
+#import "AWBTransformableZFontLabel.h"
 
 #define NORMAL_ALPHA 1.0
 #define UNSELECTED_ALPHA 0.3
@@ -24,7 +24,7 @@
 - (void)setExportQualityFromSettingsInfo:(NSDictionary *)info;
 - (void)setCollageDrawingAidsFromSettingsInfo:(NSDictionary *)info;
 - (NSMutableDictionary *)settingsInfo;
-- (void)applySettingsToLabel:(AWBTransformableLabel *)label;
+- (void)applySettingsToLabel:(AWBTransformableZFontLabel *)label;
 - (void)toggleFullscreen;
 - (void)toggleThumbView:(id)sender;
 - (void)highlightButton:(UIButton*)button;

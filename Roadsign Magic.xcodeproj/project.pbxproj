@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		06420DFB147C10D800E6CE9A /* NSString+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 06420DFA147C10D800E6CE9A /* NSString+Helpers.m */; };
 		06420DFF147C15DB00E6CE9A /* AWBRoadsignMagicMainViewController+Gestures.m in Sources */ = {isa = PBXBuildFile; fileRef = 06420DFE147C15DA00E6CE9A /* AWBRoadsignMagicMainViewController+Gestures.m */; };
+		06565DB01481008B00B4F2CF /* AWBTransformableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 06565DAF1481008B00B4F2CF /* AWBTransformableLabel.m */; };
+		06565DB51481072300B4F2CF /* unanchored.png in Resources */ = {isa = PBXBuildFile; fileRef = 06565DB11481072300B4F2CF /* unanchored.png */; };
+		06565DB61481072300B4F2CF /* unanchored@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06565DB21481072300B4F2CF /* unanchored@2x.png */; };
+		06565DB71481072300B4F2CF /* unlocked.png in Resources */ = {isa = PBXBuildFile; fileRef = 06565DB31481072300B4F2CF /* unlocked.png */; };
+		06565DB81481072300B4F2CF /* unlocked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06565DB41481072300B4F2CF /* unlocked@2x.png */; };
 		0668E198147920BA0089937B /* BritishRoadsign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0668E197147920BA0089937B /* BritishRoadsign.ttf */; };
 		0668E1A3147929FF0089937B /* AWBRoadsignMagicMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0668E1A2147929FF0089937B /* AWBRoadsignMagicMainViewController.m */; };
 		0668E1A7147976F90089937B /* concrete@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0668E1A6147976F90089937B /* concrete@2x.jpg */; };
@@ -28,7 +33,7 @@
 		06978F0F147E8DB600171A51 /* AWBRoadsignMagicViewController+Delete.m in Sources */ = {isa = PBXBuildFile; fileRef = 06978F0E147E8DB500171A51 /* AWBRoadsignMagicViewController+Delete.m */; };
 		06978F12147E8DD000171A51 /* AWBRoadsignMagicViewController+Action.m in Sources */ = {isa = PBXBuildFile; fileRef = 06978F11147E8DCF00171A51 /* AWBRoadsignMagicViewController+Action.m */; };
 		06978F15147E8DE700171A51 /* AWBRoadsignMagicViewController+Symbol.m in Sources */ = {isa = PBXBuildFile; fileRef = 06978F14147E8DE500171A51 /* AWBRoadsignMagicViewController+Symbol.m */; };
-		06978F18147E8E0800171A51 /* AWBRoadsignMagicViewController+Toolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 06978F17147E8E0600171A51 /* AWBRoadsignMagicViewController+Toolbar.m */; };
+		06978F18147E8E0800171A51 /* AWBRoadsignMagicMainViewController+Toolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 06978F17147E8E0600171A51 /* AWBRoadsignMagicMainViewController+Toolbar.m */; };
 		06978F1D147EB5E300171A51 /* symbols-down.png in Resources */ = {isa = PBXBuildFile; fileRef = 06978F19147EB5DE00171A51 /* symbols-down.png */; };
 		06978F1E147EB5E300171A51 /* symbols-down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06978F1A147EB5E000171A51 /* symbols-down@2x.png */; };
 		06978F1F147EB5E300171A51 /* symbols-up.png in Resources */ = {isa = PBXBuildFile; fileRef = 06978F1B147EB5E100171A51 /* symbols-up.png */; };
@@ -283,7 +288,7 @@
 		B5E044F21478471F006A8D5C /* AWBTextValueTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E044CF1478471F006A8D5C /* AWBTextValueTableCell.m */; };
 		B5E044F41478471F006A8D5C /* AWBLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E044D41478471F006A8D5C /* AWBLabel.m */; };
 		B5E044F61478471F006A8D5C /* AWBTransformableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E044D81478471F006A8D5C /* AWBTransformableImageView.m */; };
-		B5E044F71478471F006A8D5C /* AWBTransformableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E044DA1478471F006A8D5C /* AWBTransformableLabel.m */; };
+		B5E044F71478471F006A8D5C /* AWBTransformableZFontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E044DA1478471F006A8D5C /* AWBTransformableZFontLabel.m */; };
 		B5E044F81478471F006A8D5C /* UIColor+SignColors.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E044DE1478471F006A8D5C /* UIColor+SignColors.m */; };
 		B5E044F91478471F006A8D5C /* UIView+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E044E11478471F006A8D5C /* UIView+Animation.m */; };
 		B5E044FA1478471F006A8D5C /* UIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E044E31478471F006A8D5C /* UIView+Hierarchy.m */; };
@@ -306,6 +311,12 @@
 		06420DFA147C10D800E6CE9A /* NSString+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Helpers.m"; path = "String Handling/NSString+Helpers.m"; sourceTree = "<group>"; };
 		06420DFD147C15DA00E6CE9A /* AWBRoadsignMagicMainViewController+Gestures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AWBRoadsignMagicMainViewController+Gestures.h"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainViewController+Gestures.h"; sourceTree = "<group>"; };
 		06420DFE147C15DA00E6CE9A /* AWBRoadsignMagicMainViewController+Gestures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AWBRoadsignMagicMainViewController+Gestures.m"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainViewController+Gestures.m"; sourceTree = "<group>"; };
+		06565DAE1481008B00B4F2CF /* AWBTransformableLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBTransformableLabel.h; sourceTree = "<group>"; };
+		06565DAF1481008B00B4F2CF /* AWBTransformableLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBTransformableLabel.m; sourceTree = "<group>"; };
+		06565DB11481072300B4F2CF /* unanchored.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unanchored.png; sourceTree = "<group>"; };
+		06565DB21481072300B4F2CF /* unanchored@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unanchored@2x.png"; sourceTree = "<group>"; };
+		06565DB31481072300B4F2CF /* unlocked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unlocked.png; sourceTree = "<group>"; };
+		06565DB41481072300B4F2CF /* unlocked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unlocked@2x.png"; sourceTree = "<group>"; };
 		0668E197147920BA0089937B /* BritishRoadsign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = BritishRoadsign.ttf; path = Resources/Typefaces/BritishRoadsign.ttf; sourceTree = "<group>"; };
 		0668E1A1147929FF0089937B /* AWBRoadsignMagicMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBRoadsignMagicMainViewController.h; path = AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainViewController.h; sourceTree = "<group>"; };
 		0668E1A2147929FF0089937B /* AWBRoadsignMagicMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBRoadsignMagicMainViewController.m; path = AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainViewController.m; sourceTree = "<group>"; };
@@ -335,8 +346,8 @@
 		06978F11147E8DCF00171A51 /* AWBRoadsignMagicViewController+Action.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AWBRoadsignMagicViewController+Action.m"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicViewController+Action.m"; sourceTree = "<group>"; };
 		06978F13147E8DE400171A51 /* AWBRoadsignMagicViewController+Symbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AWBRoadsignMagicViewController+Symbol.h"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicViewController+Symbol.h"; sourceTree = "<group>"; };
 		06978F14147E8DE500171A51 /* AWBRoadsignMagicViewController+Symbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AWBRoadsignMagicViewController+Symbol.m"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicViewController+Symbol.m"; sourceTree = "<group>"; };
-		06978F16147E8E0400171A51 /* AWBRoadsignMagicViewController+Toolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AWBRoadsignMagicViewController+Toolbar.h"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicViewController+Toolbar.h"; sourceTree = "<group>"; };
-		06978F17147E8E0600171A51 /* AWBRoadsignMagicViewController+Toolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AWBRoadsignMagicViewController+Toolbar.m"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicViewController+Toolbar.m"; sourceTree = "<group>"; };
+		06978F16147E8E0400171A51 /* AWBRoadsignMagicMainViewController+Toolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; name = "AWBRoadsignMagicMainViewController+Toolbar.h"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainViewController+Toolbar.h"; sourceTree = "<group>"; };
+		06978F17147E8E0600171A51 /* AWBRoadsignMagicMainViewController+Toolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AWBRoadsignMagicMainViewController+Toolbar.m"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainViewController+Toolbar.m"; sourceTree = "<group>"; };
 		06978F19147EB5DE00171A51 /* symbols-down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "symbols-down.png"; sourceTree = "<group>"; };
 		06978F1A147EB5E000171A51 /* symbols-down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "symbols-down@2x.png"; sourceTree = "<group>"; };
 		06978F1B147EB5E100171A51 /* symbols-up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "symbols-up.png"; sourceTree = "<group>"; };
@@ -623,8 +634,8 @@
 		B5E044D41478471F006A8D5C /* AWBLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AWBLabel.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B5E044D71478471F006A8D5C /* AWBTransformableImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBTransformableImageView.h; sourceTree = "<group>"; };
 		B5E044D81478471F006A8D5C /* AWBTransformableImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBTransformableImageView.m; sourceTree = "<group>"; };
-		B5E044D91478471F006A8D5C /* AWBTransformableLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBTransformableLabel.h; sourceTree = "<group>"; };
-		B5E044DA1478471F006A8D5C /* AWBTransformableLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBTransformableLabel.m; sourceTree = "<group>"; };
+		B5E044D91478471F006A8D5C /* AWBTransformableZFontLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBTransformableZFontLabel.h; sourceTree = "<group>"; };
+		B5E044DA1478471F006A8D5C /* AWBTransformableZFontLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBTransformableZFontLabel.m; sourceTree = "<group>"; };
 		B5E044DB1478471F006A8D5C /* AWBTransformableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBTransformableView.h; sourceTree = "<group>"; };
 		B5E044DD1478471F006A8D5C /* UIColor+SignColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+SignColors.h"; sourceTree = "<group>"; };
 		B5E044DE1478471F006A8D5C /* UIColor+SignColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+SignColors.m"; sourceTree = "<group>"; };
@@ -711,8 +722,8 @@
 				06978F14147E8DE500171A51 /* AWBRoadsignMagicViewController+Symbol.m */,
 				06978EF5147E55E400171A51 /* AWBRoadsignMagicMainViewController+Text.h */,
 				06978EF6147E55E400171A51 /* AWBRoadsignMagicMainViewController+Text.m */,
-				06978F16147E8E0400171A51 /* AWBRoadsignMagicViewController+Toolbar.h */,
-				06978F17147E8E0600171A51 /* AWBRoadsignMagicViewController+Toolbar.m */,
+				06978F16147E8E0400171A51 /* AWBRoadsignMagicMainViewController+Toolbar.h */,
+				06978F17147E8E0600171A51 /* AWBRoadsignMagicMainViewController+Toolbar.m */,
 				06978EF8147E58C300171A51 /* AWBRoadsignMagicMainViewController+UI.h */,
 				06978EF9147E58C400171A51 /* AWBRoadsignMagicMainViewController+UI.m */,
 			);
@@ -1294,6 +1305,10 @@
 				06978EEB147D2BCB00171A51 /* locked@2x.png */,
 				06978F21147EE09500171A51 /* anchored.png */,
 				06978F22147EE09700171A51 /* anchored@2x.png */,
+				06565DB11481072300B4F2CF /* unanchored.png */,
+				06565DB21481072300B4F2CF /* unanchored@2x.png */,
+				06565DB31481072300B4F2CF /* unlocked.png */,
+				06565DB41481072300B4F2CF /* unlocked@2x.png */,
 				06978EFB147E76C200171A51 /* centeralignment.png */,
 				06978EFC147E76C200171A51 /* centeralignment@2x.png */,
 				06978EFD147E76C200171A51 /* leftalignment.png */,
@@ -1387,8 +1402,10 @@
 				B5E044D41478471F006A8D5C /* AWBLabel.m */,
 				B5E044D71478471F006A8D5C /* AWBTransformableImageView.h */,
 				B5E044D81478471F006A8D5C /* AWBTransformableImageView.m */,
-				B5E044D91478471F006A8D5C /* AWBTransformableLabel.h */,
-				B5E044DA1478471F006A8D5C /* AWBTransformableLabel.m */,
+				06565DAE1481008B00B4F2CF /* AWBTransformableLabel.h */,
+				06565DAF1481008B00B4F2CF /* AWBTransformableLabel.m */,
+				B5E044D91478471F006A8D5C /* AWBTransformableZFontLabel.h */,
+				B5E044DA1478471F006A8D5C /* AWBTransformableZFontLabel.m */,
 			);
 			name = "Transformable Views";
 			path = "Views and User Interface/Transformable Views";
@@ -1753,6 +1770,10 @@
 				06978F20147EB5E300171A51 /* symbols-up@2x.png in Resources */,
 				06978F23147EE09800171A51 /* anchored.png in Resources */,
 				06978F24147EE09800171A51 /* anchored@2x.png in Resources */,
+				06565DB51481072300B4F2CF /* unanchored.png in Resources */,
+				06565DB61481072300B4F2CF /* unanchored@2x.png in Resources */,
+				06565DB71481072300B4F2CF /* unlocked.png in Resources */,
+				06565DB81481072300B4F2CF /* unlocked@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1788,7 +1809,7 @@
 				B5E044F21478471F006A8D5C /* AWBTextValueTableCell.m in Sources */,
 				B5E044F41478471F006A8D5C /* AWBLabel.m in Sources */,
 				B5E044F61478471F006A8D5C /* AWBTransformableImageView.m in Sources */,
-				B5E044F71478471F006A8D5C /* AWBTransformableLabel.m in Sources */,
+				B5E044F71478471F006A8D5C /* AWBTransformableZFontLabel.m in Sources */,
 				B5E044F81478471F006A8D5C /* UIColor+SignColors.m in Sources */,
 				B5E044F91478471F006A8D5C /* UIView+Animation.m in Sources */,
 				B5E044FA1478471F006A8D5C /* UIView+Hierarchy.m in Sources */,
@@ -1812,10 +1833,11 @@
 				06978F0F147E8DB600171A51 /* AWBRoadsignMagicViewController+Delete.m in Sources */,
 				06978F12147E8DD000171A51 /* AWBRoadsignMagicViewController+Action.m in Sources */,
 				06978F15147E8DE700171A51 /* AWBRoadsignMagicViewController+Symbol.m in Sources */,
-				06978F18147E8E0800171A51 /* AWBRoadsignMagicViewController+Toolbar.m in Sources */,
+				06978F18147E8E0800171A51 /* AWBRoadsignMagicMainViewController+Toolbar.m in Sources */,
 				06978F28147FB0AB00171A51 /* AWBRoadsignBackground.m in Sources */,
 				06978F2B147FB27D00171A51 /* AWBRoadsignBackgroundGroup.m in Sources */,
 				06E37436147FF42600EA536C /* AWBLockedView.m in Sources */,
+				06565DB01481008B00B4F2CF /* AWBTransformableLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

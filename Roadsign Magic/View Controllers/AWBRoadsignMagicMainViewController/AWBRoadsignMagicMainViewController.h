@@ -13,7 +13,10 @@
 #import "AWBRoadsignBackground.h"
 #import "AWBLockedView.h"
 
-@interface AWBRoadsignMagicMainViewController : UIViewController 
+#define SNAP_TO_GRID_SIZE 32.0
+#define DEFAULT_FONT_POINT_SIZE 40.0
+
+@interface AWBRoadsignMagicMainViewController : UIViewController <AWBLockedViewDelegate>
 {    
     UIScrollView *mainScrollView;
     UIImageView *signBackgroundView;
@@ -71,6 +74,7 @@
     NSUInteger totalSelectedInEditMode;
     NSUInteger totalSelectedLabelsInEditMode; 
     NSUInteger totalLabelSubviews;
+    BOOL isSignInEditMode;
 }
 
 @property (nonatomic, retain) UIBarButtonItem *signBackgroundPickerButton;
@@ -114,7 +118,7 @@
 @property (nonatomic, retain) NSString *labelTextFont;
 @property (nonatomic, assign) UITextAlignment labelTextAlignment;
 @property (nonatomic, retain) AWBRoadsignBackground *selectedSignBackground;
-
+@property (assign) BOOL isSignInEditMode;
 
 @end
 

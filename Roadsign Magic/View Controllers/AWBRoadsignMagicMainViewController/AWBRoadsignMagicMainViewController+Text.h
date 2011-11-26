@@ -7,7 +7,7 @@
 //
 
 #import "AWBRoadsignMagicMainViewController.h"
-#import "AWBTransformableLabel.h"
+#import "AWBTransformableZFontLabel.h"
 #import "AWBRoadsignMagicSettingsTableViewController.h"
 
 @interface AWBRoadsignMagicMainViewController (Text)

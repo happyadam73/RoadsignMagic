@@ -157,7 +157,7 @@
             if (self.labelTextLine1 || self.labelTextLine2 || self.labelTextLine3) {
                 NSMutableArray *lines = [self textLabelLines];
                 if ([lines count] > 0) {
-                    AWBTransformableLabel *label = [[AWBTransformableLabel alloc] initWithTextLines:lines font:self.roadsignFont offset:CGPointZero rotation:0.0 scale:1.0 horizontalFlip:NO color:self.labelTextColor alignment:self.labelTextAlignment];                    
+                    AWBTransformableZFontLabel *label = [[AWBTransformableZFontLabel alloc] initWithTextLines:lines font:self.roadsignFont offset:CGPointZero rotation:0.0 scale:1.0 horizontalFlip:NO color:self.labelTextColor alignment:self.labelTextAlignment];                    
                     [self applySettingsToLabel:label];
                     label.center = [self.signBackgroundView convertPoint:self.signBackgroundView.center fromView:self.signBackgroundView.superview];
                     [self.signBackgroundView addSubview:label];
@@ -174,8 +174,8 @@
             
             for(UIView <AWBTransformableView> *view in [[[self view] subviews] reverseObjectEnumerator]) {
                 if ([view conformsToProtocol:@protocol(AWBTransformableView)]) {
-                    if ((view.alpha == SELECTED_ALPHA) && [view isKindOfClass:[AWBTransformableLabel class]]) {
-                        AWBTransformableLabel *label = (AWBTransformableLabel *)view;
+                    if ((view.alpha == SELECTED_ALPHA) && [view isKindOfClass:[AWBTransformableZFontLabel class]]) {
+                        AWBTransformableZFontLabel *label = (AWBTransformableZFontLabel *)view;
                         
                         label.labelView.textAlignment = self.labelTextAlignment;
                         if (self.labelTextColor) {
@@ -215,7 +215,7 @@
 //
 //}
 
-- (void)applySettingsToLabel:(AWBTransformableLabel *)label
+- (void)applySettingsToLabel:(AWBTransformableZFontLabel *)label
 {
 //    [label setRoundedBorder:self.textRoundedBorders];
 //    [label setViewBorderColor:self.textBorderColor];
@@ -287,7 +287,7 @@
 }
 
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView {
-    snapToGridSize = 40.0/mainScrollView.zoomScale;
+    snapToGridSize = SNAP_TO_GRID_SIZE/mainScrollView.zoomScale;
 
     CGFloat offsetX = (scrollView.bounds.size.width > scrollView.contentSize.width)? 
     (scrollView.bounds.size.width - scrollView.contentSize.width) * 0.5 : 0.0;

@@ -8,14 +8,28 @@
 
 #import <UIKit/UIKit.h>
 
+@class AWBLockedView;
+
+@protocol AWBLockedViewDelegate
+
+@optional
+
+- (void)awbLockedView:(AWBLockedView *)lockedView didSetLock:(BOOL)locked;
+- (void)awbLockedView:(AWBLockedView *)lockedView didSetAnchor:(BOOL)anchored;
+@end
+
 @interface AWBLockedView : UIView {
-    UIImageView *objectsLockedView;
-    UIImageView *canvasAnchoredView;
+    id delegate;
+    UIButton *objectsLockedButton;
+    UIButton *canvasAnchoredButton;
 }
 
+@property (nonatomic, assign) id delegate;
 @property (nonatomic, assign) BOOL objectsLocked;
 @property (nonatomic, assign) BOOL canvasAnchored;
 
 - (id)initWithObjectsLocked:(BOOL)locked canvasAnchored:(BOOL)anchored;
+- (void)toggleLock;
+- (void)toggleAnchor;
 
 @end
