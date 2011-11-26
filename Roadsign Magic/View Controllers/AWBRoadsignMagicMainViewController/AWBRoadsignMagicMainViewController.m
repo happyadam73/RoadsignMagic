@@ -29,11 +29,14 @@
 @synthesize labelTextColor, labelTextFont, labelTextLine1, labelTextLine2, labelTextLine3, labelTextAlignment;
 @synthesize exportQuality, snapToGrid, snapToGridSize, lockedView;
 @synthesize selectedSignBackground, isSignInEditMode;
+@synthesize deleteConfirmationSheet;
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    self.toolbarItems = [self normalToolbarButtons];
-    self.navigationItem.rightBarButtonItem = self.editButton;
+    if (!self.isSignInEditMode) {
+        self.toolbarItems = [self normalToolbarButtons];
+        self.navigationItem.rightBarButtonItem = self.editButton;
+    }    
 }
 
 - (void)viewDidUnload
@@ -66,6 +69,7 @@
     self.labelTextLine1 = nil;
     self.labelTextLine2 = nil;
     self.labelTextLine3 = nil;
+    self.deleteConfirmationSheet = nil;
 }
 
 - (void)viewDidLoad
@@ -182,6 +186,7 @@
     [labelTextLine2 release];
     [labelTextLine3 release];
     [lockedView release];
+    [deleteConfirmationSheet release];
     [super dealloc];
 }
 

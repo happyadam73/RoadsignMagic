@@ -9,6 +9,8 @@
 #import "AWBRoadsignMagicMainViewController+UI.h"
 #import "AWBRoadsignMagicMainViewController+Text.h"
 #import "AWBRoadsignMagicViewController+Carousel.h"
+#import "AWBRoadsignMagicViewController+Delete.h"
+#import "AWBRoadsignMagicViewController+Edit.h"
 
 @implementation AWBRoadsignMagicMainViewController (UI)
 
@@ -16,7 +18,7 @@
 {
     
     if (thumbViewShowing) {
-        [self toggleThumbView:nil];
+        [self toggleThumbView:self.signBackgroundPickerButton.customView];
     }
     
     if (DEVICE_IS_IPAD) {
@@ -25,7 +27,7 @@
 //        [self dismissPopoverIfVisible:self.addSymbolPopover];
 //        [self dismissPopoverIfVisible:self.luckyDipPopover];
 //        [self dismissPopoverIfVisible:self.memoryWarningPopover];        
-//        [self dismissActionSheetIfVisible:self.deleteConfirmationSheet];
+        [self dismissActionSheetIfVisible:self.deleteConfirmationSheet];
 //        [self dismissActionSheetIfVisible:self.choosePhotoSourceSheet];
 //        [self dismissActionSheetIfVisible:self.chooseActionTypeSheet];
     }    
@@ -86,13 +88,11 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-//    if (actionSheet == self.choosePhotoSourceSheet) {
-//        [self choosePhotoSourceActionSheet:actionSheet willDismissWithButtonIndex:buttonIndex];
-//    } else if (actionSheet == self.deleteConfirmationSheet) {
-//        [self deleteConfirmationActionSheet:actionSheet willDismissWithButtonIndex:buttonIndex];
+    if (actionSheet == self.deleteConfirmationSheet) {
+        [self deleteConfirmationActionSheet:actionSheet willDismissWithButtonIndex:buttonIndex];
 //    } else if (actionSheet == self.chooseActionTypeSheet) {
 //        [self chooseActionTypeActionSheet:actionSheet willDismissWithButtonIndex:buttonIndex];
-//    }
+    }
 }
 
 - (void)setExportQualityFromSettingsInfo:(NSDictionary *)info
@@ -171,8 +171,9 @@
         case AWBSettingsControllerTypeEditTextSettings:
             self.labelTextColor = [info objectForKey:kAWBInfoKeyTextColor];
             self.labelTextFont = [info objectForKey:kAWBInfoKeyTextFontName];
+            self.labelTextAlignment = [[info objectForKey:kAWBInfoKeyTextAlignment] integerValue];
             
-            for(UIView <AWBTransformableView> *view in [[[self view] subviews] reverseObjectEnumerator]) {
+            for(UIView <AWBTransformableView> *view in [[self.signBackgroundView subviews] reverseObjectEnumerator]) {
                 if ([view conformsToProtocol:@protocol(AWBTransformableView)]) {
                     if ((view.alpha == SELECTED_ALPHA) && [view isKindOfClass:[AWBTransformableZFontLabel class]]) {
                         AWBTransformableZFontLabel *label = (AWBTransformableZFontLabel *)view;
@@ -202,7 +203,7 @@
                     }
                 }            
             } 
-//            [self resetEditMode:settingsController];
+            [self resetEditMode:settingsController];
 //            [self saveChanges:NO];
             break;
         default:
@@ -233,7 +234,7 @@
     BOOL hideMenus = !self.navigationController.toolbarHidden;
     
     if (hideMenus && thumbViewShowing) {
-        [self toggleThumbView:nil];
+        [self toggleThumbView:self.signBackgroundPickerButton.customView];
     }
     
     //    if (!hideMenus) {
@@ -242,7 +243,7 @@
     //        lockedView.alpha = 0.5;
     //    }
     
-    [[UIApplication sharedApplication] setStatusBarHidden:hideMenus withAnimation:UIStatusBarAnimationSlide];
+    [[UIApplication sharedApplication] setStatusBarHidden:hideMenus withAnimation:UIStatusBarAnimationFade];
     [self.navigationController setToolbarHidden:hideMenus animated:YES];
     [self.navigationController setNavigationBarHidden:hideMenus animated:YES];    
 }

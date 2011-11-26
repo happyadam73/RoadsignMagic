@@ -39,7 +39,7 @@
     NSArray *signs = [NSArray arrayWithObjects:
                       [AWBRoadsignBackground signBackgroundWithIdentifier:1 fullSizeImageFilename:@"20001.png" thumbnailImageFilename:@"10001.png" colorCode:colorCode],
                       [AWBRoadsignBackground signBackgroundWithIdentifier:2 fullSizeImageFilename:@"20002.png" thumbnailImageFilename:@"10002.png" colorCode:colorCode],
-                      [AWBRoadsignBackground signBackgroundWithIdentifier:3 fullSizeImageFilename:@"20003.png" thumbnailImageFilename:@"10003.png" colorCode:colorCode],
+                      [AWBRoadsignBackground signBackgroundWithIdentifier:3 fullSizeImageFilename:@"20003.png" thumbnailImageFilename:@"10003.png" colorCode:kAWBSignColorCodeWhiteBackgroundColor],
                       [AWBRoadsignBackground signBackgroundWithIdentifier:4 fullSizeImageFilename:@"20004.png" thumbnailImageFilename:@"10004.png" colorCode:colorCode],
                       [AWBRoadsignBackground signBackgroundWithIdentifier:5 fullSizeImageFilename:@"20005.png" thumbnailImageFilename:@"10005.png" colorCode:colorCode],
                       [AWBRoadsignBackground signBackgroundWithIdentifier:6 fullSizeImageFilename:@"20006.png" thumbnailImageFilename:@"10006.png" colorCode:colorCode],
@@ -48,7 +48,7 @@
                       [AWBRoadsignBackground signBackgroundWithIdentifier:9 fullSizeImageFilename:@"20009.png" thumbnailImageFilename:@"10009.png" colorCode:colorCode],
                       [AWBRoadsignBackground signBackgroundWithIdentifier:10 fullSizeImageFilename:@"20010.png" thumbnailImageFilename:@"10010.png" colorCode:colorCode],
                       [AWBRoadsignBackground signBackgroundWithIdentifier:11 fullSizeImageFilename:@"20011.png" thumbnailImageFilename:@"10011.png" colorCode:colorCode],
-                      [AWBRoadsignBackground signBackgroundWithIdentifier:12 fullSizeImageFilename:@"20012.png" thumbnailImageFilename:@"10012.png" colorCode:colorCode],
+                      [AWBRoadsignBackground signBackgroundWithIdentifier:12 fullSizeImageFilename:@"20012.png" thumbnailImageFilename:@"10012.png" colorCode:kAWBSignColorCodeWhiteBackgroundColor],
                       [AWBRoadsignBackground signBackgroundWithIdentifier:13 fullSizeImageFilename:@"20013.png" thumbnailImageFilename:@"10013.png" colorCode:colorCode],
                       [AWBRoadsignBackground signBackgroundWithIdentifier:14 fullSizeImageFilename:@"20014.png" thumbnailImageFilename:@"10014.png" colorCode:colorCode],
                       [AWBRoadsignBackground signBackgroundWithIdentifier:15 fullSizeImageFilename:@"20015.png" thumbnailImageFilename:@"10015.png" colorCode:colorCode],
@@ -111,13 +111,13 @@
                       [AWBRoadsignBackground signBackgroundWithIdentifier:3010 fullSizeImageFilename:@"23010.png" thumbnailImageFilename:@"13010.png" colorCode:colorCode],
                       [AWBRoadsignBackground signBackgroundWithIdentifier:3011 fullSizeImageFilename:@"23011.png" thumbnailImageFilename:@"13011.png" colorCode:colorCode],
                       [AWBRoadsignBackground signBackgroundWithIdentifier:3012 fullSizeImageFilename:@"23012.png" thumbnailImageFilename:@"13012.png" colorCode:colorCode],
-                      [AWBRoadsignBackground signBackgroundWithIdentifier:3013 fullSizeImageFilename:@"23013.png" thumbnailImageFilename:@"13013.png" colorCode:colorCode],
-                      [AWBRoadsignBackground signBackgroundWithIdentifier:3014 fullSizeImageFilename:@"23014.png" thumbnailImageFilename:@"13014.png" colorCode:colorCode],
+                      [AWBRoadsignBackground signBackgroundWithIdentifier:3013 fullSizeImageFilename:@"23013.png" thumbnailImageFilename:@"13013.png" colorCode:kAWBSignColorCodeBlackBackgroundColor],
+                      [AWBRoadsignBackground signBackgroundWithIdentifier:3014 fullSizeImageFilename:@"23014.png" thumbnailImageFilename:@"13014.png" colorCode:kAWBSignColorCodeBlackBackgroundColor],
                       [AWBRoadsignBackground signBackgroundWithIdentifier:3015 fullSizeImageFilename:@"23015.png" thumbnailImageFilename:@"13015.png" colorCode:colorCode],
                       [AWBRoadsignBackground signBackgroundWithIdentifier:3016 fullSizeImageFilename:@"23016.png" thumbnailImageFilename:@"13016.png" colorCode:colorCode],
                       [AWBRoadsignBackground signBackgroundWithIdentifier:3017 fullSizeImageFilename:@"23017.png" thumbnailImageFilename:@"13017.png" colorCode:colorCode],
                       [AWBRoadsignBackground signBackgroundWithIdentifier:3018 fullSizeImageFilename:@"23018.png" thumbnailImageFilename:@"13018.png" colorCode:colorCode],
-                      [AWBRoadsignBackground signBackgroundWithIdentifier:3019 fullSizeImageFilename:@"23019.png" thumbnailImageFilename:@"13019.png" colorCode:colorCode],
+                      [AWBRoadsignBackground signBackgroundWithIdentifier:3019 fullSizeImageFilename:@"23019.png" thumbnailImageFilename:@"13019.png" colorCode:kAWBSignColorCodeBlackBackgroundColor],
                       nil];
     return [[[self alloc] initWithIdentifier:3 description:@"White Rectangular Backgrounds" thumbnailImageFilename:@"03.png" signBackgrounds:signs] autorelease];
 }
@@ -163,6 +163,42 @@
     return [[[self alloc] initWithIdentifier:5 description:@"Yellow Rectangular Backgrounds" thumbnailImageFilename:@"05.png" signBackgrounds:signs] autorelease];
 }
 
++ (AWBRoadsignBackgroundGroup *)signpostSignBackgrounds
+{
+    NSArray *signs = [NSArray arrayWithObjects:
+                      [AWBRoadsignBackground signBackgroundWithIdentifier:6001 fullSizeImageFilename:@"26001.png" thumbnailImageFilename:@"16001.png" colorCode:kAWBSignColorCodeWhiteBackgroundColor],
+                      [AWBRoadsignBackground signBackgroundWithIdentifier:6002 fullSizeImageFilename:@"26002.png" thumbnailImageFilename:@"16002.png" colorCode:kAWBSignColorCodeWhiteBackgroundColor],
+                      [AWBRoadsignBackground signBackgroundWithIdentifier:6003 fullSizeImageFilename:@"26003.png" thumbnailImageFilename:@"16003.png" colorCode:kAWBSignColorCodeWhiteBackgroundColor],
+                      [AWBRoadsignBackground signBackgroundWithIdentifier:6004 fullSizeImageFilename:@"26004.png" thumbnailImageFilename:@"16004.png" colorCode:kAWBSignColorCodeWhiteBackgroundColor],
+                      [AWBRoadsignBackground signBackgroundWithIdentifier:6005 fullSizeImageFilename:@"26005.png" thumbnailImageFilename:@"16005.png" colorCode:kAWBSignColorCodeYellowSignBackgroundColor],
+                      [AWBRoadsignBackground signBackgroundWithIdentifier:6006 fullSizeImageFilename:@"26006.png" thumbnailImageFilename:@"16006.png" colorCode:kAWBSignColorCodeYellowSignBackgroundColor],
+                      [AWBRoadsignBackground signBackgroundWithIdentifier:6007 fullSizeImageFilename:@"26007.png" thumbnailImageFilename:@"16007.png" colorCode:kAWBSignColorCodeYellowSignBackgroundColor],
+                      [AWBRoadsignBackground signBackgroundWithIdentifier:6008 fullSizeImageFilename:@"26008.png" thumbnailImageFilename:@"16008.png" colorCode:kAWBSignColorCodeYellowSignBackgroundColor],
+                      [AWBRoadsignBackground signBackgroundWithIdentifier:6009 fullSizeImageFilename:@"26009.png" thumbnailImageFilename:@"16009.png" colorCode:kAWBSignColorCodeYellowSignBackgroundColor],
+                      [AWBRoadsignBackground signBackgroundWithIdentifier:6010 fullSizeImageFilename:@"26010.png" thumbnailImageFilename:@"16010.png" colorCode:kAWBSignColorCodeYellowSignBackgroundColor],
+                      [AWBRoadsignBackground signBackgroundWithIdentifier:6011 fullSizeImageFilename:@"26011.png" thumbnailImageFilename:@"16011.png" colorCode:kAWBSignColorCodeBrownSignBackgroundColor],
+                      [AWBRoadsignBackground signBackgroundWithIdentifier:6012 fullSizeImageFilename:@"26012.png" thumbnailImageFilename:@"16012.png" colorCode:kAWBSignColorCodeBrownSignBackgroundColor],
+                      [AWBRoadsignBackground signBackgroundWithIdentifier:6013 fullSizeImageFilename:@"26013.png" thumbnailImageFilename:@"16013.png" colorCode:kAWBSignColorCodeBrownSignBackgroundColor],
+                      [AWBRoadsignBackground signBackgroundWithIdentifier:6014 fullSizeImageFilename:@"26014.png" thumbnailImageFilename:@"16014.png" colorCode:kAWBSignColorCodeBrownSignBackgroundColor],
+                      [AWBRoadsignBackground signBackgroundWithIdentifier:6015 fullSizeImageFilename:@"26015.png" thumbnailImageFilename:@"16015.png" colorCode:kAWBSignColorCodeBrownSignBackgroundColor],
+                      [AWBRoadsignBackground signBackgroundWithIdentifier:6016 fullSizeImageFilename:@"26016.png" thumbnailImageFilename:@"16016.png" colorCode:kAWBSignColorCodeBrownSignBackgroundColor],
+                      [AWBRoadsignBackground signBackgroundWithIdentifier:6017 fullSizeImageFilename:@"26017.png" thumbnailImageFilename:@"16017.png" colorCode:kAWBSignColorCodeBrownSignBackgroundColor],
+                      [AWBRoadsignBackground signBackgroundWithIdentifier:6018 fullSizeImageFilename:@"26018.png" thumbnailImageFilename:@"16018.png" colorCode:kAWBSignColorCodeBrownSignBackgroundColor],
+                      [AWBRoadsignBackground signBackgroundWithIdentifier:6019 fullSizeImageFilename:@"26019.png" thumbnailImageFilename:@"16019.png" colorCode:kAWBSignColorCodeBlueSignBackgroundColor],
+                      [AWBRoadsignBackground signBackgroundWithIdentifier:6020 fullSizeImageFilename:@"26020.png" thumbnailImageFilename:@"16020.png" colorCode:kAWBSignColorCodeBlueSignBackgroundColor],
+                      [AWBRoadsignBackground signBackgroundWithIdentifier:6021 fullSizeImageFilename:@"26021.png" thumbnailImageFilename:@"16021.png" colorCode:kAWBSignColorCodeBlueSignBackgroundColor],
+                      [AWBRoadsignBackground signBackgroundWithIdentifier:6022 fullSizeImageFilename:@"26022.png" thumbnailImageFilename:@"16022.png" colorCode:kAWBSignColorCodeBlueSignBackgroundColor],
+                      [AWBRoadsignBackground signBackgroundWithIdentifier:6023 fullSizeImageFilename:@"26023.png" thumbnailImageFilename:@"16023.png" colorCode:kAWBSignColorCodeLightGreenSignBackgroundColor],
+                      [AWBRoadsignBackground signBackgroundWithIdentifier:6024 fullSizeImageFilename:@"26024.png" thumbnailImageFilename:@"16024.png" colorCode:kAWBSignColorCodeLightGreenSignBackgroundColor],
+                      [AWBRoadsignBackground signBackgroundWithIdentifier:6025 fullSizeImageFilename:@"26025.png" thumbnailImageFilename:@"16025.png" colorCode:kAWBSignColorCodeBlackBackgroundColor],
+                      [AWBRoadsignBackground signBackgroundWithIdentifier:6026 fullSizeImageFilename:@"26026.png" thumbnailImageFilename:@"16026.png" colorCode:kAWBSignColorCodeBlackBackgroundColor],
+                      [AWBRoadsignBackground signBackgroundWithIdentifier:6027 fullSizeImageFilename:@"26027.png" thumbnailImageFilename:@"16027.png" colorCode:kAWBSignColorCodeRedSignBackgroundColor],
+                      [AWBRoadsignBackground signBackgroundWithIdentifier:6028 fullSizeImageFilename:@"26028.png" thumbnailImageFilename:@"16028.png" colorCode:kAWBSignColorCodeRedSignBackgroundColor],
+                      nil];
+    return [[[self alloc] initWithIdentifier:6 description:@"Signpost Backgrounds" thumbnailImageFilename:@"06.png" signBackgrounds:signs] autorelease];    
+}
+
+
 + (NSArray *)allSignBackgroundCategories
 {
     return [NSArray arrayWithObjects:
@@ -171,7 +207,8 @@
             [AWBRoadsignBackgroundGroup brownRectangularSignBackgrounds], 
             [AWBRoadsignBackgroundGroup whiteRectangularSignBackgrounds], 
             [AWBRoadsignBackgroundGroup redRectangularSignBackgrounds], 
-            [AWBRoadsignBackgroundGroup yellowRectangularSignBackgrounds],             
+            [AWBRoadsignBackgroundGroup yellowRectangularSignBackgrounds], 
+            [AWBRoadsignBackgroundGroup signpostSignBackgrounds],
             nil];
 }
 

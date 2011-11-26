@@ -9,4 +9,8 @@
 #import "AWBRoadsignMagicMainViewController.h"
 
 @interface AWBRoadsignMagicMainViewController (Delete)
+
+- (void)deleteSelectedViews:(id)sender;
+- (void)deleteConfirmationActionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex;
+
 @end

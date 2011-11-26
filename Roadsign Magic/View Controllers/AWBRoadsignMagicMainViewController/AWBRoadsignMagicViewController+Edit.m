@@ -47,7 +47,6 @@
         self.navigationItem.title = @"Select Objects";
         self.navigationItem.rightBarButtonItem = self.cancelButton;
         [self setToolbarForEditMode];
-//        self.doubleTapGestureRecognizer.enabled = NO;
         
         self.selectNoneOrAllButton.title = @"Select All";
         
@@ -104,7 +103,6 @@
         self.navigationItem.titleView = lockedView;
         self.navigationItem.rightBarButtonItem = self.editButton;
         [self resetToNormalToolbar];
-//        self.doubleTapGestureRecognizer.enabled = YES;
 //        [self saveChanges:NO];
     }
 }
@@ -112,7 +110,7 @@
 - (void)updateUserInterfaceWithTotalSelectedInEditMode
 {
     //maybe a possible race condition - and menu/toolbar might be hidden at this point which is not good
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     if (self.navigationController.navigationBar.hidden) {
         [self.navigationController setNavigationBarHidden:NO animated:NO];
         [self.navigationController setToolbarHidden:NO animated:NO];    

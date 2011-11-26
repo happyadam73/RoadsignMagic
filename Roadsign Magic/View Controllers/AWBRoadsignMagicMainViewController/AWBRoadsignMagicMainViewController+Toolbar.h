@@ -18,5 +18,6 @@
 - (void)removeBarButtonItem:(UIBarButtonItem *)button;
 - (UISegmentedControl *)tintedSegmentedControlButtonWithTitle:(NSString *)title color:(UIColor *)color target:(id)target action:(SEL)action;
 - (void)updateTintedSegmentedControlButton:(UIBarButtonItem *)button withTitle:(NSString *)title;
+- (CGPoint)deleteButtonApproxPosition;
 
 @end

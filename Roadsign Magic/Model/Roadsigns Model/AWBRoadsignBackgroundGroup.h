@@ -28,6 +28,7 @@
 + (AWBRoadsignBackgroundGroup *)whiteRectangularSignBackgrounds;
 + (AWBRoadsignBackgroundGroup *)redRectangularSignBackgrounds;
 + (AWBRoadsignBackgroundGroup *)yellowRectangularSignBackgrounds;
++ (AWBRoadsignBackgroundGroup *)signpostSignBackgrounds;
 + (NSArray *)allSignBackgroundCategories;
 
 @end

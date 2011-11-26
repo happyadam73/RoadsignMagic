@@ -118,5 +118,9 @@
     return [[[self alloc] initWithSettings:textEditSettings header:@"Label Text" footer:nil] autorelease];
 }
 
++ (AWBSettingsGroup *)qualitySliderSettingsGroupWithInfo:(NSDictionary *)info
+{
+    return [[[self alloc] initWithSettings:[NSMutableArray arrayWithObject:[AWBSetting qualitySliderSettingWithValue:[info objectForKey:kAWBInfoKeyExportQualityValue] andKey:kAWBInfoKeyExportQualityValue]] header:@"Export Quality" footer:@"Applies only to saving & emailing the roadsign as a photo."] autorelease];
+}
 
 @end

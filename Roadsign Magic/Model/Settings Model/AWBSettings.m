@@ -99,8 +99,8 @@
 
 + (AWBSettings *)mainSettingsWithInfo:(NSDictionary *)info
 {
-//    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup lockAndLayoutSettingsGroupWithInfo:info], [AWBSettingsGroup shadowsAndBordersDrilldownSettingsGroupWithInfo:info], [AWBSettingsGroup qualitySliderSettingsGroupWithInfo:info], nil];
-    AWBSettings *mainSettings = [[self alloc] initWithSettingsGroups:nil title:@"Collage Settings"];
+    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup qualitySliderSettingsGroupWithInfo:info], nil];
+    AWBSettings *mainSettings = [[self alloc] initWithSettingsGroups:settings title:@"Roadsign Settings"];
     
     return [mainSettings autorelease];
 }
@@ -113,13 +113,13 @@
 
 + (AWBSettings *)editTextSettingsWithInfo:(NSDictionary *)info
 {
-    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup textColorPickerSettingsGroupWithInfo:info], nil];
+    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup textAlignmentPickerSettingsGroupWithInfo:info], [AWBSettingsGroup textColorPickerSettingsGroupWithInfo:info], nil];
     return [[[self alloc] initWithSettingsGroups:settings title:@"Edit Text Labels"] autorelease];
 }
 
 + (AWBSettings *)editSingleTextSettingsWithInfo:(NSDictionary *)info
 {
-    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup textEditSettingsGroupWithInfo:info], [AWBSettingsGroup textColorPickerSettingsGroupWithInfo:info], nil];
+    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup textEditSettingsGroupWithInfo:info], [AWBSettingsGroup textAlignmentPickerSettingsGroupWithInfo:info], [AWBSettingsGroup textColorPickerSettingsGroupWithInfo:info], nil];
     return [[[self alloc] initWithSettingsGroups:settings title:@"Edit Text Label"] autorelease];
 }
 

@@ -75,6 +75,8 @@
     NSUInteger totalSelectedLabelsInEditMode; 
     NSUInteger totalLabelSubviews;
     BOOL isSignInEditMode;
+    
+    UIActionSheet *deleteConfirmationSheet;
 }
 
 @property (nonatomic, retain) UIBarButtonItem *signBackgroundPickerButton;
@@ -119,6 +121,8 @@
 @property (nonatomic, assign) UITextAlignment labelTextAlignment;
 @property (nonatomic, retain) AWBRoadsignBackground *selectedSignBackground;
 @property (assign) BOOL isSignInEditMode;
+@property (nonatomic, retain) UIActionSheet *deleteConfirmationSheet;
+
 
 @end
 

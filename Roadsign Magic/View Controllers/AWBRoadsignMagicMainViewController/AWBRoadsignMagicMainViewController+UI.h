@@ -14,7 +14,7 @@
 #define UNSELECTED_ALPHA 0.3
 #define SELECTED_ALPHA 1.0
 
-@interface AWBRoadsignMagicMainViewController (UI) <UIScrollViewDelegate>
+@interface AWBRoadsignMagicMainViewController (UI) <UIScrollViewDelegate, UIActionSheetDelegate>
 
 - (void)dismissPopoverIfVisible:(UIPopoverController *)popover;
 - (void)dismissToolbarAndPopover:(UIPopoverController *)popover;

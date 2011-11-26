@@ -182,4 +182,13 @@
     segmentedControl.frame = newRect;
 }
 
+- (CGPoint)deleteButtonApproxPosition
+{
+    CGFloat ratio = 2.0;
+    if (DEVICE_IS_IPAD) {
+        ratio = 4.0;
+    }
+    return CGPointMake(self.signBackgroundView.bounds.size.width/ratio, self.signBackgroundView.bounds.size.height);
+}
+
 @end

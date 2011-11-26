@@ -9,4 +9,7 @@
 #import "AWBRoadsignMagicMainViewController.h"
 
 @interface AWBRoadsignMagicMainViewController (Action)
+
+- (void)performAction:(id)sender;
+
 @end
