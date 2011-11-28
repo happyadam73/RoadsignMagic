@@ -20,8 +20,8 @@
 {    
     UIScrollView *mainScrollView;
     UIImageView *signBackgroundView;
-    iCarousel *carouselSubcategory;
-    iCarousel *carouselCategory;
+//    iCarousel *carouselSubcategory;
+//    iCarousel *carouselCategory;
     UIView *slideUpView;
     
     UIBarButtonItem *signBackgroundPickerButton;
@@ -37,9 +37,11 @@
     UIBarButtonItem *settingsButton;
     UIBarButtonItem *fixedToolbarSpacing;
         
-    NSMutableArray *signBackgroundItems;
-    NSArray *signBackgroundCategories;
-    NSUInteger selectedSignBackgroundCategory;
+//    NSMutableArray *signBackgroundItems;
+//    NSArray *signBackgroundCategories;
+//    NSUInteger selectedSignBackgroundCategory;
+//    NSUInteger selectedSignBackgroundCarouselIndex;
+//    NSUInteger selectedSignBackgroundCategoryIndex;
     AWBRoadsignBackground *selectedSignBackground;
     
     BOOL thumbViewShowing;
@@ -91,11 +93,11 @@
 @property (nonatomic, retain) UIBarButtonItem *actionButton;
 @property (nonatomic, retain) UIBarButtonItem *settingsButton;
 @property (nonatomic, retain) UIBarButtonItem *fixedToolbarSpacing;
-@property (nonatomic, retain) iCarousel *carouselSubcategory;
-@property (nonatomic, retain) iCarousel *carouselCategory;
+//@property (nonatomic, retain) iCarousel *carouselSubcategory;
+//@property (nonatomic, retain) iCarousel *carouselCategory;
 @property (nonatomic, retain) UIView *slideUpView;
-@property (nonatomic, retain) NSMutableArray *signBackgroundItems;
-@property (nonatomic, retain) NSArray *signBackgroundCategories;
+//@property (nonatomic, retain) NSMutableArray *signBackgroundItems;
+//@property (nonatomic, retain) NSArray *signBackgroundCategories;
 @property (nonatomic, retain) UIImageView *signBackgroundView;
 @property (nonatomic, retain) UIScrollView *mainScrollView;
 @property (nonatomic, retain) UIRotationGestureRecognizer *rotationGestureRecognizer;

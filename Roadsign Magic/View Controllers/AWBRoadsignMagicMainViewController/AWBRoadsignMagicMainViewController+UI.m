@@ -8,9 +8,10 @@
 
 #import "AWBRoadsignMagicMainViewController+UI.h"
 #import "AWBRoadsignMagicMainViewController+Text.h"
-#import "AWBRoadsignMagicViewController+Carousel.h"
+//#import "AWBRoadsignMagicViewController+Carousel.h"
 #import "AWBRoadsignMagicViewController+Delete.h"
 #import "AWBRoadsignMagicViewController+Edit.h"
+#import "AWBRoadsignMagicViewController+Sign.h"
 
 @implementation AWBRoadsignMagicMainViewController (UI)
 

@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "AWBRoadsignMagicMainViewController.h"
+#import "AWBSignBackgroundPickerView.h"
 
-@interface AWBRoadsignMagicMainViewController (Carousel) <iCarouselDataSource, iCarouselDelegate>
-- (void)initialiseSlideupView;
+//@interface AWBRoadsignMagicMainViewController (Carousel) <iCarouselDataSource, iCarouselDelegate, AWBSignBackgroundPickerViewDelegate>
+@interface AWBRoadsignMagicMainViewController (Carousel) <AWBSignBackgroundPickerViewDelegate>
+//- (void)initialiseSlideupView;
 @end

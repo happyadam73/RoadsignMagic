@@ -7,9 +7,11 @@
 //
 
 #import "AWBRoadsignMagicMainViewController.h"
+#import "AWBSignBackgroundPickerView.h"
 
-@interface AWBRoadsignMagicMainViewController (Sign)
+@interface AWBRoadsignMagicMainViewController (Sign) <AWBSignBackgroundPickerViewDelegate>
 
+- (void)initialiseSlideupView;
 - (void)updateSignBackgroundWithImageFromFile:(NSString *)name;
 
 @end

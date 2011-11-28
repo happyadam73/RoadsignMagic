@@ -12,7 +12,7 @@
 #import "FontLabel.h"
 #import "FontLabelStringDrawing.h"
 #import "FontManager.h"
-#import "AWBRoadsignMagicViewController+Carousel.h"
+//#import "AWBRoadsignMagicViewController+Carousel.h"
 #import "AWBRoadsignMagicMainViewController+Gestures.h"
 #import "FontManager.h"
 #import "AWBTransformableZFontLabel.h"
@@ -24,7 +24,8 @@
 
 @synthesize mainScrollView, signBackgroundView;
 @synthesize signBackgroundPickerButton, toolbarSpacing, textButton, editButton, editTextButton, cancelButton, deleteButton, selectNoneOrAllButton, addSymbolButton, actionButton, settingsButton, fixedToolbarSpacing;
-@synthesize carouselSubcategory, carouselCategory, slideUpView, signBackgroundItems, signBackgroundCategories;
+//@synthesize carouselSubcategory, carouselCategory, slideUpView, signBackgroundCategories;
+@synthesize slideUpView; //, signBackgroundCategories;
 @synthesize rotationGestureRecognizer, panGestureRecognizer, pinchGestureRecognizer, singleTapGestureRecognizer, doubleTapGestureRecognizer, swipeGestureRecognizer, longPressGestureRecognizer, longDoublePressGestureRecognizer;
 @synthesize roadsignFont;    //, selectionMarquee, selectionMarquee2;
 @synthesize labelTextColor, labelTextFont, labelTextLine1, labelTextLine2, labelTextLine3, labelTextAlignment;
@@ -51,8 +52,8 @@
     self.signBackgroundView = nil;
     self.mainScrollView = nil;
     self.slideUpView = nil;
-    self.carouselSubcategory = nil;
-    self.carouselCategory = nil;
+//    self.carouselSubcategory = nil;
+//    self.carouselCategory = nil;
     self.signBackgroundPickerButton = nil;
     self.toolbarSpacing = nil;
     self.textButton = nil;    
@@ -153,15 +154,15 @@
     //it's a good idea to set these to nil here to avoid
 	//sending messages to a deallocated viewcontroller
     [self deallocGestureRecognizers];
-	carouselSubcategory.delegate = nil;
-	carouselSubcategory.dataSource = nil;
+//	carouselSubcategory.delegate = nil;
+//	carouselSubcategory.dataSource = nil;
     [selectedSignBackground release];
-    [signBackgroundCategories release];
+//    [signBackgroundCategories release];
     [roadsignFont release];
-    [signBackgroundItems release];
+//    [signBackgroundItems release];
     [slideUpView release];
-    [carouselCategory release];
-    [carouselSubcategory release];
+//    [carouselCategory release];
+//    [carouselSubcategory release];
     [toolbarSpacing release];
     [editButton release];
     [editTextButton release];

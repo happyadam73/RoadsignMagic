@@ -259,8 +259,10 @@
         if (CGRectContainsPoint(self.signBackgroundView.frame, point)) {
             float newScale;
             if (mainScrollView.zoomScale == mainScrollView.minimumZoomScale) {
+                newScale = 1.0;
+            } else if (mainScrollView.zoomScale == 1.0) {
                 newScale = mainScrollView.maximumZoomScale;
-            } else {
+            } else  {
                 newScale = mainScrollView.minimumZoomScale;
             }
             

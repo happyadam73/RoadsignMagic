@@ -11,6 +11,16 @@
 
 @implementation AWBRoadsignMagicMainViewController (Sign)
 
+- (void)initialiseSlideupView
+{
+    CGRect backgroundFrame = CGRectMake(0.0, self.view.bounds.size.height-(self.navigationController.toolbar.bounds.size.height)-180.0, self.view.bounds.size.width, 180);
+    AWBSignBackgroundPickerView *backgroundView = [[AWBSignBackgroundPickerView alloc] initWithFrame:backgroundFrame];
+    backgroundView.delegate = self;
+    self.slideUpView = backgroundView;
+	[self.view addSubview:backgroundView];
+    [backgroundView release];
+}
+
 - (void)updateSignBackgroundWithImageFromFile:(NSString *)name 
 {    
     UIImage *image = [UIImage imageFromFile:name];
@@ -31,6 +41,14 @@
                          [signBackgroundView setAlpha:1.0]; 
                      } 
                      completion: ^ (BOOL finished) {}];    
+}
+
+- (void)awbSignBackgroundPickerView:(AWBSignBackgroundPickerView *)backgroundPicker didSelectSignBackground:(AWBRoadsignBackground *)signBackground
+{
+    self.selectedSignBackground = signBackground;
+    self.labelTextColor = [UIColor foregroundColorWithBackgroundSignColorCode:signBackground.primaryColorCode];
+    NSString *filename = signBackground.fullsizeImageFilename;        
+    [self updateSignBackgroundWithImageFromFile:filename];
 }
 
 @end
