@@ -26,8 +26,12 @@
     BOOL rotationAndScaleCurrentlyQuantised;
     CGFloat currentQuantisedScale;
     CGFloat currentQuantisedRotation;
+    CAShapeLayer *selectionMarquee1;
+    CAShapeLayer *selectionMarquee2;    
 }
 
+@property (nonatomic, retain) CAShapeLayer *selectionMarquee1;
+@property (nonatomic, retain) CAShapeLayer *selectionMarquee2;    
 @property (nonatomic, retain) FontLabel *labelView;
 
 - (void)initialiseLayerRotation:(CGFloat)rotation scale:(CGFloat)scale;

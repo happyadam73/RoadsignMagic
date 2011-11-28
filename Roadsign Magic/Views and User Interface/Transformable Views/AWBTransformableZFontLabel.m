@@ -11,6 +11,8 @@
 #import "UIView+Animation.h"
 #import "FontLabelStringDrawing.h"
 #import "FontManager.h"
+#import "UIView+SelectionMarquee.h"
+#import "CAShapeLayer+Animation.h"
 
 #define BORDER_HEIGHT_RATIO 24.0
 #define SHADOW_OFFSET_HEIGHT_RATIO 8.0
@@ -22,7 +24,7 @@
 
 @synthesize rotationAngleInRadians, currentScale, pendingRotationAngleInRadians, horizontalFlip;
 @synthesize roundedBorder, viewBorderColor, viewShadowColor, addShadow, addBorder;
-@synthesize labelView;
+@synthesize labelView, selectionMarquee1, selectionMarquee2;
 
 - (void)initialiseLayerRotation:(CGFloat)rotation scale:(CGFloat)scale  
 {
@@ -132,6 +134,63 @@
     return self;
 }
 
+- (void)initialiseForSelection
+{
+    self.selectionMarquee1 = [UIView selectionMarqueeWithWhitePhase:YES];
+    self.selectionMarquee2 = [UIView selectionMarqueeWithWhitePhase:NO];
+    [[self.superview layer] addSublayer:self.selectionMarquee1];
+    [[self.superview layer] addSublayer:self.selectionMarquee2];   
+}
+
+- (void)removeSelection
+{
+    [self.selectionMarquee1 removeFromSuperlayer];
+    [self.selectionMarquee2 removeFromSuperlayer];
+    self.selectionMarquee1 = nil;
+    self.selectionMarquee2 = nil;
+}
+
+- (void)showSelection
+{
+    [self showSelectionMarquee:self.selectionMarquee1];
+    [self showSelectionMarquee:self.selectionMarquee2];
+}
+
+- (void)showSelectionWithAnimation:(BOOL)animateSelection
+{
+    if (animateSelection) {
+        [self startSelectionAnimation];
+    } else {
+        [self stopSelectionAnimation];
+    }
+
+    [self showSelection];    
+}
+
+- (void)hideSelection
+{
+    [self stopSelectionAnimation];
+    self.selectionMarquee1.hidden = YES;
+    self.selectionMarquee2.hidden = YES;   
+}
+
+- (void)startSelectionAnimation
+{
+    [self.selectionMarquee1 addDashAnimation];
+    [self.selectionMarquee2 addDashAnimation];            
+}
+
+- (void)stopSelectionAnimation
+{
+    [self.selectionMarquee1 removeDashAnimation];
+    [self.selectionMarquee2 removeDashAnimation];    
+}
+
+- (void)setSelectionOpacity:(CGFloat)opacity
+{
+    self.selectionMarquee1.opacity = opacity;
+    self.selectionMarquee2.opacity = opacity;    
+}
 
 - (void)updateTextDimensionsWithLines:(NSArray *)lines font:(ZFont *)font
 {
@@ -336,6 +395,8 @@
 
 - (void)dealloc
 {
+    [selectionMarquee1 release];
+    [selectionMarquee2 release];
     [labelView release];
     [viewBorderColor release];
     [viewShadowColor release];

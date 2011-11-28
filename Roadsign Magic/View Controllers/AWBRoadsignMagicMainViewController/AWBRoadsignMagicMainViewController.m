@@ -18,6 +18,7 @@
 #import "AWBTransformableZFontLabel.h"
 #import "AWBRoadsignMagicMainViewController+Toolbar.h"
 #import "AWBRoadsignMagicMainViewController+UI.h"
+#import "UIView+SelectionMarquee.h"
 
 @implementation AWBRoadsignMagicMainViewController
 
@@ -25,7 +26,7 @@
 @synthesize signBackgroundPickerButton, toolbarSpacing, textButton, editButton, editTextButton, cancelButton, deleteButton, selectNoneOrAllButton, addSymbolButton, actionButton, settingsButton, fixedToolbarSpacing;
 @synthesize carouselSubcategory, carouselCategory, slideUpView, signBackgroundItems, signBackgroundCategories;
 @synthesize rotationGestureRecognizer, panGestureRecognizer, pinchGestureRecognizer, singleTapGestureRecognizer, doubleTapGestureRecognizer, swipeGestureRecognizer, longPressGestureRecognizer, longDoublePressGestureRecognizer;
-@synthesize roadsignFont, selectionMarquee, selectionMarquee2;
+@synthesize roadsignFont;    //, selectionMarquee, selectionMarquee2;
 @synthesize labelTextColor, labelTextFont, labelTextLine1, labelTextLine2, labelTextLine3, labelTextAlignment;
 @synthesize exportQuality, snapToGrid, snapToGridSize, lockedView;
 @synthesize selectedSignBackground, isSignInEditMode;
@@ -44,8 +45,8 @@
     [super viewDidUnload];
     [self dereferenceGestureRecognizers];
     self.lockedView = nil;
-    self.selectionMarquee = nil;
-    self.selectionMarquee2 = nil;
+//    self.selectionMarquee = nil;
+//    self.selectionMarquee2 = nil;
     self.roadsignFont = nil;
     self.signBackgroundView = nil;
     self.mainScrollView = nil;
@@ -137,17 +138,14 @@
     [self.mainScrollView addSubview:self.signBackgroundView];
     [backgroundView release];
     
-    [[self.signBackgroundView layer] addSublayer:self.selectionMarquee];
-    [[self.signBackgroundView layer] addSublayer:self.selectionMarquee2];
+//    [[self.signBackgroundView layer] addSublayer:self.selectionMarquee];
+//    [[self.signBackgroundView layer] addSublayer:self.selectionMarquee2];
     
     AWBLockedView *view = [[AWBLockedView alloc] initWithObjectsLocked:NO canvasAnchored:NO];
     self.lockedView = view;
     self.lockedView.delegate = self;
     [view release];
     self.navigationItem.titleView = lockedView;
-//    lockedView.center = CGPointMake(self.view.bounds.size.width - 20.0, 40.0);
-//    lockedView.hidden = !scrollLocked;
-//    [self.view addSubview:lockedView];
     
 }
 
@@ -178,8 +176,8 @@
     [mainScrollView release];
     [signBackgroundView release];
     [textButton release];
-    [selectionMarquee release];
-    [selectionMarquee2 release];
+//    [selectionMarquee release];
+//    [selectionMarquee2 release];
     [labelTextColor release];
     [labelTextFont release];
     [labelTextLine1 release];

@@ -47,6 +47,7 @@
         for(UIView <AWBTransformableView> *view in [self.signBackgroundView subviews]) {
             if ([view conformsToProtocol:@protocol(AWBTransformableView)]) {
                 if (view.alpha == SELECTED_ALPHA) {
+                    [view removeSelection];
                     if ([view isKindOfClass:[AWBTransformableZFontLabel class]]) {
                         totalLabelSubviews -= 1;
                     }

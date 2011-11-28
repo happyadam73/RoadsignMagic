@@ -271,6 +271,46 @@
     }
 }
 
+- (void)showSelection
+{
+    
+}
+
+- (void)showSelectionWithAnimation:(BOOL)animateSelection
+{
+    
+}
+
+- (void)hideSelection
+{
+    
+}
+
+- (void)initialiseForSelection
+{
+    
+}
+
+- (void)removeSelection
+{
+    
+}
+
+- (void)startSelectionAnimation
+{
+    
+}
+
+- (void)stopSelectionAnimation
+{
+    
+}
+
+- (void)setSelectionOpacity:(CGFloat)opacity
+{
+    
+}
+
 - (void)dealloc
 {
     [imageKey release];

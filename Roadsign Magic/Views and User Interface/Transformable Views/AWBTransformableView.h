@@ -26,5 +26,13 @@
 - (void)rotateAndScale;
 - (void)rotateAndScaleWithSnapToGrid:(BOOL)snapToGrid gridSize:(CGFloat)gridSize;
 - (void)applyPendingRotationToCapturedView;
+- (void)initialiseForSelection;
+- (void)removeSelection;
+- (void)showSelection;
+- (void)showSelectionWithAnimation:(BOOL)animateSelection;
+- (void)hideSelection;
+- (void)startSelectionAnimation;
+- (void)stopSelectionAnimation;
+- (void)setSelectionOpacity:(CGFloat)opacity;
 
 @end

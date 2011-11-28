@@ -22,6 +22,8 @@
 {
     if (view.alpha == SELECTED_ALPHA) {
         view.alpha = UNSELECTED_ALPHA;
+        [view setSelectionOpacity:UNSELECTED_ALPHA];
+        [view showSelectionWithAnimation:NO];
         //deselecting
         totalSelectedInEditMode -= 1;
         if ([view isKindOfClass:[AWBTransformableZFontLabel class]]) {
@@ -29,6 +31,8 @@
         }
     } else {
         view.alpha = SELECTED_ALPHA;
+        [view setSelectionOpacity:SELECTED_ALPHA];
+        [view showSelectionWithAnimation:YES];
         totalSelectedInEditMode += 1;
         if ([view isKindOfClass:[AWBTransformableZFontLabel class]]) {
             totalSelectedLabelsInEditMode += 1;
@@ -53,6 +57,8 @@
         for(UIView <AWBTransformableView> *view in [[self.signBackgroundView subviews] reverseObjectEnumerator]) {
             if ([view conformsToProtocol:@protocol(AWBTransformableView)]) {
                 view.alpha = UNSELECTED_ALPHA;
+                [view setSelectionOpacity:UNSELECTED_ALPHA];
+                [view showSelectionWithAnimation:NO];
             }            
         }
         totalSelectedInEditMode = 0;
@@ -73,12 +79,16 @@
         if ([view conformsToProtocol:@protocol(AWBTransformableView)]) {
             if (buttonSelectsAll) {
                 view.alpha = SELECTED_ALPHA;
+                [view setSelectionOpacity:SELECTED_ALPHA];
+                [view showSelectionWithAnimation:YES];
                 totalSelectedInEditMode += 1;
                 if ([view isKindOfClass:[AWBTransformableZFontLabel class]]) {
                     totalSelectedLabelsInEditMode += 1;
                 }
             } else {
                 view.alpha = UNSELECTED_ALPHA;
+                [view setSelectionOpacity:UNSELECTED_ALPHA];
+                [view showSelectionWithAnimation:NO];
             }
         }            
     } 
@@ -95,6 +105,8 @@
         for(UIView <AWBTransformableView> *view in [[self.signBackgroundView subviews] reverseObjectEnumerator]) {
             if ([view conformsToProtocol:@protocol(AWBTransformableView)]) {
                 view.alpha = NORMAL_ALPHA;
+                [view setSelectionOpacity:NORMAL_ALPHA];
+                [view hideSelection];
             }            
         }  
         [self updateUserInterfaceWithTotalSelectedInEditMode];

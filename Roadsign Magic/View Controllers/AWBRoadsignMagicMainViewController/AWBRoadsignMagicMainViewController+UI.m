@@ -161,6 +161,7 @@
                     [self applySettingsToLabel:label];
                     label.center = [self.signBackgroundView convertPoint:self.signBackgroundView.center fromView:self.signBackgroundView.superview];
                     [self.signBackgroundView addSubview:label];
+                    [label initialiseForSelection];
                     totalLabelSubviews += 1;
                     [label release];                        
                 }

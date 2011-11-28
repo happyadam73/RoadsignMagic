@@ -15,9 +15,7 @@
 - (void)initialiseGestureRecognizers;
 - (void)deallocGestureRecognizers;
 - (void)dereferenceGestureRecognizers;
-//- (void)showSelectionMarqueeWithFrame:(CGRect)frame;
-//- (void)showSelectionMarquee2WithFrame:(CGRect)frame;
-- (void)showSelectionMarquee:(CAShapeLayer *)marquee onTransformableView:(UIView <AWBTransformableView> *)view;
-- (void)showSelectionMarqueesOnTransformableView:(UIView <AWBTransformableView> *)view;
+//- (void)showSelectionMarquee:(CAShapeLayer *)marquee onTransformableView:(UIView <AWBTransformableView> *)view;
+//- (void)showSelectionMarqueesOnTransformableView:(UIView <AWBTransformableView> *)view;
 
 @end

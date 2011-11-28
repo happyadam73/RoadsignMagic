@@ -11,7 +11,7 @@
 #import "AWBTransformableZFontLabel.h"
 
 #define NORMAL_ALPHA 1.0
-#define UNSELECTED_ALPHA 0.3
+#define UNSELECTED_ALPHA 0.4
 #define SELECTED_ALPHA 1.0
 
 @interface AWBRoadsignMagicMainViewController (UI) <UIScrollViewDelegate, UIActionSheetDelegate>

@@ -57,8 +57,8 @@
     UIView <AWBTransformableView> *capturedView;
     CGPoint capturedCenterOffset;
     
-    CAShapeLayer *selectionMarquee;
-    CAShapeLayer *selectionMarquee2;
+//    CAShapeLayer *selectionMarquee;
+//    CAShapeLayer *selectionMarquee2;
     AWBLockedView *lockedView;
     BOOL snapToGrid;
     CGFloat snapToGridSize;
@@ -107,8 +107,8 @@
 @property (nonatomic, retain) UILongPressGestureRecognizer *longPressGestureRecognizer;
 @property (nonatomic, retain) UILongPressGestureRecognizer *longDoublePressGestureRecognizer;
 @property (nonatomic, retain) ZFont *roadsignFont;
-@property (nonatomic, retain) CAShapeLayer *selectionMarquee;
-@property (nonatomic, retain) CAShapeLayer *selectionMarquee2;
+//@property (nonatomic, retain) CAShapeLayer *selectionMarquee;
+//@property (nonatomic, retain) CAShapeLayer *selectionMarquee2;
 @property (nonatomic, retain) AWBLockedView *lockedView;
 @property (nonatomic, assign) BOOL snapToGrid;
 @property (nonatomic, assign) CGFloat snapToGridSize;

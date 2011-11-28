@@ -74,6 +74,9 @@
 		0668E198147920BA0089937B /* BritishRoadsign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0668E197147920BA0089937B /* BritishRoadsign.ttf */; };
 		0668E1A3147929FF0089937B /* AWBRoadsignMagicMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0668E1A2147929FF0089937B /* AWBRoadsignMagicMainViewController.m */; };
 		0668E1A7147976F90089937B /* concrete@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0668E1A6147976F90089937B /* concrete@2x.jpg */; };
+		068F12F91483A00B00C925C2 /* wood@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 068F12F81483A00B00C925C2 /* wood@2x.jpg */; };
+		068F12FD1483A35E00C925C2 /* UIView+SelectionMarquee.m in Sources */ = {isa = PBXBuildFile; fileRef = 068F12FC1483A35E00C925C2 /* UIView+SelectionMarquee.m */; };
+		068F13001483A65F00C925C2 /* CAShapeLayer+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = 068F12FF1483A65F00C925C2 /* CAShapeLayer+Animation.m */; };
 		06978EEC147D2BCB00171A51 /* locked.png in Resources */ = {isa = PBXBuildFile; fileRef = 06978EEA147D2BCB00171A51 /* locked.png */; };
 		06978EED147D2BCB00171A51 /* locked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06978EEB147D2BCB00171A51 /* locked@2x.png */; };
 		06978EF4147D60C800171A51 /* AWBRoadsignMagicSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06978EF3147D60C800171A51 /* AWBRoadsignMagicSettingsTableViewController.m */; };
@@ -435,6 +438,11 @@
 		0668E1A1147929FF0089937B /* AWBRoadsignMagicMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBRoadsignMagicMainViewController.h; path = AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainViewController.h; sourceTree = "<group>"; };
 		0668E1A2147929FF0089937B /* AWBRoadsignMagicMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBRoadsignMagicMainViewController.m; path = AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainViewController.m; sourceTree = "<group>"; };
 		0668E1A6147976F90089937B /* concrete@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "concrete@2x.jpg"; sourceTree = "<group>"; };
+		068F12F81483A00B00C925C2 /* wood@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "wood@2x.jpg"; sourceTree = "<group>"; };
+		068F12FB1483A35E00C925C2 /* UIView+SelectionMarquee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SelectionMarquee.h"; sourceTree = "<group>"; };
+		068F12FC1483A35E00C925C2 /* UIView+SelectionMarquee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SelectionMarquee.m"; sourceTree = "<group>"; };
+		068F12FE1483A65E00C925C2 /* CAShapeLayer+Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAShapeLayer+Animation.h"; sourceTree = "<group>"; };
+		068F12FF1483A65F00C925C2 /* CAShapeLayer+Animation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAShapeLayer+Animation.m"; sourceTree = "<group>"; };
 		06978EEA147D2BCB00171A51 /* locked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locked.png; sourceTree = "<group>"; };
 		06978EEB147D2BCB00171A51 /* locked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "locked@2x.png"; sourceTree = "<group>"; };
 		06978EEF147D42A900171A51 /* ToDo.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = ToDo.rtf; sourceTree = "<group>"; };
@@ -930,6 +938,7 @@
 			children = (
 				0668E1A6147976F90089937B /* concrete@2x.jpg */,
 				06A0799C147A82310065A6DB /* asphalt@2x.jpg */,
+				068F12F81483A00B00C925C2 /* wood@2x.jpg */,
 			);
 			name = Textures;
 			path = Resources/Textures;
@@ -1626,6 +1635,10 @@
 				B5E044E31478471F006A8D5C /* UIView+Hierarchy.m */,
 				B5E044E41478471F006A8D5C /* UIView+HitTest.h */,
 				B5E044E51478471F006A8D5C /* UIView+HitTest.m */,
+				068F12FB1483A35E00C925C2 /* UIView+SelectionMarquee.h */,
+				068F12FC1483A35E00C925C2 /* UIView+SelectionMarquee.m */,
+				068F12FE1483A65E00C925C2 /* CAShapeLayer+Animation.h */,
+				068F12FF1483A65F00C925C2 /* CAShapeLayer+Animation.m */,
 			);
 			name = UIView;
 			path = "Views and User Interface/UIView";
@@ -2027,6 +2040,7 @@
 				06565E371481951300B4F2CF /* 26026@2x.png in Resources */,
 				06565E381481951300B4F2CF /* 26027@2x.png in Resources */,
 				06565E391481951300B4F2CF /* 26028@2x.png in Resources */,
+				068F12F91483A00B00C925C2 /* wood@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2091,6 +2105,8 @@
 				06978F2B147FB27D00171A51 /* AWBRoadsignBackgroundGroup.m in Sources */,
 				06E37436147FF42600EA536C /* AWBLockedView.m in Sources */,
 				06565DB01481008B00B4F2CF /* AWBTransformableLabel.m in Sources */,
+				068F12FD1483A35E00C925C2 /* UIView+SelectionMarquee.m in Sources */,
+				068F13001483A65F00C925C2 /* CAShapeLayer+Animation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

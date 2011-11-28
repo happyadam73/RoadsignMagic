@@ -329,6 +329,46 @@
     return [CATiledLayer class]; 
 }
 
+- (void)showSelection
+{
+    
+}
+
+- (void)showSelectionWithAnimation:(BOOL)animateSelection
+{
+    
+}
+
+- (void)hideSelection
+{
+    
+}
+
+- (void)initialiseForSelection
+{
+    
+}
+
+- (void)startSelectionAnimation
+{
+    
+}
+
+- (void)stopSelectionAnimation
+{
+    
+}
+
+- (void)setSelectionOpacity:(CGFloat)opacity
+{
+    
+}
+
+- (void)removeSelection
+{
+    
+}
+
 - (void)dealloc
 {
     [labelView release];
