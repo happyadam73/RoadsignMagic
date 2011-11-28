@@ -11,14 +11,43 @@
 
 @implementation AWBRoadsignMagicMainViewController (Sign)
 
-- (void)initialiseSlideupView
+- (void)initialiseSignBackgroundPickerView
 {
     CGRect backgroundFrame = CGRectMake(0.0, self.view.bounds.size.height-(self.navigationController.toolbar.bounds.size.height)-180.0, self.view.bounds.size.width, 180);
-    AWBSignBackgroundPickerView *backgroundView = [[AWBSignBackgroundPickerView alloc] initWithFrame:backgroundFrame];
-    backgroundView.delegate = self;
-    self.slideUpView = backgroundView;
-	[self.view addSubview:backgroundView];
-    [backgroundView release];
+    AWBSignBackgroundPickerView *backgroundPicker = [[AWBSignBackgroundPickerView alloc] initWithFrame:backgroundFrame];
+    backgroundPicker.delegate = self;
+    self.signBackgroundPickerView = backgroundPicker;
+	[self.view addSubview:backgroundPicker];
+    [backgroundPicker release];
+}
+
+- (void)toggleSignBackgroundPickerView:(id)sender 
+{
+    UIButton *button = (UIButton *)sender;
+    [self performSelector:@selector(highlightSignBackgroundPickerButton:) withObject:button afterDelay:0];
+    
+    if (!signBackgroundPickerView) {
+        [self initialiseSignBackgroundPickerView];
+    }
+    
+    CGRect frame = signBackgroundPickerView.frame;
+    if (!signBackgroundPickerViewShowing) {
+        frame.origin.y = (self.view.bounds.size.height - self.navigationController.toolbar.bounds.size.height - frame.size.height);            
+    } else {
+        frame.origin.y = (self.view.bounds.size.height);                        
+    }
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.3];
+    [signBackgroundPickerView setFrame:frame];
+    [UIView commitAnimations];
+    
+    signBackgroundPickerViewShowing = !signBackgroundPickerViewShowing;
+}
+
+- (void)highlightSignBackgroundPickerButton:(UIButton*)button 
+{
+    [button setSelected:signBackgroundPickerViewShowing];
 }
 
 - (void)updateSignBackgroundWithImageFromFile:(NSString *)name 

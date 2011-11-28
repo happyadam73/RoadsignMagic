@@ -12,7 +12,6 @@
 #import "FontLabel.h"
 #import "FontLabelStringDrawing.h"
 #import "FontManager.h"
-//#import "AWBRoadsignMagicViewController+Carousel.h"
 #import "AWBRoadsignMagicMainViewController+Gestures.h"
 #import "FontManager.h"
 #import "AWBTransformableZFontLabel.h"
@@ -24,10 +23,9 @@
 
 @synthesize mainScrollView, signBackgroundView;
 @synthesize signBackgroundPickerButton, toolbarSpacing, textButton, editButton, editTextButton, cancelButton, deleteButton, selectNoneOrAllButton, addSymbolButton, actionButton, settingsButton, fixedToolbarSpacing;
-//@synthesize carouselSubcategory, carouselCategory, slideUpView, signBackgroundCategories;
-@synthesize slideUpView; //, signBackgroundCategories;
+@synthesize signBackgroundPickerView; 
 @synthesize rotationGestureRecognizer, panGestureRecognizer, pinchGestureRecognizer, singleTapGestureRecognizer, doubleTapGestureRecognizer, swipeGestureRecognizer, longPressGestureRecognizer, longDoublePressGestureRecognizer;
-@synthesize roadsignFont;    //, selectionMarquee, selectionMarquee2;
+@synthesize roadsignFont; 
 @synthesize labelTextColor, labelTextFont, labelTextLine1, labelTextLine2, labelTextLine3, labelTextAlignment;
 @synthesize exportQuality, snapToGrid, snapToGridSize, lockedView;
 @synthesize selectedSignBackground, isSignInEditMode;
@@ -46,14 +44,10 @@
     [super viewDidUnload];
     [self dereferenceGestureRecognizers];
     self.lockedView = nil;
-//    self.selectionMarquee = nil;
-//    self.selectionMarquee2 = nil;
     self.roadsignFont = nil;
     self.signBackgroundView = nil;
     self.mainScrollView = nil;
-    self.slideUpView = nil;
-//    self.carouselSubcategory = nil;
-//    self.carouselCategory = nil;
+    self.signBackgroundPickerView = nil;
     self.signBackgroundPickerButton = nil;
     self.toolbarSpacing = nil;
     self.textButton = nil;    
@@ -100,14 +94,14 @@
     [mainScrollView setZoomScale:newScale];
     [self scrollViewDidZoom:mainScrollView];
         
-    if (slideUpView) {        
-        CGRect frame = slideUpView.frame;
-        if (thumbViewShowing) {
+    if (signBackgroundPickerView) {        
+        CGRect frame = signBackgroundPickerView.frame;
+        if (signBackgroundPickerViewShowing) {
             frame.origin.y = (self.view.bounds.size.height - self.navigationController.toolbar.bounds.size.height - frame.size.height);            
         } else {
             frame.origin.y = (self.view.bounds.size.height);                        
         }
-        slideUpView.frame = frame;
+        signBackgroundPickerView.frame = frame;
     }
     
 }
@@ -139,9 +133,6 @@
     [self.mainScrollView addSubview:self.signBackgroundView];
     [backgroundView release];
     
-//    [[self.signBackgroundView layer] addSublayer:self.selectionMarquee];
-//    [[self.signBackgroundView layer] addSublayer:self.selectionMarquee2];
-    
     AWBLockedView *view = [[AWBLockedView alloc] initWithObjectsLocked:NO canvasAnchored:NO];
     self.lockedView = view;
     self.lockedView.delegate = self;
@@ -151,18 +142,10 @@
 }
 
 - (void)dealloc {
-    //it's a good idea to set these to nil here to avoid
-	//sending messages to a deallocated viewcontroller
-    [self deallocGestureRecognizers];
-//	carouselSubcategory.delegate = nil;
-//	carouselSubcategory.dataSource = nil;
+     [self deallocGestureRecognizers];
     [selectedSignBackground release];
-//    [signBackgroundCategories release];
     [roadsignFont release];
-//    [signBackgroundItems release];
-    [slideUpView release];
-//    [carouselCategory release];
-//    [carouselSubcategory release];
+    [signBackgroundPickerView release];
     [toolbarSpacing release];
     [editButton release];
     [editTextButton release];
@@ -177,8 +160,6 @@
     [mainScrollView release];
     [signBackgroundView release];
     [textButton release];
-//    [selectionMarquee release];
-//    [selectionMarquee2 release];
     [labelTextColor release];
     [labelTextFont release];
     [labelTextLine1 release];

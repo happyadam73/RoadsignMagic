@@ -12,6 +12,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "AWBRoadsignBackground.h"
 #import "AWBLockedView.h"
+#import "AWBSignBackgroundPickerView.h"
 
 #define SNAP_TO_GRID_SIZE 32.0
 #define DEFAULT_FONT_POINT_SIZE 40.0
@@ -20,10 +21,9 @@
 {    
     UIScrollView *mainScrollView;
     UIImageView *signBackgroundView;
-//    iCarousel *carouselSubcategory;
-//    iCarousel *carouselCategory;
-    UIView *slideUpView;
-    
+    AWBSignBackgroundPickerView *signBackgroundPickerView;
+    BOOL signBackgroundPickerViewShowing;
+
     UIBarButtonItem *signBackgroundPickerButton;
     UIBarButtonItem *textButton;
     UIBarButtonItem *toolbarSpacing;
@@ -37,14 +37,8 @@
     UIBarButtonItem *settingsButton;
     UIBarButtonItem *fixedToolbarSpacing;
         
-//    NSMutableArray *signBackgroundItems;
-//    NSArray *signBackgroundCategories;
-//    NSUInteger selectedSignBackgroundCategory;
-//    NSUInteger selectedSignBackgroundCarouselIndex;
-//    NSUInteger selectedSignBackgroundCategoryIndex;
     AWBRoadsignBackground *selectedSignBackground;
     
-    BOOL thumbViewShowing;
     ZFont *roadsignFont;
     
     UIRotationGestureRecognizer *rotationGestureRecognizer;
@@ -59,8 +53,6 @@
     UIView <AWBTransformableView> *capturedView;
     CGPoint capturedCenterOffset;
     
-//    CAShapeLayer *selectionMarquee;
-//    CAShapeLayer *selectionMarquee2;
     AWBLockedView *lockedView;
     BOOL snapToGrid;
     CGFloat snapToGridSize;
@@ -93,11 +85,7 @@
 @property (nonatomic, retain) UIBarButtonItem *actionButton;
 @property (nonatomic, retain) UIBarButtonItem *settingsButton;
 @property (nonatomic, retain) UIBarButtonItem *fixedToolbarSpacing;
-//@property (nonatomic, retain) iCarousel *carouselSubcategory;
-//@property (nonatomic, retain) iCarousel *carouselCategory;
-@property (nonatomic, retain) UIView *slideUpView;
-//@property (nonatomic, retain) NSMutableArray *signBackgroundItems;
-//@property (nonatomic, retain) NSArray *signBackgroundCategories;
+@property (nonatomic, retain) UIView *signBackgroundPickerView;
 @property (nonatomic, retain) UIImageView *signBackgroundView;
 @property (nonatomic, retain) UIScrollView *mainScrollView;
 @property (nonatomic, retain) UIRotationGestureRecognizer *rotationGestureRecognizer;
@@ -109,8 +97,6 @@
 @property (nonatomic, retain) UILongPressGestureRecognizer *longPressGestureRecognizer;
 @property (nonatomic, retain) UILongPressGestureRecognizer *longDoublePressGestureRecognizer;
 @property (nonatomic, retain) ZFont *roadsignFont;
-//@property (nonatomic, retain) CAShapeLayer *selectionMarquee;
-//@property (nonatomic, retain) CAShapeLayer *selectionMarquee2;
 @property (nonatomic, retain) AWBLockedView *lockedView;
 @property (nonatomic, assign) BOOL snapToGrid;
 @property (nonatomic, assign) CGFloat snapToGridSize;

@@ -18,18 +18,12 @@
 - (void)dismissAllActionSheetsAndPopovers
 {
     
-    if (thumbViewShowing) {
-        [self toggleThumbView:self.signBackgroundPickerButton.customView];
+    if (signBackgroundPickerViewShowing) {
+        [self toggleSignBackgroundPickerView:self.signBackgroundPickerButton.customView];
     }
     
     if (DEVICE_IS_IPAD) {
-//        [self dismissPopoverIfVisible:self.imagePickerPopover];
-//        [self dismissPopoverIfVisible:self.addressBookPopover];
-//        [self dismissPopoverIfVisible:self.addSymbolPopover];
-//        [self dismissPopoverIfVisible:self.luckyDipPopover];
-//        [self dismissPopoverIfVisible:self.memoryWarningPopover];        
         [self dismissActionSheetIfVisible:self.deleteConfirmationSheet];
-//        [self dismissActionSheetIfVisible:self.choosePhotoSourceSheet];
 //        [self dismissActionSheetIfVisible:self.chooseActionTypeSheet];
     }    
 }
@@ -235,49 +229,15 @@
 {
     BOOL hideMenus = !self.navigationController.toolbarHidden;
     
-    if (hideMenus && thumbViewShowing) {
-        [self toggleThumbView:self.signBackgroundPickerButton.customView];
+    if (hideMenus && signBackgroundPickerViewShowing) {
+        [self toggleSignBackgroundPickerView:self.signBackgroundPickerButton.customView];
     }
-    
-    //    if (!hideMenus) {
-    //        lockedView.alpha = 1.0;
-    //    } else {
-    //        lockedView.alpha = 0.5;
-    //    }
     
     [[UIApplication sharedApplication] setStatusBarHidden:hideMenus withAnimation:UIStatusBarAnimationFade];
     [self.navigationController setToolbarHidden:hideMenus animated:YES];
     [self.navigationController setNavigationBarHidden:hideMenus animated:YES];    
 }
 
-- (void)toggleThumbView:(id)sender 
-{
-    UIButton *button = (UIButton *)sender;
-    [self performSelector:@selector(highlightButton:) withObject:button afterDelay:0];
-    
-    if (!slideUpView) {
-        [self initialiseSlideupView];
-    }
-    
-    CGRect frame = slideUpView.frame;
-    if (!thumbViewShowing) {
-        frame.origin.y = (self.view.bounds.size.height - self.navigationController.toolbar.bounds.size.height - frame.size.height);            
-    } else {
-        frame.origin.y = (self.view.bounds.size.height);                        
-    }
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.3];
-    [slideUpView setFrame:frame];
-    [UIView commitAnimations];
-    
-    thumbViewShowing = !thumbViewShowing;
-}
-
-- (void)highlightButton:(UIButton*)button 
-{
-    [button setSelected:thumbViewShowing];
-}
 
 #pragma mark UIScrollViewDelegate methods
 

@@ -11,7 +11,9 @@
 
 @interface AWBRoadsignMagicMainViewController (Sign) <AWBSignBackgroundPickerViewDelegate>
 
-- (void)initialiseSlideupView;
+- (void)initialiseSignBackgroundPickerView;
+- (void)highlightSignBackgroundPickerButton:(UIButton*)button;
+- (void)toggleSignBackgroundPickerView:(id)sender;
 - (void)updateSignBackgroundWithImageFromFile:(NSString *)name;
 
 @end

@@ -10,6 +10,7 @@
 #import "AWBRoadsignMagicMainViewController+Text.h"
 #import "AWBRoadsignMagicMainViewController+UI.h"
 #import "UIColor+SignColors.h"
+#import "AWBRoadsignMagicViewController+Sign.h"
 
 @implementation AWBRoadsignMagicMainViewController (Toolbar)
 
@@ -69,7 +70,7 @@
         image = [UIImage imageNamed:@"signs-down"];
         [button setBackgroundImage:image forState:UIControlStateHighlighted];
         [button setBackgroundImage:image forState:UIControlStateSelected];
-        [button addTarget:self action:@selector(toggleThumbView:) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(toggleSignBackgroundPickerView:) forControlEvents:UIControlEventTouchUpInside];
         [button setShowsTouchWhenHighlighted:YES];
         signBackgroundPickerButton = [[UIBarButtonItem alloc] initWithCustomView:button];
         [button release];        
@@ -87,7 +88,7 @@
         image = [UIImage imageNamed:@"symbols-down"];
         [button setBackgroundImage:image forState:UIControlStateHighlighted];
         [button setBackgroundImage:image forState:UIControlStateSelected];
-        [button addTarget:self action:@selector(toggleThumbView:) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(toggleSignBackgroundPickerView:) forControlEvents:UIControlEventTouchUpInside];
         [button setShowsTouchWhenHighlighted:YES];
         addSymbolButton = [[UIBarButtonItem alloc] initWithCustomView:button];
         [button release];        

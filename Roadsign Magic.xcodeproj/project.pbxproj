@@ -103,7 +103,6 @@
 		06978F24147EE09800171A51 /* anchored@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06978F22147EE09700171A51 /* anchored@2x.png */; };
 		06978F28147FB0AB00171A51 /* AWBRoadsignBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 06978F27147FB0AB00171A51 /* AWBRoadsignBackground.m */; };
 		06978F2B147FB27D00171A51 /* AWBRoadsignBackgroundGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 06978F2A147FB27D00171A51 /* AWBRoadsignBackgroundGroup.m */; };
-		06A07989147A79FF0065A6DB /* AWBRoadsignMagicViewController+Carousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A07988147A79FF0065A6DB /* AWBRoadsignMagicViewController+Carousel.m */; };
 		06A0799D147A82310065A6DB /* asphalt@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 06A0799C147A82310065A6DB /* asphalt@2x.jpg */; };
 		06A95FEB14781B6000915359 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A95FEA14781B6000915359 /* UIKit.framework */; };
 		06A95FED14781B6000915359 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A95FEC14781B6000915359 /* Foundation.framework */; };
@@ -483,8 +482,6 @@
 		06978F27147FB0AB00171A51 /* AWBRoadsignBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBRoadsignBackground.m; path = "Roadsigns Model/AWBRoadsignBackground.m"; sourceTree = "<group>"; };
 		06978F29147FB27D00171A51 /* AWBRoadsignBackgroundGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBRoadsignBackgroundGroup.h; path = "Roadsigns Model/AWBRoadsignBackgroundGroup.h"; sourceTree = "<group>"; };
 		06978F2A147FB27D00171A51 /* AWBRoadsignBackgroundGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBRoadsignBackgroundGroup.m; path = "Roadsigns Model/AWBRoadsignBackgroundGroup.m"; sourceTree = "<group>"; };
-		06A07987147A79FF0065A6DB /* AWBRoadsignMagicViewController+Carousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AWBRoadsignMagicViewController+Carousel.h"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicViewController+Carousel.h"; sourceTree = "<group>"; };
-		06A07988147A79FF0065A6DB /* AWBRoadsignMagicViewController+Carousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AWBRoadsignMagicViewController+Carousel.m"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicViewController+Carousel.m"; sourceTree = "<group>"; };
 		06A0799C147A82310065A6DB /* asphalt@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "asphalt@2x.jpg"; sourceTree = "<group>"; };
 		06A95FE614781B6000915359 /* Roadsign Magic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Roadsign Magic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		06A95FEA14781B6000915359 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -923,8 +920,6 @@
 				0668E1A2147929FF0089937B /* AWBRoadsignMagicMainViewController.m */,
 				06978F10147E8DCD00171A51 /* AWBRoadsignMagicViewController+Action.h */,
 				06978F11147E8DCF00171A51 /* AWBRoadsignMagicViewController+Action.m */,
-				06A07987147A79FF0065A6DB /* AWBRoadsignMagicViewController+Carousel.h */,
-				06A07988147A79FF0065A6DB /* AWBRoadsignMagicViewController+Carousel.m */,
 				06978F0D147E8DB400171A51 /* AWBRoadsignMagicViewController+Delete.h */,
 				06978F0E147E8DB500171A51 /* AWBRoadsignMagicViewController+Delete.m */,
 				06978F0A147E8D9300171A51 /* AWBRoadsignMagicViewController+Edit.h */,
@@ -2102,7 +2097,6 @@
 				B5E0452414784F97006A8D5C /* AWBFontTableCell.m in Sources */,
 				B5E0452714784FDD006A8D5C /* AWBCollageFont.m in Sources */,
 				0668E1A3147929FF0089937B /* AWBRoadsignMagicMainViewController.m in Sources */,
-				06A07989147A79FF0065A6DB /* AWBRoadsignMagicViewController+Carousel.m in Sources */,
 				06420DFB147C10D800E6CE9A /* NSString+Helpers.m in Sources */,
 				06420DFF147C15DB00E6CE9A /* AWBRoadsignMagicMainViewController+Gestures.m in Sources */,
 				06978EF4147D60C800171A51 /* AWBRoadsignMagicSettingsTableViewController.m in Sources */,

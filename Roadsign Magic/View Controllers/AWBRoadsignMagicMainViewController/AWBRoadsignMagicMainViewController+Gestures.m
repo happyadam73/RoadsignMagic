@@ -122,8 +122,6 @@
         [capturedView rotateAndScaleWithSnapToGrid:snapToGrid gridSize:snapToGridSize]; 
         
         if ((paramSender.state == UIGestureRecognizerStateEnded) || (paramSender.state == UIGestureRecognizerStateFailed)) {
-//            selectionMarquee.hidden = YES;
-//            selectionMarquee2.hidden = YES;
             if (!self.isSignInEditMode) {
                 [capturedView hideSelection];                
             }
@@ -133,11 +131,8 @@
             } else {
                 [capturedView showSelection];
             }
-            //            [self showSelectionMarqueesOnTransformableView:capturedView];
         }
-
     }   
-    
 }
 
 - (void)handlePinches:(UIPinchGestureRecognizer *)paramSender
@@ -168,8 +163,6 @@
         
         
         if ((paramSender.state == UIGestureRecognizerStateEnded) || (paramSender.state == UIGestureRecognizerStateFailed)) {
-//            selectionMarquee.hidden = YES;
-//            selectionMarquee2.hidden = YES;
             if (!self.isSignInEditMode) {
                 [capturedView hideSelection];                
             }
@@ -179,13 +172,9 @@
             } else {
                 [capturedView showSelection];
             }
-            //[self showSelectionMarqueesOnTransformableView:capturedView];
         }
-
     }
-    
 }
-
 
 - (void)handlePanGestures:(UIPanGestureRecognizer *)paramSender
 {
@@ -224,13 +213,10 @@
             } else {
                 [capturedView showSelection];
             }
-            //[self showSelectionMarqueesOnTransformableView:capturedView];
         } else {
             if (!self.isSignInEditMode) {
                 [capturedView hideSelection];                
             }
-//            selectionMarquee.hidden = YES;
-//            selectionMarquee2.hidden = YES;
         }
     }
 }
@@ -316,70 +302,5 @@
     }
     return NO;
 }
-
-//- (CAShapeLayer *)selectionMarquee
-//{
-//    if (!selectionMarquee) {
-//        selectionMarquee = [[CAShapeLayer layer] retain];
-//        selectionMarquee.fillColor = [[UIColor clearColor] CGColor];
-//        selectionMarquee.strokeColor = [[UIColor whiteColor] CGColor];
-//        selectionMarquee.lineWidth = 3.0f;
-//        selectionMarquee.lineJoin = kCALineJoinRound;
-//        selectionMarquee.lineDashPattern = [NSArray arrayWithObjects:[NSNumber numberWithInt:10],[NSNumber numberWithInt:5], nil];
-//        selectionMarquee.bounds = CGRectZero;
-//        selectionMarquee.position = CGPointZero;
-//    }
-//    
-//    return selectionMarquee;
-//}
-//
-//- (CAShapeLayer *)selectionMarquee2
-//{
-//    if (!selectionMarquee2) {
-//        selectionMarquee2 = [[CAShapeLayer layer] retain];
-//        selectionMarquee2.fillColor = [[UIColor clearColor] CGColor];
-//        selectionMarquee2.strokeColor = [[UIColor blackColor] CGColor];
-//        selectionMarquee2.lineWidth = 3.0f;
-//        selectionMarquee2.lineJoin = kCALineJoinRound;
-//        selectionMarquee2.lineDashPattern = [NSArray arrayWithObjects:[NSNumber numberWithInt:5],[NSNumber numberWithInt:10], nil];
-//        selectionMarquee2.bounds = CGRectZero;
-//        selectionMarquee2.position = CGPointZero;
-//    }
-//    
-//    return selectionMarquee2;
-//}
-
-//- (void)showSelectionMarqueesOnTransformableView:(UIView <AWBTransformableView> *)view
-//{
-//    [self showSelectionMarquee:self.selectionMarquee onTransformableView:view];
-//    [self showSelectionMarquee:self.selectionMarquee2 onTransformableView:view];
-//}
-//
-//- (void)showSelectionMarquee:(CAShapeLayer *)marquee onTransformableView:(UIView <AWBTransformableView> *)view
-//{    
-//    if (![marquee actionForKey:@"linePhase"]) {
-//        CABasicAnimation *dashAnimation;
-//        dashAnimation = [CABasicAnimation animationWithKeyPath:@"lineDashPhase"];
-//        [dashAnimation setFromValue:[NSNumber numberWithFloat:0.0f]];
-//        [dashAnimation setToValue:[NSNumber numberWithFloat:15.0f]];
-//        [dashAnimation setDuration:0.25f];
-//        [dashAnimation setRepeatCount:HUGE_VALF];
-//        [marquee addAnimation:dashAnimation forKey:@"linePhase"];
-//    }
-//    
-//    CGRect frame = view.frame;
-//    marquee.bounds = CGRectMake(frame.origin.x, frame.origin.y, 0, 0);
-//    marquee.position = CGPointMake(frame.origin.x, frame.origin.y);
-//    
-////    CGAffineTransform transform = view.transform;
-//    
-//    CGMutablePathRef path = CGPathCreateMutable();
-//    CGPathAddRect(path, NULL, frame);        
-//    [marquee setPath:path];
-//    CGPathRelease(path);
-//    
-//    marquee.hidden = NO;
-//}
-//
 
 @end

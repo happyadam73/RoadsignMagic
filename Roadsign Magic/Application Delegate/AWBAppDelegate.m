@@ -26,8 +26,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-//    // Override point for customization after application launch.
-//    self.window.backgroundColor = [UIColor whiteColor];
 
     AWBRoadsignMagicMainViewController *viewController = [[AWBRoadsignMagicMainViewController alloc] init];
     AWBRoadsignMagicSettingsTableViewController *settingsController = [[AWBRoadsignMagicSettingsTableViewController alloc] initWithSettings:[AWBSettings mainSettingsWithInfo:[viewController settingsInfo]] settingsInfo:[viewController settingsInfo] rootController:nil]; 

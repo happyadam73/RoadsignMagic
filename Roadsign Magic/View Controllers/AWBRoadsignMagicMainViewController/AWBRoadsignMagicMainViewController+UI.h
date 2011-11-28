@@ -26,8 +26,6 @@
 - (NSMutableDictionary *)settingsInfo;
 - (void)applySettingsToLabel:(AWBTransformableZFontLabel *)label;
 - (void)toggleFullscreen;
-- (void)toggleThumbView:(id)sender;
-- (void)highlightButton:(UIButton*)button;
 - (CGRect)zoomRectForScale:(float)scale withCenter:(CGPoint)center;
 
 @end
