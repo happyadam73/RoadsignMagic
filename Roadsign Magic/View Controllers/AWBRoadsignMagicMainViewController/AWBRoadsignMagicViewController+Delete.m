@@ -17,6 +17,8 @@
 {
     BOOL wasActionSheetVisible = self.deleteConfirmationSheet.visible;
     [self dismissAllActionSheetsAndPopovers];
+    [self dismissAllSlideUpPickerViews];
+    
     if (wasActionSheetVisible || (totalSelectedInEditMode == 0)) {
         return;
     }

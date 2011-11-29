@@ -7,6 +7,12 @@
 //
 
 #import "AWBRoadsignMagicMainViewController.h"
+#import "AWBSignSymbolPickerView.h"
 
-@interface AWBRoadsignMagicMainViewController (Symbol)
+@interface AWBRoadsignMagicMainViewController (Symbol) <AWBSignSymbolPickerViewDelegate>
+
+- (void)initialiseSignSymbolPickerView;
+- (void)highlightSignSymbolPickerButton:(UIButton*)button;
+- (void)toggleSignSymbolPickerView:(id)sender;
+
 @end

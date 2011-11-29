@@ -16,6 +16,9 @@
 
 @interface AWBRoadsignMagicMainViewController (UI) <UIScrollViewDelegate, UIActionSheetDelegate>
 
+- (void)dismissAllSlideUpPickerViews;
+- (void)dismissSignBackgroundPickerView;
+- (void)dismissSignSymbolPickerView;
 - (void)dismissPopoverIfVisible:(UIPopoverController *)popover;
 - (void)dismissToolbarAndPopover:(UIPopoverController *)popover;
 - (void)dismissActionSheetIfVisible:(UIActionSheet *)actionSheet;

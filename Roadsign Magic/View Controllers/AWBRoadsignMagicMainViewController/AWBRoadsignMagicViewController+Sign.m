@@ -8,21 +8,24 @@
 
 #import "AWBRoadsignMagicViewController+Sign.h"
 #import "UIImage+NonCached.h"
+#import "AWBRoadsignMagicMainViewController+UI.h"
 
 @implementation AWBRoadsignMagicMainViewController (Sign)
 
 - (void)initialiseSignBackgroundPickerView
 {
-    CGRect backgroundFrame = CGRectMake(0.0, self.view.bounds.size.height-(self.navigationController.toolbar.bounds.size.height)-180.0, self.view.bounds.size.width, 180);
+    CGRect backgroundFrame = CGRectMake(0.0, self.view.bounds.size.height, self.view.bounds.size.width, 180);
     AWBSignBackgroundPickerView *backgroundPicker = [[AWBSignBackgroundPickerView alloc] initWithFrame:backgroundFrame];
     backgroundPicker.delegate = self;
     self.signBackgroundPickerView = backgroundPicker;
 	[self.view addSubview:backgroundPicker];
     [backgroundPicker release];
+    signBackgroundPickerViewShowing = NO;
 }
 
 - (void)toggleSignBackgroundPickerView:(id)sender 
 {
+    [self dismissSignSymbolPickerView];
     UIButton *button = (UIButton *)sender;
     [self performSelector:@selector(highlightSignBackgroundPickerButton:) withObject:button afterDelay:0];
     

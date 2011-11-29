@@ -8,20 +8,39 @@
 
 #import "AWBRoadsignMagicMainViewController+UI.h"
 #import "AWBRoadsignMagicMainViewController+Text.h"
-//#import "AWBRoadsignMagicViewController+Carousel.h"
 #import "AWBRoadsignMagicViewController+Delete.h"
 #import "AWBRoadsignMagicViewController+Edit.h"
 #import "AWBRoadsignMagicViewController+Sign.h"
+#import "AWBRoadsignMagicViewController+Symbol.h"
 
 @implementation AWBRoadsignMagicMainViewController (UI)
 
-- (void)dismissAllActionSheetsAndPopovers
+- (void)dismissAllSlideUpPickerViews
 {
-    
     if (signBackgroundPickerViewShowing) {
         [self toggleSignBackgroundPickerView:self.signBackgroundPickerButton.customView];
     }
-    
+    if (signSymbolPickerViewShowing) {
+        [self toggleSignSymbolPickerView:self.signSymbolPickerButton.customView];            
+    }     
+}
+
+- (void)dismissSignBackgroundPickerView
+{
+    if (signBackgroundPickerViewShowing) {
+        [self toggleSignBackgroundPickerView:self.signBackgroundPickerButton.customView];
+    }    
+}
+
+- (void)dismissSignSymbolPickerView
+{
+    if (signSymbolPickerViewShowing) {
+        [self toggleSignSymbolPickerView:self.signSymbolPickerButton.customView];            
+    }     
+}
+
+- (void)dismissAllActionSheetsAndPopovers
+{
     if (DEVICE_IS_IPAD) {
         [self dismissActionSheetIfVisible:self.deleteConfirmationSheet];
 //        [self dismissActionSheetIfVisible:self.chooseActionTypeSheet];
@@ -67,8 +86,9 @@
 
 - (void)settingsButtonAction:(id)sender
 {  
-//        [self resetEditMode:sender];
-//        [self dismissAllActionSheetsAndPopovers];
+    [self resetEditMode:sender];
+    [self dismissAllActionSheetsAndPopovers];
+    [self dismissAllSlideUpPickerViews];
         
     AWBRoadsignMagicSettingsTableViewController *settingsController = [[AWBRoadsignMagicSettingsTableViewController alloc] initWithSettings:[AWBSettings mainSettingsWithInfo:[self settingsInfo]] settingsInfo:[self settingsInfo] rootController:nil]; 
     settingsController.delegate = self;
@@ -229,8 +249,9 @@
 {
     BOOL hideMenus = !self.navigationController.toolbarHidden;
     
-    if (hideMenus && signBackgroundPickerViewShowing) {
-        [self toggleSignBackgroundPickerView:self.signBackgroundPickerButton.customView];
+    if (hideMenus) {
+        [self dismissAllActionSheetsAndPopovers];
+        [self dismissAllSlideUpPickerViews];       
     }
     
     [[UIApplication sharedApplication] setStatusBarHidden:hideMenus withAnimation:UIStatusBarAnimationFade];

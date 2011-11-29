@@ -22,13 +22,13 @@
 @implementation AWBRoadsignMagicMainViewController
 
 @synthesize mainScrollView, signBackgroundView;
-@synthesize signBackgroundPickerButton, toolbarSpacing, textButton, editButton, editTextButton, cancelButton, deleteButton, selectNoneOrAllButton, addSymbolButton, actionButton, settingsButton, fixedToolbarSpacing;
-@synthesize signBackgroundPickerView; 
+@synthesize signBackgroundPickerButton, toolbarSpacing, textButton, editButton, editTextButton, cancelButton, deleteButton, selectNoneOrAllButton, signSymbolPickerButton, actionButton, settingsButton, fixedToolbarSpacing;
+@synthesize signBackgroundPickerView, signSymbolPickerView; 
 @synthesize rotationGestureRecognizer, panGestureRecognizer, pinchGestureRecognizer, singleTapGestureRecognizer, doubleTapGestureRecognizer, swipeGestureRecognizer, longPressGestureRecognizer, longDoublePressGestureRecognizer;
 @synthesize roadsignFont; 
 @synthesize labelTextColor, labelTextFont, labelTextLine1, labelTextLine2, labelTextLine3, labelTextAlignment;
 @synthesize exportQuality, snapToGrid, snapToGridSize, lockedView;
-@synthesize selectedSignBackground, isSignInEditMode;
+@synthesize selectedSignBackground, selectedSignSymbol, isSignInEditMode;
 @synthesize deleteConfirmationSheet;
 
 - (void)viewWillAppear:(BOOL)animated
@@ -48,6 +48,7 @@
     self.signBackgroundView = nil;
     self.mainScrollView = nil;
     self.signBackgroundPickerView = nil;
+    self.signSymbolPickerView = nil;
     self.signBackgroundPickerButton = nil;
     self.toolbarSpacing = nil;
     self.textButton = nil;    
@@ -56,7 +57,7 @@
     self.cancelButton = nil;
     self.deleteButton = nil;
     self.selectNoneOrAllButton = nil;
-    self.addSymbolButton = nil;
+    self.signSymbolPickerButton = nil;
     self.actionButton = nil;
     self.settingsButton = nil;
     self.fixedToolbarSpacing = nil;
@@ -144,15 +145,17 @@
 - (void)dealloc {
      [self deallocGestureRecognizers];
     [selectedSignBackground release];
+    [selectedSignSymbol release];
     [roadsignFont release];
     [signBackgroundPickerView release];
+    [signSymbolPickerView release];
     [toolbarSpacing release];
     [editButton release];
     [editTextButton release];
     [cancelButton release];
     [deleteButton release];
     [selectNoneOrAllButton release];
-    [addSymbolButton release];
+    [signSymbolPickerButton release];
     [actionButton release];
     [settingsButton release];
     [fixedToolbarSpacing release];

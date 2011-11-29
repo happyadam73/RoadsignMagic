@@ -9,6 +9,7 @@
 #import "AWBRoadsignMagicMainViewController+Text.h"
 #import "FontLabel.h"
 #import "AWBRoadsignMagicMainViewController+UI.h"
+#import "AWBRoadsignMagicViewController+Edit.h"
 
 @implementation AWBRoadsignMagicMainViewController (Text)
 
@@ -17,24 +18,27 @@
 {
         NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
         
-//        [self resetEditMode:sender];
-        [self dismissAllActionSheetsAndPopovers];
-        AWBRoadsignMagicSettingsTableViewController *settingsController = [[AWBRoadsignMagicSettingsTableViewController alloc] initWithSettings:[AWBSettings textSettingsWithInfo:[self settingsInfo]] settingsInfo:[self settingsInfo] rootController:nil]; 
-        settingsController.delegate = self;
-        settingsController.controllerType = AWBSettingsControllerTypeAddTextSettings;
-        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsController];
-        navController.modalPresentationStyle = UIModalPresentationPageSheet;
-        navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;  
-        [self presentModalViewController:navController animated:YES];
-        [settingsController release];   
-        [navController release];
-        
-        [pool drain];
+    [self resetEditMode:sender];
+    [self dismissAllActionSheetsAndPopovers];
+    [self dismissAllSlideUpPickerViews];
+    
+    AWBRoadsignMagicSettingsTableViewController *settingsController = [[AWBRoadsignMagicSettingsTableViewController alloc] initWithSettings:[AWBSettings textSettingsWithInfo:[self settingsInfo]] settingsInfo:[self settingsInfo] rootController:nil]; 
+    settingsController.delegate = self;
+    settingsController.controllerType = AWBSettingsControllerTypeAddTextSettings;
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsController];
+    navController.modalPresentationStyle = UIModalPresentationPageSheet;
+    navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;  
+    [self presentModalViewController:navController animated:YES];
+    [settingsController release];   
+    [navController release];
+    
+    [pool drain];
 }
 
 - (void)editSelectedTextViews:(id)sender
 {
     [self dismissAllActionSheetsAndPopovers];
+    [self dismissAllSlideUpPickerViews];
     if (totalSelectedLabelsInEditMode == 0) {
         return;
     }

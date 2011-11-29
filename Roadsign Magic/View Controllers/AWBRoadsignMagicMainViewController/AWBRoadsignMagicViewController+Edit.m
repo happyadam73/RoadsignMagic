@@ -46,6 +46,7 @@
     if (!self.isSignInEditMode) {
         self.isSignInEditMode = YES;
         [self dismissAllActionSheetsAndPopovers];
+        [self dismissAllSlideUpPickerViews];
         [self.navigationItem setHidesBackButton:YES animated:YES];
         self.navigationItem.titleView = nil;
         self.navigationItem.title = @"Select Objects";

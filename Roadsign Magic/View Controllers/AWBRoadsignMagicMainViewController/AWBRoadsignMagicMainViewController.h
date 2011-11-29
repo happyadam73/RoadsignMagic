@@ -13,6 +13,7 @@
 #import "AWBRoadsignBackground.h"
 #import "AWBLockedView.h"
 #import "AWBSignBackgroundPickerView.h"
+#import "AWBSignSymbolPickerView.h"
 
 #define SNAP_TO_GRID_SIZE 32.0
 #define DEFAULT_FONT_POINT_SIZE 40.0
@@ -22,8 +23,10 @@
     UIScrollView *mainScrollView;
     UIImageView *signBackgroundView;
     AWBSignBackgroundPickerView *signBackgroundPickerView;
+    AWBSignSymbolPickerView *signSymbolPickerView;    
     BOOL signBackgroundPickerViewShowing;
-
+    BOOL signSymbolPickerViewShowing;
+    
     UIBarButtonItem *signBackgroundPickerButton;
     UIBarButtonItem *textButton;
     UIBarButtonItem *toolbarSpacing;
@@ -32,12 +35,13 @@
     UIBarButtonItem *deleteButton;
     UIBarButtonItem *editTextButton;
     UIBarButtonItem *selectNoneOrAllButton;    
-    UIBarButtonItem *addSymbolButton;
+    UIBarButtonItem *signSymbolPickerButton;
     UIBarButtonItem *actionButton;
     UIBarButtonItem *settingsButton;
     UIBarButtonItem *fixedToolbarSpacing;
         
     AWBRoadsignBackground *selectedSignBackground;
+    AWBRoadsignSymbol *selectedSignSymbol;
     
     ZFont *roadsignFont;
     
@@ -81,11 +85,12 @@
 @property (nonatomic, retain) UIBarButtonItem *deleteButton;
 @property (nonatomic, retain) UIBarButtonItem *editTextButton;
 @property (nonatomic, retain) UIBarButtonItem *selectNoneOrAllButton;    
-@property (nonatomic, retain) UIBarButtonItem *addSymbolButton;
+@property (nonatomic, retain) UIBarButtonItem *signSymbolPickerButton;
 @property (nonatomic, retain) UIBarButtonItem *actionButton;
 @property (nonatomic, retain) UIBarButtonItem *settingsButton;
 @property (nonatomic, retain) UIBarButtonItem *fixedToolbarSpacing;
-@property (nonatomic, retain) UIView *signBackgroundPickerView;
+@property (nonatomic, retain) AWBSignBackgroundPickerView *signBackgroundPickerView;
+@property (nonatomic, retain) AWBSignSymbolPickerView *signSymbolPickerView;  
 @property (nonatomic, retain) UIImageView *signBackgroundView;
 @property (nonatomic, retain) UIScrollView *mainScrollView;
 @property (nonatomic, retain) UIRotationGestureRecognizer *rotationGestureRecognizer;
@@ -108,9 +113,9 @@
 @property (nonatomic, retain) NSString *labelTextFont;
 @property (nonatomic, assign) UITextAlignment labelTextAlignment;
 @property (nonatomic, retain) AWBRoadsignBackground *selectedSignBackground;
+@property (nonatomic, retain) AWBRoadsignSymbol *selectedSignSymbol;
 @property (assign) BOOL isSignInEditMode;
 @property (nonatomic, retain) UIActionSheet *deleteConfirmationSheet;
-
 
 @end
 

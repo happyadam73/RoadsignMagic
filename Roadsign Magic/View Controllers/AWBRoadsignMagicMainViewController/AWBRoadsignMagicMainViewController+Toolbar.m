@@ -16,7 +16,7 @@
 
 - (NSArray *)normalToolbarButtons
 {
-    return [NSArray arrayWithObjects:self.actionButton, self.toolbarSpacing, self.textButton, self.toolbarSpacing, self.signBackgroundPickerButton, self.toolbarSpacing, self.addSymbolButton, self.toolbarSpacing, self.settingsButton, nil];
+    return [NSArray arrayWithObjects:self.actionButton, self.toolbarSpacing, self.textButton, self.toolbarSpacing, self.signBackgroundPickerButton, self.toolbarSpacing, self.signSymbolPickerButton, self.toolbarSpacing, self.settingsButton, nil];
 }
 
 - (void)resetToNormalToolbar
@@ -78,9 +78,9 @@
     return signBackgroundPickerButton;    
 }
 
-- (UIBarButtonItem *)addSymbolButton
+- (UIBarButtonItem *)signSymbolPickerButton
 {
-    if (!addSymbolButton) {
+    if (!signSymbolPickerButton) {
         UIImage* image = [UIImage imageNamed:@"symbols-up"];
         CGRect frame = CGRectMake(0, 0, image.size.width, image.size.height);
         UIButton* button = [[UIButton alloc] initWithFrame:frame];
@@ -88,12 +88,12 @@
         image = [UIImage imageNamed:@"symbols-down"];
         [button setBackgroundImage:image forState:UIControlStateHighlighted];
         [button setBackgroundImage:image forState:UIControlStateSelected];
-        [button addTarget:self action:@selector(toggleSignBackgroundPickerView:) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(toggleSignSymbolPickerView:) forControlEvents:UIControlEventTouchUpInside];
         [button setShowsTouchWhenHighlighted:YES];
-        addSymbolButton = [[UIBarButtonItem alloc] initWithCustomView:button];
+        signSymbolPickerButton = [[UIBarButtonItem alloc] initWithCustomView:button];
         [button release];        
     }
-    return addSymbolButton;    
+    return signSymbolPickerButton;    
 }
 
 - (UIBarButtonItem *)settingsButton
