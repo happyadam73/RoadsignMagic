@@ -28,13 +28,14 @@
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
 
     AWBRoadsignMagicMainViewController *viewController = [[AWBRoadsignMagicMainViewController alloc] init];
-    AWBRoadsignMagicSettingsTableViewController *settingsController = [[AWBRoadsignMagicSettingsTableViewController alloc] initWithSettings:[AWBSettings mainSettingsWithInfo:[viewController settingsInfo]] settingsInfo:[viewController settingsInfo] rootController:nil]; 
-    settingsController.controllerType = AWBSettingsControllerTypeMainSettings;  
-    settingsController.navigationItem.title = @"My Signs";
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsController];
-    [navController pushViewController:viewController animated:YES];
+//    AWBRoadsignMagicSettingsTableViewController *settingsController = [[AWBRoadsignMagicSettingsTableViewController alloc] initWithSettings:[AWBSettings mainSettingsWithInfo:[viewController settingsInfo]] settingsInfo:[viewController settingsInfo] rootController:nil]; 
+//    settingsController.controllerType = AWBSettingsControllerTypeMainSettings;  
+//    settingsController.navigationItem.title = @"My Signs";
+//    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsController];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController];
+//    [navController pushViewController:viewController animated:YES];
     [viewController release];
-    [settingsController release];
+//    [settingsController release];
     
     navController.navigationBar.barStyle = UIBarStyleBlack;
     navController.navigationBar.translucent = YES;

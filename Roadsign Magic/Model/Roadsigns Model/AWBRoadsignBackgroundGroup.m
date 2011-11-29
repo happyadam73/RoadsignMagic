@@ -13,7 +13,7 @@
 
 @synthesize signBackgrounds, signBackgroundGroupId, groupDescription, thumbnailImageFilename;
 
-- (id)initWithIdentifier:(NSUInteger)backgroundGroupId description:(NSString *)description thumbnailImageFilename:(NSString *)imageFilename signBackgrounds:(NSArray *)backgrounds;
+- (id)initWithIdentifier:(NSUInteger)backgroundGroupId description:(NSString *)description thumbnailImageFilename:(NSString *)imageFilename signBackgrounds:(NSArray *)backgrounds
 {
     self = [super init];
     if (self) {

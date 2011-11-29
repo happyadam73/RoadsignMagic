@@ -127,6 +127,23 @@
 		06A960461478265700915359 /* FontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A960411478265700915359 /* FontManager.m */; };
 		06A960471478265700915359 /* ZAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A960421478265700915359 /* ZAttributedString.m */; };
 		06A960481478265700915359 /* ZFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A960431478265700915359 /* ZFont.m */; };
+		06C345071485075D000A3CC8 /* S00@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06C344F41485075D000A3CC8 /* S00@2x.png */; };
+		06C345081485075D000A3CC8 /* S10001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06C344F61485075D000A3CC8 /* S10001@2x.png */; };
+		06C345091485075D000A3CC8 /* S10002@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06C344F71485075D000A3CC8 /* S10002@2x.png */; };
+		06C3450A1485075D000A3CC8 /* S10003@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06C344F81485075D000A3CC8 /* S10003@2x.png */; };
+		06C3450B1485075D000A3CC8 /* S10004@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06C344F91485075D000A3CC8 /* S10004@2x.png */; };
+		06C3450C1485075D000A3CC8 /* S20001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06C344FB1485075D000A3CC8 /* S20001@2x.png */; };
+		06C3450D1485075D000A3CC8 /* S20002@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06C344FC1485075D000A3CC8 /* S20002@2x.png */; };
+		06C3450E1485075D000A3CC8 /* S20003@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06C344FD1485075D000A3CC8 /* S20003@2x.png */; };
+		06C3450F1485075D000A3CC8 /* S20004@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06C344FE1485075D000A3CC8 /* S20004@2x.png */; };
+		06C345101485075D000A3CC8 /* S01@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06C345001485075D000A3CC8 /* S01@2x.png */; };
+		06C345111485075D000A3CC8 /* S11001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06C345021485075D000A3CC8 /* S11001@2x.png */; };
+		06C345121485075D000A3CC8 /* S11002@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06C345031485075D000A3CC8 /* S11002@2x.png */; };
+		06C345131485075D000A3CC8 /* S21001.png in Resources */ = {isa = PBXBuildFile; fileRef = 06C345051485075D000A3CC8 /* S21001.png */; };
+		06C345141485075D000A3CC8 /* S21002.png in Resources */ = {isa = PBXBuildFile; fileRef = 06C345061485075D000A3CC8 /* S21002.png */; };
+		06C34518148507CE000A3CC8 /* AWBRoadsignSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = 06C34517148507CE000A3CC8 /* AWBRoadsignSymbol.m */; };
+		06C3451B148507E4000A3CC8 /* AWBRoadsignSymbolGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 06C3451A148507E4000A3CC8 /* AWBRoadsignSymbolGroup.m */; };
+		06C3451F14850B5D000A3CC8 /* AWBSignSymbolPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06C3451E14850B5D000A3CC8 /* AWBSignSymbolPickerView.m */; };
 		06E37436147FF42600EA536C /* AWBLockedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E37435147FF42600EA536C /* AWBLockedView.m */; };
 		06F15E89147BC0AE007071D0 /* 00@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06F15E68147BC0AE007071D0 /* 00@2x.png */; };
 		06F15E8A147BC0AE007071D0 /* 10001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06F15E6A147BC0AE007071D0 /* 10001@2x.png */; };
@@ -516,6 +533,26 @@
 		06A960411478265700915359 /* FontManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FontManager.m; path = "Transforms and Drawing/zFont/FontManager.m"; sourceTree = "<group>"; };
 		06A960421478265700915359 /* ZAttributedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZAttributedString.m; path = "Transforms and Drawing/zFont/ZAttributedString.m"; sourceTree = "<group>"; };
 		06A960431478265700915359 /* ZFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZFont.m; path = "Transforms and Drawing/zFont/ZFont.m"; sourceTree = "<group>"; };
+		06C344F41485075D000A3CC8 /* S00@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S00@2x.png"; sourceTree = "<group>"; };
+		06C344F61485075D000A3CC8 /* S10001@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S10001@2x.png"; sourceTree = "<group>"; };
+		06C344F71485075D000A3CC8 /* S10002@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S10002@2x.png"; sourceTree = "<group>"; };
+		06C344F81485075D000A3CC8 /* S10003@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S10003@2x.png"; sourceTree = "<group>"; };
+		06C344F91485075D000A3CC8 /* S10004@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S10004@2x.png"; sourceTree = "<group>"; };
+		06C344FB1485075D000A3CC8 /* S20001@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S20001@2x.png"; sourceTree = "<group>"; };
+		06C344FC1485075D000A3CC8 /* S20002@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S20002@2x.png"; sourceTree = "<group>"; };
+		06C344FD1485075D000A3CC8 /* S20003@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S20003@2x.png"; sourceTree = "<group>"; };
+		06C344FE1485075D000A3CC8 /* S20004@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S20004@2x.png"; sourceTree = "<group>"; };
+		06C345001485075D000A3CC8 /* S01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S01@2x.png"; sourceTree = "<group>"; };
+		06C345021485075D000A3CC8 /* S11001@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S11001@2x.png"; sourceTree = "<group>"; };
+		06C345031485075D000A3CC8 /* S11002@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S11002@2x.png"; sourceTree = "<group>"; };
+		06C345051485075D000A3CC8 /* S21001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = S21001.png; sourceTree = "<group>"; };
+		06C345061485075D000A3CC8 /* S21002.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = S21002.png; sourceTree = "<group>"; };
+		06C34516148507CE000A3CC8 /* AWBRoadsignSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBRoadsignSymbol.h; path = "Roadsigns Model/AWBRoadsignSymbol.h"; sourceTree = "<group>"; };
+		06C34517148507CE000A3CC8 /* AWBRoadsignSymbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBRoadsignSymbol.m; path = "Roadsigns Model/AWBRoadsignSymbol.m"; sourceTree = "<group>"; };
+		06C34519148507E4000A3CC8 /* AWBRoadsignSymbolGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBRoadsignSymbolGroup.h; path = "Roadsigns Model/AWBRoadsignSymbolGroup.h"; sourceTree = "<group>"; };
+		06C3451A148507E4000A3CC8 /* AWBRoadsignSymbolGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBRoadsignSymbolGroup.m; path = "Roadsigns Model/AWBRoadsignSymbolGroup.m"; sourceTree = "<group>"; };
+		06C3451D14850B5D000A3CC8 /* AWBSignSymbolPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBSignSymbolPickerView.h; path = "Views and User Interface/SignSymbolPickerView/AWBSignSymbolPickerView.h"; sourceTree = "<group>"; };
+		06C3451E14850B5D000A3CC8 /* AWBSignSymbolPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBSignSymbolPickerView.m; path = "Views and User Interface/SignSymbolPickerView/AWBSignSymbolPickerView.m"; sourceTree = "<group>"; };
 		06E37434147FF42600EA536C /* AWBLockedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBLockedView.h; path = "Views and User Interface/LockedView/AWBLockedView.h"; sourceTree = "<group>"; };
 		06E37435147FF42600EA536C /* AWBLockedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBLockedView.m; path = "Views and User Interface/LockedView/AWBLockedView.m"; sourceTree = "<group>"; };
 		06F15E68147BC0AE007071D0 /* 00@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "00@2x.png"; sourceTree = "<group>"; };
@@ -967,6 +1004,10 @@
 				06978F27147FB0AB00171A51 /* AWBRoadsignBackground.m */,
 				06978F29147FB27D00171A51 /* AWBRoadsignBackgroundGroup.h */,
 				06978F2A147FB27D00171A51 /* AWBRoadsignBackgroundGroup.m */,
+				06C34516148507CE000A3CC8 /* AWBRoadsignSymbol.h */,
+				06C34517148507CE000A3CC8 /* AWBRoadsignSymbol.m */,
+				06C34519148507E4000A3CC8 /* AWBRoadsignSymbolGroup.h */,
+				06C3451A148507E4000A3CC8 /* AWBRoadsignSymbolGroup.m */,
 			);
 			name = "Roadsigns Model";
 			sourceTree = "<group>";
@@ -1084,6 +1125,8 @@
 				06F15F39147BC0E8007071D0 /* 4 Red Rectangular Backgrounds */,
 				06F15F51147BC0E8007071D0 /* 5 Yellow Rectangular Backgrounds */,
 				06565DC51481950F00B4F2CF /* 6 Signpost Backgrounds */,
+				06C344F31485075D000A3CC8 /* S0 Arrow Symbols */,
+				06C344FF1485075D000A3CC8 /* S1 Regulatory Symbols */,
 			);
 			name = "Roadsign Graphics";
 			sourceTree = "<group>";
@@ -1099,6 +1142,7 @@
 		06A960361478262300915359 /* Views and User Interface */ = {
 			isa = PBXGroup;
 			children = (
+				06C3451C14850B24000A3CC8 /* SignSymbolPickerView */,
 				0620CB1D1483E40700A39703 /* SignBackgroundPickerView */,
 				06E37432147FF3F600EA536C /* LockedView */,
 				B5E044B41478471F006A8D5C /* ProgressView */,
@@ -1138,6 +1182,77 @@
 				06A960431478265700915359 /* ZFont.m */,
 			);
 			name = zFont;
+			sourceTree = "<group>";
+		};
+		06C344F31485075D000A3CC8 /* S0 Arrow Symbols */ = {
+			isa = PBXGroup;
+			children = (
+				06C344F41485075D000A3CC8 /* S00@2x.png */,
+				06C344F51485075D000A3CC8 /* S10 Thumbnails */,
+				06C344FA1485075D000A3CC8 /* S20 Full Size */,
+			);
+			name = "S0 Arrow Symbols";
+			path = "Resources/Roadsign Graphics/S0 Arrow Symbols";
+			sourceTree = "<group>";
+		};
+		06C344F51485075D000A3CC8 /* S10 Thumbnails */ = {
+			isa = PBXGroup;
+			children = (
+				06C344F61485075D000A3CC8 /* S10001@2x.png */,
+				06C344F71485075D000A3CC8 /* S10002@2x.png */,
+				06C344F81485075D000A3CC8 /* S10003@2x.png */,
+				06C344F91485075D000A3CC8 /* S10004@2x.png */,
+			);
+			path = "S10 Thumbnails";
+			sourceTree = "<group>";
+		};
+		06C344FA1485075D000A3CC8 /* S20 Full Size */ = {
+			isa = PBXGroup;
+			children = (
+				06C344FB1485075D000A3CC8 /* S20001@2x.png */,
+				06C344FC1485075D000A3CC8 /* S20002@2x.png */,
+				06C344FD1485075D000A3CC8 /* S20003@2x.png */,
+				06C344FE1485075D000A3CC8 /* S20004@2x.png */,
+			);
+			path = "S20 Full Size";
+			sourceTree = "<group>";
+		};
+		06C344FF1485075D000A3CC8 /* S1 Regulatory Symbols */ = {
+			isa = PBXGroup;
+			children = (
+				06C345001485075D000A3CC8 /* S01@2x.png */,
+				06C345011485075D000A3CC8 /* S11 Thumbnails */,
+				06C345041485075D000A3CC8 /* S21 Full Size */,
+			);
+			name = "S1 Regulatory Symbols";
+			path = "Resources/Roadsign Graphics/S1 Regulatory Symbols";
+			sourceTree = "<group>";
+		};
+		06C345011485075D000A3CC8 /* S11 Thumbnails */ = {
+			isa = PBXGroup;
+			children = (
+				06C345021485075D000A3CC8 /* S11001@2x.png */,
+				06C345031485075D000A3CC8 /* S11002@2x.png */,
+			);
+			path = "S11 Thumbnails";
+			sourceTree = "<group>";
+		};
+		06C345041485075D000A3CC8 /* S21 Full Size */ = {
+			isa = PBXGroup;
+			children = (
+				06C345051485075D000A3CC8 /* S21001.png */,
+				06C345061485075D000A3CC8 /* S21002.png */,
+			);
+			path = "S21 Full Size";
+			sourceTree = "<group>";
+		};
+		06C3451C14850B24000A3CC8 /* SignSymbolPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				06C3451D14850B5D000A3CC8 /* AWBSignSymbolPickerView.h */,
+				06C3451E14850B5D000A3CC8 /* AWBSignSymbolPickerView.m */,
+			);
+			name = SignSymbolPickerView;
 			sourceTree = "<group>";
 		};
 		06E37432147FF3F600EA536C /* LockedView */ = {
@@ -2049,6 +2164,20 @@
 				06565E381481951300B4F2CF /* 26027@2x.png in Resources */,
 				06565E391481951300B4F2CF /* 26028@2x.png in Resources */,
 				068F12F91483A00B00C925C2 /* wood@2x.jpg in Resources */,
+				06C345071485075D000A3CC8 /* S00@2x.png in Resources */,
+				06C345081485075D000A3CC8 /* S10001@2x.png in Resources */,
+				06C345091485075D000A3CC8 /* S10002@2x.png in Resources */,
+				06C3450A1485075D000A3CC8 /* S10003@2x.png in Resources */,
+				06C3450B1485075D000A3CC8 /* S10004@2x.png in Resources */,
+				06C3450C1485075D000A3CC8 /* S20001@2x.png in Resources */,
+				06C3450D1485075D000A3CC8 /* S20002@2x.png in Resources */,
+				06C3450E1485075D000A3CC8 /* S20003@2x.png in Resources */,
+				06C3450F1485075D000A3CC8 /* S20004@2x.png in Resources */,
+				06C345101485075D000A3CC8 /* S01@2x.png in Resources */,
+				06C345111485075D000A3CC8 /* S11001@2x.png in Resources */,
+				06C345121485075D000A3CC8 /* S11002@2x.png in Resources */,
+				06C345131485075D000A3CC8 /* S21001.png in Resources */,
+				06C345141485075D000A3CC8 /* S21002.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2115,6 +2244,9 @@
 				068F12FD1483A35E00C925C2 /* UIView+SelectionMarquee.m in Sources */,
 				068F13001483A65F00C925C2 /* CAShapeLayer+Animation.m in Sources */,
 				0620CB211483E71600A39703 /* AWBSignBackgroundPickerView.m in Sources */,
+				06C34518148507CE000A3CC8 /* AWBRoadsignSymbol.m in Sources */,
+				06C3451B148507E4000A3CC8 /* AWBRoadsignSymbolGroup.m in Sources */,
+				06C3451F14850B5D000A3CC8 /* AWBSignSymbolPickerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
