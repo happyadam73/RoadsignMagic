@@ -33,7 +33,7 @@
         categoryBackgroundView.backgroundColor = nil;
         categoryBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
         categoryBackgroundView.layer.borderWidth = 2.0;
-        categoryBackgroundView.layer.borderColor = [[UIColor brownSignBackgroundColor] CGColor];
+        categoryBackgroundView.layer.borderColor = [[UIColor blackColor] CGColor];
         
         //category carousel
         iCarousel *tempCarousel = [[iCarousel alloc] initWithFrame:CGRectMake(0.0, 7.0, frame.size.width, 50.0)];

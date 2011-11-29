@@ -364,7 +364,7 @@
 		B5E044F11478471F006A8D5C /* AWBTextEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E044CD1478471F006A8D5C /* AWBTextEditCell.m */; };
 		B5E044F21478471F006A8D5C /* AWBTextValueTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E044CF1478471F006A8D5C /* AWBTextValueTableCell.m */; };
 		B5E044F41478471F006A8D5C /* AWBLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E044D41478471F006A8D5C /* AWBLabel.m */; };
-		B5E044F61478471F006A8D5C /* AWBTransformableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E044D81478471F006A8D5C /* AWBTransformableImageView.m */; };
+		B5E044F61478471F006A8D5C /* AWBTransformableSymbolImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E044D81478471F006A8D5C /* AWBTransformableSymbolImageView.m */; };
 		B5E044F71478471F006A8D5C /* AWBTransformableZFontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E044DA1478471F006A8D5C /* AWBTransformableZFontLabel.m */; };
 		B5E044F81478471F006A8D5C /* UIColor+SignColors.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E044DE1478471F006A8D5C /* UIColor+SignColors.m */; };
 		B5E044F91478471F006A8D5C /* UIView+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E044E11478471F006A8D5C /* UIView+Animation.m */; };
@@ -791,8 +791,8 @@
 		B5E044CF1478471F006A8D5C /* AWBTextValueTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AWBTextValueTableCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B5E044D31478471F006A8D5C /* AWBLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AWBLabel.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		B5E044D41478471F006A8D5C /* AWBLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AWBLabel.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		B5E044D71478471F006A8D5C /* AWBTransformableImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBTransformableImageView.h; sourceTree = "<group>"; };
-		B5E044D81478471F006A8D5C /* AWBTransformableImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBTransformableImageView.m; sourceTree = "<group>"; };
+		B5E044D71478471F006A8D5C /* AWBTransformableSymbolImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; path = AWBTransformableSymbolImageView.h; sourceTree = "<group>"; };
+		B5E044D81478471F006A8D5C /* AWBTransformableSymbolImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBTransformableSymbolImageView.m; sourceTree = "<group>"; };
 		B5E044D91478471F006A8D5C /* AWBTransformableZFontLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBTransformableZFontLabel.h; sourceTree = "<group>"; };
 		B5E044DA1478471F006A8D5C /* AWBTransformableZFontLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBTransformableZFontLabel.m; sourceTree = "<group>"; };
 		B5E044DB1478471F006A8D5C /* AWBTransformableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBTransformableView.h; sourceTree = "<group>"; };
@@ -1728,8 +1728,8 @@
 				B5E044DB1478471F006A8D5C /* AWBTransformableView.h */,
 				B5E044D31478471F006A8D5C /* AWBLabel.h */,
 				B5E044D41478471F006A8D5C /* AWBLabel.m */,
-				B5E044D71478471F006A8D5C /* AWBTransformableImageView.h */,
-				B5E044D81478471F006A8D5C /* AWBTransformableImageView.m */,
+				B5E044D71478471F006A8D5C /* AWBTransformableSymbolImageView.h */,
+				B5E044D81478471F006A8D5C /* AWBTransformableSymbolImageView.m */,
 				06565DAE1481008B00B4F2CF /* AWBTransformableLabel.h */,
 				06565DAF1481008B00B4F2CF /* AWBTransformableLabel.m */,
 				B5E044D91478471F006A8D5C /* AWBTransformableZFontLabel.h */,
@@ -2212,7 +2212,7 @@
 				B5E044F11478471F006A8D5C /* AWBTextEditCell.m in Sources */,
 				B5E044F21478471F006A8D5C /* AWBTextValueTableCell.m in Sources */,
 				B5E044F41478471F006A8D5C /* AWBLabel.m in Sources */,
-				B5E044F61478471F006A8D5C /* AWBTransformableImageView.m in Sources */,
+				B5E044F61478471F006A8D5C /* AWBTransformableSymbolImageView.m in Sources */,
 				B5E044F71478471F006A8D5C /* AWBTransformableZFontLabel.m in Sources */,
 				B5E044F81478471F006A8D5C /* UIColor+SignColors.m in Sources */,
 				B5E044F91478471F006A8D5C /* UIView+Animation.m in Sources */,

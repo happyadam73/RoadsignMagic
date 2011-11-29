@@ -134,7 +134,7 @@
     [self.mainScrollView addSubview:self.signBackgroundView];
     [backgroundView release];
     
-    AWBLockedView *view = [[AWBLockedView alloc] initWithObjectsLocked:NO canvasAnchored:NO];
+    AWBLockedView *view = [[AWBLockedView alloc] initWithObjectsLocked:NO canvasAnchored:YES];
     self.lockedView = view;
     self.lockedView.delegate = self;
     [view release];

@@ -14,5 +14,6 @@
 - (void)initialiseSignSymbolPickerView;
 - (void)highlightSignSymbolPickerButton:(UIButton*)button;
 - (void)toggleSignSymbolPickerView:(id)sender;
+- (void)addSignSymbolImageViewFromFile:(NSString *)filename;
 
 @end

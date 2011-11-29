@@ -8,6 +8,10 @@
 
 #import "AWBRoadsignMagicViewController+Symbol.h"
 #import "AWBRoadsignMagicMainViewController+UI.h"
+#import "AWBTransformableSymbolImageView.h"
+#import "UIImage+NonCached.h"
+#import "AWBTransformableSymbolImageView.h"
+#import "AWBRoadsignMagicMainViewController+Toolbar.h"
 
 @implementation AWBRoadsignMagicMainViewController (Symbol)
 
@@ -52,12 +56,32 @@
     [button setSelected:signSymbolPickerViewShowing];
 }
 
+- (void)addSignSymbolImageViewFromFile:(NSString *)filename
+{
+    UIImage *image = [UIImage imageFromFile:filename];
+    AWBTransformableSymbolImageView *imageView = [[AWBTransformableSymbolImageView alloc] initWithImage:image rotation:0.0 scale:1.0 horizontalFlip:NO];
+    CGPoint centerPoint = [self.signBackgroundView convertPoint:self.signBackgroundView.center fromView:self.signBackgroundView.superview];
+    imageView.center = [self deleteButtonApproxPosition];
+    imageView.transform = CGAffineTransformMakeScale(0.1, 0.1);
+    imageView.alpha = 0.0;
+    [self.signBackgroundView addSubview:imageView];
+    [imageView initialiseForSelection];   
+    [UIView animateWithDuration:0.5 
+                          delay:0.0 options:UIViewAnimationOptionAllowUserInteraction
+                     animations: ^ {
+                         [imageView setAlpha:1.0]; 
+                         imageView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+                         imageView.center = centerPoint;
+                     } 
+                     completion: ^ (BOOL finished) {[imageView release];}];    
+}
+
 - (void)awbSignSymbolPickerView:(AWBSignSymbolPickerView *)symbolPicker didSelectSignSymbol:(AWBRoadsignSymbol *)signSymbol 
 {
-//    self.selectedSignBackground = signBackground;
-//    self.labelTextColor = [UIColor foregroundColorWithBackgroundSignColorCode:signBackground.primaryColorCode];
-//    NSString *filename = signBackground.fullsizeImageFilename;        
-//    [self updateSignBackgroundWithImageFromFile:filename];
+    [self dismissSignSymbolPickerView];
+    self.selectedSignSymbol = signSymbol;
+    NSString *filename = signSymbol.fullsizeImageFilename;        
+    [self addSignSymbolImageViewFromFile:filename];
 }
 
 @end

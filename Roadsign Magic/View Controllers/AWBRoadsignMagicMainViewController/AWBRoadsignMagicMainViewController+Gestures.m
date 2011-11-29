@@ -281,6 +281,9 @@
 - (void)handleLongPresses:(UILongPressGestureRecognizer *)paramSender
 {
     if (paramSender.state == UIGestureRecognizerStateEnded) {
+        if (!self.isSignInEditMode && self.navigationController.toolbarHidden) {
+            [self toggleFullscreen];
+        }
         lockedView.canvasAnchored = !lockedView.canvasAnchored;
         mainScrollView.scrollEnabled = !lockedView.canvasAnchored;
     }
@@ -289,6 +292,9 @@
 - (void)handleLongDoublePresses:(UILongPressGestureRecognizer *)paramSender
 {
     if (paramSender.state == UIGestureRecognizerStateEnded) {
+        if (!self.isSignInEditMode && self.navigationController.toolbarHidden) {
+            [self toggleFullscreen];
+        }
         lockedView.objectsLocked = !lockedView.objectsLocked;
     }
 }
