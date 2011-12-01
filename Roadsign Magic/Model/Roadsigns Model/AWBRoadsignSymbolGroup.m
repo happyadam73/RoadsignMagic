@@ -40,6 +40,8 @@
                         [AWBRoadsignSymbol signSymbolWithIdentifier:2 fullSizeImageFilename:@"S20002.png" thumbnailImageFilename:@"S10002.png"],
                         [AWBRoadsignSymbol signSymbolWithIdentifier:3 fullSizeImageFilename:@"S20003.png" thumbnailImageFilename:@"S10003.png"],
                         [AWBRoadsignSymbol signSymbolWithIdentifier:4 fullSizeImageFilename:@"S20004.png" thumbnailImageFilename:@"S10004.png"],
+                        [AWBRoadsignSymbol signSymbolWithIdentifier:5 fullSizeImageFilename:@"S20005.png" thumbnailImageFilename:@"S10005.png"],
+                        [AWBRoadsignSymbol signSymbolWithIdentifier:6 fullSizeImageFilename:@"S20006.png" thumbnailImageFilename:@"S10006.png"],
                         nil];
     return [[[self alloc] initWithIdentifier:0 description:@"Arrow Sign Symbols" thumbnailImageFilename:@"S00.png" signSymbols:symbols] autorelease];
 }

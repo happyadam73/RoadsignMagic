@@ -18,7 +18,7 @@
 #define SHADOW_OFFSET_HEIGHT_RATIO 8.0
 #define QUANTISED_ROTATION (M_PI_4/2.0)
 #define MAX_SCALE_PIXELS 1536
-#define DEFAULT_FONT_POINT_SIZE 40.0
+#define DEFAULT_FONT_POINT_SIZE 80.0
 
 @implementation AWBTransformableZFontLabel
 
@@ -28,8 +28,8 @@
 
 - (void)initialiseLayerRotation:(CGFloat)rotation scale:(CGFloat)scale  
 {
-    CATiledLayer *layerForView = (CATiledLayer *)self.layer;
-    layerForView.levelsOfDetailBias = 4;
+    //CATiledLayer *layerForView = (CATiledLayer *)self.layer;
+    //layerForView.levelsOfDetailBias = 4;
     //layerForView.levelsOfDetail = 4;
     
     rotationAndScaleCurrentlyQuantised = NO;
@@ -389,9 +389,9 @@
     self.labelView.layer.borderColor = [[UIColor blackColor] CGColor];
 }
 
-+ (Class)layerClass {
-    return [CATiledLayer class]; 
-}
+//+ (Class)layerClass {
+//    return [CATiledLayer class]; 
+//}
 
 - (void)dealloc
 {

@@ -11,6 +11,7 @@
 @interface UIImage (Scale)
 
 - (UIImage *)imageScaledToMaxResolution:(int)maxPixels withTransparentBorderThickness:(CGFloat)borderPixels;
+- (CGFloat)scaleRequiredForMaxResolution:(int)maxPixels;
 - (UIImage *)imageBorderedWithColor:(UIColor *)color thickness:(CGFloat)borderPixels;
 - (UIImage *)imageBorderedWithColor:(UIColor *)color thickness:(CGFloat)borderPixels transparentEdgeThickness:(CGFloat)edgePixels;
 

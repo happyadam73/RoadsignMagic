@@ -89,7 +89,7 @@
                       [AWBRoadsignBackground signBackgroundWithIdentifier:2010 fullSizeImageFilename:@"22010.png" thumbnailImageFilename:@"12010.png" colorCode:colorCode],
                       [AWBRoadsignBackground signBackgroundWithIdentifier:2011 fullSizeImageFilename:@"22011.png" thumbnailImageFilename:@"12011.png" colorCode:colorCode],
                       [AWBRoadsignBackground signBackgroundWithIdentifier:2012 fullSizeImageFilename:@"22012.png" thumbnailImageFilename:@"12012.png" colorCode:colorCode],
-                      [AWBRoadsignBackground signBackgroundWithIdentifier:2013 fullSizeImageFilename:@"22013.png" thumbnailImageFilename:@"12013.png" colorCode:colorCode],
+                      [AWBRoadsignBackground signBackgroundWithIdentifier:2013 fullSizeImageFilename:@"test.png" thumbnailImageFilename:@"12013.png" colorCode:colorCode],
                       [AWBRoadsignBackground signBackgroundWithIdentifier:2014 fullSizeImageFilename:@"22014.png" thumbnailImageFilename:@"12014.png" colorCode:colorCode],
                       nil];
     return [[[self alloc] initWithIdentifier:2 description:@"Brown Rectangular Backgrounds" thumbnailImageFilename:@"02.png" signBackgrounds:signs] autorelease];

@@ -12,6 +12,9 @@
 #import "UIImage+NonCached.h"
 #import "AWBTransformableSymbolImageView.h"
 #import "AWBRoadsignMagicMainViewController+Toolbar.h"
+#import "UIImage+Scale.h"
+
+#define MAX_SIGN_SYMBOL_PIXELS 250000
 
 @implementation AWBRoadsignMagicMainViewController (Symbol)
 
@@ -58,8 +61,14 @@
 
 - (void)addSignSymbolImageViewFromFile:(NSString *)filename
 {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+
     UIImage *image = [UIImage imageFromFile:filename];
-    AWBTransformableSymbolImageView *imageView = [[AWBTransformableSymbolImageView alloc] initWithImage:image rotation:0.0 scale:1.0 horizontalFlip:NO];
+    CGFloat scale = [image scaleRequiredForMaxResolution:MAX_SIGN_SYMBOL_PIXELS];
+    NSLog(@"Scaling for Symbol: %f", scale);
+    UIImage *scaledImage = [image imageScaledToMaxResolution:MAX_SIGN_SYMBOL_PIXELS withTransparentBorderThickness:0.0];
+    //UIImage *image = [UIImage imageFromFile:filename];
+    AWBTransformableSymbolImageView *imageView = [[AWBTransformableSymbolImageView alloc] initWithImage:scaledImage rotation:0.0 scale:scale horizontalFlip:NO];
     CGPoint centerPoint = [self.signBackgroundView convertPoint:self.signBackgroundView.center fromView:self.signBackgroundView.superview];
     imageView.center = [self deleteButtonApproxPosition];
     imageView.transform = CGAffineTransformMakeScale(0.1, 0.1);
@@ -70,10 +79,12 @@
                           delay:0.0 options:UIViewAnimationOptionAllowUserInteraction
                      animations: ^ {
                          [imageView setAlpha:1.0]; 
-                         imageView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+                         imageView.transform = CGAffineTransformMakeScale(scale, scale);
                          imageView.center = centerPoint;
                      } 
-                     completion: ^ (BOOL finished) {[imageView release];}];    
+                     completion: ^ (BOOL finished) {[imageView release];}];  
+    
+    [pool drain];
 }
 
 - (void)awbSignSymbolPickerView:(AWBSignSymbolPickerView *)symbolPicker didSelectSignSymbol:(AWBRoadsignSymbol *)signSymbol 

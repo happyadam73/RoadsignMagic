@@ -9,6 +9,9 @@
 #import "AWBRoadsignMagicViewController+Sign.h"
 #import "UIImage+NonCached.h"
 #import "AWBRoadsignMagicMainViewController+UI.h"
+#import "UIImage+Scale.h"
+
+#define MAX_SIGN_BACKGROUND_PIXELS 1000000
 
 @implementation AWBRoadsignMagicMainViewController (Sign)
 
@@ -55,6 +58,8 @@
 
 - (void)updateSignBackgroundWithImageFromFile:(NSString *)name 
 {    
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    //UIImage *image = [[UIImage imageFromFile:name] imageScaledToMaxResolution:MAX_SIGN_BACKGROUND_PIXELS withTransparentBorderThickness:0.0];
     UIImage *image = [UIImage imageFromFile:name];
     [signBackgroundView setImage:image];
     [signBackgroundView sizeToFit];
@@ -72,7 +77,9 @@
                      animations: ^ {
                          [signBackgroundView setAlpha:1.0]; 
                      } 
-                     completion: ^ (BOOL finished) {}];    
+                     completion: ^ (BOOL finished) {}];  
+    
+    [pool drain];
 }
 
 - (void)awbSignBackgroundPickerView:(AWBSignBackgroundPickerView *)backgroundPicker didSelectSignBackground:(AWBRoadsignBackground *)signBackground

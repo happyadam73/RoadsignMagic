@@ -123,7 +123,7 @@
     scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     scrollView.backgroundColor = [UIColor clearColor];
     scrollView.canCancelContentTouches = NO;
-    scrollView.scrollEnabled = YES;
+    scrollView.scrollEnabled = NO;
     self.mainScrollView = scrollView;
     [scrollView release];
     [[self view] addSubview:self.mainScrollView];
@@ -134,7 +134,7 @@
     [self.mainScrollView addSubview:self.signBackgroundView];
     [backgroundView release];
     
-    AWBLockedView *view = [[AWBLockedView alloc] initWithObjectsLocked:NO canvasAnchored:YES];
+    AWBLockedView *view = [[AWBLockedView alloc] initWithObjectsLocked:NO canvasAnchored:!scrollView.scrollEnabled];
     self.lockedView = view;
     self.lockedView.delegate = self;
     [view release];
