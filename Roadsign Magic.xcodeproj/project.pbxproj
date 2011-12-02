@@ -221,6 +221,9 @@
 		06A960461478265700915359 /* FontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A960411478265700915359 /* FontManager.m */; };
 		06A960471478265700915359 /* ZAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A960421478265700915359 /* ZAttributedString.m */; };
 		06A960481478265700915359 /* ZFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A960431478265700915359 /* ZFont.m */; };
+		06B473801487D51100A95A04 /* S02@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06B4737B1487D51100A95A04 /* S02@2x.png */; };
+		06B473811487D51100A95A04 /* S12001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06B4737D1487D51100A95A04 /* S12001@2x.png */; };
+		06B473821487D51100A95A04 /* S22001.png in Resources */ = {isa = PBXBuildFile; fileRef = 06B4737F1487D51100A95A04 /* S22001.png */; };
 		06C345071485075D000A3CC8 /* S00@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06C344F41485075D000A3CC8 /* S00@2x.png */; };
 		06C345081485075D000A3CC8 /* S10001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06C344F61485075D000A3CC8 /* S10001@2x.png */; };
 		06C345091485075D000A3CC8 /* S10002@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06C344F71485075D000A3CC8 /* S10002@2x.png */; };
@@ -631,6 +634,9 @@
 		06A960411478265700915359 /* FontManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FontManager.m; path = "Transforms and Drawing/zFont/FontManager.m"; sourceTree = "<group>"; };
 		06A960421478265700915359 /* ZAttributedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZAttributedString.m; path = "Transforms and Drawing/zFont/ZAttributedString.m"; sourceTree = "<group>"; };
 		06A960431478265700915359 /* ZFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZFont.m; path = "Transforms and Drawing/zFont/ZFont.m"; sourceTree = "<group>"; };
+		06B4737B1487D51100A95A04 /* S02@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S02@2x.png"; sourceTree = "<group>"; };
+		06B4737D1487D51100A95A04 /* S12001@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S12001@2x.png"; sourceTree = "<group>"; };
+		06B4737F1487D51100A95A04 /* S22001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = S22001.png; sourceTree = "<group>"; };
 		06C344F41485075D000A3CC8 /* S00@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S00@2x.png"; sourceTree = "<group>"; };
 		06C344F61485075D000A3CC8 /* S10001@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S10001@2x.png"; sourceTree = "<group>"; };
 		06C344F71485075D000A3CC8 /* S10002@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S10002@2x.png"; sourceTree = "<group>"; };
@@ -1135,6 +1141,7 @@
 				06565DC51481950F00B4F2CF /* 6 Signpost Backgrounds */,
 				06C344F31485075D000A3CC8 /* S0 Arrow Symbols */,
 				06C344FF1485075D000A3CC8 /* S1 Regulatory Symbols */,
+				06B4737A1487D51100A95A04 /* S2 Tourist Symbols */,
 			);
 			name = "Roadsign Graphics";
 			sourceTree = "<group>";
@@ -1190,6 +1197,33 @@
 				06A960431478265700915359 /* ZFont.m */,
 			);
 			name = zFont;
+			sourceTree = "<group>";
+		};
+		06B4737A1487D51100A95A04 /* S2 Tourist Symbols */ = {
+			isa = PBXGroup;
+			children = (
+				06B4737B1487D51100A95A04 /* S02@2x.png */,
+				06B4737C1487D51100A95A04 /* S12 Thumbnails */,
+				06B4737E1487D51100A95A04 /* S22 Full Size */,
+			);
+			name = "S2 Tourist Symbols";
+			path = "Resources/Roadsign Graphics/S2 Tourist Symbols";
+			sourceTree = "<group>";
+		};
+		06B4737C1487D51100A95A04 /* S12 Thumbnails */ = {
+			isa = PBXGroup;
+			children = (
+				06B4737D1487D51100A95A04 /* S12001@2x.png */,
+			);
+			path = "S12 Thumbnails";
+			sourceTree = "<group>";
+		};
+		06B4737E1487D51100A95A04 /* S22 Full Size */ = {
+			isa = PBXGroup;
+			children = (
+				06B4737F1487D51100A95A04 /* S22001.png */,
+			);
+			path = "S22 Full Size";
 			sourceTree = "<group>";
 		};
 		06C344F31485075D000A3CC8 /* S0 Arrow Symbols */ = {
@@ -2194,6 +2228,9 @@
 				06734DAF1487A3160080326B /* S20006.png in Resources */,
 				06734DB21487A31F0080326B /* S10005@2x.png in Resources */,
 				06734DB31487A31F0080326B /* S10006@2x.png in Resources */,
+				06B473801487D51100A95A04 /* S02@2x.png in Resources */,
+				06B473811487D51100A95A04 /* S12001@2x.png in Resources */,
+				06B473821487D51100A95A04 /* S22001.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

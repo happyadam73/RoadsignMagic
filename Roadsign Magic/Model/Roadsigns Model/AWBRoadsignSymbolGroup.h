@@ -24,6 +24,7 @@
 
 + (AWBRoadsignSymbolGroup *)arrowSignSymbols;
 + (AWBRoadsignSymbolGroup *)regulatorySignSymbols;
++ (AWBRoadsignSymbolGroup *)touristSignSymbols;
 + (NSArray *)allSignSymbolCategories;
 
 @end

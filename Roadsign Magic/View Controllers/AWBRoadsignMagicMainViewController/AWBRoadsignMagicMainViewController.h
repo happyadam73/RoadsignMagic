@@ -56,6 +56,8 @@
     
     UIView <AWBTransformableView> *capturedView;
     CGPoint capturedCenterOffset;
+    BOOL currentlyPinching;
+    BOOL currentlyRotating;
     
     AWBLockedView *lockedView;
     BOOL snapToGrid;

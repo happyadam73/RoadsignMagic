@@ -55,11 +55,20 @@
     return [[[self alloc] initWithIdentifier:0 description:@"Regulatory Sign Symbols" thumbnailImageFilename:@"S01.png" signSymbols:symbols] autorelease];
 }
 
++ (AWBRoadsignSymbolGroup *)touristSignSymbols
+{
+    NSArray *symbols = [NSArray arrayWithObjects:
+                        [AWBRoadsignSymbol signSymbolWithIdentifier:2001 fullSizeImageFilename:@"S22001.png" thumbnailImageFilename:@"S12001.png"],
+                        nil];
+    return [[[self alloc] initWithIdentifier:0 description:@"Tourist Sign Symbols" thumbnailImageFilename:@"S02.png" signSymbols:symbols] autorelease];
+}
+
 + (NSArray *)allSignSymbolCategories
 {
     return [NSArray arrayWithObjects:
             [AWBRoadsignSymbolGroup arrowSignSymbols], 
             [AWBRoadsignSymbolGroup regulatorySignSymbols], 
+            [AWBRoadsignSymbolGroup touristSignSymbols], 
             nil];
 }
 

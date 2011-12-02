@@ -114,7 +114,9 @@
     //ZFont *font = [ZFont fontWithUIFont:[UIFont fontWithName:@"Thonburi-Bold" size:DEFAULT_FONT_POINT_SIZE]];
     
     self.roadsignFont = font;
-
+    currentlyPinching = NO;
+    currentlyRotating = NO;
+    
     self.wantsFullScreenLayout = YES;
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageFromFile:@"concrete.jpg"]];
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:[[self view] bounds]];
@@ -128,12 +130,21 @@
     [scrollView release];
     [[self view] addSubview:self.mainScrollView];
     
-    UIImageView *backgroundView = [[UIImageView alloc] initWithFrame:self.mainScrollView.bounds];
+    //UIImageView *backgroundView = [[UIImageView alloc] initWithFrame:self.mainScrollView.bounds];
+    UIImageView *backgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 1400.0, 1400.0)];
     backgroundView.userInteractionEnabled = YES;
     self.signBackgroundView = backgroundView;
     [self.mainScrollView addSubview:self.signBackgroundView];
     [backgroundView release];
     
+    [mainScrollView setContentSize:[signBackgroundView bounds].size];
+    float minWidthScale  = ((mainScrollView.bounds.size.width)  / signBackgroundView.bounds.size.width) * 0.96;
+    float minHeightScale  = ((mainScrollView.bounds.size.height)  / signBackgroundView.bounds.size.height) * 0.96;
+    [mainScrollView setMinimumZoomScale:MIN(minWidthScale, minHeightScale)];
+    [mainScrollView setMaximumZoomScale:2.0];
+    [mainScrollView setZoomScale:MIN(minWidthScale, minHeightScale)];
+    [mainScrollView setContentOffset:CGPointZero];
+
     AWBLockedView *view = [[AWBLockedView alloc] initWithObjectsLocked:NO canvasAnchored:!scrollView.scrollEnabled];
     self.lockedView = view;
     self.lockedView.delegate = self;

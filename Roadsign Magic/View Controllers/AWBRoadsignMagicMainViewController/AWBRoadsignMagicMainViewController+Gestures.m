@@ -108,11 +108,16 @@
     }
     
     if (paramSender.state == UIGestureRecognizerStateBegan) {
-        CGPoint point = [paramSender locationInView:self.signBackgroundView]; 
-        capturedView = [self.signBackgroundView topTransformableViewAtPoint:point];
+        if (!currentlyPinching) {
+            CGPoint point = [paramSender locationInView:self.signBackgroundView]; 
+            capturedView = [self.signBackgroundView topTransformableViewAtPoint:point];            
+        }
     }
     
     if (capturedView) {
+        if (paramSender.state == UIGestureRecognizerStateBegan) {
+            currentlyRotating = YES;
+        }
         [self.signBackgroundView bringSubviewToFront:capturedView];
         if (paramSender.state == UIGestureRecognizerStateBegan) {
             [capturedView applyPendingRotationToCapturedView];
@@ -121,7 +126,8 @@
         }
         [capturedView rotateAndScaleWithSnapToGrid:snapToGrid gridSize:snapToGridSize]; 
         
-        if ((paramSender.state == UIGestureRecognizerStateEnded) || (paramSender.state == UIGestureRecognizerStateFailed)) {
+        if ((paramSender.state == UIGestureRecognizerStateEnded) || (paramSender.state == UIGestureRecognizerStateFailed) || (paramSender.state == UIGestureRecognizerStateCancelled)) {
+            currentlyRotating = NO;
             if (!self.isSignInEditMode) {
                 [capturedView hideSelection];                
             }
@@ -137,7 +143,7 @@
 
 - (void)handlePinches:(UIPinchGestureRecognizer *)paramSender
 {
-
+    
     if (self.isSignInEditMode || self.lockedView.objectsLocked) {
         return;
     } else {
@@ -147,11 +153,18 @@
     }
     
     if (paramSender.state == UIGestureRecognizerStateBegan) {
-        CGPoint point = [paramSender locationInView:self.signBackgroundView]; 
-        capturedView = [self.signBackgroundView topTransformableViewAtPoint:point];
+
+        if (!currentlyRotating) {
+            CGPoint point = [paramSender locationInView:self.signBackgroundView]; 
+            capturedView = [self.signBackgroundView topTransformableViewAtPoint:point];            
+        }
     }
     
     if (capturedView) {
+        if (paramSender.state == UIGestureRecognizerStateBegan) {
+            currentlyPinching = YES;
+        }
+        
         [self.signBackgroundView bringSubviewToFront:capturedView];
         
         if (paramSender.state == UIGestureRecognizerStateBegan && capturedView.currentScale != 0.0) {
@@ -162,7 +175,8 @@
         [capturedView rotateAndScaleWithSnapToGrid:snapToGrid gridSize:snapToGridSize];  
         
         
-        if ((paramSender.state == UIGestureRecognizerStateEnded) || (paramSender.state == UIGestureRecognizerStateFailed)) {
+        if ((paramSender.state == UIGestureRecognizerStateEnded) || (paramSender.state == UIGestureRecognizerStateFailed) || (paramSender.state == UIGestureRecognizerStateCancelled)) {
+            currentlyPinching = NO;
             if (!self.isSignInEditMode) {
                 [capturedView hideSelection];                
             }
@@ -177,7 +191,7 @@
 }
 
 - (void)handlePanGestures:(UIPanGestureRecognizer *)paramSender
-{
+{    
     if (self.lockedView.objectsLocked) {
         return;
     }
@@ -198,7 +212,7 @@
     
     if (capturedView) {
         [self.signBackgroundView bringSubviewToFront:capturedView];        
-        if (paramSender.state != UIGestureRecognizerStateEnded && paramSender.state != UIGestureRecognizerStateFailed) { 
+        if ((paramSender.state != UIGestureRecognizerStateEnded) && (paramSender.state != UIGestureRecognizerStateFailed) && (paramSender.state != UIGestureRecognizerStateCancelled)) { 
             CGFloat x = point.x - capturedCenterOffset.x;
             CGFloat y = point.y - capturedCenterOffset.y;
             if (snapToGrid && (snapToGridSize > 0.0)) {
