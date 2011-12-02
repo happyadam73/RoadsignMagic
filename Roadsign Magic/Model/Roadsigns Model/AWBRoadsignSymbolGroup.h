@@ -22,9 +22,10 @@
 
 - (id)initWithIdentifier:(NSUInteger)symbolGroupId description:(NSString *)description thumbnailImageFilename:(NSString *)imageFilename signSymbols:(NSArray *)symbols;
 
-+ (AWBRoadsignSymbolGroup *)arrowSignSymbols;
-+ (AWBRoadsignSymbolGroup *)regulatorySignSymbols;
-+ (AWBRoadsignSymbolGroup *)touristSignSymbols;
+//+ (AWBRoadsignSymbolGroup *)arrowSignSymbols;
+//+ (AWBRoadsignSymbolGroup *)regulatorySignSymbols;
+//+ (AWBRoadsignSymbolGroup *)touristSignSymbols;
++ (AWBRoadsignSymbolGroup *)roadsignSymbolGroupWithCategoryId:(NSUInteger)categoryId count:(NSUInteger)count description:(NSString *)description;
 + (NSArray *)allSignSymbolCategories;
 
 @end

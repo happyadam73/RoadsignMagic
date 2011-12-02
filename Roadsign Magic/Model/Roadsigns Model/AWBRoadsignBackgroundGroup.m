@@ -203,6 +203,7 @@
             [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:4 count:10 description:@"Red Rectangular Backgrounds"],
             [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:5 count:15 description:@"Yellow Rectangular Backgrounds"],
             [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:6 count:28 description:@"Signpost Backgrounds"],            
+            [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:7 count:13 description:@"Triangles and Circular Backgrounds"],            
 //            [AWBRoadsignBackgroundGroup blueRectangularSignBackgrounds], 
 //            [AWBRoadsignBackgroundGroup greenRectangularSignBackgrounds], 
 //            [AWBRoadsignBackgroundGroup brownRectangularSignBackgrounds], 

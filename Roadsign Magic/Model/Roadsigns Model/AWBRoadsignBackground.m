@@ -56,6 +56,7 @@
         case 4 ... 11:
         case 13 ... 15:
         case 6019 ... 6022:
+        case 7012 ... 7013:
             primaryColorCode = kAWBSignColorCodeBlueSignBackgroundColor; 
             break;
         case 1001 ... 1009:
@@ -70,15 +71,21 @@
         case 3001 ... 3012:
         case 3015 ... 3018:
         case 6001 ... 6004:
+        case 7001 ... 7005:
+        case 7007:
+        case 7009 ... 7010:
             primaryColorCode = kAWBSignColorCodeWhiteBackgroundColor;
             break;
         case 3013 ... 3014:
         case 3019:
         case 6025 ... 6026:
+        case 7011:
             primaryColorCode = kAWBSignColorCodeBlackBackgroundColor;
             break;
         case 4001 ... 4010:
         case 6027 ... 6028:
+        case 7006:
+        case 7008:
             primaryColorCode = kAWBSignColorCodeRedSignBackgroundColor;
             break;
         case 5001 ... 5015:
