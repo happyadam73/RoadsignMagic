@@ -20,5 +20,6 @@
 
 - (id)initWithIdentifier:(NSUInteger)symbolId fullSizeImageFilename:(NSString *)fullSizeFilename thumbnailImageFilename:(NSString *)thumbnailFilename;
 + (id)signSymbolWithIdentifier:(NSUInteger)symbolId fullSizeImageFilename:(NSString *)fullSizeFilename thumbnailImageFilename:(NSString *)thumbnailFilename;
++ (id)signSymbolWithIdentifier:(NSUInteger)symbolId;
 
 @end

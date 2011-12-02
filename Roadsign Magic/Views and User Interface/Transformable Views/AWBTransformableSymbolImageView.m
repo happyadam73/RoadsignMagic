@@ -12,16 +12,20 @@
 #import "UIView+Animation.h"
 #import "UIView+SelectionMarquee.h"
 #import "CAShapeLayer+Animation.h"
+#import "UIImage+NonCached.h"
+#import "UIImage+Scale.h"
 
 #define BORDER_HEIGHT_RATIO 24.0
 #define SHADOW_OFFSET_HEIGHT_RATIO 8.0
 #define QUANTISED_ROTATION (M_PI_4/2.0)
+#define MAX_SIGN_SYMBOL_PIXELS 250000
 
 @implementation AWBTransformableSymbolImageView
 
 @synthesize rotationAngleInRadians, currentScale, pendingRotationAngleInRadians, horizontalFlip;
 @synthesize roundedBorder, viewBorderColor, viewShadowColor, addShadow, addBorder;
 @synthesize imageView, selectionMarquee1, selectionMarquee2;
+@synthesize roadsignSymbol;
 
 - (void)initialiseLayerRotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip 
 {      
@@ -37,67 +41,81 @@
     CGFloat maxLength = MAX(self.frame.size.width, self.frame.size.height);
     minScale = MAX((48.0/maxLength),(24.0/minLength));    
     maxScale = 2048.0/maxLength;
-    
     self.layer.masksToBounds = NO;
     self.layer.shouldRasterize = YES;
-    
-//    if (!key) {
-//        [self initialiseImageKeyWithDocsSubdirPath:subDir]; 
-//    } else {
-//        [self setImageKey:key];
-//    }
-    
     self.viewBorderColor = [UIColor blackColor];
     self.viewShadowColor = [UIColor blackColor];
     self.roundedBorder = YES;
 }
 
-//- (id)initWithCoder:(NSCoder *)aDecoder
-//{
-////    NSString *key = [aDecoder decodeObjectForKey:@"imageKey"];
-////    UIImage *image = AWBLoadImageWithKey(key);
-//    
-//    if (!image) {
-//        return nil;
-//    } else {
-//        CGFloat imageOffsetX = [aDecoder decodeFloatForKey:@"imageOffsetX"];
-//        CGFloat imageOffsetY = [aDecoder decodeFloatForKey:@"imageOffsetY"];
-//        CGFloat imageRotation = [aDecoder decodeFloatForKey:@"imageRotation"];
-//        CGFloat imageScale = [aDecoder decodeFloatForKey:@"imageScale"];
-//        BOOL imageHFlip = [aDecoder decodeBoolForKey:@"imageHFlip"];
-//        
-//        CGPoint offset = CGPointMake(imageOffsetX, imageOffsetY);        
-//        self = [self initWithImage:image rotation:imageRotation scale:imageScale horizontalFlip:imageHFlip imageKey:key imageDocsSubDir:nil];
-//        [self setCenter:offset];
-//        
-//        return self;
-//    }
-//}
-
-//- (void)encodeWithCoder:(NSCoder *)aCoder
-//{
-//    [self applyPendingRotationToCapturedView];
-//    
-//    [aCoder encodeFloat:self.center.x forKey:@"imageOffsetX"];
-//    [aCoder encodeFloat:self.center.y forKey:@"imageOffsetY"];
-//    [aCoder encodeFloat:self.quantisedRotation forKey:@"imageRotation"];
-//    [aCoder encodeFloat:self.quantisedScale forKey:@"imageScale"];
-//    [aCoder encodeBool:self.horizontalFlip forKey:@"imageHFlip"];
-//    [aCoder encodeObject:self.imageKey forKey:@"imageKey"];
-//}
-
-
-- (id)initWithImage:(UIImage *)image
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
-    return nil;
+    NSUInteger symbolId = [aDecoder decodeIntegerForKey:@"signSymbolId"];
+    AWBRoadsignSymbol *symbol = [AWBRoadsignSymbol signSymbolWithIdentifier:symbolId];    
+    
+    if (!symbol) {
+        return nil;
+    } else {
+        CGFloat imageOffsetX = [aDecoder decodeFloatForKey:@"imageOffsetX"];
+        CGFloat imageOffsetY = [aDecoder decodeFloatForKey:@"imageOffsetY"];
+        CGFloat imageRotation = [aDecoder decodeFloatForKey:@"imageRotation"];
+        CGFloat imageScale = [aDecoder decodeFloatForKey:@"imageScale"];
+        BOOL imageHFlip = [aDecoder decodeBoolForKey:@"imageHFlip"];
+        CGPoint offset = CGPointMake(imageOffsetX, imageOffsetY);        
+        self = [self initWithSymbol:symbol rotation:imageRotation scale:imageScale horizontalFlip:imageHFlip];
+        [self setCenter:offset];
+        
+        return self;
+    }
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [self applyPendingRotationToCapturedView];
+    
+    [aCoder encodeFloat:self.center.x forKey:@"imageOffsetX"];
+    [aCoder encodeFloat:self.center.y forKey:@"imageOffsetY"];
+    [aCoder encodeFloat:self.quantisedRotation forKey:@"imageRotation"];
+    [aCoder encodeFloat:self.quantisedScale forKey:@"imageScale"];
+    [aCoder encodeBool:self.horizontalFlip forKey:@"imageHFlip"];
+    [aCoder encodeInteger:self.roadsignSymbol.signSymbolId forKey:@"signSymbolId"];
+}
+
+- (id)initWithSymbol:(AWBRoadsignSymbol *)symbol
+{   
+    if (!symbol) {
+        return nil;
+    }
+    
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    UIImage *image = [UIImage imageFromFile:symbol.fullsizeImageFilename];
+    CGFloat scale = [image scaleRequiredForMaxResolution:MAX_SIGN_SYMBOL_PIXELS];
+    NSLog(@"Scaling for Symbol: %f", scale);
+    UIImage *scaledImage = [image imageScaledToMaxResolution:MAX_SIGN_SYMBOL_PIXELS withTransparentBorderThickness:0.0];  
+    self = [self initWithImage:scaledImage rotation:0.0 scale:scale horizontalFlip:NO];
+    self.roadsignSymbol = symbol;
+    [pool drain];
+    
+    return self;
+}
+
+- (id)initWithSymbol:(AWBRoadsignSymbol *)symbol rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip
+{   
+    if (!symbol) {
+        return nil;
+    }
+    
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    UIImage *image = [UIImage imageFromFile:symbol.fullsizeImageFilename];
+    self = [self initWithImage:image rotation:rotation scale:scale horizontalFlip:flip];
+    self.roadsignSymbol = symbol;
+    [pool drain];
+    
+    return self;
 }
 
 - (id)initWithImage:(UIImage *)image rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip
 {
-//    if (!image || (!key && !subDir)) {
-//        return nil;
-//    }
-
     if (!image) {
         return nil;
     }
@@ -119,36 +137,11 @@
         borderThickness = tempBorderThickness;
         shadowOffset = floorf(minImageLength/SHADOW_OFFSET_HEIGHT_RATIO);
         [self initialiseLayerRotation:rotation scale:scale horizontalFlip:flip];
-//        AWBSaveImageWithKey(image, imageKey);
         [self rotateAndScale];
     }
     [pool drain];
     
     return self;
-}
-
-- (id)initRandomWithImage:(UIImage *)image
-{
-    //first calculate random scale range based on device screen size (in points) - go for 10-20% range
-    //longest width should be height, but check just in case
-    CGSize screenSize = [[UIScreen mainScreen] applicationFrame].size;    
-    CGFloat screenLength = (screenSize.height > screenSize.width ? screenSize.height : screenSize.width);
-    
-    return [self initWithImage:image rotation:AWBRandomRotationFromMinMaxRadians(-M_PI_4, M_PI_4) 
-                         scale:AWBCGSizeRandomScaleFromMinMaxLength(image.size, 25+(0.2*screenLength), 25+(0.2*screenLength))
-                horizontalFlip:NO];
-}
-
-- (id)initRandomWithImage:(UIImage *)image minLengthPercentage:(CGFloat)minPerc maxLengthPercentage:(CGFloat)maxPerc minAngle:(CGFloat)minAngle maxAngle:(CGFloat)maxAngle
-{
-    //first calculate random scale range based on device screen size (in points) - go for 10-20% range
-    //longest width should be height, but check just in case
-    CGSize screenSize = [[UIScreen mainScreen] applicationFrame].size;    
-    CGFloat screenLength = (screenSize.height > screenSize.width ? screenSize.height : screenSize.width);
-    
-    return [self initWithImage:image rotation:AWBRandomRotationFromMinMaxRadians(minAngle, maxAngle) 
-                         scale:AWBCGSizeRandomScaleFromMinMaxLength(image.size, (minPerc * screenLength), (maxPerc * screenLength))
-                horizontalFlip:NO];
 }
 
 -(void)setCurrentScale:(CGFloat)scale
@@ -260,23 +253,6 @@
     self.imageView.layer.borderColor = [[UIColor blackColor] CGColor];
 }
 
-//- (void)initialiseImageKeyWithDocsSubdirPath:(NSString *)dirPath
-//{
-//    CFUUIDRef newUniqueID = CFUUIDCreate(kCFAllocatorDefault);
-//    CFStringRef newUniqueIDString = CFUUIDCreateString(kCFAllocatorDefault, newUniqueID);
-//    NSString *fullImageKey = AWBGetImageKeyFromDocumentSubdirectory(dirPath, (NSString *)newUniqueIDString);
-//    [self setImageKey:fullImageKey];
-//    CFRelease(newUniqueIDString);
-//    CFRelease(newUniqueID);
-//}
-
-//- (void)removeImageFromFilesystem
-//{
-//    if (self.imageKey) {
-//        AWBRemoveImageWithKey(self.imageKey);
-//    }
-//}
-
 - (void)initialiseForSelection
 {
     self.selectionMarquee1 = [UIView selectionMarqueeWithWhitePhase:YES];
@@ -337,7 +313,7 @@
 
 - (void)dealloc
 {
-//    [imageKey release];
+    [roadsignSymbol release];
     [selectionMarquee1 release];
     [selectionMarquee2 release];
     [imageView release];

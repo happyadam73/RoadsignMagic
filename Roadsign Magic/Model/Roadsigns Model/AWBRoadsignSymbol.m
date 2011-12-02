@@ -7,6 +7,7 @@
 //
 
 #import "AWBRoadsignSymbol.h"
+#import "NSString+Helpers.h"
 
 @implementation AWBRoadsignSymbol
 
@@ -35,5 +36,12 @@
     return [[[self alloc] initWithIdentifier:symbolId fullSizeImageFilename:fullSizeFilename thumbnailImageFilename:thumbnailFilename] autorelease];
 }
 
-@end
++ (id)signSymbolWithIdentifier:(NSUInteger)symbolId
+{
+    NSString *imageNumberString = [[NSString stringWithFormat:@"%d", symbolId] stringByPaddingTheLeftToLength:4 withString:@"0" startingAtIndex:0];
+    NSString *fullSizeFilename = [NSString stringWithFormat:@"S2%@.png", imageNumberString];
+    NSString *thumbnailFilename = [NSString stringWithFormat:@"S1%@.png", imageNumberString];    
+    return [[[self alloc] initWithIdentifier:symbolId fullSizeImageFilename:fullSizeFilename thumbnailImageFilename:thumbnailFilename] autorelease];
+}
 
+@end

@@ -36,12 +36,12 @@
 + (AWBRoadsignSymbolGroup *)arrowSignSymbols
 {
     NSArray *symbols = [NSArray arrayWithObjects:
-                        [AWBRoadsignSymbol signSymbolWithIdentifier:1 fullSizeImageFilename:@"S20001.png" thumbnailImageFilename:@"S10001.png"],
-                        [AWBRoadsignSymbol signSymbolWithIdentifier:2 fullSizeImageFilename:@"S20002.png" thumbnailImageFilename:@"S10002.png"],
-                        [AWBRoadsignSymbol signSymbolWithIdentifier:3 fullSizeImageFilename:@"S20003.png" thumbnailImageFilename:@"S10003.png"],
-                        [AWBRoadsignSymbol signSymbolWithIdentifier:4 fullSizeImageFilename:@"S20004.png" thumbnailImageFilename:@"S10004.png"],
-                        [AWBRoadsignSymbol signSymbolWithIdentifier:5 fullSizeImageFilename:@"S20005.png" thumbnailImageFilename:@"S10005.png"],
-                        [AWBRoadsignSymbol signSymbolWithIdentifier:6 fullSizeImageFilename:@"S20006.png" thumbnailImageFilename:@"S10006.png"],
+                        [AWBRoadsignSymbol signSymbolWithIdentifier:1],
+                        [AWBRoadsignSymbol signSymbolWithIdentifier:2],
+                        [AWBRoadsignSymbol signSymbolWithIdentifier:3],
+                        [AWBRoadsignSymbol signSymbolWithIdentifier:4],
+                        [AWBRoadsignSymbol signSymbolWithIdentifier:5],
+                        [AWBRoadsignSymbol signSymbolWithIdentifier:6],
                         nil];
     return [[[self alloc] initWithIdentifier:0 description:@"Arrow Sign Symbols" thumbnailImageFilename:@"S00.png" signSymbols:symbols] autorelease];
 }
@@ -49,8 +49,8 @@
 + (AWBRoadsignSymbolGroup *)regulatorySignSymbols
 {
     NSArray *symbols = [NSArray arrayWithObjects:
-                        [AWBRoadsignSymbol signSymbolWithIdentifier:1001 fullSizeImageFilename:@"S21001.png" thumbnailImageFilename:@"S11001.png"],
-                        [AWBRoadsignSymbol signSymbolWithIdentifier:1002 fullSizeImageFilename:@"S21002.png" thumbnailImageFilename:@"S11002.png"],
+                        [AWBRoadsignSymbol signSymbolWithIdentifier:1001],
+                        [AWBRoadsignSymbol signSymbolWithIdentifier:1002],
                         nil];
     return [[[self alloc] initWithIdentifier:0 description:@"Regulatory Sign Symbols" thumbnailImageFilename:@"S01.png" signSymbols:symbols] autorelease];
 }
@@ -58,7 +58,7 @@
 + (AWBRoadsignSymbolGroup *)touristSignSymbols
 {
     NSArray *symbols = [NSArray arrayWithObjects:
-                        [AWBRoadsignSymbol signSymbolWithIdentifier:2001 fullSizeImageFilename:@"S22001.png" thumbnailImageFilename:@"S12001.png"],
+                        [AWBRoadsignSymbol signSymbolWithIdentifier:2001],
                         nil];
     return [[[self alloc] initWithIdentifier:0 description:@"Tourist Sign Symbols" thumbnailImageFilename:@"S02.png" signSymbols:symbols] autorelease];
 }

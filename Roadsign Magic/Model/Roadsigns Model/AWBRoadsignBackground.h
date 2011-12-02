@@ -23,5 +23,7 @@
 
 - (id)initWithIdentifier:(NSUInteger)backgroundId fullSizeImageFilename:(NSString *)fullSizeFilename thumbnailImageFilename:(NSString *)thumbnailFilename colorCode:(AWBSignColorCode)colorCode;
 + (id)signBackgroundWithIdentifier:(NSUInteger)backgroundId fullSizeImageFilename:(NSString *)fullSizeFilename thumbnailImageFilename:(NSString *)thumbnailFilename colorCode:(AWBSignColorCode)colorCode;
++ (id)signBackgroundWithIdentifier:(NSUInteger)backgroundId;
++ (AWBSignColorCode)signColorCodeFromSignId:(NSUInteger)signId;
 
 @end
