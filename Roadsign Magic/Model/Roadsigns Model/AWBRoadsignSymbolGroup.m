@@ -58,6 +58,7 @@
             [AWBRoadsignSymbolGroup roadsignSymbolGroupWithCategoryId:2 count:3 description:@"Tourist Sign Symbols"],
             [AWBRoadsignSymbolGroup roadsignSymbolGroupWithCategoryId:3 count:13 description:@"Junction Sign Symbols"],
             [AWBRoadsignSymbolGroup roadsignSymbolGroupWithCategoryId:4 count:26 description:@"People and Animal Sign Symbols"],
+            [AWBRoadsignSymbolGroup roadsignSymbolGroupWithCategoryId:5 count:26 description:@"Vehicle Sign Symbols"],
             nil];
 }
 
