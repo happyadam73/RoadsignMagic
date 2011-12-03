@@ -22,13 +22,6 @@
 
 - (id)initWithIdentifier:(NSUInteger)backgroundGroupId description:(NSString *)description thumbnailImageFilename:(NSString *)imageFilename signBackgrounds:(NSArray *)backgrounds;
 
-//+ (AWBRoadsignBackgroundGroup *)blueRectangularSignBackgrounds;
-//+ (AWBRoadsignBackgroundGroup *)greenRectangularSignBackgrounds;
-//+ (AWBRoadsignBackgroundGroup *)brownRectangularSignBackgrounds;
-//+ (AWBRoadsignBackgroundGroup *)whiteRectangularSignBackgrounds;
-//+ (AWBRoadsignBackgroundGroup *)redRectangularSignBackgrounds;
-//+ (AWBRoadsignBackgroundGroup *)yellowRectangularSignBackgrounds;
-//+ (AWBRoadsignBackgroundGroup *)signpostSignBackgrounds;
 + (AWBRoadsignBackgroundGroup *)roadsignBackgroundGroupWithCategoryId:(NSUInteger)categoryId count:(NSUInteger)count description:(NSString *)description;
 + (NSArray *)allSignBackgroundCategories;
 
