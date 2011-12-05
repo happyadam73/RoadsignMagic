@@ -3,7 +3,7 @@
 //  Roadsign Magic
 //
 //  Created by Adam Buckley on 24/11/2011.
-//  Copyright (c) 2011 Callcredit. All rights reserved.
+//  Copyright (c) 2011 happyadam development. All rights reserved.
 //
 
 #import "AWBRoadsignMagicViewController+Sign.h"
@@ -77,7 +77,7 @@
                      animations: ^ {
                          [signBackgroundView setAlpha:1.0]; 
                      } 
-                     completion: ^ (BOOL finished) {}];  
+                     completion: ^ (BOOL finished) {[self saveChanges:YES];}];  
     
     [pool drain];
 }

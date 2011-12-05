@@ -3,7 +3,7 @@
 //  RoadsignMagic
 //
 //  Created by Adam Buckley on 05/09/2011.
-//  Copyright 2011 Callcredit. All rights reserved.
+//  Copyright 2011 happyadam development. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

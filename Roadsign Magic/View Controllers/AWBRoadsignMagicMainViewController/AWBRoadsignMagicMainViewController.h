@@ -3,7 +3,7 @@
 //  Roadsign Magic
 //
 //  Created by Adam Buckley on 20/11/2011.
-//  Copyright (c) 2011 Callcredit. All rights reserved.
+//  Copyright (c) 2011 happyadam development. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -14,6 +14,7 @@
 #import "AWBLockedView.h"
 #import "AWBSignBackgroundPickerView.h"
 #import "AWBSignSymbolPickerView.h"
+#import "AWBRoadsignDescriptor.h"
 
 #define SNAP_TO_GRID_SIZE 32.0
 #define DEFAULT_FONT_POINT_SIZE 80.0
@@ -71,10 +72,14 @@
     NSString *labelTextFont;
     UITextAlignment labelTextAlignment;
     
+    BOOL isSignInEditMode;
     NSUInteger totalSelectedInEditMode;
     NSUInteger totalSelectedLabelsInEditMode; 
     NSUInteger totalLabelSubviews;
-    BOOL isSignInEditMode;
+    NSUInteger totalImageSubviews;
+    NSString *roadsignSaveDocumentsSubdirectory;
+    BOOL roadsignLoadRequired;
+    AWBRoadsignDescriptor *roadsignDescriptor;
     
     UIActionSheet *deleteConfirmationSheet;
 }
@@ -118,6 +123,15 @@
 @property (nonatomic, retain) AWBRoadsignSymbol *selectedSignSymbol;
 @property (assign) BOOL isSignInEditMode;
 @property (nonatomic, retain) UIActionSheet *deleteConfirmationSheet;
+@property (nonatomic, retain) NSString *roadsignSaveDocumentsSubdirectory;
+@property (nonatomic, readonly) NSUInteger totalLabelSubviews;
+@property (nonatomic, readonly) NSUInteger totalImageSubviews;
+@property (nonatomic, assign) AWBRoadsignDescriptor *roadsignDescriptor;
+
+- (BOOL)saveChanges:(BOOL)saveThumbnail;
+- (void)loadChanges;
+- (NSString *)archivePath;
+- (NSString *)thumbnailArchivePath;
 
 @end
 

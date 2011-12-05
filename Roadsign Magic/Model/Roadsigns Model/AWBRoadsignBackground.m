@@ -3,7 +3,7 @@
 //  Roadsign Magic
 //
 //  Created by Adam Buckley on 25/11/2011.
-//  Copyright (c) 2011 Callcredit. All rights reserved.
+//  Copyright (c) 2011 happyadam development. All rights reserved.
 //
 
 #import "AWBRoadsignBackground.h"

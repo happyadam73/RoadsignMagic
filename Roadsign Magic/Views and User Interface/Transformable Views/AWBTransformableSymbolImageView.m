@@ -3,7 +3,7 @@
 //  Roadsign Magic
 //
 //  Created by Adam Buckley on 10/08/2011.
-//  Copyright 2011 Callcredit. All rights reserved.
+//  Copyright 2011 happyadam development. All rights reserved.
 //
 
 #import "AWBTransformableSymbolImageView.h"
@@ -90,7 +90,6 @@
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     UIImage *image = [UIImage imageFromFile:symbol.fullsizeImageFilename];
     CGFloat scale = [image scaleRequiredForMaxResolution:MAX_SIGN_SYMBOL_PIXELS];
-    NSLog(@"Scaling for Symbol: %f", scale);
     UIImage *scaledImage = [image imageScaledToMaxResolution:MAX_SIGN_SYMBOL_PIXELS withTransparentBorderThickness:0.0];  
     self = [self initWithImage:scaledImage rotation:0.0 scale:scale horizontalFlip:NO];
     self.roadsignSymbol = symbol;
@@ -107,7 +106,8 @@
     
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     UIImage *image = [UIImage imageFromFile:symbol.fullsizeImageFilename];
-    self = [self initWithImage:image rotation:rotation scale:scale horizontalFlip:flip];
+    UIImage *scaledImage = [image imageScaledToMaxResolution:MAX_SIGN_SYMBOL_PIXELS withTransparentBorderThickness:0.0];  
+    self = [self initWithImage:scaledImage rotation:rotation scale:scale horizontalFlip:flip];
     self.roadsignSymbol = symbol;
     [pool drain];
     
@@ -175,7 +175,6 @@
     } else {
         rotationAndScaleCurrentlyQuantised = NO;
     }
-    
     self.transform = AWBCGAffineTransformMakeRotationAndScale(rotation, scale, horizontalFlip);
 }
 

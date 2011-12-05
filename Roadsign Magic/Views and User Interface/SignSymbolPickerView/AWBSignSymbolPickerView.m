@@ -3,7 +3,7 @@
 //  Roadsign Magic
 //
 //  Created by Adam Buckley on 29/11/2011.
-//  Copyright (c) 2011 Callcredit. All rights reserved.
+//  Copyright (c) 2011 happyadam development. All rights reserved.
 //
 
 #import "AWBSignSymbolPickerView.h"

@@ -3,7 +3,7 @@
 //  Roadsign Magic
 //
 //  Created by Adam Buckley on 20/11/2011.
-//  Copyright (c) 2011 Callcredit. All rights reserved.
+//  Copyright (c) 2011 happyadam development. All rights reserved.
 //
 
 #import "AWBRoadsignMagicMainViewController.h"
@@ -18,6 +18,10 @@
 #import "AWBRoadsignMagicMainViewController+Toolbar.h"
 #import "AWBRoadsignMagicMainViewController+UI.h"
 #import "UIView+SelectionMarquee.h"
+#import "AWBRoadsign.h"
+#import "AWBRoadsignStore.h"
+#import "FileHelpers.h"
+#import "AWBRoadsignMagicViewController+Sign.h"
 
 @implementation AWBRoadsignMagicMainViewController
 
@@ -30,6 +34,7 @@
 @synthesize exportQuality, snapToGrid, snapToGridSize, lockedView;
 @synthesize selectedSignBackground, selectedSignSymbol, isSignInEditMode;
 @synthesize deleteConfirmationSheet;
+@synthesize totalImageSubviews, totalLabelSubviews, roadsignDescriptor, roadsignSaveDocumentsSubdirectory;
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -37,6 +42,7 @@
         self.toolbarItems = [self normalToolbarButtons];
         self.navigationItem.rightBarButtonItem = self.editButton;
     }    
+    
 }
 
 - (void)viewDidUnload
@@ -75,7 +81,9 @@
     snapToGrid = YES;
     snapToGridSize = SNAP_TO_GRID_SIZE;
     labelTextAlignment = UITextAlignmentCenter;
+    self.roadsignSaveDocumentsSubdirectory = @"Roadsign 1";
     [self initialiseGestureRecognizers];
+    [self loadChanges];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation 
@@ -153,6 +161,81 @@
     
 }
 
+- (BOOL)saveChanges:(BOOL)saveThumbnail
+{
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    BOOL success = NO;
+    
+    if (self.signBackgroundView) {
+        
+        //if excessive objects, then reset the selected collage index
+        //trying to avoid memory crash when loading the app
+//        if (self.excessiveSubviewCount) {
+//            [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:kAWBInfoKeyCollageStoreCollageIndex];
+//        }
+        
+        AWBRoadsign *roadsign = [[AWBRoadsign alloc] init];
+        roadsign.roadsignBackgroundId = self.selectedSignBackground.signBackgroundId;
+        roadsign.exportQuality = exportQuality;
+        
+        [roadsign initRoadsignFromView:self.signBackgroundView];
+        
+        self.roadsignDescriptor.totalImageObjects = self.totalImageSubviews;
+        self.roadsignDescriptor.totalLabelObjects = self.totalLabelSubviews;
+        self.roadsignDescriptor.totalImageMemoryBytes = roadsign.totalImageMemoryBytes;
+        [[AWBRoadsignStore defaultStore] saveAllRoadsigns];
+        
+        success = [NSKeyedArchiver archiveRootObject:roadsign toFile:[self archivePath]];
+        [roadsign release];
+        
+        if (saveThumbnail) {
+            CGSize signSize = self.signBackgroundView.bounds.size;
+            CGFloat scale = MIN((256.0/signSize.width), (192.0/signSize.height));
+            //UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, YES, scale);
+            UIGraphicsBeginImageContextWithOptions(signSize, NO, scale);
+            [self.signBackgroundView.layer renderInContext:UIGraphicsGetCurrentContext()];
+            UIImage *roadsignImage = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            //NSData *imageData = UIImageJPEGRepresentation(roadsignImage, 0.5);
+            NSData *imageData = UIImagePNGRepresentation(roadsignImage);
+            [imageData writeToFile:[self thumbnailArchivePath] atomically:YES];
+        }
+    }
+    [pool drain];
+    return success;
+}
+
+- (void)loadChanges
+{
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    
+    NSString *path = [self archivePath];
+    AWBRoadsign *roadsign = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+    
+    if (roadsign) {
+        AWBRoadsignBackground *signBackground = [AWBRoadsignBackground signBackgroundWithIdentifier:roadsign.roadsignBackgroundId];
+        [self awbSignBackgroundPickerView:nil didSelectSignBackground:signBackground];
+        
+        [roadsign addRoadsignToView:self.signBackgroundView];
+       
+        totalImageSubviews = roadsign.totalImageSubviews;
+        totalLabelSubviews = roadsign.totalLabelSubviews;
+        self.exportQuality = roadsign.exportQuality;
+    }
+    
+    [pool drain];
+}
+
+- (NSString *)archivePath
+{
+    return AWBPathInDocumentSubdirectory(roadsignSaveDocumentsSubdirectory, @"roadsign.data");
+}
+
+- (NSString *)thumbnailArchivePath
+{
+    return AWBPathInDocumentSubdirectory(roadsignSaveDocumentsSubdirectory, @"thumbnail.png");
+}
+
 - (void)dealloc {
      [self deallocGestureRecognizers];
     [selectedSignBackground release];
@@ -181,6 +264,7 @@
     [labelTextLine3 release];
     [lockedView release];
     [deleteConfirmationSheet release];
+    [roadsignSaveDocumentsSubdirectory release];
     [super dealloc];
 }
 

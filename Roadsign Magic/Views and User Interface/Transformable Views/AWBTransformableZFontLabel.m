@@ -3,7 +3,7 @@
 //  Roadsign Magic
 //
 //  Created by Adam Buckley on 10/08/2011.
-//  Copyright 2011 Callcredit. All rights reserved.
+//  Copyright 2011 happyadam development. All rights reserved.
 //
 
 #import "AWBTransformableZFontLabel.h"
@@ -254,8 +254,8 @@
 {
     [self applyPendingRotationToCapturedView];
     [aCoder encodeObject:self.labelView.text forKey:@"labelText"];
-    [aCoder encodeObject:self.labelView.font.fontName forKey:@"labelFontName"];
-    [aCoder encodeFloat:self.labelView.font.pointSize forKey:@"labelFontSize"];
+    [aCoder encodeObject:self.labelView.zFont.fontName forKey:@"labelFontName"];
+    [aCoder encodeFloat:self.labelView.zFont.pointSize forKey:@"labelFontSize"];
     [aCoder encodeObject:self.labelView.textColor forKey:@"labelColor"];
     [aCoder encodeInteger:self.labelView.textAlignment forKey:@"labelTextAlignment"];
     [aCoder encodeFloat:self.center.x forKey:@"labelOffsetX"];
