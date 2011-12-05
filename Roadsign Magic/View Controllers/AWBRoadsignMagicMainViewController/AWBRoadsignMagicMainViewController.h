@@ -128,6 +128,7 @@
 @property (nonatomic, readonly) NSUInteger totalImageSubviews;
 @property (nonatomic, assign) AWBRoadsignDescriptor *roadsignDescriptor;
 
+- (id)initWithRoadsignDescriptor:(AWBRoadsignDescriptor *)roadsign;
 - (BOOL)saveChanges:(BOOL)saveThumbnail;
 - (void)loadChanges;
 - (NSString *)archivePath;

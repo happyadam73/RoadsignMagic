@@ -12,6 +12,7 @@
 #import "AWBCollageFont.h"
 #import "FileHelpers.h"
 #import "UIImage+NonCached.h"
+#import "AWBRoadsignDescriptor.h"
 
 @implementation AWBSettingsGroup
 
@@ -121,6 +122,32 @@
 + (AWBSettingsGroup *)qualitySliderSettingsGroupWithInfo:(NSDictionary *)info
 {
     return [[[self alloc] initWithSettings:[NSMutableArray arrayWithObject:[AWBSetting qualitySliderSettingWithValue:[info objectForKey:kAWBInfoKeyExportQualityValue] andKey:kAWBInfoKeyExportQualityValue]] header:@"Export Quality" footer:@"Applies only to saving & emailing the roadsign as a photo."] autorelease];
+}
+
++ (AWBSettingsGroup *)roadsignNameWithHeaderSettingsGroupWithInfo:(NSDictionary *)info
+{
+    NSMutableArray *roadsignNameSettings = [NSMutableArray arrayWithObjects:[AWBSetting textEditSettingWithText:@"Name" value:[info objectForKey:kAWBInfoKeyRoadsignName] key:kAWBInfoKeyRoadsignName], nil];
+    
+    return [[[self alloc] initWithSettings:roadsignNameSettings header:@"Edit Roadsign Name" footer:nil] autorelease];
+}
+
++ (AWBSettingsGroup *)roadsignInfoMetricsSettingsGroupWithInfo:(NSDictionary *)info
+{
+    NSString *imageObjectTotal = [NSString stringWithFormat:@"%d", [[info objectForKey:kAWBInfoKeyRoadsignTotalImageObjects] intValue]];
+    NSString *labelObjectTotal = [NSString stringWithFormat:@"%d", [[info objectForKey:kAWBInfoKeyRoadsignTotalLabelObjects] intValue]];
+    NSString *imageMemoryTotal = AWBFileSizeIntToString([[info objectForKey:kAWBInfoKeyRoadsignTotalImageMemoryBytes] intValue]);
+    NSString *roadsignDiskTotal = AWBFileSizeIntToString([[info objectForKey:kAWBInfoKeyRoadsignTotalDiskBytes] intValue]);
+    
+    NSMutableArray *roadsignInfoSettings = [NSMutableArray arrayWithObjects:[AWBSetting textAndValueSettingWithText:@"Symbols" value:imageObjectTotal], [AWBSetting textAndValueSettingWithText:@"Labels" value:labelObjectTotal], [AWBSetting textAndValueSettingWithText:@"Symbol Memory" value:imageMemoryTotal], [AWBSetting textAndValueSettingWithText:@"Disk" value:roadsignDiskTotal], nil];
+    
+    return [[[self alloc] initWithSettings:roadsignInfoSettings header:@"Info" footer:nil] autorelease];   
+}
+
++ (AWBSettingsGroup *)roadsignNameSettingsGroupWithInfo:(NSDictionary *)info
+{
+    NSMutableArray *roadsignNameSettings = [NSMutableArray arrayWithObjects:[AWBSetting textEditSettingWithText:@"Roadsign Name" value:[info objectForKey:kAWBInfoKeyRoadsignName] key:kAWBInfoKeyRoadsignName], nil];
+    
+    return [[[self alloc] initWithSettings:roadsignNameSettings header:nil footer:nil] autorelease];
 }
 
 @end

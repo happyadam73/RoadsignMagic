@@ -7,7 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AWBRoadsignMagicSettingsTableViewController.h"
+#import "AWBBusyView.h"
 
-@interface AWBRoadsignsListViewController : UITableViewController
+@class AWBRoadsignMagicMainViewController;
+
+@interface AWBRoadsignsListViewController : UITableViewController <AWBRoadsignMagicSettingsTableViewControllerDelegate>
+{
+    NSInteger scrollToRow;
+    AWBBusyView *busyView;
+}
+
+@property (nonatomic, retain) AWBBusyView *busyView;
+
+- (CGFloat)borderThickness;
+- (void)addNewRoadsignDescriptor:(id)sender;
+- (void)loadRoadsignAtIndexPath:(NSIndexPath *)indexPath;
+- (void)navigateToRoadsignController:(AWBRoadsignMagicMainViewController *)roadsignController;
+- (CGPoint)centerOfVisibleRows;
 
 @end

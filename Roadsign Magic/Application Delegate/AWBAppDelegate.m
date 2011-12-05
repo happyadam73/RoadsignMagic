@@ -10,6 +10,10 @@
 #import "AWBRoadsignMagicMainViewController.h"
 #import "AWBRoadsignMagicMainViewController+UI.h"
 #import "AWBRoadsignMagicSettingsTableViewController.h"
+#import "AWBSettings.h"
+#import "AWBRoadsignsListViewController.h"
+#import "AWBRoadsignStore.h"
+#import "AWBRoadsignDescriptor.h"
 
 @implementation AWBAppDelegate
 
@@ -27,28 +31,74 @@
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
 
-    AWBRoadsignMagicMainViewController *viewController = [[AWBRoadsignMagicMainViewController alloc] init];
-//    AWBRoadsignMagicSettingsTableViewController *settingsController = [[AWBRoadsignMagicSettingsTableViewController alloc] initWithSettings:[AWBSettings mainSettingsWithInfo:[viewController settingsInfo]] settingsInfo:[viewController settingsInfo] rootController:nil]; 
-//    settingsController.controllerType = AWBSettingsControllerTypeMainSettings;  
-//    settingsController.navigationItem.title = @"My Signs";
-//    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsController];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController];
-//    [navController pushViewController:viewController animated:YES];
-    [viewController release];
-//    [settingsController release];
+    AWBRoadsignDescriptor *roadsign = nil;
+    NSUInteger totalSavedRoadsigns = [[[AWBRoadsignStore defaultStore] allRoadsigns] count];
+    NSInteger roadsignIndex = [[NSUserDefaults standardUserDefaults] integerForKey:kAWBInfoKeyRoadsignStoreRoadsignIndex];
+    if (totalSavedRoadsigns==0) {
+        //no roadsigns
+        //if user default index is -1 then this was by choice - user deleted them all so roadsign is nil otherwise this
+        //is the first ever start so create one for the user automatically
+        if (roadsignIndex != -1) {
+            roadsign = [[AWBRoadsignStore defaultStore] createRoadsign];
+            //first roadsign
+            roadsign.roadsignName = @"Roadsign 1";
+        }
+    } else {
+        //check what the last selected roadsign was
+        //if it's -1 (last used the list view) or it's outside array bounds, then roadsign not set
+        if ((roadsignIndex >= 0) && (roadsignIndex < totalSavedRoadsigns)) {
+            roadsign = [[[AWBRoadsignStore defaultStore] allRoadsigns] objectAtIndex:roadsignIndex];
+//            if (collage.totalObjects >= [CollageMakerViewController excessiveSubviewCountThreshold]) {
+//                NSLog(@"Collage Total Objects: %d - exceed threshold (%d), so don't load", collage.totalObjects, [CollageMakerViewController excessiveSubviewCountThreshold]);
+//                collage = nil;
+//            }
+        }
+    }
     
+    AWBRoadsignsListViewController *listController = [[AWBRoadsignsListViewController alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:listController];
     navController.navigationBar.barStyle = UIBarStyleBlack;
     navController.navigationBar.translucent = YES;
-    navController.navigationBarHidden = NO;
     navController.toolbar.barStyle = UIBarStyleBlack;
     navController.toolbar.translucent = YES;
-    navController.toolbarHidden = NO;
-    self.mainNavigationController = navController;
-    self.window.rootViewController = navController;    
-    [navController release];    
     
+    //navigate to collage if one was previously selected, or this is the first collage
+    if (roadsign) {
+        AWBRoadsignMagicMainViewController *roadsignController = [[AWBRoadsignMagicMainViewController alloc] initWithRoadsignDescriptor:roadsign];
+        [navController pushViewController:roadsignController animated:NO];
+        [roadsignController release];        
+    }
+    
+    self.mainNavigationController = navController;
+    self.window.rootViewController = self.mainNavigationController;
+    [navController release];
+    [listController release];
     [self.window makeKeyAndVisible];
     return YES;
+    
+    
+//    AWBRoadsignMagicMainViewController *viewController = [[AWBRoadsignMagicMainViewController alloc] init];
+////    AWBRoadsignMagicSettingsTableViewController *settingsController = [[AWBRoadsignMagicSettingsTableViewController alloc] initWithSettings:[AWBSettings mainSettingsWithInfo:[viewController settingsInfo]] settingsInfo:[viewController settingsInfo] rootController:nil]; 
+////    settingsController.controllerType = AWBSettingsControllerTypeMainSettings;  
+////    settingsController.navigationItem.title = @"My Signs";
+////    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsController];
+//    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController];
+////    [navController pushViewController:viewController animated:YES];
+//    [viewController release];
+////    [settingsController release];
+//    
+//    navController.navigationBar.barStyle = UIBarStyleBlack;
+//    navController.navigationBar.translucent = YES;
+//    navController.navigationBarHidden = NO;
+//    navController.toolbar.barStyle = UIBarStyleBlack;
+//    navController.toolbar.translucent = YES;
+//    navController.toolbarHidden = NO;
+//    self.mainNavigationController = navController;
+//    self.window.rootViewController = navController;    
+//    [navController release];    
+//    
+//    [self.window makeKeyAndVisible];
+//    return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -65,6 +115,7 @@
      Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
      */
+    [self.mainNavigationController.topViewController viewWillDisappear:NO];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -79,6 +130,8 @@
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
+    [self.mainNavigationController.topViewController viewDidAppear:NO];
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

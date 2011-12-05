@@ -98,6 +98,9 @@ static NSString *const kAWBInfoKeySnapToGridSize = @"SnapToGridSize";
 + (AWBSettingsGroup *)textAlignmentPickerSettingsGroupWithInfo:(NSDictionary *)info;
 + (AWBSettingsGroup *)textEditSettingsGroupWithInfo:(NSDictionary *)info;
 + (AWBSettingsGroup *)qualitySliderSettingsGroupWithInfo:(NSDictionary *)info;
++ (AWBSettingsGroup *)roadsignNameWithHeaderSettingsGroupWithInfo:(NSDictionary *)info;
++ (AWBSettingsGroup *)roadsignInfoMetricsSettingsGroupWithInfo:(NSDictionary *)info;
++ (AWBSettingsGroup *)roadsignNameSettingsGroupWithInfo:(NSDictionary *)info;
 
 @end
 

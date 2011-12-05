@@ -22,6 +22,7 @@
 #import "AWBRoadsignStore.h"
 #import "FileHelpers.h"
 #import "AWBRoadsignMagicViewController+Sign.h"
+#import "AWBRoadsignMagicViewController+Edit.h"
 
 @implementation AWBRoadsignMagicMainViewController
 
@@ -36,19 +37,69 @@
 @synthesize deleteConfirmationSheet;
 @synthesize totalImageSubviews, totalLabelSubviews, roadsignDescriptor, roadsignSaveDocumentsSubdirectory;
 
+- (id)init
+{
+    AWBRoadsignDescriptor *roadsign = [[AWBRoadsignStore defaultStore] createRoadsign];
+    return [self initWithRoadsignDescriptor:roadsign];
+}
+
+- (id)initWithRoadsignDescriptor:(AWBRoadsignDescriptor *)roadsign
+{
+    self = [super init];
+    if (self) {  
+        self.roadsignDescriptor = roadsign;
+        [self setRoadsignSaveDocumentsSubdirectory:roadsign.roadsignSaveDocumentsSubdirectory];
+//        if (roadsign.roadsignName && ([roadsign.roadsignName length] > 0)) {
+//            self.navigationItem.title = [NSString stringWithFormat:@"%@", roadsign.roadsignName];
+//        } else {
+//            self.navigationItem.title = [NSString stringWithFormat:@"%@", roadsign.roadsignSaveDocumentsSubdirectory];
+//        }
+        snapToGrid = YES;
+        snapToGridSize = SNAP_TO_GRID_SIZE;
+        labelTextAlignment = UITextAlignmentCenter;
+        exportQuality = 2.0;
+        isSignInEditMode = NO;
+    }
+    return self;
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     if (!self.isSignInEditMode) {
         self.toolbarItems = [self normalToolbarButtons];
         self.navigationItem.rightBarButtonItem = self.editButton;
-    }    
+        if (self.navigationController.toolbarHidden) {
+            [self toggleFullscreen];
+        }
+    }  
     
+    if (!self.modalViewController) {
+        if (roadsignLoadRequired) {
+            roadsignLoadRequired = NO;
+            [self loadChanges];
+        }        
+    }    
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    if (!self.modalViewController) {
+        [self resetEditMode:nil];
+        BOOL saveThumbnail = YES;
+//        if (self.excessiveSubviewCount) {
+//            saveThumbnail = NO;
+//        }
+        [self saveChanges:saveThumbnail];
+    }
+    [super viewWillDisappear:YES];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     [self dereferenceGestureRecognizers];
+    self.selectedSignBackground = nil;
+    self.selectedSignSymbol = nil;
     self.lockedView = nil;
     self.roadsignFont = nil;
     self.signBackgroundView = nil;
@@ -78,12 +129,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    snapToGrid = YES;
-    snapToGridSize = SNAP_TO_GRID_SIZE;
-    labelTextAlignment = UITextAlignmentCenter;
-    self.roadsignSaveDocumentsSubdirectory = @"Roadsign 1";
     [self initialiseGestureRecognizers];
-    [self loadChanges];
+    roadsignLoadRequired = YES;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation 
@@ -156,8 +203,8 @@
     AWBLockedView *view = [[AWBLockedView alloc] initWithObjectsLocked:NO canvasAnchored:!scrollView.scrollEnabled];
     self.lockedView = view;
     self.lockedView.delegate = self;
-    [view release];
     self.navigationItem.titleView = lockedView;
+    [view release];
     
 }
 
@@ -175,7 +222,11 @@
 //        }
         
         AWBRoadsign *roadsign = [[AWBRoadsign alloc] init];
-        roadsign.roadsignBackgroundId = self.selectedSignBackground.signBackgroundId;
+        if (self.selectedSignBackground) {
+            roadsign.roadsignBackgroundId = self.selectedSignBackground.signBackgroundId;
+        } else {
+            roadsign.roadsignBackgroundId = 0;            
+        }
         roadsign.exportQuality = exportQuality;
         
         [roadsign initRoadsignFromView:self.signBackgroundView];
@@ -213,8 +264,11 @@
     AWBRoadsign *roadsign = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
     
     if (roadsign) {
-        AWBRoadsignBackground *signBackground = [AWBRoadsignBackground signBackgroundWithIdentifier:roadsign.roadsignBackgroundId];
-        [self awbSignBackgroundPickerView:nil didSelectSignBackground:signBackground];
+        NSUInteger signBackgroundId = roadsign.roadsignBackgroundId;
+        if (signBackgroundId > 0) {
+            AWBRoadsignBackground *signBackground = [AWBRoadsignBackground signBackgroundWithIdentifier:signBackgroundId];
+            [self awbSignBackgroundPickerView:nil didSelectSignBackground:signBackground];            
+        }
         
         [roadsign addRoadsignToView:self.signBackgroundView];
        
@@ -237,7 +291,7 @@
 }
 
 - (void)dealloc {
-     [self deallocGestureRecognizers];
+    [self deallocGestureRecognizers];
     [selectedSignBackground release];
     [selectedSignSymbol release];
     [roadsignFont release];
@@ -254,8 +308,6 @@
     [settingsButton release];
     [fixedToolbarSpacing release];
     [signBackgroundPickerButton release];
-    [mainScrollView release];
-    [signBackgroundView release];
     [textButton release];
     [labelTextColor release];
     [labelTextFont release];
@@ -265,6 +317,8 @@
     [lockedView release];
     [deleteConfirmationSheet release];
     [roadsignSaveDocumentsSubdirectory release];
+    [signBackgroundView release];
+    [mainScrollView release];
     [super dealloc];
 }
 

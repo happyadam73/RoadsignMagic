@@ -44,5 +44,7 @@
 + (AWBSettings *)textSettingsWithInfo:(NSDictionary *)info;
 + (AWBSettings *)editTextSettingsWithInfo:(NSDictionary *)info;
 + (AWBSettings *)editSingleTextSettingsWithInfo:(NSDictionary *)info;
++ (AWBSettings *)roadsignDescriptionSettingsWithInfo:(NSDictionary *)info header:(UIView *)header;
++ (AWBSettings *)createRoadsignSettingsWithInfo:(NSDictionary *)info;
 
 @end

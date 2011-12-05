@@ -116,7 +116,7 @@
         self.navigationItem.titleView = lockedView;
         self.navigationItem.rightBarButtonItem = self.editButton;
         [self resetToNormalToolbar];
-//        [self saveChanges:NO];
+        [self saveChanges:NO];
     }
 }
 

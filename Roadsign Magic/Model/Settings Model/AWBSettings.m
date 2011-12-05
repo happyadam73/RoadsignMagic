@@ -123,5 +123,18 @@
     return [[[self alloc] initWithSettingsGroups:settings title:@"Edit Text Label"] autorelease];
 }
 
++ (AWBSettings *)roadsignDescriptionSettingsWithInfo:(NSDictionary *)info header:(UIView *)header
+{
+    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup roadsignNameWithHeaderSettingsGroupWithInfo:info], [AWBSettingsGroup roadsignInfoMetricsSettingsGroupWithInfo:info], nil];
+    AWBSettings *roadsignDescriptionSettings = [[self alloc] initWithSettingsGroups:settings title:@"Roadsign Information"];
+    roadsignDescriptionSettings.headerView = header;
+    return [roadsignDescriptionSettings autorelease];
+}
+
++ (AWBSettings *)createRoadsignSettingsWithInfo:(NSDictionary *)info
+{
+    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup roadsignNameSettingsGroupWithInfo:info], nil];
+    return [[[self alloc] initWithSettingsGroups:settings title:@"New Roadsign"] autorelease];
+}
 
 @end

@@ -159,7 +159,7 @@
         case AWBSettingsControllerTypeMainSettings:
             [self setExportQualityFromSettingsInfo:info];
             [self setCollageDrawingAidsFromSettingsInfo:info];
-//            [self saveChanges:NO];            
+            [self saveChanges:NO];            
             break;
         case AWBSettingsControllerTypeAddTextSettings:
             self.labelTextLine1 = [info objectForKey:kAWBInfoKeyLabelTextLine1];
@@ -182,7 +182,7 @@
                 }
             }
             
-            //[self saveChanges:NO];
+            [self saveChanges:NO];
             break;
         case AWBSettingsControllerTypeEditTextSettings:
             self.labelTextColor = [info objectForKey:kAWBInfoKeyTextColor];
@@ -220,7 +220,7 @@
                 }            
             } 
             [self resetEditMode:settingsController];
-//            [self saveChanges:NO];
+            [self saveChanges:NO];
             break;
         default:
             break;

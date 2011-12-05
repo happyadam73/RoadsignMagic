@@ -70,7 +70,8 @@
                          imageView.transform = CGAffineTransformMakeScale(imageView.currentScale, imageView.currentScale);
                          imageView.center = centerPoint;
                      } 
-                     completion: ^ (BOOL finished) {[imageView release];}];  
+                     completion: ^ (BOOL finished) {[imageView release];
+                                                    [self saveChanges:YES];}];  
 }
 
 - (void)awbSignSymbolPickerView:(AWBSignSymbolPickerView *)symbolPicker didSelectSignSymbol:(AWBRoadsignSymbol *)signSymbol 
