@@ -76,7 +76,7 @@
     NSUInteger totalSelectedInEditMode;
     NSUInteger totalSelectedLabelsInEditMode; 
     NSUInteger totalLabelSubviews;
-    NSUInteger totalImageSubviews;
+    NSUInteger totalSymbolSubviews;
     NSString *roadsignSaveDocumentsSubdirectory;
     BOOL roadsignLoadRequired;
     AWBRoadsignDescriptor *roadsignDescriptor;
@@ -125,7 +125,7 @@
 @property (nonatomic, retain) UIActionSheet *deleteConfirmationSheet;
 @property (nonatomic, retain) NSString *roadsignSaveDocumentsSubdirectory;
 @property (nonatomic, readonly) NSUInteger totalLabelSubviews;
-@property (nonatomic, readonly) NSUInteger totalImageSubviews;
+@property (nonatomic, readonly) NSUInteger totalSymbolSubviews;
 @property (nonatomic, assign) AWBRoadsignDescriptor *roadsignDescriptor;
 
 - (id)initWithRoadsignDescriptor:(AWBRoadsignDescriptor *)roadsign;

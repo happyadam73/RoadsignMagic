@@ -9,9 +9,9 @@
 #import "AWBRoadsignMagicViewController+Delete.h"
 #import "AWBRoadsignMagicMainViewController+UI.h"
 #import "AWBRoadsignMagicMainViewController+Toolbar.h"
+#import "AWBTransformableSymbolImageView.h"
 
 @implementation AWBRoadsignMagicMainViewController (Delete)
-
 
 - (void)deleteSelectedViews:(id)sender
 {
@@ -52,14 +52,16 @@
                     [view removeSelection];
                     if ([view isKindOfClass:[AWBTransformableZFontLabel class]]) {
                         totalLabelSubviews -= 1;
+                    } else if ([view isKindOfClass:[AWBTransformableSymbolImageView class]]) {
+                        totalSymbolSubviews -= 1;
                     }
-                        animationDelay = 0.5;
-                        [UIView animateWithDuration:animationDelay delay:0.0 options:UIViewAnimationOptionAllowUserInteraction animations: ^ {[view setCenter:[self deleteButtonApproxPosition]]; [view setAlpha:0.0]; view.transform = CGAffineTransformMakeScale(0.1, 0.1);} 
-                                         completion: ^ (BOOL finished) {[view removeFromSuperview];}];
+                    animationDelay = 0.5;
+                    [UIView animateWithDuration:animationDelay delay:0.0 options:UIViewAnimationOptionAllowUserInteraction animations: ^ {[view setCenter:[self deleteButtonApproxPosition]]; [view setAlpha:0.0]; view.transform = CGAffineTransformMakeScale(0.1, 0.1);} 
+                                     completion: ^ (BOOL finished) {[view removeFromSuperview];}];
                 }
             }            
         }
-                
+        
         if (animationDelay > 0.0) {
             animationDelay += 0.1;
         }

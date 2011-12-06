@@ -138,7 +138,7 @@
     NSString *imageMemoryTotal = AWBFileSizeIntToString([[info objectForKey:kAWBInfoKeyRoadsignTotalImageMemoryBytes] intValue]);
     NSString *roadsignDiskTotal = AWBFileSizeIntToString([[info objectForKey:kAWBInfoKeyRoadsignTotalDiskBytes] intValue]);
     
-    NSMutableArray *roadsignInfoSettings = [NSMutableArray arrayWithObjects:[AWBSetting textAndValueSettingWithText:@"Symbols" value:imageObjectTotal], [AWBSetting textAndValueSettingWithText:@"Labels" value:labelObjectTotal], [AWBSetting textAndValueSettingWithText:@"Symbol Memory" value:imageMemoryTotal], [AWBSetting textAndValueSettingWithText:@"Disk" value:roadsignDiskTotal], nil];
+    NSMutableArray *roadsignInfoSettings = [NSMutableArray arrayWithObjects:[AWBSetting textAndValueSettingWithText:@"Symbols" value:imageObjectTotal], [AWBSetting textAndValueSettingWithText:@"Labels" value:labelObjectTotal], [AWBSetting textAndValueSettingWithText:@"Memory" value:imageMemoryTotal], [AWBSetting textAndValueSettingWithText:@"Disk" value:roadsignDiskTotal], nil];
     
     return [[[self alloc] initWithSettings:roadsignInfoSettings header:@"Info" footer:nil] autorelease];   
 }

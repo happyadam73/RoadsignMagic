@@ -11,7 +11,7 @@
 
 @implementation AWBRoadsignDescriptor
 
-@synthesize roadsignName, roadsignSaveDocumentsSubdirectory, createdDate, totalObjects, totalImageObjects, totalLabelObjects, totalImageMemoryBytes;
+@synthesize roadsignName, roadsignSaveDocumentsSubdirectory, createdDate, totalObjects, totalSymbolObjects, totalLabelObjects, totalImageMemoryBytes;
 
 - (id)initWithRoadsignName:(NSString *)name documentsSubdirectory:(NSString *)subDirectory
 {
@@ -20,11 +20,9 @@
         [self setRoadsignName:name];
         [self setRoadsignSaveDocumentsSubdirectory:subDirectory];
         createdDate = [[NSDate alloc] init];
-//        themeType = kAWBCollageThemeTypePlain;
-        totalImageObjects = 0;
+        totalSymbolObjects = 0;
         totalLabelObjects = 0;
         totalImageMemoryBytes = 0;
-//        addContentOnCreation = NO;
     }
     return self;
 }
@@ -46,8 +44,7 @@
         [self setRoadsignName:[decoder decodeObjectForKey:kAWBInfoKeyRoadsignName]];
         [self setRoadsignSaveDocumentsSubdirectory:[decoder decodeObjectForKey:kAWBInfoKeyRoadsignDocumentsSubdirectory]];
         createdDate = [[decoder decodeObjectForKey:kAWBInfoKeyRoadsignCreatedDate] retain];
-//        [self setThemeType:[decoder decodeIntegerForKey:kAWBInfoKeyCollageThemeType]];
-        [self setTotalImageObjects:[decoder decodeIntegerForKey:kAWBInfoKeyRoadsignTotalImageObjects]];
+        [self setTotalSymbolObjects:[decoder decodeIntegerForKey:kAWBInfoKeyRoadsignTotalImageObjects]];
         [self setTotalLabelObjects:[decoder decodeIntegerForKey:kAWBInfoKeyRoadsignTotalLabelObjects]];
         [self setTotalImageMemoryBytes:[decoder decodeIntegerForKey:kAWBInfoKeyRoadsignTotalImageMemoryBytes]];
     }
@@ -59,16 +56,10 @@
     [encoder encodeObject:roadsignName forKey:kAWBInfoKeyRoadsignName];
     [encoder encodeObject:roadsignSaveDocumentsSubdirectory forKey:kAWBInfoKeyRoadsignDocumentsSubdirectory];
     [encoder encodeObject:createdDate forKey:kAWBInfoKeyRoadsignCreatedDate];
-//    [encoder encodeInteger:themeType forKey:kAWBInfoKeyCollageThemeType];
-    [encoder encodeInteger:totalImageObjects forKey:kAWBInfoKeyRoadsignTotalImageObjects];    
+    [encoder encodeInteger:totalSymbolObjects forKey:kAWBInfoKeyRoadsignTotalImageObjects];    
     [encoder encodeInteger:totalLabelObjects forKey:kAWBInfoKeyRoadsignTotalLabelObjects]; 
     [encoder encodeInteger:totalImageMemoryBytes forKey:kAWBInfoKeyRoadsignTotalImageMemoryBytes];
 }
-
-//- (CollageTheme *)theme
-//{
-//    return [CollageTheme themeWithThemeType:themeType];
-//}
 
 - (UIImageView *)roadsignThumbnailImageView
 {
@@ -189,7 +180,7 @@
 
 - (NSUInteger)totalObjects
 {
-    return (totalImageObjects+totalLabelObjects);
+    return (totalSymbolObjects+totalLabelObjects);
 }
 
 - (void)dealloc

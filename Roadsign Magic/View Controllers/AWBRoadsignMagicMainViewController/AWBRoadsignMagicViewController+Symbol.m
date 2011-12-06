@@ -62,6 +62,7 @@
     imageView.transform = CGAffineTransformMakeScale(0.1, 0.1);
     imageView.alpha = 0.0;
     [self.signBackgroundView addSubview:imageView];
+    totalSymbolSubviews += 1;
     [imageView initialiseForSelection];   
     [UIView animateWithDuration:0.5 
                           delay:0.0 options:UIViewAnimationOptionAllowUserInteraction

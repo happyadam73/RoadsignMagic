@@ -11,7 +11,6 @@
 static NSString *const kAWBInfoKeyRoadsignName = @"RoadsignName";
 static NSString *const kAWBInfoKeyRoadsignDocumentsSubdirectory = @"RoadsignDocumentsSubdirectory";
 static NSString *const kAWBInfoKeyRoadsignCreatedDate = @"RoadsignCreatedDate";
-//static NSString *const kAWBInfoKeyCollageThemeType = @"CollageThemeType";
 static NSString *const kAWBInfoKeyRoadsignTotalImageObjects = @"RoadsignTotalImageObjects";
 static NSString *const kAWBInfoKeyRoadsignTotalLabelObjects = @"RoadsignTotalLabelObjects";
 static NSString *const kAWBInfoKeyRoadsignTotalImageMemoryBytes = @"RoadsignTotalImageMemoryBytes";
@@ -21,26 +20,21 @@ static NSString *const kAWBInfoKeyRoadsignTotalDiskBytes = @"RoadsignTotalDiskBy
     NSString *roadsignSaveDocumentsSubdirectory; 
     NSString *roadsignName;
     NSDate *createdDate;
-//    CollageThemeType themeType;
-    NSUInteger totalImageObjects;
+    NSUInteger totalSymbolObjects;
     NSUInteger totalLabelObjects; 
     NSUInteger totalImageMemoryBytes;
-//    BOOL addContentOnCreation;
 }
 
 @property (nonatomic, retain) NSString *roadsignSaveDocumentsSubdirectory;
 @property (nonatomic, retain) NSString *roadsignName;
 @property (nonatomic, readonly) NSDate *createdDate;
-//@property (nonatomic, assign) CollageThemeType themeType;
-@property (nonatomic, assign) NSUInteger totalImageObjects;
+@property (nonatomic, assign) NSUInteger totalSymbolObjects;
 @property (nonatomic, assign) NSUInteger totalLabelObjects;
 @property (nonatomic, readonly) NSUInteger totalObjects;
 @property (nonatomic, assign) NSUInteger totalImageMemoryBytes; 
-//@property (nonatomic, assign) BOOL addContentOnCreation;
 
 - (id)initWithRoadsignName:(NSString *)name documentsSubdirectory:(NSString *)subDirectory;
 - (id)initWithRoadsignDocumentsSubdirectory:(NSString *)subDirectory;
-//- (CollageTheme *)theme;
 - (UIImageView *)roadsignThumbnailImageView;
 - (UIView *)roadsignInfoHeaderView;
 - (UILabel *)roadsignNameLabel;

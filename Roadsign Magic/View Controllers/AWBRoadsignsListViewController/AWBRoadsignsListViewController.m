@@ -24,7 +24,7 @@
     if (self) {
         // Custom initialization
         scrollToRow = -1;
-        self.navigationItem.title = @"Saved Roadsigns";
+        self.navigationItem.title = @"My Signs";
         UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewRoadsignDescriptor:)];
         [[self navigationItem] setRightBarButtonItem:addButton];
         [addButton release];
@@ -223,7 +223,7 @@
     NSUInteger totalDiskBytes = AWBDocumentSubdirectoryFolderSize(roadsign.roadsignSaveDocumentsSubdirectory);
     [[NSUserDefaults standardUserDefaults] setInteger:[indexPath row] forKey:kAWBInfoKeyScrollToRoadsignStoreRoadsignIndex]; 
     
-    NSMutableDictionary *settingsInfo = [NSMutableDictionary dictionaryWithObjectsAndKeys:roadsign.roadsignName, kAWBInfoKeyRoadsignName, [NSNumber numberWithInt:roadsign.totalImageObjects], kAWBInfoKeyRoadsignTotalImageObjects, [NSNumber numberWithInt:roadsign.totalLabelObjects], kAWBInfoKeyRoadsignTotalLabelObjects, [NSNumber numberWithInt:[indexPath row]], kAWBInfoKeyRoadsignStoreRoadsignIndex, [NSNumber numberWithInt:roadsign.totalImageMemoryBytes], kAWBInfoKeyRoadsignTotalImageMemoryBytes, [NSNumber numberWithInt:totalDiskBytes], kAWBInfoKeyRoadsignTotalDiskBytes, nil];
+    NSMutableDictionary *settingsInfo = [NSMutableDictionary dictionaryWithObjectsAndKeys:roadsign.roadsignName, kAWBInfoKeyRoadsignName, [NSNumber numberWithInt:roadsign.totalSymbolObjects], kAWBInfoKeyRoadsignTotalImageObjects, [NSNumber numberWithInt:roadsign.totalLabelObjects], kAWBInfoKeyRoadsignTotalLabelObjects, [NSNumber numberWithInt:[indexPath row]], kAWBInfoKeyRoadsignStoreRoadsignIndex, [NSNumber numberWithInt:roadsign.totalImageMemoryBytes], kAWBInfoKeyRoadsignTotalImageMemoryBytes, [NSNumber numberWithInt:totalDiskBytes], kAWBInfoKeyRoadsignTotalDiskBytes, nil];
     AWBRoadsignMagicSettingsTableViewController *settingsController = [[AWBRoadsignMagicSettingsTableViewController alloc] initWithSettings:[AWBSettings roadsignDescriptionSettingsWithInfo:settingsInfo header:[roadsign roadsignInfoHeaderView]] settingsInfo:settingsInfo rootController:nil]; 
     settingsController.delegate = self;
     settingsController.controllerType = AWBSettingsControllerTypeRoadsignInfoSettings;
@@ -243,15 +243,15 @@
     //first transition animation - if there's more than 10 images or 30 objects then don't animate the transition
     BOOL animated = YES;
     [[NSUserDefaults standardUserDefaults] setInteger:[indexPath row] forKey:kAWBInfoKeyScrollToRoadsignStoreRoadsignIndex]; 
-    if ((roadsign.totalImageObjects > 10) || (roadsign.totalObjects > 30)) {
+    if ((roadsign.totalSymbolObjects > 10) || (roadsign.totalObjects > 30)) {
         animated = NO;
     } else {
         [[NSUserDefaults standardUserDefaults] setInteger:[indexPath row] forKey:kAWBInfoKeyRoadsignStoreRoadsignIndex]; 
     }
     
     //secondly - load progress busy indicator.  Only enable if more than 10 images to be loaded   
-    if (roadsign.totalImageObjects > 10) {
-        NSString *busyTextDetail = [NSString stringWithFormat:@"(with %d symbols)", roadsign.totalImageObjects];
+    if (roadsign.totalSymbolObjects > 10) {
+        NSString *busyTextDetail = [NSString stringWithFormat:@"(with %d symbols)", roadsign.totalSymbolObjects];
         AWBBusyView *busyIndicatorView = [[AWBBusyView alloc] initWithText:@"Preparing Roadsign" detailText:busyTextDetail parentView:self.view centerAtPoint:[self centerOfVisibleRows]];
         [self performSelector:@selector(navigateToRoadsignController:) withObject:roadsignController afterDelay:0];
         self.busyView = busyIndicatorView;

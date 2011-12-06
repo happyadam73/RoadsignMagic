@@ -16,20 +16,20 @@ static NSString *const kAWBInfoKeyRoadsignBackgroundId = @"RoadsignBackgroundId"
     CGFloat exportQuality;
     NSUInteger roadsignBackgroundId;
     NSMutableArray *roadsignViews;
-    NSUInteger totalLabelSubviews;
-    NSUInteger totalImageSubviews;
+    NSUInteger totalLabels;
+    NSUInteger totalSymbols;
     NSUInteger totalImageMemoryBytes;
 }
 
 @property (nonatomic, assign) CGFloat exportQuality;
 @property (nonatomic, assign) NSUInteger roadsignBackgroundId;
 @property (nonatomic, retain) NSMutableArray *roadsignViews;
-@property (nonatomic, readonly) NSUInteger totalLabelSubviews;
-@property (nonatomic, readonly) NSUInteger totalImageSubviews;
+@property (nonatomic, readonly) NSUInteger totalLabels;
+@property (nonatomic, readonly) NSUInteger totalSymbols;
 @property (nonatomic, readonly) NSUInteger totalImageMemoryBytes;
 
 - (void)addRoadsignToView:(UIView *)roadsignBackgroundView;
-- (void)initRoadsignFromView:(UIView *)roadsignBackgroundView;
+- (void)initRoadsignFromView:(UIImageView *)roadsignBackgroundView;
 - (AWBRoadsignBackground *)roadsignBackground;
 
 @end

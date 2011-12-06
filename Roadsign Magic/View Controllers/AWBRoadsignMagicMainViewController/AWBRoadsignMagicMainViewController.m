@@ -35,7 +35,7 @@
 @synthesize exportQuality, snapToGrid, snapToGridSize, lockedView;
 @synthesize selectedSignBackground, selectedSignSymbol, isSignInEditMode;
 @synthesize deleteConfirmationSheet;
-@synthesize totalImageSubviews, totalLabelSubviews, roadsignDescriptor, roadsignSaveDocumentsSubdirectory;
+@synthesize totalSymbolSubviews, totalLabelSubviews, roadsignDescriptor, roadsignSaveDocumentsSubdirectory;
 
 - (id)init
 {
@@ -231,7 +231,7 @@
         
         [roadsign initRoadsignFromView:self.signBackgroundView];
         
-        self.roadsignDescriptor.totalImageObjects = self.totalImageSubviews;
+        self.roadsignDescriptor.totalSymbolObjects = self.totalSymbolSubviews;
         self.roadsignDescriptor.totalLabelObjects = self.totalLabelSubviews;
         self.roadsignDescriptor.totalImageMemoryBytes = roadsign.totalImageMemoryBytes;
         [[AWBRoadsignStore defaultStore] saveAllRoadsigns];
@@ -272,8 +272,8 @@
         
         [roadsign addRoadsignToView:self.signBackgroundView];
        
-        totalImageSubviews = roadsign.totalImageSubviews;
-        totalLabelSubviews = roadsign.totalLabelSubviews;
+        totalSymbolSubviews = roadsign.totalSymbols;
+        totalLabelSubviews = roadsign.totalLabels;
         self.exportQuality = roadsign.exportQuality;
     }
     

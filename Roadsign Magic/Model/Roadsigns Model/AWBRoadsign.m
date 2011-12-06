@@ -15,7 +15,7 @@
 
 @synthesize exportQuality; 
 @synthesize roadsignBackgroundId, roadsignViews;
-@synthesize totalImageSubviews, totalLabelSubviews, totalImageMemoryBytes;
+@synthesize totalSymbols, totalLabels, totalImageMemoryBytes;
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -35,17 +35,17 @@
 {
     if (roadsignBackgroundView) {      
         
-        totalImageSubviews = 0;
-        totalLabelSubviews = 0;
+        totalSymbols = 0;
+        totalLabels = 0;
         
         if (self.roadsignViews) {
             for(UIView <AWBTransformableView> *view in self.roadsignViews) {
                 [roadsignBackgroundView addSubview:view];
                 if ([view isKindOfClass:[AWBTransformableZFontLabel class]]) {
-                    totalLabelSubviews += 1;
+                    totalLabels += 1;
                 }
                 if ([view isKindOfClass:[AWBTransformableSymbolImageView class]]) {
-                    totalImageSubviews += 1;
+                    totalSymbols += 1;
                 }     
             }  
             self.roadsignViews = nil;
@@ -53,15 +53,19 @@
     }
 }
 
-- (void)initRoadsignFromView:(UIView *)roadsignBackgroundView
+- (void)initRoadsignFromView:(UIImageView *)roadsignBackgroundView
 {
     if (roadsignBackgroundView) {   
         NSMutableArray *tempArray = [[NSMutableArray alloc] init];
         self.roadsignViews = tempArray;
         [tempArray release];
-        totalImageSubviews = 0;
-        totalLabelSubviews = 0;
+        totalSymbols = 0;
+        totalLabels = 0;
         totalImageMemoryBytes = 0;
+        
+        if (roadsignBackgroundView.image) {
+            totalImageMemoryBytes += (roadsignBackgroundView.image.size.width * roadsignBackgroundView.image.size.height * 4);
+        }
         
         for(UIView <AWBTransformableView> *view in [roadsignBackgroundView subviews]) {
             //iterator will still go through every view including non transformable, so ensure conformance to the transformable protocol
@@ -70,10 +74,10 @@
                     [self.roadsignViews addObject:view];
                 }
                 if ([view isKindOfClass:[AWBTransformableZFontLabel class]]) {
-                    totalLabelSubviews += 1;
+                    totalLabels += 1;
                 }
                 if ([view isKindOfClass:[AWBTransformableSymbolImageView class]]) {
-                    totalImageSubviews += 1;
+                    totalSymbols += 1;
                     AWBTransformableSymbolImageView *transformableImageView = (AWBTransformableSymbolImageView *)view;
                     totalImageMemoryBytes += (transformableImageView.imageView.image.size.width * transformableImageView.imageView.image.size.height * 4);
                 }                
