@@ -65,7 +65,8 @@ NSString *AWBDocumentSubdirectoryCreatedDate(NSString *docsSubdirectory)
 NSString *AWBDateStringForCurrentLocale(NSDate *date)
 {
     NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
-    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    //[formatter setDateStyle:NSDateFormatterShortStyle];
+    [formatter setDateStyle:(DEVICE_IS_IPAD ? NSDateFormatterMediumStyle : NSDateFormatterShortStyle)];
     [formatter setTimeStyle:NSDateFormatterShortStyle];
     [formatter setLocale:[NSLocale currentLocale]];
     return [formatter stringFromDate:date];

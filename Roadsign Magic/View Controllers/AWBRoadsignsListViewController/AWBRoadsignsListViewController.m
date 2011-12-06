@@ -12,6 +12,7 @@
 #import "AWBRoadsignDescriptor.h"
 #import "AWBRoadsignStore.h"
 #import "AWBSettingsGroup.h"
+#import "AWBSizeableImageTableCell.h"
 
 @implementation AWBRoadsignsListViewController
 
@@ -132,10 +133,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"RoadsignDescriptorCell";
-    
+    NSLog(@"cellForRowAtIndexPath %d", [indexPath row]);
+
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[AWBSizeableImageTableCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
     AWBRoadsignDescriptor *roadsign = [[[AWBRoadsignStore defaultStore] allRoadsigns] objectAtIndex:[indexPath row]];
@@ -149,22 +151,9 @@
     
     UIImage *thumbnail = [UIImage imageWithContentsOfFile:AWBPathInDocumentSubdirectory(subDir, @"thumbnail.png")];
     
-//    if (!thumbnail) {
-//        if (DEVICE_IS_IPAD) {
-//            thumbnail = [UIImage imageNamed:@"defaultthumbnail.jpg"];
-//        } else {
-//            thumbnail = [UIImage imageNamed:@"defaultthumbnailsmall.jpg"];
-//        }    
-//    }
-
     cell.imageView.image = thumbnail;
-//    cell.imageView.layer.borderWidth = [self borderThickness];
-//    cell.imageView.layer.cornerRadius = [self borderThickness] * 4.0; 
-//    cell.imageView.layer.masksToBounds = YES;
-//    cell.imageView.layer.borderColor = [[UIColor blackColor] CGColor];
     cell.detailTextLabel.numberOfLines = 2;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Created: %@\r\nUpdated: %@", AWBDateStringForCurrentLocale(roadsign.createdDate), AWBDocumentSubdirectoryModifiedDate(subDir)];        
-    
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Created %@\r\nUpdated %@", AWBDateStringForCurrentLocale(roadsign.createdDate), AWBDocumentSubdirectoryModifiedDate(subDir)];        
     cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     
     return cell;

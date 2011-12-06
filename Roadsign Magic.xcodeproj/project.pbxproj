@@ -359,6 +359,7 @@
 		068F12F91483A00B00C925C2 /* wood@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 068F12F81483A00B00C925C2 /* wood@2x.jpg */; };
 		068F12FD1483A35E00C925C2 /* UIView+SelectionMarquee.m in Sources */ = {isa = PBXBuildFile; fileRef = 068F12FC1483A35E00C925C2 /* UIView+SelectionMarquee.m */; };
 		068F13001483A65F00C925C2 /* CAShapeLayer+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = 068F12FF1483A65F00C925C2 /* CAShapeLayer+Animation.m */; };
+		06903FD8148E39C200232B9E /* AWBSizeableImageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06903FD7148E39C200232B9E /* AWBSizeableImageTableCell.m */; };
 		06978EEC147D2BCB00171A51 /* locked.png in Resources */ = {isa = PBXBuildFile; fileRef = 06978EEA147D2BCB00171A51 /* locked.png */; };
 		06978EED147D2BCB00171A51 /* locked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06978EEB147D2BCB00171A51 /* locked@2x.png */; };
 		06978EF4147D60C800171A51 /* AWBRoadsignMagicSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06978EF3147D60C800171A51 /* AWBRoadsignMagicSettingsTableViewController.m */; };
@@ -996,6 +997,8 @@
 		068F12FC1483A35E00C925C2 /* UIView+SelectionMarquee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SelectionMarquee.m"; sourceTree = "<group>"; };
 		068F12FE1483A65E00C925C2 /* CAShapeLayer+Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAShapeLayer+Animation.h"; sourceTree = "<group>"; };
 		068F12FF1483A65F00C925C2 /* CAShapeLayer+Animation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAShapeLayer+Animation.m"; sourceTree = "<group>"; };
+		06903FD6148E39C200232B9E /* AWBSizeableImageTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBSizeableImageTableCell.h; sourceTree = "<group>"; };
+		06903FD7148E39C200232B9E /* AWBSizeableImageTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBSizeableImageTableCell.m; sourceTree = "<group>"; };
 		06978EEA147D2BCB00171A51 /* locked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locked.png; sourceTree = "<group>"; };
 		06978EEB147D2BCB00171A51 /* locked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "locked@2x.png"; sourceTree = "<group>"; };
 		06978EEF147D42A900171A51 /* ToDo.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = ToDo.rtf; sourceTree = "<group>"; };
@@ -2617,6 +2620,8 @@
 				B5E0452314784F97006A8D5C /* AWBFontTableCell.m */,
 				B5E044CE1478471F006A8D5C /* AWBTextValueTableCell.h */,
 				B5E044CF1478471F006A8D5C /* AWBTextValueTableCell.m */,
+				06903FD6148E39C200232B9E /* AWBSizeableImageTableCell.h */,
+				06903FD7148E39C200232B9E /* AWBSizeableImageTableCell.m */,
 			);
 			name = "Table Cells and Controls";
 			path = "Views and User Interface/Table Cells and Controls";
@@ -3400,6 +3405,7 @@
 				06BB8764148CD72F0051F9CB /* AWBRoadsignDescriptor.m in Sources */,
 				06BB8767148CD7410051F9CB /* AWBRoadsignStore.m in Sources */,
 				06BB876C148D22250051F9CB /* AWBRoadsignsListViewController.m in Sources */,
+				06903FD8148E39C200232B9E /* AWBSizeableImageTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
