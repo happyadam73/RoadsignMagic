@@ -79,6 +79,7 @@
     }
     
     if (settings.headerView) {
+        self.tableView.autoresizesSubviews = YES;
         self.tableView.tableHeaderView = settings.headerView;
     }
 }

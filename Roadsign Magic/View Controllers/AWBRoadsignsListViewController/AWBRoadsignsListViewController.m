@@ -133,7 +133,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"RoadsignDescriptorCell";
-    NSLog(@"cellForRowAtIndexPath %d", [indexPath row]);
 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -159,9 +158,7 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView 
-commitEditingStyle:(UITableViewCellEditingStyle)editingStyle 
-forRowAtIndexPath:(NSIndexPath *)indexPath 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath 
 {
     // If the table view is asking to commit a delete command...
     if (editingStyle == UITableViewCellEditingStyleDelete)
@@ -186,9 +183,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     }
 }
 
-- (void)tableView:(UITableView *)tableView 
-moveRowAtIndexPath:(NSIndexPath *)fromIndexPath 
-      toIndexPath:(NSIndexPath *)toIndexPath 
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath 
 {
     [[AWBRoadsignStore defaultStore] moveRoadsignAtIndex:[fromIndexPath row] toIndex:[toIndexPath row]];
 }

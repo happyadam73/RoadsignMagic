@@ -73,20 +73,12 @@
 - (UIImageView *)roadsignThumbnailImageView
 {
     UIImage *thumbnail = [UIImage imageWithContentsOfFile:AWBPathInDocumentSubdirectory(self.roadsignSaveDocumentsSubdirectory, @"thumbnail.png")];
-    
-//    if (!thumbnail) {
-//        if (DEVICE_IS_IPAD) {
-//            thumbnail = [UIImage imageNamed:@"defaultthumbnail.jpg"];
-//        } else {
-//            thumbnail = [UIImage imageNamed:@"defaultthumbnailsmall.jpg"];
-//        }    
-//    }
-    
-    CGFloat frameHeight = 92.0;
-    CGFloat frameWidth = 138.0;
-    CGFloat topMargin = 10.0;
-    CGFloat leftMargin = 10.0;
-    CGFloat shadowOffset = 5.0;
+        
+    CGFloat frameHeight = 102.0;
+    CGFloat frameWidth = 112.0;
+    CGFloat topMargin = 5.0;
+    CGFloat leftMargin = 5.0;
+    CGFloat shadowOffset = 3.0;
     
     if (DEVICE_IS_IPAD) {
         frameHeight = 184.0;
@@ -102,8 +94,7 @@
     imageView.layer.shadowOffset = CGSizeMake(shadowOffset, shadowOffset);
     imageView.layer.shadowOpacity = 0.3;
     imageView.layer.shadowColor = [[UIColor blackColor] CGColor];
-    
-    imageView.autoresizingMask = UIViewAutoresizingNone;
+    imageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
     
     return [imageView autorelease];
 }
@@ -111,7 +102,7 @@
 - (UIView *)roadsignInfoHeaderView
 {
     CGFloat frameHeight = 112.0;
-    CGFloat frameWidth = 480.0;
+    CGFloat frameWidth = 320.0;
     if (DEVICE_IS_IPAD) {
         frameHeight = 224.0;
         frameWidth = 768.0;
@@ -127,9 +118,9 @@
 
 - (UILabel *)roadsignNameLabel
 {
-    CGFloat leftMargin = 160;
+    CGFloat leftMargin = 125;
     CGFloat topMargin = 25.0;
-    CGFloat frameWidth = 310;
+    CGFloat frameWidth = 190;
     CGFloat frameHeight = 30;
     CGFloat fontSize = 24.0;
     
@@ -145,14 +136,16 @@
     [nameLabel setBackgroundColor:[UIColor clearColor]];
     [nameLabel setFont:[UIFont systemFontOfSize:fontSize]];
     [nameLabel setText:self.roadsignName];
+    nameLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
+
     return [nameLabel autorelease];
 }
 
 - (UILabel *)roadsignCreatedDateLabel
 {
-    CGFloat leftMargin = 160;
+    CGFloat leftMargin = 125;
     CGFloat topMargin = 60.0;
-    CGFloat frameWidth = 310;
+    CGFloat frameWidth = 190;
     CGFloat frameHeight = 15;
     
     if (DEVICE_IS_IPAD) {
@@ -166,15 +159,16 @@
     [dateLabel setBackgroundColor:[UIColor clearColor]];
     [dateLabel setFont:[UIFont systemFontOfSize:16.0]];
     [dateLabel setTextColor:[UIColor darkGrayColor]];
-    [dateLabel setText:[NSString stringWithFormat:@"Created:\t%@", AWBDateStringForCurrentLocale(self.createdDate)]];
+    [dateLabel setText:[NSString stringWithFormat:@"Created %@", AWBDateStringForCurrentLocale(self.createdDate)]];
+    dateLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
     return [dateLabel autorelease];    
 }
 
 - (UILabel *)roadsignUpdatedDateLabel
 {
-    CGFloat leftMargin = 160;
+    CGFloat leftMargin = 125;
     CGFloat topMargin = 80.0;
-    CGFloat frameWidth = 310;
+    CGFloat frameWidth = 190;
     CGFloat frameHeight = 15;
     
     if (DEVICE_IS_IPAD) {
@@ -188,7 +182,8 @@
     [dateLabel setBackgroundColor:[UIColor clearColor]];
     [dateLabel setFont:[UIFont systemFontOfSize:16.0]];
     [dateLabel setTextColor:[UIColor darkGrayColor]];
-    [dateLabel setText:[NSString stringWithFormat:@"Updated:\t%@", AWBDocumentSubdirectoryModifiedDate(self.roadsignSaveDocumentsSubdirectory)]];
+    [dateLabel setText:[NSString stringWithFormat:@"Updated %@", AWBDocumentSubdirectoryModifiedDate(self.roadsignSaveDocumentsSubdirectory)]];
+    dateLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
     return [dateLabel autorelease];    
 }
 
