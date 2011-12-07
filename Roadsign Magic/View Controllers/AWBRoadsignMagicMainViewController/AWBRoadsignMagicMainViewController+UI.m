@@ -12,6 +12,7 @@
 #import "AWBRoadsignMagicViewController+Edit.h"
 #import "AWBRoadsignMagicViewController+Sign.h"
 #import "AWBRoadsignMagicViewController+Symbol.h"
+#import "AWBRoadsignMagicViewController+Action.h"
 
 @implementation AWBRoadsignMagicMainViewController (UI)
 
@@ -43,7 +44,7 @@
 {
     if (DEVICE_IS_IPAD) {
         [self dismissActionSheetIfVisible:self.deleteConfirmationSheet];
-//        [self dismissActionSheetIfVisible:self.chooseActionTypeSheet];
+        [self dismissActionSheetIfVisible:self.chooseActionTypeSheet];
     }    
 }
 
@@ -105,8 +106,8 @@
 {
     if (actionSheet == self.deleteConfirmationSheet) {
         [self deleteConfirmationActionSheet:actionSheet willDismissWithButtonIndex:buttonIndex];
-//    } else if (actionSheet == self.chooseActionTypeSheet) {
-//        [self chooseActionTypeActionSheet:actionSheet willDismissWithButtonIndex:buttonIndex];
+    } else if (actionSheet == self.chooseActionTypeSheet) {
+        [self chooseActionTypeActionSheet:actionSheet willDismissWithButtonIndex:buttonIndex];
     }
 }
 

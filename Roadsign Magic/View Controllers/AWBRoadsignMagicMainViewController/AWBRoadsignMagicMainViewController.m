@@ -34,7 +34,7 @@
 @synthesize labelTextColor, labelTextFont, labelTextLine1, labelTextLine2, labelTextLine3, labelTextAlignment;
 @synthesize exportQuality, snapToGrid, snapToGridSize, lockedView;
 @synthesize selectedSignBackground, selectedSignSymbol, isSignInEditMode;
-@synthesize deleteConfirmationSheet;
+@synthesize deleteConfirmationSheet, chooseActionTypeSheet, busyView;
 @synthesize totalSymbolSubviews, totalLabelSubviews, roadsignDescriptor, roadsignSaveDocumentsSubdirectory;
 
 - (id)init
@@ -124,6 +124,8 @@
     self.labelTextLine2 = nil;
     self.labelTextLine3 = nil;
     self.deleteConfirmationSheet = nil;
+    self.chooseActionTypeSheet = nil;
+    self.busyView = nil;
 }
 
 - (void)viewDidLoad
@@ -316,6 +318,8 @@
     [labelTextLine3 release];
     [lockedView release];
     [deleteConfirmationSheet release];
+    [chooseActionTypeSheet release];
+    [busyView release];
     [roadsignSaveDocumentsSubdirectory release];
     [signBackgroundView release];
     [mainScrollView release];

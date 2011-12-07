@@ -15,6 +15,7 @@
 #import "AWBSignBackgroundPickerView.h"
 #import "AWBSignSymbolPickerView.h"
 #import "AWBRoadsignDescriptor.h"
+#import "AWBBusyView.h"
 
 #define SNAP_TO_GRID_SIZE 32.0
 #define DEFAULT_FONT_POINT_SIZE 80.0
@@ -82,6 +83,8 @@
     AWBRoadsignDescriptor *roadsignDescriptor;
     
     UIActionSheet *deleteConfirmationSheet;
+    UIActionSheet *chooseActionTypeSheet;
+    AWBBusyView *busyView;
 }
 
 @property (nonatomic, retain) UIBarButtonItem *signBackgroundPickerButton;
@@ -123,6 +126,8 @@
 @property (nonatomic, retain) AWBRoadsignSymbol *selectedSignSymbol;
 @property (assign) BOOL isSignInEditMode;
 @property (nonatomic, retain) UIActionSheet *deleteConfirmationSheet;
+@property (nonatomic, retain) UIActionSheet *chooseActionTypeSheet;
+@property (nonatomic, retain) AWBBusyView *busyView;
 @property (nonatomic, retain) NSString *roadsignSaveDocumentsSubdirectory;
 @property (nonatomic, readonly) NSUInteger totalLabelSubviews;
 @property (nonatomic, readonly) NSUInteger totalSymbolSubviews;
