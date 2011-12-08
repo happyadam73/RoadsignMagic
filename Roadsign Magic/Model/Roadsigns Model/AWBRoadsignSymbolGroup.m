@@ -57,8 +57,9 @@
             [AWBRoadsignSymbolGroup roadsignSymbolGroupWithCategoryId:1 count:2 description:@"Regulatory Sign Symbols"],
             [AWBRoadsignSymbolGroup roadsignSymbolGroupWithCategoryId:2 count:42 description:@"Tourist Sign Symbols"],
             [AWBRoadsignSymbolGroup roadsignSymbolGroupWithCategoryId:3 count:26 description:@"Junction Sign Symbols"],
-            [AWBRoadsignSymbolGroup roadsignSymbolGroupWithCategoryId:4 count:38 description:@"People and Animal Sign Symbols"],
+            [AWBRoadsignSymbolGroup roadsignSymbolGroupWithCategoryId:4 count:40 description:@"People and Animal Sign Symbols"],
             [AWBRoadsignSymbolGroup roadsignSymbolGroupWithCategoryId:5 count:38 description:@"Vehicle Sign Symbols"],
+            [AWBRoadsignSymbolGroup roadsignSymbolGroupWithCategoryId:6 count:16 description:@"Hazard Warning Sign Symbols"],
             nil];
 }
 
