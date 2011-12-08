@@ -19,6 +19,7 @@
 
 @synthesize window=_window;
 @synthesize mainNavigationController;
+@synthesize signBackgroundSize;
 
 - (void)dealloc
 {
@@ -30,7 +31,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-
+    self.signBackgroundSize = CGSizeZero;
+    
     AWBRoadsignDescriptor *roadsign = nil;
     NSUInteger totalSavedRoadsigns = [[[AWBRoadsignStore defaultStore] allRoadsigns] count];
     NSInteger roadsignIndex = [[NSUserDefaults standardUserDefaults] integerForKey:kAWBInfoKeyRoadsignStoreRoadsignIndex];

@@ -29,23 +29,23 @@
     if (self) {
         // Initialization code
         qualitySlider = [[UISlider alloc] initWithFrame:CGRectZero];
-        [qualitySlider setMinimumValue:1.0];
-        [qualitySlider setMaximumValue:4.0];
+        [qualitySlider setMinimumValue:0.1];
+        [qualitySlider setMaximumValue:2.0];
         [qualitySlider setValue:value];
-        [qualitySlider setMinimumValueImage:[UIImage imageNamed:@"1x.png"]];
-        [qualitySlider setMaximumValueImage:[UIImage imageNamed:@"4x.png"]];
+        [qualitySlider setMinimumValueImage:[UIImage imageNamed:@"0.1x.png"]];
+        [qualitySlider setMaximumValueImage:[UIImage imageNamed:@"2x.png"]];
         [qualitySlider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
         [[self contentView] addSubview:qualitySlider];
         [qualitySlider release];
         [self.textLabel setText:@"Size"];
-        [self.detailTextLabel setText:AWBScreenSizeFromQualityValue(self.qualityValue)];
+        [self.detailTextLabel setText:AWBImageSizeFromQualityValue(self.qualityValue)];
     }
     return self;    
 }
 
 - (CGFloat)qualityValue
 {
-    return (((int)(2.0 * qualitySlider.value)) / 2.0);
+    return (((int)(10.0 * qualitySlider.value)) / 10.0);
 }
 
 - (void)setQualityValue:(CGFloat)value
@@ -61,7 +61,7 @@
 
 - (void)sliderValueChanged:(id)sender
 {
-    [self.detailTextLabel setText:AWBScreenSizeFromQualityValue(self.qualityValue)];
+    [self.detailTextLabel setText:AWBImageSizeFromQualityValue(self.qualityValue)];
 }
 
 @end

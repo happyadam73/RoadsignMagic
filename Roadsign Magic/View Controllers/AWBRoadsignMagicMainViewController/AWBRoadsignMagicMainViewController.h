@@ -16,6 +16,7 @@
 #import "AWBSignSymbolPickerView.h"
 #import "AWBRoadsignDescriptor.h"
 #import "AWBBusyView.h"
+#import "AWBAppDelegate.h"
 
 #define SNAP_TO_GRID_SIZE 32.0
 #define DEFAULT_FONT_POINT_SIZE 80.0

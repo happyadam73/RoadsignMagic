@@ -113,6 +113,8 @@
 
 - (void)setExportQualityFromSettingsInfo:(NSDictionary *)info
 {
+    NSLog(@"Export Quality: %f", [[info objectForKey:kAWBInfoKeyExportQualityValue] floatValue]);
+    
     [self setExportQuality:[[info objectForKey:kAWBInfoKeyExportQualityValue] floatValue]];
 }
 

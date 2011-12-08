@@ -76,12 +76,12 @@
         if (buttonIndex == [actionSheet firstOtherButtonIndex]) {
             //Save Image
             busyText = @"Exporting Image";
-            busyTextDetail = [NSString stringWithFormat:@"(Size: %@)", AWBScreenSizeFromQualityValue(self.exportQuality)];
+            busyTextDetail = [NSString stringWithFormat:@"(Size: %@)", AWBImageSizeFromQualityValue(self.exportQuality)];
             methodSelector = @selector(saveRoadsignAsPhoto);
         } else if (buttonIndex == ([actionSheet firstOtherButtonIndex]+1)) {
             //Email Image
             busyText = @"Preparing for Email";
-            busyTextDetail = [NSString stringWithFormat:@"(Size: %@)", AWBScreenSizeFromQualityValue(self.exportQuality)];
+            busyTextDetail = [NSString stringWithFormat:@"(Size: %@)", AWBImageSizeFromQualityValue(self.exportQuality)];
             methodSelector = @selector(emailRoadsignAsPhoto);
         } else if (buttonIndex == ([actionSheet firstOtherButtonIndex]+2)) {
             // Print Image (4x6, A6)
@@ -99,7 +99,7 @@
             // Twitter Image
             busyText = @"Preparing for Twitter";
             CGFloat quality = (DEVICE_IS_IPAD? 1.0 : 2.0);
-            busyTextDetail = [NSString stringWithFormat:@"(Size: %@)", AWBScreenSizeFromQualityValue(quality)];
+            busyTextDetail = [NSString stringWithFormat:@"(Size: %@)", AWBImageSizeFromQualityValue(quality)];
             methodSelector = @selector(twitterRoadsignAsPhoto);
         }
         
@@ -114,15 +114,15 @@
 
 - (UIImage *)generateRoadsignImageWithScaleFactor:(CGFloat)scaleFactor
 {
-    UIGraphicsBeginImageContextWithOptions(self.signBackgroundView.bounds.size, YES, scaleFactor);
+    UIGraphicsBeginImageContextWithOptions(self.signBackgroundView.bounds.size, NO, scaleFactor);
 //    if (self.useBackgroundTexture && self.collageBackgroundTexture) {
 //        UIImage *image = [UIColor textureImageWithDescription:self.collageBackgroundTexture];
 //        CGContextDrawTiledImage(UIGraphicsGetCurrentContext(), CGRectMake(0.0, 0.0, (image.size.width/scaleFactor),  (image.size.height/scaleFactor)), [image CGImage]);
 //        self.view.backgroundColor = [UIColor clearColor];
 //    }
     
-    UIImage *image = [UIImage imageFromFile:@"concrete.jpg"];
-    CGContextDrawTiledImage(UIGraphicsGetCurrentContext(), CGRectMake(0.0, 0.0, (image.size.width * scaleFactor),  (image.size.height * scaleFactor)), [image CGImage]);
+//    UIImage *image = [UIImage imageFromFile:@"concrete.jpg"];
+//    CGContextDrawTiledImage(UIGraphicsGetCurrentContext(), CGRectMake(0.0, 0.0, (image.size.width * scaleFactor),  (image.size.height * scaleFactor)), [image CGImage]);
     
     [self.signBackgroundView.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *roadsignImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -155,8 +155,8 @@
 
 - (void)saveImageToSavedPhotosAlbum:(UIImage *)image 
 {
-    //NSData *data = UIImagePNGRepresentation(image);
-    NSData *data = UIImageJPEGRepresentation(image, 0.7);
+    NSData *data = UIImagePNGRepresentation(image);
+    //NSData *data = UIImageJPEGRepresentation(image, 0.7);
     ALAssetsLibrary *al = [[ALAssetsLibrary alloc] init];
 	[al writeImageDataToSavedPhotosAlbum:data metadata:nil completionBlock:^(NSURL *assetURL, NSError *error) {}];
     [al release];
@@ -242,40 +242,47 @@
     CGFloat actualHeight = self.signBackgroundView.bounds.size.height;
     CGFloat actualWidth = self.signBackgroundView.bounds.size.width;
     
+    CGFloat requiredHeight;
+    CGFloat requiredWidth;
+    CGFloat aspectRatio = (print6x4 ? 1.5 : 1.41);
     CGFloat leftMargin = 0.0;
     CGFloat rightMargin = 0.0;
     CGFloat topMargin = 0.0;
     CGFloat bottomMargin = 0.0;
     CGFloat offsetLeft = 0.0;
     CGFloat offsetTop = 0.0;
-    CGFloat scaleFactor = 3.0;
-    
-    if (print6x4) {
-        if (DEVICE_IS_IPAD) {
-            leftMargin = 92.0;
-            rightMargin = 92.0;
-            topMargin = 69.0;
-            bottomMargin = 69.0;
-            offsetLeft = 112.0;
-            offsetTop = 75.0;
-            scaleFactor = 1.5;
-        } else {
-            leftMargin = 24.0;
-            rightMargin = 24.0;
-            topMargin = 16.0;
-            bottomMargin = 16.0;
-            offsetLeft = 30.0;
-            offsetTop = 20.0;
-            scaleFactor = 3.0;
-        }
+    CGFloat scaleFactor = (print6x4 ? 1.1 : 1.5);
+    CGFloat delta = 0.0;
+
+    if (actualWidth < actualHeight) {
+        requiredWidth = actualWidth;
+        requiredHeight = aspectRatio * actualWidth;
     } else {
-        if (DEVICE_IS_IPAD) {
-            scaleFactor = 2.0;
-        } else {
-            scaleFactor = 4.0;
-        }
-    }   
+        requiredHeight = actualHeight;
+        requiredWidth = aspectRatio * actualHeight;
+    }
+
+    if (requiredWidth > actualWidth) {
+        delta = (requiredWidth - actualWidth);
+        leftMargin = (delta/2.0);
+        rightMargin = (delta/2.0);
+    }
     
+    if (requiredHeight > actualHeight) {
+        delta = (requiredHeight - actualHeight);
+        topMargin = (delta/2.0);
+        bottomMargin = (delta/2.0);
+    }
+    
+    CGFloat extraWidth = (0.05 * (actualWidth + leftMargin + rightMargin));
+    CGFloat extraHeight = (0.05 * (actualHeight + topMargin + bottomMargin));
+    leftMargin += extraWidth;
+    rightMargin += extraWidth;
+    topMargin += extraHeight;
+    bottomMargin += extraHeight;
+    offsetLeft = leftMargin;
+    offsetTop = topMargin;
+        
     CGRect rect = CGRectMake(0.0, 0.0, actualWidth + leftMargin + rightMargin, actualHeight + topMargin + bottomMargin);
     UIGraphicsBeginImageContextWithOptions(rect.size, YES, scaleFactor);    
        
@@ -302,10 +309,13 @@
 //        [self.collageBackgroundColor setFill];        
 //        UIRectFill(rect);
 //    }
-    
+
+    [[UIColor whiteColor] setFill];        
+    UIRectFill(rect);
+
     CGContextRef resizedContext = UIGraphicsGetCurrentContext();
     CGContextTranslateCTM(resizedContext, offsetLeft, offsetTop);
-    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    [self.signBackgroundView.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *roadsignImage = UIGraphicsGetImageFromCurrentImageContext();
     
 //    if (self.useBackgroundTexture) {

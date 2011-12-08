@@ -41,6 +41,7 @@
         if (self.roadsignViews) {
             for(UIView <AWBTransformableView> *view in self.roadsignViews) {
                 [roadsignBackgroundView addSubview:view];
+                [view initialiseForSelection];
                 if ([view isKindOfClass:[AWBTransformableZFontLabel class]]) {
                     totalLabels += 1;
                 }

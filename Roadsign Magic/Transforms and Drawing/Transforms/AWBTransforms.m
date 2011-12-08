@@ -7,6 +7,7 @@
 //
 
 #import "AWBTransforms.h"
+#import "AWBAppDelegate.h"
 
 CGAffineTransform AWBCGAffineTransformMakeRotationAndScale(CGFloat rotation, CGFloat scale, BOOL horizontalFlip)
 {
@@ -165,9 +166,10 @@ CGFloat AWBQuantizeFloat(CGFloat value, CGFloat quantizationFactor, BOOL roundUp
     }
 }
 
-NSString *AWBScreenSizeFromQualityValue(CGFloat value)
+NSString *AWBImageSizeFromQualityValue(CGFloat value)
 {
-    CGSize screenSize = [[UIScreen mainScreen] applicationFrame].size;    
+    AWBAppDelegate *delegate = (AWBAppDelegate *) [[UIApplication sharedApplication] delegate];
+    CGSize signBackgroundSize = delegate.signBackgroundSize;
     
-    return [NSString stringWithFormat:@"%d x %d", (int)(screenSize.height * value), (int)(screenSize.width * value)];
+    return [NSString stringWithFormat:@"%d x %d", (int)(signBackgroundSize.width * value), (int)(signBackgroundSize.height * value)];
 }

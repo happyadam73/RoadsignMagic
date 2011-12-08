@@ -245,7 +245,7 @@
             self.settingValue = [(UITextField *)sender text];
             break;
         case AWBSettingControlTypeQualitySlider:            
-            self.settingValue = [NSNumber numberWithFloat:(((int)(2.0 * [(UISlider *)sender value])) / 2.0)];
+            self.settingValue = [NSNumber numberWithFloat:(((int)(10.0 * [(UISlider *)sender value])) / 10.0)];
             break;
         case AWBSettingControlTypeColorPicker:
             self.settingValue = [(AWBColorPickerSegmentedControl *)sender selectedColor];

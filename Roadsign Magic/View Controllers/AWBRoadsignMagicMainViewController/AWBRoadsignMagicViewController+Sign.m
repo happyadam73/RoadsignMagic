@@ -72,6 +72,9 @@
     [mainScrollView setZoomScale:MIN(minWidthScale, minHeightScale)];
     [mainScrollView setContentOffset:CGPointZero];
     
+    AWBAppDelegate *delegate = (AWBAppDelegate *) [[UIApplication sharedApplication] delegate];
+    delegate.signBackgroundSize = signBackgroundView.bounds.size;
+    
     [UIView animateWithDuration:1.0 
                           delay:0.0 options:UIViewAnimationOptionAllowUserInteraction
                      animations: ^ {

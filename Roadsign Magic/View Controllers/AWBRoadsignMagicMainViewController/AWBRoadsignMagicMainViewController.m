@@ -57,7 +57,7 @@
         snapToGrid = YES;
         snapToGridSize = SNAP_TO_GRID_SIZE;
         labelTextAlignment = UITextAlignmentCenter;
-        exportQuality = 2.0;
+        exportQuality = 1.0;
         isSignInEditMode = NO;
     }
     return self;
@@ -191,6 +191,8 @@
     UIImageView *backgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 1400.0, 1400.0)];
     backgroundView.userInteractionEnabled = YES;
     self.signBackgroundView = backgroundView;
+    AWBAppDelegate *delegate = (AWBAppDelegate *) [[UIApplication sharedApplication] delegate];
+    delegate.signBackgroundSize = signBackgroundView.bounds.size;
     [self.mainScrollView addSubview:self.signBackgroundView];
     [backgroundView release];
     
