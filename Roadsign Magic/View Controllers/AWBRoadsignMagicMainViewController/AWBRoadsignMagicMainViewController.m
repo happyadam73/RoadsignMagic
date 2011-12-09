@@ -63,8 +63,10 @@
     return self;
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
+
     if (!self.isSignInEditMode) {
         self.toolbarItems = [self normalToolbarButtons];
         self.navigationItem.rightBarButtonItem = self.editButton;
