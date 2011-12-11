@@ -15,7 +15,7 @@
 
 - (void)initialiseSegments
 {
-    pickerColors = [[NSArray arrayWithObjects:[UIColor blackColor], [UIColor lightGrayColor], [UIColor whiteColor], [UIColor redSignBackgroundColor], [UIColor darkGreenSignBackgroundColor], [UIColor blueSignBackgroundColor], [UIColor yellowSignBackgroundColor], nil] retain]; 
+    pickerColors = [[NSArray arrayWithObjects:[UIColor blackColor], [UIColor lightGrayColor], [UIColor whiteColor], [UIColor redSignBackgroundColor], [UIColor darkGreenSignBackgroundColor], [UIColor blueSignBackgroundColor], [UIColor yellowSignBackgroundColor], [UIColor brownSignBackgroundColor], nil] retain]; 
 
     [self removeAllSegments];
     for (NSUInteger segmentIndex = 0; segmentIndex < [[self pickerSegmentImages] count]; segmentIndex++) {
@@ -46,9 +46,8 @@
 
 - (NSArray *)pickerSegmentImages
 {
-    return [NSArray arrayWithObjects:[UIImage imageNamed:@"blackbutton"], [UIImage imageNamed:@"lightgraybutton"], [UIImage imageNamed:@"whitebutton"], [UIImage imageNamed:@"signredbutton"], [UIImage imageNamed:@"signgreenbutton"], [UIImage imageNamed:@"signbluebutton"], [UIImage imageNamed:@"signyellowbutton"], nil];
+    return [NSArray arrayWithObjects:[UIImage imageNamed:@"blackbutton"], [UIImage imageNamed:@"lightgraybutton"], [UIImage imageNamed:@"whitebutton"], [UIImage imageNamed:@"signredbutton"], [UIImage imageNamed:@"signgreenbutton"], [UIImage imageNamed:@"signbluebutton"], [UIImage imageNamed:@"signyellowbutton"], [UIImage imageNamed:@"signbrownbutton"], nil];
 }
-
 
 - (UIColor *)selectedColor
 {

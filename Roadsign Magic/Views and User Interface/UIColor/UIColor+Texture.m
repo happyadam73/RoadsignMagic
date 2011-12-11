@@ -38,7 +38,7 @@
 
 + (NSArray *)allTextureColorImages
 {
-    return [NSArray arrayWithObjects:[UIImage imageFromFile:@"concrete.jpg"], [UIImage imageFromFile:@"asphalt.jpg"], [UIImage imageFromFile:@"wood.jpg"], nil];
+    return [NSArray arrayWithObjects:[UIImage imageFromFile:@"concrete100.jpg"], [UIImage imageFromFile:@"asphalt100.jpg"], [UIImage imageFromFile:@"wood100.jpg"], nil];
 }
 
 + (id)textureColorWithDescription:(NSString *)colorDescription

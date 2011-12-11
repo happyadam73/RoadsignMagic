@@ -56,6 +56,9 @@ static NSString *const kAWBInfoKeyExportSizeValue = @"ExportSizeValue";
 static NSString *const kAWBInfoKeyExportFormatSelectedIndex = @"ExportFormatSelectedIndex";
 static NSString *const kAWBInfoKeyPNGExportTransparentBackground = @"PNGExportTransparentBackground";
 static NSString *const kAWBInfoKeyJPGExportQualityValue = @"JPGExportQualityValue";
+static NSString *const kAWBInfoKeyRoadsignBackgroundColor = @"RoadsignBackgroundColor";
+static NSString *const kAWBInfoKeyRoadsignBackgroundTexture = @"RoadsignBackgroundTexture";
+static NSString *const kAWBInfoKeyRoadsignUseBackgroundTexture = @"RoadsignUseBackgroundTexture";
 
 @class AWBSetting;
 @class AWBSettings;
@@ -114,6 +117,9 @@ static NSString *const kAWBInfoKeyJPGExportQualityValue = @"JPGExportQualityValu
 + (AWBSettingsGroup *)canvasLockSettingsGroupWithInfo:(NSDictionary *)info;
 + (AWBSettingsGroup *)objectLockSettingsGroupWithInfo:(NSDictionary *)info;
 + (AWBSettingsGroup *)snapToGridSettingsGroupWithInfo:(NSDictionary *)info;
++ (AWBSettingsGroup *)backgroundColorPickerSettingsGroupWithInfo:(NSDictionary *)info;
++ (AWBSettingsGroup *)backgroundTextureListSettingsGroupWithInfo:(NSDictionary *)info header:(NSString *)header footer:(NSString *)footer;  
++ (AWBSettingsGroup *)backgroundTextureSwitchSettingsGroupWithInfo:(NSDictionary *)info;
 
 @end
 

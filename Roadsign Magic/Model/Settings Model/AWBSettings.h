@@ -49,5 +49,6 @@
 + (AWBSettings *)createRoadsignSettingsWithInfo:(NSDictionary *)info;
 + (AWBSettings *)aboutSettingsWithInfo:(NSDictionary *)info;
 + (AWBSettings *)drawingAidsSettingsWithInfo:(NSDictionary *)info;
++ (AWBSettings *)backgroundSettingsWithInfo:(NSDictionary *)info;
 
 @end

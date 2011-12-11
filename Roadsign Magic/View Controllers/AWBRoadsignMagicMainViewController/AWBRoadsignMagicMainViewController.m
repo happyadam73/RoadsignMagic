@@ -55,7 +55,7 @@
 //        } else {
 //            self.navigationItem.title = [NSString stringWithFormat:@"%@", roadsign.roadsignSaveDocumentsSubdirectory];
 //        }
-        snapToGrid = YES;
+        snapToGrid = NO;
         snapToGridSize = SNAP_TO_GRID_SIZE;
         labelTextAlignment = UITextAlignmentCenter;
         exportSize = 1.0;

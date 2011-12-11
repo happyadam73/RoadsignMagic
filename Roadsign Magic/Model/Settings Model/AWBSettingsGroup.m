@@ -13,6 +13,7 @@
 #import "FileHelpers.h"
 #import "UIImage+NonCached.h"
 #import "AWBRoadsignDescriptor.h"
+#import "UIColor+Texture.h"
 
 @implementation AWBSettingsGroup
 
@@ -180,7 +181,7 @@
 
 + (AWBSettingsGroup *)mainSettingsDrilldownSettingsGroupWithInfo:(NSDictionary *)info
 {
-    NSMutableArray *buttonSettings = [NSMutableArray arrayWithObjects:[AWBSetting drilldownSettingWithText:@"Drawing Aids" value:nil key:nil childSettings:[AWBSettings drawingAidsSettingsWithInfo:info]], [AWBSetting drilldownSettingWithText:@"Background" value:nil key:nil childSettings:[AWBSettings exportSettingsWithInfo:info]], [AWBSetting drilldownSettingWithText:@"Export" value:nil key:nil childSettings:[AWBSettings exportSettingsWithInfo:info]], nil];
+    NSMutableArray *buttonSettings = [NSMutableArray arrayWithObjects:[AWBSetting drilldownSettingWithText:@"Drawing Aids" value:nil key:nil childSettings:[AWBSettings drawingAidsSettingsWithInfo:info]], [AWBSetting drilldownSettingWithText:@"Background" value:nil key:nil childSettings:[AWBSettings backgroundSettingsWithInfo:info]], [AWBSetting drilldownSettingWithText:@"Export" value:nil key:nil childSettings:[AWBSettings exportSettingsWithInfo:info]], nil];
     
     return [[[self alloc] initWithSettings:buttonSettings header:nil footer:nil] autorelease];    
 }
@@ -222,6 +223,51 @@
     NSMutableArray *snapToGridSettings = [NSMutableArray arrayWithObjects:[AWBSetting switchSettingWithText:@"Snap to Grid" value:[info objectForKey:kAWBInfoKeySnapToGrid] key:kAWBInfoKeySnapToGrid], nil];
     
     return [[[self alloc] initWithSettings:snapToGridSettings header:nil footer:nil] autorelease];
+}
+
++ (AWBSettingsGroup *)backgroundColorPickerSettingsGroupWithInfo:(NSDictionary *)info
+{
+    return [[[self alloc] initWithSettings:[NSMutableArray arrayWithObject:[AWBSetting colorSettingWithValue:[info objectForKey:kAWBInfoKeyRoadsignBackgroundColor] andKey:kAWBInfoKeyRoadsignBackgroundColor]] header:@"Background Colour" footer:nil] autorelease];
+}
+
++ (AWBSettingsGroup *)backgroundTextureListSettingsGroupWithInfo:(NSDictionary *)info header:(NSString *)header footer:(NSString *)footer   
+{
+    NSArray *colorDescriptions = [UIColor allTextureColorDescriptions];
+    NSArray *colorImages = [UIColor allTextureColorImages];
+    NSUInteger colorCount = [colorDescriptions count];
+    NSMutableArray *colorSettings = [[NSMutableArray alloc] initWithCapacity:colorCount];
+    
+    for (NSUInteger colorIndex = 0; colorIndex < colorCount; colorIndex++) {
+        AWBSetting *setting = [AWBSetting imageAndTextListSettingWithText:[colorDescriptions objectAtIndex:colorIndex] value:[colorImages objectAtIndex:colorIndex]];
+        if (setting) {
+            [colorSettings addObject:setting];
+        }
+    }
+    
+    AWBSettingsGroup *colorSettingsGroup = [[self alloc] initWithSettings:colorSettings header:header footer:footer];
+    [colorSettings release];
+    colorSettingsGroup.isMutuallyExclusive = YES;
+    colorSettingsGroup.settingKeyForMutuallyExclusiveObjects = kAWBInfoKeyRoadsignBackgroundTexture;
+    colorSettingsGroup.mutuallyExclusiveObjects = [NSMutableArray arrayWithArray:colorDescriptions];
+    colorSettingsGroup.selectedIndex = [colorSettingsGroup.mutuallyExclusiveObjects indexOfObject:[info objectForKey:kAWBInfoKeyRoadsignBackgroundTexture]];
+    if (colorSettingsGroup.selectedIndex >= [colorSettingsGroup.mutuallyExclusiveObjects count]) {
+        colorSettingsGroup.selectedIndex = 0;
+    }
+    colorSettingsGroup.iPhoneRowHeight = 50.0;
+    colorSettingsGroup.iPadRowHeight = 106.0;
+    
+    return [colorSettingsGroup autorelease];
+}
+
++ (AWBSettingsGroup *)backgroundTextureSwitchSettingsGroupWithInfo:(NSDictionary *)info
+{
+    AWBSetting *backgroundTextureSwitchSetting = [AWBSetting switchSettingWithText:@"Textured Background" value:[info objectForKey:kAWBInfoKeyRoadsignUseBackgroundTexture] key:kAWBInfoKeyRoadsignUseBackgroundTexture];
+    backgroundTextureSwitchSetting.masterSlaveType = AWBSettingMasterSlaveTypeMasterSwitch;
+    NSMutableArray *buttonSettings = [NSMutableArray arrayWithObject:backgroundTextureSwitchSetting];
+    AWBSettingsGroup *backgroundTextureSwitchSettings = [[self alloc] initWithSettings:buttonSettings header:nil footer:nil];
+    backgroundTextureSwitchSettings.masterSwitchIsOn = backgroundTextureSwitchSetting.isSwitchedOn;
+    backgroundTextureSwitchSetting.parentGroup = backgroundTextureSwitchSettings;
+    return [backgroundTextureSwitchSettings autorelease];
 }
 
 
