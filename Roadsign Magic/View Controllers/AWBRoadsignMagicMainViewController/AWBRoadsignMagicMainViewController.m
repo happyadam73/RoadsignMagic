@@ -23,6 +23,7 @@
 #import "FileHelpers.h"
 #import "AWBRoadsignMagicViewController+Sign.h"
 #import "AWBRoadsignMagicViewController+Edit.h"
+#import "UIColor+Texture.h"
 
 @implementation AWBRoadsignMagicMainViewController
 
@@ -177,7 +178,8 @@
     currentlyRotating = NO;
     
     self.wantsFullScreenLayout = YES;
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageFromFile:@"concrete.jpg"]];
+//    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageFromFile:@"concrete.jpg"]];
+    self.view.backgroundColor = [UIColor concreteTextureColor];
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:[[self view] bounds]];
     [scrollView setDelegate:self];
     [scrollView setBouncesZoom:YES];

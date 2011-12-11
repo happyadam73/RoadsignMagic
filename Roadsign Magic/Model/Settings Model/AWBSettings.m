@@ -99,6 +99,14 @@
 
 + (AWBSettings *)mainSettingsWithInfo:(NSDictionary *)info
 {
+    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup mainSettingsDrilldownSettingsGroupWithInfo:info], [AWBSettingsGroup aboutSettingsDrilldownSettingsGroupWithInfo:info], nil];
+    AWBSettings *mainSettings = [[self alloc] initWithSettingsGroups:settings title:@"Settings"];
+    
+    return [mainSettings autorelease];        
+}
+
++ (AWBSettings *)exportSettingsWithInfo:(NSDictionary *)info
+{
     AWBSettingsGroup *exportQualityAndFormatSettings = [AWBSettingsGroup exportQualityAndFormatSettingsGroupWithInfo:info];
     AWBSettingsGroup *pngExportSettings = [AWBSettingsGroup pngExportSettingsGroupWithInfo:info];
     AWBSettingsGroup *jpgExportSettings = [AWBSettingsGroup jpgExportSettingsGroupWithInfo:info];
@@ -113,11 +121,22 @@
     pngExportSettings.visible = !exportQualityAndFormatSettings.masterSwitchIsOn;
     
     return [exportSettings autorelease];        
-//    
-//    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup exportQualityAndFormatSettingsGroupWithInfo:info], nil];
-//    AWBSettings *mainSettings = [[self alloc] initWithSettingsGroups:settings title:@"Roadsign Settings"];
-//    
-//    return [mainSettings autorelease];
+}
+
++ (AWBSettings *)aboutSettingsWithInfo:(NSDictionary *)info
+{
+    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup aboutTextSettingsGroupWithInfo:info], nil];
+    AWBSettings *aboutSettings = [[self alloc] initWithSettingsGroups:settings title:@"About"];
+    
+    return [aboutSettings autorelease];    
+}
+
++ (AWBSettings *)drawingAidsSettingsWithInfo:(NSDictionary *)info
+{
+    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup snapToGridSettingsGroupWithInfo:info], [AWBSettingsGroup objectLockSettingsGroupWithInfo:info], [AWBSettingsGroup canvasLockSettingsGroupWithInfo:info], nil];
+    AWBSettings *drawingAidsSettings = [[self alloc] initWithSettingsGroups:settings title:@"Drawing Aids"];
+    
+    return [drawingAidsSettings autorelease];    
 }
 
 + (AWBSettings *)textSettingsWithInfo:(NSDictionary *)info

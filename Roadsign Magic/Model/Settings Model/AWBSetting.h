@@ -23,7 +23,8 @@ typedef enum {
     AWBSettingControlTypeImageAndTextList,
     AWBSettingControlTypeTextAndValue, 
     AWBSettingControlTypeSegmentControl,
-    AWBSettingControlTypeSubtitle
+    AWBSettingControlTypeSubtitle,
+    AWBSettingControlTypeTextView
 } AWBSettingControlType;
 
 typedef enum {
@@ -64,6 +65,7 @@ typedef enum {
 + (AWBSetting *)colorSettingWithValue:(id)aValue andKey:(NSString *)aKey;
 + (AWBSetting *)exportSizeSliderSettingWithValue:(id)aValue andKey:(NSString *)aKey;
 + (AWBSetting *)exportQualitySliderSettingWithValue:(id)aValue andKey:(NSString *)aKey;
++ (AWBSetting *)textViewSettingWithValue:(id)aValue andKey:(NSString *)aKey;
 + (AWBSetting *)switchSettingWithText:(NSString *)text value:(id)aValue key:(NSString *)aKey;
 + (AWBSetting *)textEditSettingWithText:(NSString *)text value:(id)aValue key:(NSString *)aKey;
 + (AWBSetting *)fontSettingWithValue:(id)aValue;

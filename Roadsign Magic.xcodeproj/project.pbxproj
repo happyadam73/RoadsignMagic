@@ -745,6 +745,8 @@
 		06D1AEEA1494DDD60096099B /* HiQuality@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06D1AEE61494DDD60096099B /* HiQuality@2x.png */; };
 		06D1AEEB1494DDD60096099B /* LoQuality.png in Resources */ = {isa = PBXBuildFile; fileRef = 06D1AEE71494DDD60096099B /* LoQuality.png */; };
 		06D1AEEC1494DDD60096099B /* LoQuality@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06D1AEE81494DDD60096099B /* LoQuality@2x.png */; };
+		06D1AEEF1495071D0096099B /* AWBTextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D1AEEE1495071C0096099B /* AWBTextViewCell.m */; };
+		06D1AEF2149518300096099B /* UIColor+Texture.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D1AEF1149518300096099B /* UIColor+Texture.m */; };
 		06E37436147FF42600EA536C /* AWBLockedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E37435147FF42600EA536C /* AWBLockedView.m */; };
 		06F15E89147BC0AE007071D0 /* 00@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06F15E68147BC0AE007071D0 /* 00@2x.png */; };
 		06F15E8A147BC0AE007071D0 /* 10001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06F15E6A147BC0AE007071D0 /* 10001@2x.png */; };
@@ -1675,6 +1677,10 @@
 		06D1AEE61494DDD60096099B /* HiQuality@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HiQuality@2x.png"; sourceTree = "<group>"; };
 		06D1AEE71494DDD60096099B /* LoQuality.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoQuality.png; sourceTree = "<group>"; };
 		06D1AEE81494DDD60096099B /* LoQuality@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LoQuality@2x.png"; sourceTree = "<group>"; };
+		06D1AEED1495071C0096099B /* AWBTextViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBTextViewCell.h; sourceTree = "<group>"; };
+		06D1AEEE1495071C0096099B /* AWBTextViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBTextViewCell.m; sourceTree = "<group>"; };
+		06D1AEF0149518300096099B /* UIColor+Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Texture.h"; sourceTree = "<group>"; };
+		06D1AEF1149518300096099B /* UIColor+Texture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Texture.m"; sourceTree = "<group>"; };
 		06E37434147FF42600EA536C /* AWBLockedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBLockedView.h; path = "Views and User Interface/LockedView/AWBLockedView.h"; sourceTree = "<group>"; };
 		06E37435147FF42600EA536C /* AWBLockedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBLockedView.m; path = "Views and User Interface/LockedView/AWBLockedView.m"; sourceTree = "<group>"; };
 		06F15E68147BC0AE007071D0 /* 00@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "00@2x.png"; sourceTree = "<group>"; };
@@ -3417,6 +3423,8 @@
 				B5E044C31478471F006A8D5C /* AWBExportSizeSliderCell.m */,
 				06D1AEE21494D9560096099B /* AWBExportQualitySliderCell.h */,
 				06D1AEE31494D9560096099B /* AWBExportQualitySliderCell.m */,
+				06D1AEED1495071C0096099B /* AWBTextViewCell.h */,
+				06D1AEEE1495071C0096099B /* AWBTextViewCell.m */,
 				B5E044C41478471F006A8D5C /* AWBSegmentControlCell.h */,
 				B5E044C51478471F006A8D5C /* AWBSegmentControlCell.m */,
 				B5E044C61478471F006A8D5C /* AWBSettingTableCell.h */,
@@ -3460,6 +3468,8 @@
 			children = (
 				B5E044DD1478471F006A8D5C /* UIColor+SignColors.h */,
 				B5E044DE1478471F006A8D5C /* UIColor+SignColors.m */,
+				06D1AEF0149518300096099B /* UIColor+Texture.h */,
+				06D1AEF1149518300096099B /* UIColor+Texture.m */,
 			);
 			name = UIColor;
 			path = "Views and User Interface/UIColor";
@@ -4477,6 +4487,8 @@
 				06BB876C148D22250051F9CB /* AWBRoadsignsListViewController.m in Sources */,
 				06903FD8148E39C200232B9E /* AWBSizeableImageTableCell.m in Sources */,
 				06D1AEE41494D9560096099B /* AWBExportQualitySliderCell.m in Sources */,
+				06D1AEEF1495071D0096099B /* AWBTextViewCell.m in Sources */,
+				06D1AEF2149518300096099B /* UIColor+Texture.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

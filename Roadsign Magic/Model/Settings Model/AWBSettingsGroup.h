@@ -108,6 +108,12 @@ static NSString *const kAWBInfoKeyJPGExportQualityValue = @"JPGExportQualityValu
 + (AWBSettingsGroup *)exportQualityAndFormatSettingsGroupWithInfo:(NSDictionary *)info;
 + (AWBSettingsGroup *)pngExportSettingsGroupWithInfo:(NSDictionary *)info;
 + (AWBSettingsGroup *)jpgExportSettingsGroupWithInfo:(NSDictionary *)info;
++ (AWBSettingsGroup *)mainSettingsDrilldownSettingsGroupWithInfo:(NSDictionary *)info;
++ (AWBSettingsGroup *)aboutSettingsDrilldownSettingsGroupWithInfo:(NSDictionary *)info;
++ (AWBSettingsGroup *)aboutTextSettingsGroupWithInfo:(NSDictionary *)info;
++ (AWBSettingsGroup *)canvasLockSettingsGroupWithInfo:(NSDictionary *)info;
++ (AWBSettingsGroup *)objectLockSettingsGroupWithInfo:(NSDictionary *)info;
++ (AWBSettingsGroup *)snapToGridSettingsGroupWithInfo:(NSDictionary *)info;
 
 @end
 

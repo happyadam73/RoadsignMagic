@@ -20,6 +20,7 @@
 #import "AWBSegmentControlCell.h"
 #import "AWBSubtitleTableCell.h"
 #import "AWBExportQualitySliderCell.h"
+#import "AWBTextViewCell.h"
 
 @implementation AWBSetting
 
@@ -88,6 +89,11 @@
 + (AWBSetting *)exportQualitySliderSettingWithValue:(id)aValue andKey:(NSString *)aKey
 {
     return [[[self alloc] initWithText:nil controlType:AWBSettingControlTypeExportQualitySlider value:aValue key:aKey] autorelease];
+}
+
++ (AWBSetting *)textViewSettingWithValue:(id)aValue andKey:(NSString *)aKey
+{
+    return [[[self alloc] initWithText:nil controlType:AWBSettingControlTypeTextView value:aValue key:aKey] autorelease];
 }
 
 + (AWBSetting *)switchSettingWithText:(NSString *)text value:(id)aValue key:(NSString *)aKey
@@ -165,6 +171,8 @@
             return @"AWBSettingControlTypeSegmentControl";   
         case AWBSettingControlTypeSubtitle:
             return @"AWBSettingControlTypeSubtitle";              
+        case AWBSettingControlTypeTextView:
+            return @"AWBSettingControlTypeTextView";              
         default:
             return @"AWBSettingControlTypeDefault";
     }    
@@ -194,6 +202,10 @@
             tableCell = [[AWBExportQualitySliderCell alloc] initWithExportQualityValue:[settingValue floatValue] reuseIdentifier:self.cellReuseIdentifier];
             tableCell.selectionStyle = UITableViewCellSelectionStyleNone;
             [[(AWBExportQualitySliderCell *)tableCell exportQualitySlider] addTarget:self action:@selector(controlValueChanged:) forControlEvents:UIControlEventValueChanged];
+            break;
+        case AWBSettingControlTypeTextView:
+            tableCell = [[AWBTextViewCell alloc] initWithText:settingValue reuseIdentifier:self.cellReuseIdentifier];
+            tableCell.selectionStyle = UITableViewCellSelectionStyleNone;
             break;
         case AWBSettingControlTypeColorPicker:
             tableCell = [[AWBColorPickerTableCell alloc] initWithSelectedColor:settingValue reuseIdentifier:self.cellReuseIdentifier];
@@ -267,6 +279,9 @@
             self.settingValue = [(AWBColorPickerSegmentedControl *)sender selectedColor];
             break;
         case AWBSettingControlTypeFont:
+            self.settingValue = nil;
+            break;
+        case AWBSettingControlTypeTextView:
             self.settingValue = nil;
             break;
         case AWBSettingControlTypeImageAndTextList:
