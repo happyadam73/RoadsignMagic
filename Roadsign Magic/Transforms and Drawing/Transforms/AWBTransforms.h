@@ -22,4 +22,5 @@ CGFloat AWBRandomRotationFromMinMaxRadians(CGFloat min, CGFloat max);
 void AWBBuildRotatedBoundsPointsPath(CGMutablePathRef path, CGSize rotatedRectSize, CGFloat rotation, CGSize frameRectSize);
 int AWBRandomSortComparitor(id obj1, id obj2, void *context );
 CGFloat AWBQuantizeFloat(CGFloat value, CGFloat quantizationFactor, BOOL roundUp);
-NSString *AWBImageSizeFromQualityValue(CGFloat value);
+NSString *AWBImageSizeFromExportSizeValue(CGFloat value);
+NSString *AWBExportQualityDescriptionFromValue(CGFloat value);

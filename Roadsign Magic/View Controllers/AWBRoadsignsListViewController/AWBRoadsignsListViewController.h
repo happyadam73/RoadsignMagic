@@ -16,6 +16,7 @@
 {
     NSInteger scrollToRow;
     AWBBusyView *busyView;
+    BOOL animateTransition;
 }
 
 @property (nonatomic, retain) AWBBusyView *busyView;

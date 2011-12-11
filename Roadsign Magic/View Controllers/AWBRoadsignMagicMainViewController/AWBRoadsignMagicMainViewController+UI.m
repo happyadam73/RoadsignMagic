@@ -111,11 +111,11 @@
     }
 }
 
-- (void)setExportQualityFromSettingsInfo:(NSDictionary *)info
+- (void)setExportSizeFromSettingsInfo:(NSDictionary *)info
 {
-    NSLog(@"Export Quality: %f", [[info objectForKey:kAWBInfoKeyExportQualityValue] floatValue]);
+    NSLog(@"Export Quality: %f", [[info objectForKey:kAWBInfoKeyExportSizeValue] floatValue]);
     
-    [self setExportQuality:[[info objectForKey:kAWBInfoKeyExportQualityValue] floatValue]];
+    [self setExportSize:[[info objectForKey:kAWBInfoKeyExportSizeValue] floatValue]];
 }
 
 - (void)setCollageDrawingAidsFromSettingsInfo:(NSDictionary *)info
@@ -129,7 +129,7 @@
 - (NSMutableDictionary *)settingsInfo
 {
     NSMutableDictionary *info = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                 [NSNumber numberWithFloat:self.exportQuality], kAWBInfoKeyExportQualityValue, 
+                                 [NSNumber numberWithFloat:self.exportSize], kAWBInfoKeyExportSizeValue, 
                                  [NSNumber numberWithBool:self.lockedView.objectsLocked], kAWBInfoKeyLockCanvas, 
                                  [NSNumber numberWithBool:self.lockedView.canvasAnchored], kAWBInfoKeyScrollLocked, 
                                  [NSNumber numberWithBool:self.snapToGrid], kAWBInfoKeySnapToGrid, 
@@ -160,7 +160,7 @@
 {
     switch (settingsController.controllerType) {
         case AWBSettingsControllerTypeMainSettings:
-            [self setExportQualityFromSettingsInfo:info];
+            [self setExportSizeFromSettingsInfo:info];
             [self setCollageDrawingAidsFromSettingsInfo:info];
             [self saveChanges:NO];            
             break;
@@ -275,7 +275,9 @@
 
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView {
     snapToGridSize = SNAP_TO_GRID_SIZE/mainScrollView.zoomScale;
-
+    if (snapToGridSize > 100.0) {
+        snapToGridSize = 100.0;
+    }
     CGFloat offsetX = (scrollView.bounds.size.width > scrollView.contentSize.width)? 
     (scrollView.bounds.size.width - scrollView.contentSize.width) * 0.5 : 0.0;
     CGFloat offsetY = (scrollView.bounds.size.height > scrollView.contentSize.height)? 

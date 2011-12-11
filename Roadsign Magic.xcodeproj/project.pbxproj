@@ -740,6 +740,11 @@
 		06C34518148507CE000A3CC8 /* AWBRoadsignSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = 06C34517148507CE000A3CC8 /* AWBRoadsignSymbol.m */; };
 		06C3451B148507E4000A3CC8 /* AWBRoadsignSymbolGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 06C3451A148507E4000A3CC8 /* AWBRoadsignSymbolGroup.m */; };
 		06C3451F14850B5D000A3CC8 /* AWBSignSymbolPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06C3451E14850B5D000A3CC8 /* AWBSignSymbolPickerView.m */; };
+		06D1AEE41494D9560096099B /* AWBExportQualitySliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D1AEE31494D9560096099B /* AWBExportQualitySliderCell.m */; };
+		06D1AEE91494DDD60096099B /* HiQuality.png in Resources */ = {isa = PBXBuildFile; fileRef = 06D1AEE51494DDD60096099B /* HiQuality.png */; };
+		06D1AEEA1494DDD60096099B /* HiQuality@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06D1AEE61494DDD60096099B /* HiQuality@2x.png */; };
+		06D1AEEB1494DDD60096099B /* LoQuality.png in Resources */ = {isa = PBXBuildFile; fileRef = 06D1AEE71494DDD60096099B /* LoQuality.png */; };
+		06D1AEEC1494DDD60096099B /* LoQuality@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06D1AEE81494DDD60096099B /* LoQuality@2x.png */; };
 		06E37436147FF42600EA536C /* AWBLockedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E37435147FF42600EA536C /* AWBLockedView.m */; };
 		06F15E89147BC0AE007071D0 /* 00@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06F15E68147BC0AE007071D0 /* 00@2x.png */; };
 		06F15E8A147BC0AE007071D0 /* 10001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06F15E6A147BC0AE007071D0 /* 10001@2x.png */; };
@@ -870,7 +875,7 @@
 		B5E044E81478471F006A8D5C /* AWBColorPickerTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E044BB1478471F006A8D5C /* AWBColorPickerTableCell.m */; };
 		B5E044E91478471F006A8D5C /* AWBDrilldownCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E044BD1478471F006A8D5C /* AWBDrilldownCell.m */; };
 		B5E044EB1478471F006A8D5C /* AWBImageAndTextTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E044C11478471F006A8D5C /* AWBImageAndTextTableCell.m */; };
-		B5E044EC1478471F006A8D5C /* AWBQualitySliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E044C31478471F006A8D5C /* AWBQualitySliderCell.m */; };
+		B5E044EC1478471F006A8D5C /* AWBExportSizeSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E044C31478471F006A8D5C /* AWBExportSizeSliderCell.m */; };
 		B5E044ED1478471F006A8D5C /* AWBSegmentControlCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E044C51478471F006A8D5C /* AWBSegmentControlCell.m */; };
 		B5E044EE1478471F006A8D5C /* AWBSettingTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E044C71478471F006A8D5C /* AWBSettingTableCell.m */; };
 		B5E044EF1478471F006A8D5C /* AWBSubtitleTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E044C91478471F006A8D5C /* AWBSubtitleTableCell.m */; };
@@ -1664,6 +1669,12 @@
 		06C3451A148507E4000A3CC8 /* AWBRoadsignSymbolGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBRoadsignSymbolGroup.m; path = "Roadsigns Model/AWBRoadsignSymbolGroup.m"; sourceTree = "<group>"; };
 		06C3451D14850B5D000A3CC8 /* AWBSignSymbolPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBSignSymbolPickerView.h; path = "Views and User Interface/SignSymbolPickerView/AWBSignSymbolPickerView.h"; sourceTree = "<group>"; };
 		06C3451E14850B5D000A3CC8 /* AWBSignSymbolPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBSignSymbolPickerView.m; path = "Views and User Interface/SignSymbolPickerView/AWBSignSymbolPickerView.m"; sourceTree = "<group>"; };
+		06D1AEE21494D9560096099B /* AWBExportQualitySliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBExportQualitySliderCell.h; sourceTree = "<group>"; };
+		06D1AEE31494D9560096099B /* AWBExportQualitySliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBExportQualitySliderCell.m; sourceTree = "<group>"; };
+		06D1AEE51494DDD60096099B /* HiQuality.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HiQuality.png; sourceTree = "<group>"; };
+		06D1AEE61494DDD60096099B /* HiQuality@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HiQuality@2x.png"; sourceTree = "<group>"; };
+		06D1AEE71494DDD60096099B /* LoQuality.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoQuality.png; sourceTree = "<group>"; };
+		06D1AEE81494DDD60096099B /* LoQuality@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LoQuality@2x.png"; sourceTree = "<group>"; };
 		06E37434147FF42600EA536C /* AWBLockedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBLockedView.h; path = "Views and User Interface/LockedView/AWBLockedView.h"; sourceTree = "<group>"; };
 		06E37435147FF42600EA536C /* AWBLockedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBLockedView.m; path = "Views and User Interface/LockedView/AWBLockedView.m"; sourceTree = "<group>"; };
 		06F15E68147BC0AE007071D0 /* 00@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "00@2x.png"; sourceTree = "<group>"; };
@@ -1804,8 +1815,8 @@
 		B5E044BD1478471F006A8D5C /* AWBDrilldownCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AWBDrilldownCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B5E044C01478471F006A8D5C /* AWBImageAndTextTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AWBImageAndTextTableCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		B5E044C11478471F006A8D5C /* AWBImageAndTextTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AWBImageAndTextTableCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		B5E044C21478471F006A8D5C /* AWBQualitySliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AWBQualitySliderCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		B5E044C31478471F006A8D5C /* AWBQualitySliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AWBQualitySliderCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B5E044C21478471F006A8D5C /* AWBExportSizeSliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AWBExportSizeSliderCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B5E044C31478471F006A8D5C /* AWBExportSizeSliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AWBExportSizeSliderCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B5E044C41478471F006A8D5C /* AWBSegmentControlCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AWBSegmentControlCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		B5E044C51478471F006A8D5C /* AWBSegmentControlCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AWBSegmentControlCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B5E044C61478471F006A8D5C /* AWBSettingTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AWBSettingTableCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -3326,6 +3337,10 @@
 				0635A5361490E90100B6B00D /* 0.1x@2x.png */,
 				0635A5371490E90100B6B00D /* 2x.png */,
 				0635A5381490E90100B6B00D /* 2x@2x.png */,
+				06D1AEE51494DDD60096099B /* HiQuality.png */,
+				06D1AEE61494DDD60096099B /* HiQuality@2x.png */,
+				06D1AEE71494DDD60096099B /* LoQuality.png */,
+				06D1AEE81494DDD60096099B /* LoQuality@2x.png */,
 				06978EEA147D2BCB00171A51 /* locked.png */,
 				06978EEB147D2BCB00171A51 /* locked@2x.png */,
 				06978F21147EE09500171A51 /* anchored.png */,
@@ -3398,8 +3413,10 @@
 				B5E044BD1478471F006A8D5C /* AWBDrilldownCell.m */,
 				B5E044C01478471F006A8D5C /* AWBImageAndTextTableCell.h */,
 				B5E044C11478471F006A8D5C /* AWBImageAndTextTableCell.m */,
-				B5E044C21478471F006A8D5C /* AWBQualitySliderCell.h */,
-				B5E044C31478471F006A8D5C /* AWBQualitySliderCell.m */,
+				B5E044C21478471F006A8D5C /* AWBExportSizeSliderCell.h */,
+				B5E044C31478471F006A8D5C /* AWBExportSizeSliderCell.m */,
+				06D1AEE21494D9560096099B /* AWBExportQualitySliderCell.h */,
+				06D1AEE31494D9560096099B /* AWBExportQualitySliderCell.m */,
 				B5E044C41478471F006A8D5C /* AWBSegmentControlCell.h */,
 				B5E044C51478471F006A8D5C /* AWBSegmentControlCell.m */,
 				B5E044C61478471F006A8D5C /* AWBSettingTableCell.h */,
@@ -4381,6 +4398,10 @@
 				06AA87DE14923AC7009BA0EA /* S21029.png in Resources */,
 				06AA87DF14923AC7009BA0EA /* S21030.png in Resources */,
 				06AA87E014923AC7009BA0EA /* S21031.png in Resources */,
+				06D1AEE91494DDD60096099B /* HiQuality.png in Resources */,
+				06D1AEEA1494DDD60096099B /* HiQuality@2x.png in Resources */,
+				06D1AEEB1494DDD60096099B /* LoQuality.png in Resources */,
+				06D1AEEC1494DDD60096099B /* LoQuality@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4407,7 +4428,7 @@
 				B5E044E81478471F006A8D5C /* AWBColorPickerTableCell.m in Sources */,
 				B5E044E91478471F006A8D5C /* AWBDrilldownCell.m in Sources */,
 				B5E044EB1478471F006A8D5C /* AWBImageAndTextTableCell.m in Sources */,
-				B5E044EC1478471F006A8D5C /* AWBQualitySliderCell.m in Sources */,
+				B5E044EC1478471F006A8D5C /* AWBExportSizeSliderCell.m in Sources */,
 				B5E044ED1478471F006A8D5C /* AWBSegmentControlCell.m in Sources */,
 				B5E044EE1478471F006A8D5C /* AWBSettingTableCell.m in Sources */,
 				B5E044EF1478471F006A8D5C /* AWBSubtitleTableCell.m in Sources */,
@@ -4455,6 +4476,7 @@
 				06BB8767148CD7410051F9CB /* AWBRoadsignStore.m in Sources */,
 				06BB876C148D22250051F9CB /* AWBRoadsignsListViewController.m in Sources */,
 				06903FD8148E39C200232B9E /* AWBSizeableImageTableCell.m in Sources */,
+				06D1AEE41494D9560096099B /* AWBExportQualitySliderCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

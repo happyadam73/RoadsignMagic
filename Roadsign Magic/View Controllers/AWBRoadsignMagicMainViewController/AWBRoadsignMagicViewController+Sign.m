@@ -56,7 +56,7 @@
     [button setSelected:signBackgroundPickerViewShowing];
 }
 
-- (void)updateSignBackgroundWithImageFromFile:(NSString *)name 
+- (void)updateSignBackgroundWithImageFromFile:(NSString *)name willAnimateAndSave:(BOOL)animateAndSave
 {    
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     //UIImage *image = [[UIImage imageFromFile:name] imageScaledToMaxResolution:MAX_SIGN_BACKGROUND_PIXELS withTransparentBorderThickness:0.0];
@@ -75,22 +75,35 @@
     AWBAppDelegate *delegate = (AWBAppDelegate *) [[UIApplication sharedApplication] delegate];
     delegate.signBackgroundSize = signBackgroundView.bounds.size;
     
-    [UIView animateWithDuration:1.0 
-                          delay:0.0 options:UIViewAnimationOptionAllowUserInteraction
-                     animations: ^ {
-                         [signBackgroundView setAlpha:1.0]; 
-                     } 
-                     completion: ^ (BOOL finished) {[self saveChanges:YES];}];  
+    if (animateAndSave) {
+        [UIView animateWithDuration:1.0 
+                              delay:0.0 options:UIViewAnimationOptionAllowUserInteraction
+                         animations: ^ {
+                             [signBackgroundView setAlpha:1.0]; 
+                         } 
+                         completion: ^ (BOOL finished) {[self saveChanges:YES];}];        
+    } else {
+        [signBackgroundView setAlpha:1.0];
+    }
     
     [pool drain];
 }
 
 - (void)awbSignBackgroundPickerView:(AWBSignBackgroundPickerView *)backgroundPicker didSelectSignBackground:(AWBRoadsignBackground *)signBackground
 {
+    [self updateSignBackground:signBackground willAnimateAndSave:YES];
+//    self.selectedSignBackground = signBackground;
+//    self.labelTextColor = [UIColor foregroundColorWithBackgroundSignColorCode:signBackground.primaryColorCode];
+//    NSString *filename = signBackground.fullsizeImageFilename;        
+//    [self updateSignBackgroundWithImageFromFile:filename willAnimateAndSave:YES];
+}
+
+- (void)updateSignBackground:(AWBRoadsignBackground *)signBackground willAnimateAndSave:(BOOL)animateAndSave
+{
     self.selectedSignBackground = signBackground;
     self.labelTextColor = [UIColor foregroundColorWithBackgroundSignColorCode:signBackground.primaryColorCode];
     NSString *filename = signBackground.fullsizeImageFilename;        
-    [self updateSignBackgroundWithImageFromFile:filename];
+    [self updateSignBackgroundWithImageFromFile:filename willAnimateAndSave:animateAndSave];    
 }
 
 @end

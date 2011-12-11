@@ -61,10 +61,10 @@
     [swipeRecognizer release];
     [self.view addGestureRecognizer:self.swipeGestureRecognizer]; 
     
-    UILongPressGestureRecognizer *longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPresses:)];
-    self.longPressGestureRecognizer = longPressRecognizer;
-    [longPressRecognizer release];
-    [self.view addGestureRecognizer:self.longPressGestureRecognizer];
+//    UILongPressGestureRecognizer *longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPresses:)];
+//    self.longPressGestureRecognizer = longPressRecognizer;
+//    [longPressRecognizer release];
+//    [self.view addGestureRecognizer:self.longPressGestureRecognizer];
     
     UILongPressGestureRecognizer *longDoublePressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongDoublePresses:)];
     longDoublePressRecognizer.numberOfTouchesRequired = 2;

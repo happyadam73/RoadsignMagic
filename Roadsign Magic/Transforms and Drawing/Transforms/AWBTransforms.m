@@ -166,10 +166,16 @@ CGFloat AWBQuantizeFloat(CGFloat value, CGFloat quantizationFactor, BOOL roundUp
     }
 }
 
-NSString *AWBImageSizeFromQualityValue(CGFloat value)
+NSString *AWBImageSizeFromExportSizeValue(CGFloat value)
 {
     AWBAppDelegate *delegate = (AWBAppDelegate *) [[UIApplication sharedApplication] delegate];
     CGSize signBackgroundSize = delegate.signBackgroundSize;
     
     return [NSString stringWithFormat:@"%d x %d", (int)(signBackgroundSize.width * value), (int)(signBackgroundSize.height * value)];
 }
+
+NSString *AWBExportQualityDescriptionFromValue(CGFloat value)
+{   
+    return [NSString stringWithFormat:@"%d%%", (int)(roundf(value * 100.0))];
+}
+

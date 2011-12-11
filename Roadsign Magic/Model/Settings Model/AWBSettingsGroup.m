@@ -116,12 +116,12 @@
 {
     NSMutableArray *textEditSettings = [NSMutableArray arrayWithObjects:[AWBSetting textEditSettingWithText:@"Line 1" value:[info objectForKey:kAWBInfoKeyLabelTextLine1] key:kAWBInfoKeyLabelTextLine1], [AWBSetting textEditSettingWithText:@"Line 2" value:[info objectForKey:kAWBInfoKeyLabelTextLine2] key:kAWBInfoKeyLabelTextLine2], [AWBSetting textEditSettingWithText:@"Line 3" value:[info objectForKey:kAWBInfoKeyLabelTextLine3] key:kAWBInfoKeyLabelTextLine3], nil];
     
-    return [[[self alloc] initWithSettings:textEditSettings header:@"Label Text" footer:nil] autorelease];
+    return [[[self alloc] initWithSettings:textEditSettings header:nil footer:nil] autorelease];
 }
 
 + (AWBSettingsGroup *)qualitySliderSettingsGroupWithInfo:(NSDictionary *)info
 {
-    return [[[self alloc] initWithSettings:[NSMutableArray arrayWithObject:[AWBSetting qualitySliderSettingWithValue:[info objectForKey:kAWBInfoKeyExportQualityValue] andKey:kAWBInfoKeyExportQualityValue]] header:@"Export Quality" footer:@"Applies only to saving & emailing the roadsign as a photo."] autorelease];
+    return [[[self alloc] initWithSettings:[NSMutableArray arrayWithObject:[AWBSetting exportSizeSliderSettingWithValue:[info objectForKey:kAWBInfoKeyExportSizeValue] andKey:kAWBInfoKeyExportSizeValue]] header:@"Export Quality" footer:@"Applies only to saving & emailing the roadsign as a photo."] autorelease];
 }
 
 + (AWBSettingsGroup *)roadsignNameWithHeaderSettingsGroupWithInfo:(NSDictionary *)info
@@ -148,6 +148,34 @@
     NSMutableArray *roadsignNameSettings = [NSMutableArray arrayWithObjects:[AWBSetting textEditSettingWithText:@"Roadsign Name" value:[info objectForKey:kAWBInfoKeyRoadsignName] key:kAWBInfoKeyRoadsignName], nil];
     
     return [[[self alloc] initWithSettings:roadsignNameSettings header:nil footer:nil] autorelease];
+}
+
++ (AWBSettingsGroup *)exportQualityAndFormatSettingsGroupWithInfo:(NSDictionary *)info
+{
+    AWBSetting *exportSizeSetting = [AWBSetting exportSizeSliderSettingWithValue:[info objectForKey:kAWBInfoKeyExportSizeValue] andKey:kAWBInfoKeyExportSizeValue];
+    AWBSetting *exportFormatSetting = [AWBSetting segmentControlSettingWithText:@"Format" items:[NSArray arrayWithObjects:@"PNG", @"JPEG", nil] value:[info objectForKey:kAWBInfoKeyExportFormatSelectedIndex] key:kAWBInfoKeyExportFormatSelectedIndex];
+    exportFormatSetting.masterSlaveType = AWBSettingMasterSlaveTypeMasterSwitch;
+    NSMutableArray *exportQualityAndFormatSettings = [NSMutableArray arrayWithObjects:exportSizeSetting, exportFormatSetting, nil];
+    
+    AWBSettingsGroup *exportQualityAndFormatSettingsGroup = [[self alloc] initWithSettings:exportQualityAndFormatSettings header:@"Quality & Format" footer:@"PNG provides better quality and support for transparency.  JPEG can help reduce file size."];
+    exportQualityAndFormatSettingsGroup.masterSwitchIsOn = exportFormatSetting.isSwitchedOn;
+    exportFormatSetting.parentGroup = exportQualityAndFormatSettingsGroup; 
+    
+    return [exportQualityAndFormatSettingsGroup autorelease];    
+}
+
++ (AWBSettingsGroup *)pngExportSettingsGroupWithInfo:(NSDictionary *)info
+{
+    NSMutableArray *pngExportSettings = [NSMutableArray arrayWithObjects:[AWBSetting switchSettingWithText:@"Transparency" value:[info objectForKey:kAWBInfoKeyPNGExportTransparentBackground] key:kAWBInfoKeyPNGExportTransparentBackground], nil];
+    
+    return [[[self alloc] initWithSettings:pngExportSettings header:@"PNG Format Settings" footer:@"Exports just the roadsign with no visible background.  To include the background switch off this setting."] autorelease];
+}
+
++ (AWBSettingsGroup *)jpgExportSettingsGroupWithInfo:(NSDictionary *)info
+{
+    NSMutableArray *jpgExportSettings = [NSMutableArray arrayWithObjects:[AWBSetting exportQualitySliderSettingWithValue:[info objectForKey:kAWBInfoKeyJPGExportQualityValue] andKey:kAWBInfoKeyJPGExportQualityValue], nil];
+    
+    return [[[self alloc] initWithSettings:jpgExportSettings header:@"JPEG Format Settings" footer:@"Higher quality results in larger file sizes."] autorelease];
 }
 
 @end

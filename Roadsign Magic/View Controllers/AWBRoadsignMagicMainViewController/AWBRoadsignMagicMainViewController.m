@@ -32,7 +32,7 @@
 @synthesize rotationGestureRecognizer, panGestureRecognizer, pinchGestureRecognizer, singleTapGestureRecognizer, doubleTapGestureRecognizer, swipeGestureRecognizer, longPressGestureRecognizer, longDoublePressGestureRecognizer;
 @synthesize roadsignFont; 
 @synthesize labelTextColor, labelTextFont, labelTextLine1, labelTextLine2, labelTextLine3, labelTextAlignment;
-@synthesize exportQuality, snapToGrid, snapToGridSize, lockedView;
+@synthesize exportSize, snapToGrid, snapToGridSize, lockedView;
 @synthesize selectedSignBackground, selectedSignSymbol, isSignInEditMode;
 @synthesize deleteConfirmationSheet, chooseActionTypeSheet, busyView;
 @synthesize totalSymbolSubviews, totalLabelSubviews, roadsignDescriptor, roadsignSaveDocumentsSubdirectory;
@@ -57,15 +57,15 @@
         snapToGrid = YES;
         snapToGridSize = SNAP_TO_GRID_SIZE;
         labelTextAlignment = UITextAlignmentCenter;
-        exportQuality = 1.0;
+        exportSize = 1.0;
         isSignInEditMode = NO;
     }
     return self;
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
+    [super viewWillAppear:animated];
 
     if (!self.isSignInEditMode) {
         self.toolbarItems = [self normalToolbarButtons];
@@ -233,7 +233,7 @@
         } else {
             roadsign.roadsignBackgroundId = 0;            
         }
-        roadsign.exportQuality = exportQuality;
+        roadsign.exportSize = exportSize;
         
         [roadsign initRoadsignFromView:self.signBackgroundView];
         
@@ -273,14 +273,15 @@
         NSUInteger signBackgroundId = roadsign.roadsignBackgroundId;
         if (signBackgroundId > 0) {
             AWBRoadsignBackground *signBackground = [AWBRoadsignBackground signBackgroundWithIdentifier:signBackgroundId];
-            [self awbSignBackgroundPickerView:nil didSelectSignBackground:signBackground];            
+            [self updateSignBackground:signBackground willAnimateAndSave:NO];
+            //[self awbSignBackgroundPickerView:nil didSelectSignBackground:signBackground];            
         }
         
         [roadsign addRoadsignToView:self.signBackgroundView];
        
         totalSymbolSubviews = roadsign.totalSymbols;
         totalLabelSubviews = roadsign.totalLabels;
-        self.exportQuality = roadsign.exportQuality;
+        self.exportSize = roadsign.exportSize;
     }
     
     [pool drain];

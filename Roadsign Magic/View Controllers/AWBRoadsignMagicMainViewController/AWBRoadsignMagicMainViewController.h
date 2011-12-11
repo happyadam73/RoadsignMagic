@@ -65,7 +65,7 @@
     AWBLockedView *lockedView;
     BOOL snapToGrid;
     CGFloat snapToGridSize;
-    CGFloat exportQuality;
+    CGFloat exportSize;
     
     NSString *labelTextLine1;
     NSString *labelTextLine2;
@@ -116,7 +116,7 @@
 @property (nonatomic, retain) AWBLockedView *lockedView;
 @property (nonatomic, assign) BOOL snapToGrid;
 @property (nonatomic, assign) CGFloat snapToGridSize;
-@property (nonatomic, assign) CGFloat exportQuality;
+@property (nonatomic, assign) CGFloat exportSize;
 @property (nonatomic, retain) NSString *labelTextLine1;
 @property (nonatomic, retain) NSString *labelTextLine2;
 @property (nonatomic, retain) NSString *labelTextLine3;

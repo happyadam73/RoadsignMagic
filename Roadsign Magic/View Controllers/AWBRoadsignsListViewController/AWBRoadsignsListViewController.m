@@ -240,24 +240,24 @@
     AWBRoadsignDescriptor *roadsign = [[[AWBRoadsignStore defaultStore] allRoadsigns] objectAtIndex:[indexPath row]];
     AWBRoadsignMagicMainViewController *roadsignController = [[[AWBRoadsignMagicMainViewController alloc] initWithRoadsignDescriptor:roadsign] autorelease];  
     
-    //first transition animation - if there's more than 10 images or 30 objects then don't animate the transition
-    BOOL animated = YES;
+    //first transition animation - if there's more than 15 objects then don't animate the transition
+    animateTransition = YES;
     [[NSUserDefaults standardUserDefaults] setInteger:[indexPath row] forKey:kAWBInfoKeyScrollToRoadsignStoreRoadsignIndex]; 
-    if ((roadsign.totalSymbolObjects > 10) || (roadsign.totalObjects > 30)) {
-        animated = NO;
+    if (roadsign.totalObjects > 15) {
+        animateTransition = NO;
     } else {
         [[NSUserDefaults standardUserDefaults] setInteger:[indexPath row] forKey:kAWBInfoKeyRoadsignStoreRoadsignIndex]; 
     }
     
-    //secondly - load progress busy indicator.  Only enable if more than 10 images to be loaded   
-    if (roadsign.totalSymbolObjects > 10) {
+    //secondly - load progress busy indicator.  Only enable if there are some symbols or text to load   
+    if (roadsign.totalObjects > 0) {
         NSString *busyTextDetail = [NSString stringWithFormat:@"(with %d symbols)", roadsign.totalSymbolObjects];
         AWBBusyView *busyIndicatorView = [[AWBBusyView alloc] initWithText:@"Preparing Roadsign" detailText:busyTextDetail parentView:self.view centerAtPoint:[self centerOfVisibleRows]];
         [self performSelector:@selector(navigateToRoadsignController:) withObject:roadsignController afterDelay:0];
         self.busyView = busyIndicatorView;
         [busyIndicatorView release];
     } else {
-        [self.navigationController pushViewController:roadsignController animated:animated];
+        [self.navigationController pushViewController:roadsignController animated:animateTransition];
     }
 }
 
@@ -281,7 +281,7 @@
 
 - (void)navigateToRoadsignController:(AWBRoadsignMagicMainViewController *)roadsignController
 {
-    [self.navigationController pushViewController:roadsignController animated:NO];
+    [self.navigationController pushViewController:roadsignController animated:animateTransition];
     [self.busyView removeFromParentView];
     self.busyView = nil;
 }

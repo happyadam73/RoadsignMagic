@@ -13,7 +13,8 @@
 
 typedef enum {
     AWBSettingControlTypeDefault,
-    AWBSettingControlTypeQualitySlider,              
+    AWBSettingControlTypeExportSizeSlider, 
+    AWBSettingControlTypeExportQualitySlider,
     AWBSettingControlTypeSwitch,
     AWBSettingControlTypeTextEdit,
     AWBSettingControlTypeColorPicker,
@@ -61,7 +62,8 @@ typedef enum {
 @property (nonatomic, assign) AWBSettingMasterSlaveType masterSlaveType;
 
 + (AWBSetting *)colorSettingWithValue:(id)aValue andKey:(NSString *)aKey;
-+ (AWBSetting *)qualitySliderSettingWithValue:(id)aValue andKey:(NSString *)aKey;
++ (AWBSetting *)exportSizeSliderSettingWithValue:(id)aValue andKey:(NSString *)aKey;
++ (AWBSetting *)exportQualitySliderSettingWithValue:(id)aValue andKey:(NSString *)aKey;
 + (AWBSetting *)switchSettingWithText:(NSString *)text value:(id)aValue key:(NSString *)aKey;
 + (AWBSetting *)textEditSettingWithText:(NSString *)text value:(id)aValue key:(NSString *)aKey;
 + (AWBSetting *)fontSettingWithValue:(id)aValue;

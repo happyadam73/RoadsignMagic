@@ -31,7 +31,6 @@ static NSString *const kAWBInfoKeyTextBackgroundColor = @"TextBackgroundColor";
 static NSString *const kAWBInfoKeyImageRoundedBorders = @"ImageRoundedBorders";
 static NSString *const kAWBInfoKeyTextRoundedBorders = @"TextRoundedBorders";
 static NSString *const kAWBInfoKeyTextBackground = @"TextBackground";
-static NSString *const kAWBInfoKeyExportQualityValue = @"ExportQualityValue";
 static NSString *const kAWBInfoKeyLabelTextLine1 = @"LabelTextLine1";
 static NSString *const kAWBInfoKeyLabelTextLine2 = @"LabelTextLine2";
 static NSString *const kAWBInfoKeyLabelTextLine3 = @"LabelTextLine3";
@@ -52,6 +51,11 @@ static NSString *const kAWBInfoKeyLockCanvas = @"LockCanvas";
 static NSString *const kAWBInfoKeyScrollLocked = @"ScrollLocked";
 static NSString *const kAWBInfoKeySnapToGrid = @"SnapToGrid";
 static NSString *const kAWBInfoKeySnapToGridSize = @"SnapToGridSize";
+
+static NSString *const kAWBInfoKeyExportSizeValue = @"ExportSizeValue";
+static NSString *const kAWBInfoKeyExportFormatSelectedIndex = @"ExportFormatSelectedIndex";
+static NSString *const kAWBInfoKeyPNGExportTransparentBackground = @"PNGExportTransparentBackground";
+static NSString *const kAWBInfoKeyJPGExportQualityValue = @"JPGExportQualityValue";
 
 @class AWBSetting;
 @class AWBSettings;
@@ -101,6 +105,9 @@ static NSString *const kAWBInfoKeySnapToGridSize = @"SnapToGridSize";
 + (AWBSettingsGroup *)roadsignNameWithHeaderSettingsGroupWithInfo:(NSDictionary *)info;
 + (AWBSettingsGroup *)roadsignInfoMetricsSettingsGroupWithInfo:(NSDictionary *)info;
 + (AWBSettingsGroup *)roadsignNameSettingsGroupWithInfo:(NSDictionary *)info;
++ (AWBSettingsGroup *)exportQualityAndFormatSettingsGroupWithInfo:(NSDictionary *)info;
++ (AWBSettingsGroup *)pngExportSettingsGroupWithInfo:(NSDictionary *)info;
++ (AWBSettingsGroup *)jpgExportSettingsGroupWithInfo:(NSDictionary *)info;
 
 @end
 

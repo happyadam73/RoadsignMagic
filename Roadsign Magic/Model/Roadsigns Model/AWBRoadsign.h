@@ -13,7 +13,7 @@ static NSString *const kAWBInfoKeyRoadsignViews = @"RoadsignViews";
 static NSString *const kAWBInfoKeyRoadsignBackgroundId = @"RoadsignBackgroundId";
 
 @interface AWBRoadsign : NSObject {
-    CGFloat exportQuality;
+    CGFloat exportSize;
     NSUInteger roadsignBackgroundId;
     NSMutableArray *roadsignViews;
     NSUInteger totalLabels;
@@ -21,7 +21,7 @@ static NSString *const kAWBInfoKeyRoadsignBackgroundId = @"RoadsignBackgroundId"
     NSUInteger totalImageMemoryBytes;
 }
 
-@property (nonatomic, assign) CGFloat exportQuality;
+@property (nonatomic, assign) CGFloat exportSize;
 @property (nonatomic, assign) NSUInteger roadsignBackgroundId;
 @property (nonatomic, retain) NSMutableArray *roadsignViews;
 @property (nonatomic, readonly) NSUInteger totalLabels;

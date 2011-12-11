@@ -99,10 +99,25 @@
 
 + (AWBSettings *)mainSettingsWithInfo:(NSDictionary *)info
 {
-    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup qualitySliderSettingsGroupWithInfo:info], nil];
-    AWBSettings *mainSettings = [[self alloc] initWithSettingsGroups:settings title:@"Roadsign Settings"];
+    AWBSettingsGroup *exportQualityAndFormatSettings = [AWBSettingsGroup exportQualityAndFormatSettingsGroupWithInfo:info];
+    AWBSettingsGroup *pngExportSettings = [AWBSettingsGroup pngExportSettingsGroupWithInfo:info];
+    AWBSettingsGroup *jpgExportSettings = [AWBSettingsGroup jpgExportSettingsGroupWithInfo:info];
     
-    return [mainSettings autorelease];
+    NSMutableArray *settings = [NSMutableArray arrayWithObjects:exportQualityAndFormatSettings, pngExportSettings, jpgExportSettings, nil];
+    AWBSettings *exportSettings = [[self alloc] initWithSettingsGroups:settings title:@"Export Settings"];
+    
+    exportQualityAndFormatSettings.parentSettings = exportSettings;
+    exportQualityAndFormatSettings.dependentVisibleSettingsGroup = jpgExportSettings;
+    exportQualityAndFormatSettings.dependentHiddenSettingsGroup = pngExportSettings;
+    jpgExportSettings.visible = exportQualityAndFormatSettings.masterSwitchIsOn;
+    pngExportSettings.visible = !exportQualityAndFormatSettings.masterSwitchIsOn;
+    
+    return [exportSettings autorelease];        
+//    
+//    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup exportQualityAndFormatSettingsGroupWithInfo:info], nil];
+//    AWBSettings *mainSettings = [[self alloc] initWithSettingsGroups:settings title:@"Roadsign Settings"];
+//    
+//    return [mainSettings autorelease];
 }
 
 + (AWBSettings *)textSettingsWithInfo:(NSDictionary *)info

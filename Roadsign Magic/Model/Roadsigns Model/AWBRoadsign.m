@@ -13,7 +13,7 @@
 
 @implementation AWBRoadsign
 
-@synthesize exportQuality; 
+@synthesize exportSize; 
 @synthesize roadsignBackgroundId, roadsignViews;
 @synthesize totalSymbols, totalLabels, totalImageMemoryBytes;
 
@@ -21,7 +21,7 @@
 {
     self.roadsignViews = [aDecoder decodeObjectForKey:kAWBInfoKeyRoadsignViews];
     self.roadsignBackgroundId = [aDecoder decodeIntegerForKey:kAWBInfoKeyRoadsignBackgroundId];
-    self.exportQuality = [aDecoder decodeFloatForKey:kAWBInfoKeyExportQualityValue];
+    self.exportSize = [aDecoder decodeFloatForKey:kAWBInfoKeyExportSizeValue];
     
     return  self;   
 }
@@ -91,7 +91,7 @@
 {   
     [aCoder encodeObject:self.roadsignViews forKey:kAWBInfoKeyRoadsignViews];
     [aCoder encodeInteger:self.roadsignBackgroundId forKey:kAWBInfoKeyRoadsignBackgroundId];
-    [aCoder encodeFloat:self.exportQuality forKey:kAWBInfoKeyExportQualityValue];    
+    [aCoder encodeFloat:self.exportSize forKey:kAWBInfoKeyExportSizeValue];    
 }
 
 - (void)dealloc

@@ -64,8 +64,8 @@
 {
     if (buttonIndex != [actionSheet cancelButtonIndex]) {
         
-        if (self.exportQuality == 0.0) {
-            self.exportQuality = 1.0;
+        if (self.exportSize == 0.0) {
+            self.exportSize = 1.0;
         }
         
         SEL methodSelector;
@@ -76,12 +76,12 @@
         if (buttonIndex == [actionSheet firstOtherButtonIndex]) {
             //Save Image
             busyText = @"Exporting Image";
-            busyTextDetail = [NSString stringWithFormat:@"(Size: %@)", AWBImageSizeFromQualityValue(self.exportQuality)];
+            busyTextDetail = [NSString stringWithFormat:@"(Size: %@)", AWBImageSizeFromExportSizeValue(self.exportSize)];
             methodSelector = @selector(saveRoadsignAsPhoto);
         } else if (buttonIndex == ([actionSheet firstOtherButtonIndex]+1)) {
             //Email Image
             busyText = @"Preparing for Email";
-            busyTextDetail = [NSString stringWithFormat:@"(Size: %@)", AWBImageSizeFromQualityValue(self.exportQuality)];
+            busyTextDetail = [NSString stringWithFormat:@"(Size: %@)", AWBImageSizeFromExportSizeValue(self.exportSize)];
             methodSelector = @selector(emailRoadsignAsPhoto);
         } else if (buttonIndex == ([actionSheet firstOtherButtonIndex]+2)) {
             // Print Image (4x6, A6)
@@ -99,7 +99,7 @@
             // Twitter Image
             busyText = @"Preparing for Twitter";
             CGFloat quality = (DEVICE_IS_IPAD? 1.0 : 2.0);
-            busyTextDetail = [NSString stringWithFormat:@"(Size: %@)", AWBImageSizeFromQualityValue(quality)];
+            busyTextDetail = [NSString stringWithFormat:@"(Size: %@)", AWBImageSizeFromExportSizeValue(quality)];
             methodSelector = @selector(twitterRoadsignAsPhoto);
         }
         
@@ -144,7 +144,7 @@
         [self toggleFullscreen];
     }
     self.busyView.hidden = YES;
-    UIImage *roadsignImage = [self generateRoadsignImageWithScaleFactor:self.exportQuality];    
+    UIImage *roadsignImage = [self generateRoadsignImageWithScaleFactor:self.exportSize];    
     [self toggleFullscreen];
     self.busyView.hidden = NO;
     [self.busyView removeFromParentView];
@@ -180,7 +180,7 @@
         [self toggleFullscreen];
     }
     self.busyView.hidden = YES;
-    UIImage *roadsignImage = [self generateRoadsignImageWithScaleFactor:self.exportQuality];
+    UIImage *roadsignImage = [self generateRoadsignImageWithScaleFactor:self.exportSize];
     [self toggleFullscreen];
     self.busyView.hidden = NO;
     [self.busyView removeFromParentView];
