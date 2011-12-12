@@ -21,6 +21,11 @@
 #define SNAP_TO_GRID_SIZE 32.0
 #define DEFAULT_FONT_POINT_SIZE 80.0
 
+enum {
+    kAWBExportFormatIndexPNG = 0,
+    kAWBExportFormatIndexJPEG = 1
+};
+
 @interface AWBRoadsignMagicMainViewController : UIViewController <AWBLockedViewDelegate>
 {    
     UIScrollView *mainScrollView;
@@ -65,8 +70,13 @@
     AWBLockedView *lockedView;
     BOOL snapToGrid;
     CGFloat snapToGridSize;
-    CGFloat exportSize;
-    
+    CGFloat exportSize;    
+    NSUInteger exportFormatSelectedIndex;
+    BOOL pngExportTransparentBackground;
+    CGFloat jpgExportQualityValue;
+    UIColor *roadsignBackgroundColor;
+    NSString *roadsignBackgroundTexture;
+    BOOL useBackgroundTexture;
     NSString *labelTextLine1;
     NSString *labelTextLine2;
     NSString *labelTextLine3;
@@ -133,6 +143,12 @@
 @property (nonatomic, readonly) NSUInteger totalLabelSubviews;
 @property (nonatomic, readonly) NSUInteger totalSymbolSubviews;
 @property (nonatomic, assign) AWBRoadsignDescriptor *roadsignDescriptor;
+@property (nonatomic, assign) NSUInteger exportFormatSelectedIndex;
+@property (nonatomic, assign) BOOL pngExportTransparentBackground;
+@property (nonatomic, assign) CGFloat jpgExportQualityValue;
+@property (nonatomic, retain) UIColor *roadsignBackgroundColor;
+@property (nonatomic, retain) NSString *roadsignBackgroundTexture;
+@property (nonatomic, assign) BOOL useBackgroundTexture;
 
 - (id)initWithRoadsignDescriptor:(AWBRoadsignDescriptor *)roadsign;
 - (BOOL)saveChanges:(BOOL)saveThumbnail;

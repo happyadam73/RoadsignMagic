@@ -37,6 +37,8 @@
 @synthesize selectedSignBackground, selectedSignSymbol, isSignInEditMode;
 @synthesize deleteConfirmationSheet, chooseActionTypeSheet, busyView;
 @synthesize totalSymbolSubviews, totalLabelSubviews, roadsignDescriptor, roadsignSaveDocumentsSubdirectory;
+@synthesize exportFormatSelectedIndex, pngExportTransparentBackground, jpgExportQualityValue;
+@synthesize roadsignBackgroundTexture, roadsignBackgroundColor, useBackgroundTexture;
 
 - (id)init
 {
@@ -50,16 +52,17 @@
     if (self) {  
         self.roadsignDescriptor = roadsign;
         [self setRoadsignSaveDocumentsSubdirectory:roadsign.roadsignSaveDocumentsSubdirectory];
-//        if (roadsign.roadsignName && ([roadsign.roadsignName length] > 0)) {
-//            self.navigationItem.title = [NSString stringWithFormat:@"%@", roadsign.roadsignName];
-//        } else {
-//            self.navigationItem.title = [NSString stringWithFormat:@"%@", roadsign.roadsignSaveDocumentsSubdirectory];
-//        }
-        snapToGrid = NO;
-        snapToGridSize = SNAP_TO_GRID_SIZE;
-        labelTextAlignment = UITextAlignmentCenter;
-        exportSize = 1.0;
-        isSignInEditMode = NO;
+        self.snapToGrid = NO;
+        self.snapToGridSize = SNAP_TO_GRID_SIZE;
+        self.labelTextAlignment = UITextAlignmentCenter;
+        self.exportSize = 1.0;
+        self.isSignInEditMode = NO;
+        self.exportFormatSelectedIndex = kAWBExportFormatIndexPNG;
+        self.pngExportTransparentBackground = YES;
+        self.jpgExportQualityValue = 0.7;
+        self.roadsignBackgroundColor = [UIColor yellowSignBackgroundColor];
+        self.roadsignBackgroundTexture = @"Concrete";
+        self.useBackgroundTexture = YES;        
     }
     return self;
 }
@@ -128,6 +131,8 @@
     self.labelTextLine3 = nil;
     self.deleteConfirmationSheet = nil;
     self.chooseActionTypeSheet = nil;
+    self.roadsignBackgroundTexture = nil;
+    self.roadsignBackgroundColor = nil;
     self.busyView = nil;
 }
 
@@ -179,7 +184,7 @@
     
     self.wantsFullScreenLayout = YES;
 //    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageFromFile:@"concrete.jpg"]];
-    self.view.backgroundColor = [UIColor concreteTextureColor];
+//    self.view.backgroundColor = [UIColor concreteTextureColor];
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:[[self view] bounds]];
     [scrollView setDelegate:self];
     [scrollView setBouncesZoom:YES];
@@ -236,6 +241,22 @@
             roadsign.roadsignBackgroundId = 0;            
         }
         roadsign.exportSize = exportSize;
+        roadsign.objectsLocked = lockedView.objectsLocked;
+        roadsign.canvasAnchored = lockedView.canvasAnchored;
+        roadsign.snapToGrid = snapToGrid;
+        roadsign.snapToGridSize = snapToGridSize;
+        roadsign.exportFormatSelectedIndex = exportFormatSelectedIndex;
+        roadsign.pngExportTransparentBackground = pngExportTransparentBackground;
+        roadsign.jpgExportQualityValue = jpgExportQualityValue;
+        roadsign.roadsignBackgroundColor = roadsignBackgroundColor;
+        roadsign.roadsignBackgroundTexture = roadsignBackgroundTexture;
+        roadsign.useBackgroundTexture = useBackgroundTexture;
+        roadsign.labelTextLine1 = labelTextLine1;
+        roadsign.labelTextLine2 = labelTextLine2;
+        roadsign.labelTextLine3 = labelTextLine3;
+        roadsign.labelTextColor = labelTextColor;
+        roadsign.labelTextFont = labelTextFont;
+        roadsign.labelTextAlignment = labelTextAlignment;
         
         [roadsign initRoadsignFromView:self.signBackgroundView];
         
@@ -276,14 +297,38 @@
         if (signBackgroundId > 0) {
             AWBRoadsignBackground *signBackground = [AWBRoadsignBackground signBackgroundWithIdentifier:signBackgroundId];
             [self updateSignBackground:signBackground willAnimateAndSave:NO];
-            //[self awbSignBackgroundPickerView:nil didSelectSignBackground:signBackground];            
+        }
+        
+        self.exportSize = roadsign.exportSize;
+        self.lockedView.objectsLocked = roadsign.objectsLocked;
+        self.lockedView.canvasAnchored = roadsign.canvasAnchored;
+        self.snapToGrid = roadsign.snapToGrid;
+        self.snapToGridSize = roadsign.snapToGridSize;
+        self.exportFormatSelectedIndex = roadsign.exportFormatSelectedIndex;
+        self.pngExportTransparentBackground = roadsign.pngExportTransparentBackground;
+        self.jpgExportQualityValue = roadsign.jpgExportQualityValue;
+        self.roadsignBackgroundColor = roadsign.roadsignBackgroundColor;
+        self.roadsignBackgroundTexture = roadsign.roadsignBackgroundTexture;
+        self.useBackgroundTexture = roadsign.useBackgroundTexture;
+        self.labelTextLine1 = roadsign.labelTextLine1;
+        self.labelTextLine2 = roadsign.labelTextLine2;
+        self.labelTextLine3 = roadsign.labelTextLine3;
+        self.labelTextColor = roadsign.labelTextColor;
+        self.labelTextFont = roadsign.labelTextFont;
+        self.labelTextAlignment = roadsign.labelTextAlignment;
+        
+        if (self.useBackgroundTexture && self.roadsignBackgroundTexture) {
+            self.view.backgroundColor = [UIColor textureColorWithDescription:self.roadsignBackgroundTexture];
+        } else {
+            if (self.roadsignBackgroundColor) {
+                self.view.backgroundColor = self.roadsignBackgroundColor;
+            }            
         }
         
         [roadsign addRoadsignToView:self.signBackgroundView];
-       
+        
         totalSymbolSubviews = roadsign.totalSymbols;
         totalLabelSubviews = roadsign.totalLabels;
-        self.exportSize = roadsign.exportSize;
     }
     
     [pool drain];
@@ -330,6 +375,8 @@
     [roadsignSaveDocumentsSubdirectory release];
     [signBackgroundView release];
     [mainScrollView release];
+    [roadsignBackgroundColor release];
+    [roadsignBackgroundTexture release];
     [super dealloc];
 }
 

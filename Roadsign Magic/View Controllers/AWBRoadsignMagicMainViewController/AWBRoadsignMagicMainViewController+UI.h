@@ -24,7 +24,8 @@
 - (void)dismissActionSheetIfVisible:(UIActionSheet *)actionSheet;
 - (void)settingsButtonAction:(id)sender;
 - (void)dismissAllActionSheetsAndPopovers;
-- (void)setExportSizeFromSettingsInfo:(NSDictionary *)info;
+- (void)setExportSettingsFromSettingsInfo:(NSDictionary *)info;
+- (void)setBackgroundSettingsFromSettingsInfo:(NSDictionary *)info;
 - (void)setCollageDrawingAidsFromSettingsInfo:(NSDictionary *)info;
 - (NSMutableDictionary *)settingsInfo;
 - (void)applySettingsToLabel:(AWBTransformableZFontLabel *)label;

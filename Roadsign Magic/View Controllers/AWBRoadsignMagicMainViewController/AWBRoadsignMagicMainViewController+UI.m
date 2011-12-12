@@ -13,6 +13,7 @@
 #import "AWBRoadsignMagicViewController+Sign.h"
 #import "AWBRoadsignMagicViewController+Symbol.h"
 #import "AWBRoadsignMagicViewController+Action.h"
+#import "UIColor+Texture.h"
 
 @implementation AWBRoadsignMagicMainViewController (UI)
 
@@ -111,11 +112,27 @@
     }
 }
 
-- (void)setExportSizeFromSettingsInfo:(NSDictionary *)info
+- (void)setExportSettingsFromSettingsInfo:(NSDictionary *)info
 {
-    NSLog(@"Export Quality: %f", [[info objectForKey:kAWBInfoKeyExportSizeValue] floatValue]);
+    self.exportSize = [[info objectForKey:kAWBInfoKeyExportSizeValue] floatValue];
+    self.exportFormatSelectedIndex = [[info objectForKey:kAWBInfoKeyExportFormatSelectedIndex] integerValue];
+    self.pngExportTransparentBackground = [[info objectForKey:kAWBInfoKeyPNGExportTransparentBackground] boolValue];
+    self.jpgExportQualityValue = [[info objectForKey:kAWBInfoKeyJPGExportQualityValue] floatValue];
+}
+
+- (void)setBackgroundSettingsFromSettingsInfo:(NSDictionary *)info
+{
+    self.useBackgroundTexture = [[info objectForKey:kAWBInfoKeyRoadsignUseBackgroundTexture] boolValue];
+    self.roadsignBackgroundTexture = [info objectForKey:kAWBInfoKeyRoadsignBackgroundTexture];
+    self.roadsignBackgroundColor = [info objectForKey:kAWBInfoKeyRoadsignBackgroundColor];
     
-    [self setExportSize:[[info objectForKey:kAWBInfoKeyExportSizeValue] floatValue]];
+    if (self.useBackgroundTexture && self.roadsignBackgroundTexture) {
+        self.view.backgroundColor = [UIColor textureColorWithDescription:self.roadsignBackgroundTexture];
+    } else {
+        if (self.roadsignBackgroundColor) {
+            self.view.backgroundColor = self.roadsignBackgroundColor;
+        }            
+    }
 }
 
 - (void)setCollageDrawingAidsFromSettingsInfo:(NSDictionary *)info
@@ -135,8 +152,18 @@
                                  [NSNumber numberWithBool:self.snapToGrid], kAWBInfoKeySnapToGrid, 
                                  [NSNumber numberWithFloat:self.snapToGridSize], kAWBInfoKeySnapToGridSize, 
                                  [NSNumber numberWithInteger:self.labelTextAlignment], kAWBInfoKeyTextAlignment,
+                                 [NSNumber numberWithInteger:self.exportFormatSelectedIndex], kAWBInfoKeyExportFormatSelectedIndex,
+                                 [NSNumber numberWithBool:self.pngExportTransparentBackground], kAWBInfoKeyPNGExportTransparentBackground,
+                                 [NSNumber numberWithFloat:self.jpgExportQualityValue], kAWBInfoKeyJPGExportQualityValue,
+                                 [NSNumber numberWithBool:self.useBackgroundTexture], kAWBInfoKeyRoadsignUseBackgroundTexture,
                                  nil];
-          
+             
+    if (self.roadsignBackgroundColor) {
+        [info setObject:self.roadsignBackgroundColor forKey:kAWBInfoKeyRoadsignBackgroundColor];        
+    } 
+    if (self.roadsignBackgroundTexture) {
+        [info setObject:self.roadsignBackgroundTexture forKey:kAWBInfoKeyRoadsignBackgroundTexture];        
+    } 
     if (self.labelTextColor) {
         [info setObject:self.labelTextColor forKey:kAWBInfoKeyTextColor];        
     }    
@@ -160,7 +187,8 @@
 {
     switch (settingsController.controllerType) {
         case AWBSettingsControllerTypeMainSettings:
-            [self setExportSizeFromSettingsInfo:info];
+            [self setExportSettingsFromSettingsInfo:info];
+            [self setBackgroundSettingsFromSettingsInfo:info];
             [self setCollageDrawingAidsFromSettingsInfo:info];
             [self saveChanges:NO];            
             break;

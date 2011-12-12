@@ -16,9 +16,6 @@ static NSString *const kAWBInfoKeyCollageBackgroundTexture = @"CollageBackground
 static NSString *const kAWBInfoKeyCollageUseBackgroundTexture = @"CollageUseBackgroundTexture";
 static NSString *const kAWBInfoKeyCollageBorder = @"CollageBorder";
 static NSString *const kAWBInfoKeyCollageBorderColor = @"CollageBorderColor";
-static NSString *const kAWBInfoKeyTextColor = @"TextColor";
-static NSString *const kAWBInfoKeyTextAlignment = @"TextAlignment";
-static NSString *const kAWBInfoKeyTextFontName = @"TextFontName";
 static NSString *const kAWBInfoKeyImageShadows = @"ImageShadows";
 static NSString *const kAWBInfoKeyTextShadows = @"TextShadows";
 static NSString *const kAWBInfoKeyImageShadowColor = @"ImageShadowColor";
@@ -31,9 +28,6 @@ static NSString *const kAWBInfoKeyTextBackgroundColor = @"TextBackgroundColor";
 static NSString *const kAWBInfoKeyImageRoundedBorders = @"ImageRoundedBorders";
 static NSString *const kAWBInfoKeyTextRoundedBorders = @"TextRoundedBorders";
 static NSString *const kAWBInfoKeyTextBackground = @"TextBackground";
-static NSString *const kAWBInfoKeyLabelTextLine1 = @"LabelTextLine1";
-static NSString *const kAWBInfoKeyLabelTextLine2 = @"LabelTextLine2";
-static NSString *const kAWBInfoKeyLabelTextLine3 = @"LabelTextLine3";
 static NSString *const kAWBInfoKeyLabelTextLine4 = @"LabelTextLine4";
 static NSString *const kAWBInfoKeySymbolColor = @"SymbolColor";
 static NSString *const kAWBInfoKeyLuckyDipSourceSelectedIndex = @"LuckyDipSourceSelectedIndex";
@@ -47,11 +41,11 @@ static NSString *const kAWBInfoKeyObjectPlacementIndex = @"ObjectPlacementIndex"
 static NSString *const kAWBAllPhotosGroupName = @"All Photos";
 static NSString *const kAWBAllPhotosGroupPersistentID = @"+MM/AllPhotos";
 static NSString *const kAWBInfoKeyAddContentOnCreation = @"AddContentOnCreation";
+
 static NSString *const kAWBInfoKeyLockCanvas = @"LockCanvas";
 static NSString *const kAWBInfoKeyScrollLocked = @"ScrollLocked";
 static NSString *const kAWBInfoKeySnapToGrid = @"SnapToGrid";
 static NSString *const kAWBInfoKeySnapToGridSize = @"SnapToGridSize";
-
 static NSString *const kAWBInfoKeyExportSizeValue = @"ExportSizeValue";
 static NSString *const kAWBInfoKeyExportFormatSelectedIndex = @"ExportFormatSelectedIndex";
 static NSString *const kAWBInfoKeyPNGExportTransparentBackground = @"PNGExportTransparentBackground";
@@ -59,6 +53,13 @@ static NSString *const kAWBInfoKeyJPGExportQualityValue = @"JPGExportQualityValu
 static NSString *const kAWBInfoKeyRoadsignBackgroundColor = @"RoadsignBackgroundColor";
 static NSString *const kAWBInfoKeyRoadsignBackgroundTexture = @"RoadsignBackgroundTexture";
 static NSString *const kAWBInfoKeyRoadsignUseBackgroundTexture = @"RoadsignUseBackgroundTexture";
+static NSString *const kAWBInfoKeyTextColor = @"TextColor";
+static NSString *const kAWBInfoKeyTextAlignment = @"TextAlignment";
+static NSString *const kAWBInfoKeyTextFontName = @"TextFontName";
+static NSString *const kAWBInfoKeyLabelTextLine1 = @"LabelTextLine1";
+static NSString *const kAWBInfoKeyLabelTextLine2 = @"LabelTextLine2";
+static NSString *const kAWBInfoKeyLabelTextLine3 = @"LabelTextLine3";
+
 
 @class AWBSetting;
 @class AWBSettings;

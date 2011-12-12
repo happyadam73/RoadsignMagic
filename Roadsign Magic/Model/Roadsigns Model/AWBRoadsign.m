@@ -16,12 +16,32 @@
 @synthesize exportSize; 
 @synthesize roadsignBackgroundId, roadsignViews;
 @synthesize totalSymbols, totalLabels, totalImageMemoryBytes;
+@synthesize objectsLocked, canvasAnchored, snapToGrid, snapToGridSize;
+@synthesize exportFormatSelectedIndex, pngExportTransparentBackground, jpgExportQualityValue;
+@synthesize roadsignBackgroundColor, roadsignBackgroundTexture, useBackgroundTexture;
+@synthesize labelTextAlignment, labelTextColor, labelTextFont, labelTextLine1, labelTextLine2, labelTextLine3;
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self.roadsignViews = [aDecoder decodeObjectForKey:kAWBInfoKeyRoadsignViews];
     self.roadsignBackgroundId = [aDecoder decodeIntegerForKey:kAWBInfoKeyRoadsignBackgroundId];
     self.exportSize = [aDecoder decodeFloatForKey:kAWBInfoKeyExportSizeValue];
+    self.objectsLocked = [aDecoder decodeBoolForKey:kAWBInfoKeyLockCanvas];
+    self.canvasAnchored = [aDecoder decodeBoolForKey:kAWBInfoKeyScrollLocked];
+    self.snapToGrid = [aDecoder decodeBoolForKey:kAWBInfoKeySnapToGrid];
+    self.snapToGridSize = [aDecoder decodeFloatForKey:kAWBInfoKeySnapToGridSize];
+    self.exportFormatSelectedIndex = [aDecoder decodeIntegerForKey:kAWBInfoKeyExportFormatSelectedIndex];
+    self.pngExportTransparentBackground = [aDecoder decodeBoolForKey:kAWBInfoKeyPNGExportTransparentBackground];
+    self.jpgExportQualityValue = [aDecoder decodeFloatForKey:kAWBInfoKeyJPGExportQualityValue];
+    self.roadsignBackgroundColor = [aDecoder decodeObjectForKey:kAWBInfoKeyRoadsignBackgroundColor];
+    self.roadsignBackgroundTexture = [aDecoder decodeObjectForKey:kAWBInfoKeyRoadsignBackgroundTexture];
+    self.useBackgroundTexture = [aDecoder decodeBoolForKey:kAWBInfoKeyRoadsignUseBackgroundTexture];
+    self.labelTextColor = [aDecoder decodeObjectForKey:kAWBInfoKeyTextColor];
+    self.labelTextFont = [aDecoder decodeObjectForKey:kAWBInfoKeyTextFontName];
+    self.labelTextLine1 = [aDecoder decodeObjectForKey:kAWBInfoKeyLabelTextLine1];
+    self.labelTextLine2 = [aDecoder decodeObjectForKey:kAWBInfoKeyLabelTextLine2];
+    self.labelTextLine3 = [aDecoder decodeObjectForKey:kAWBInfoKeyLabelTextLine3];
+    self.labelTextAlignment = [aDecoder decodeIntegerForKey:kAWBInfoKeyTextAlignment];
     
     return  self;   
 }
@@ -91,12 +111,35 @@
 {   
     [aCoder encodeObject:self.roadsignViews forKey:kAWBInfoKeyRoadsignViews];
     [aCoder encodeInteger:self.roadsignBackgroundId forKey:kAWBInfoKeyRoadsignBackgroundId];
-    [aCoder encodeFloat:self.exportSize forKey:kAWBInfoKeyExportSizeValue];    
+    [aCoder encodeFloat:self.exportSize forKey:kAWBInfoKeyExportSizeValue]; 
+    [aCoder encodeBool:self.objectsLocked forKey:kAWBInfoKeyLockCanvas]; 
+    [aCoder encodeBool:self.canvasAnchored forKey:kAWBInfoKeyScrollLocked]; 
+    [aCoder encodeBool:self.snapToGrid forKey:kAWBInfoKeySnapToGrid]; 
+    [aCoder encodeFloat:self.snapToGridSize forKey:kAWBInfoKeySnapToGridSize]; 
+    [aCoder encodeInteger:self.exportFormatSelectedIndex forKey:kAWBInfoKeyExportFormatSelectedIndex]; 
+    [aCoder encodeBool:self.pngExportTransparentBackground forKey:kAWBInfoKeyPNGExportTransparentBackground]; 
+    [aCoder encodeFloat:self.jpgExportQualityValue forKey:kAWBInfoKeyJPGExportQualityValue]; 
+    [aCoder encodeObject:self.roadsignBackgroundColor forKey:kAWBInfoKeyRoadsignBackgroundColor]; 
+    [aCoder encodeObject:self.roadsignBackgroundTexture forKey:kAWBInfoKeyRoadsignBackgroundTexture]; 
+    [aCoder encodeBool:self.useBackgroundTexture forKey:kAWBInfoKeyRoadsignUseBackgroundTexture]; 
+    [aCoder encodeObject:self.labelTextColor forKey:kAWBInfoKeyTextColor]; 
+    [aCoder encodeObject:self.labelTextFont forKey:kAWBInfoKeyTextFontName]; 
+    [aCoder encodeObject:self.labelTextLine1 forKey:kAWBInfoKeyLabelTextLine1]; 
+    [aCoder encodeObject:self.labelTextLine2 forKey:kAWBInfoKeyLabelTextLine2]; 
+    [aCoder encodeObject:self.labelTextLine3 forKey:kAWBInfoKeyLabelTextLine3]; 
+    [aCoder encodeInteger:self.labelTextAlignment forKey:kAWBInfoKeyTextAlignment];     
 }
 
 - (void)dealloc
 {
+    [labelTextColor release];
+    [labelTextFont release];
+    [labelTextLine1 release];
+    [labelTextLine2 release];
+    [labelTextLine3 release];
     [roadsignViews release];
+    [roadsignBackgroundColor release];
+    [roadsignBackgroundTexture release];
     [super dealloc];
 }
 
