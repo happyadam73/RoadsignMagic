@@ -16,7 +16,7 @@
 @synthesize exportSize; 
 @synthesize roadsignBackgroundId, roadsignViews;
 @synthesize totalSymbols, totalLabels, totalImageMemoryBytes;
-@synthesize objectsLocked, canvasAnchored, snapToGrid, snapToGridSize;
+@synthesize objectsLocked, canvasAnchored, snapToGrid, snapRotation, snapToGridSize;
 @synthesize exportFormatSelectedIndex, pngExportTransparentBackground, jpgExportQualityValue;
 @synthesize roadsignBackgroundColor, roadsignBackgroundTexture, useBackgroundTexture;
 @synthesize labelTextAlignment, labelTextColor, labelTextFont, labelTextLine1, labelTextLine2, labelTextLine3;
@@ -29,6 +29,7 @@
     self.objectsLocked = [aDecoder decodeBoolForKey:kAWBInfoKeyLockCanvas];
     self.canvasAnchored = [aDecoder decodeBoolForKey:kAWBInfoKeyScrollLocked];
     self.snapToGrid = [aDecoder decodeBoolForKey:kAWBInfoKeySnapToGrid];
+    self.snapRotation = [aDecoder decodeBoolForKey:kAWBInfoKeySnapRotation];
     self.snapToGridSize = [aDecoder decodeFloatForKey:kAWBInfoKeySnapToGridSize];
     self.exportFormatSelectedIndex = [aDecoder decodeIntegerForKey:kAWBInfoKeyExportFormatSelectedIndex];
     self.pngExportTransparentBackground = [aDecoder decodeBoolForKey:kAWBInfoKeyPNGExportTransparentBackground];
@@ -115,6 +116,7 @@
     [aCoder encodeBool:self.objectsLocked forKey:kAWBInfoKeyLockCanvas]; 
     [aCoder encodeBool:self.canvasAnchored forKey:kAWBInfoKeyScrollLocked]; 
     [aCoder encodeBool:self.snapToGrid forKey:kAWBInfoKeySnapToGrid]; 
+    [aCoder encodeBool:self.snapRotation forKey:kAWBInfoKeySnapRotation]; 
     [aCoder encodeFloat:self.snapToGridSize forKey:kAWBInfoKeySnapToGridSize]; 
     [aCoder encodeInteger:self.exportFormatSelectedIndex forKey:kAWBInfoKeyExportFormatSelectedIndex]; 
     [aCoder encodeBool:self.pngExportTransparentBackground forKey:kAWBInfoKeyPNGExportTransparentBackground]; 

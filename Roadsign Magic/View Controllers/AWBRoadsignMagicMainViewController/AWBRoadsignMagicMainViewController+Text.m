@@ -47,7 +47,7 @@
     if (totalSelectedLabelsInEditMode == 1) {
         //get selected label
         FontLabel *selectedLabel = nil;
-        for(UIView <AWBTransformableView> *view in [[[self view] subviews] reverseObjectEnumerator]) {
+        for(UIView <AWBTransformableView> *view in [[self.signBackgroundView subviews] reverseObjectEnumerator]) {
             if ([view conformsToProtocol:@protocol(AWBTransformableView)]) {
                 if ((view.alpha == SELECTED_ALPHA) && [view isKindOfClass:[AWBTransformableZFontLabel class]]) {
                     selectedLabel = [(AWBTransformableZFontLabel *)view labelView];

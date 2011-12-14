@@ -140,6 +140,7 @@
     self.lockedView.objectsLocked = [[info objectForKey:kAWBInfoKeyLockCanvas] boolValue];
     self.lockedView.canvasAnchored = [[info objectForKey:kAWBInfoKeyScrollLocked] boolValue];
     self.snapToGrid = [[info objectForKey:kAWBInfoKeySnapToGrid] boolValue];
+    self.snapRotation = [[info objectForKey:kAWBInfoKeySnapRotation] boolValue];
     self.snapToGridSize = [[info objectForKey:kAWBInfoKeySnapToGridSize] floatValue];
 }
 
@@ -150,6 +151,7 @@
                                  [NSNumber numberWithBool:self.lockedView.objectsLocked], kAWBInfoKeyLockCanvas, 
                                  [NSNumber numberWithBool:self.lockedView.canvasAnchored], kAWBInfoKeyScrollLocked, 
                                  [NSNumber numberWithBool:self.snapToGrid], kAWBInfoKeySnapToGrid, 
+                                 [NSNumber numberWithBool:self.snapRotation], kAWBInfoKeySnapRotation, 
                                  [NSNumber numberWithFloat:self.snapToGridSize], kAWBInfoKeySnapToGridSize, 
                                  [NSNumber numberWithInteger:self.labelTextAlignment], kAWBInfoKeyTextAlignment,
                                  [NSNumber numberWithInteger:self.exportFormatSelectedIndex], kAWBInfoKeyExportFormatSelectedIndex,

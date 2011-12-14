@@ -45,6 +45,7 @@ static NSString *const kAWBInfoKeyAddContentOnCreation = @"AddContentOnCreation"
 static NSString *const kAWBInfoKeyLockCanvas = @"LockCanvas";
 static NSString *const kAWBInfoKeyScrollLocked = @"ScrollLocked";
 static NSString *const kAWBInfoKeySnapToGrid = @"SnapToGrid";
+static NSString *const kAWBInfoKeySnapRotation = @"SnapRotation";
 static NSString *const kAWBInfoKeySnapToGridSize = @"SnapToGridSize";
 static NSString *const kAWBInfoKeyExportSizeValue = @"ExportSizeValue";
 static NSString *const kAWBInfoKeyExportFormatSelectedIndex = @"ExportFormatSelectedIndex";

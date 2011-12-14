@@ -14,6 +14,8 @@
 + (id)concreteTextureColor;
 + (id)asphaltTextureColor;
 + (id)woodTextureColor;
++ (id)metalTextureColor;
++ (id)brightLightsTextureColor;
 + (NSArray *)allTextureColors;
 + (NSArray *)allTextureColorDescriptions;
 + (NSArray *)allTextureColorImages;

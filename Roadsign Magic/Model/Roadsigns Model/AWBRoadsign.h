@@ -22,6 +22,7 @@ static NSString *const kAWBInfoKeyRoadsignBackgroundId = @"RoadsignBackgroundId"
     BOOL objectsLocked;
     BOOL canvasAnchored;
     BOOL snapToGrid;
+    BOOL snapRotation;
     CGFloat snapToGridSize;
     NSUInteger exportFormatSelectedIndex;
     BOOL pngExportTransparentBackground;
@@ -46,6 +47,7 @@ static NSString *const kAWBInfoKeyRoadsignBackgroundId = @"RoadsignBackgroundId"
 @property (nonatomic, assign) BOOL canvasAnchored;
 @property (nonatomic, assign) BOOL objectsLocked;
 @property (nonatomic, assign) BOOL snapToGrid;
+@property (nonatomic, assign) BOOL snapRotation;
 @property (nonatomic, assign) CGFloat snapToGridSize;
 @property (nonatomic, assign) NSUInteger exportFormatSelectedIndex;
 @property (nonatomic, assign) BOOL pngExportTransparentBackground;

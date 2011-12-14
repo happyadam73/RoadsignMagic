@@ -33,7 +33,7 @@
 @synthesize rotationGestureRecognizer, panGestureRecognizer, pinchGestureRecognizer, singleTapGestureRecognizer, doubleTapGestureRecognizer, swipeGestureRecognizer, longPressGestureRecognizer, longDoublePressGestureRecognizer;
 @synthesize roadsignFont; 
 @synthesize labelTextColor, labelTextFont, labelTextLine1, labelTextLine2, labelTextLine3, labelTextAlignment;
-@synthesize exportSize, snapToGrid, snapToGridSize, lockedView;
+@synthesize exportSize, snapToGrid, snapRotation, snapToGridSize, lockedView;
 @synthesize selectedSignBackground, selectedSignSymbol, isSignInEditMode;
 @synthesize deleteConfirmationSheet, chooseActionTypeSheet, busyView;
 @synthesize totalSymbolSubviews, totalLabelSubviews, roadsignDescriptor, roadsignSaveDocumentsSubdirectory;
@@ -53,6 +53,7 @@
         self.roadsignDescriptor = roadsign;
         [self setRoadsignSaveDocumentsSubdirectory:roadsign.roadsignSaveDocumentsSubdirectory];
         self.snapToGrid = NO;
+        self.snapRotation = YES;
         self.snapToGridSize = SNAP_TO_GRID_SIZE;
         self.labelTextAlignment = UITextAlignmentCenter;
         self.exportSize = 1.0;
@@ -61,7 +62,7 @@
         self.pngExportTransparentBackground = YES;
         self.jpgExportQualityValue = 0.7;
         self.roadsignBackgroundColor = [UIColor yellowSignBackgroundColor];
-        self.roadsignBackgroundTexture = @"Concrete";
+        self.roadsignBackgroundTexture = @"Metal";
         self.useBackgroundTexture = YES;        
     }
     return self;
@@ -185,6 +186,15 @@
     self.wantsFullScreenLayout = YES;
 //    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageFromFile:@"concrete.jpg"]];
 //    self.view.backgroundColor = [UIColor concreteTextureColor];
+    
+    if (self.useBackgroundTexture && self.roadsignBackgroundTexture) {
+        self.view.backgroundColor = [UIColor textureColorWithDescription:self.roadsignBackgroundTexture];
+    } else {
+        if (self.roadsignBackgroundColor) {
+            self.view.backgroundColor = self.roadsignBackgroundColor;
+        }            
+    }
+    
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:[[self view] bounds]];
     [scrollView setDelegate:self];
     [scrollView setBouncesZoom:YES];
@@ -244,19 +254,20 @@
         roadsign.objectsLocked = lockedView.objectsLocked;
         roadsign.canvasAnchored = lockedView.canvasAnchored;
         roadsign.snapToGrid = snapToGrid;
+        roadsign.snapRotation = snapRotation;
         roadsign.snapToGridSize = snapToGridSize;
         roadsign.exportFormatSelectedIndex = exportFormatSelectedIndex;
         roadsign.pngExportTransparentBackground = pngExportTransparentBackground;
         roadsign.jpgExportQualityValue = jpgExportQualityValue;
-        roadsign.roadsignBackgroundColor = roadsignBackgroundColor;
-        roadsign.roadsignBackgroundTexture = roadsignBackgroundTexture;
-        roadsign.useBackgroundTexture = useBackgroundTexture;
         roadsign.labelTextLine1 = labelTextLine1;
         roadsign.labelTextLine2 = labelTextLine2;
         roadsign.labelTextLine3 = labelTextLine3;
         roadsign.labelTextColor = labelTextColor;
         roadsign.labelTextFont = labelTextFont;
         roadsign.labelTextAlignment = labelTextAlignment;
+        roadsign.roadsignBackgroundColor = roadsignBackgroundColor;
+        roadsign.roadsignBackgroundTexture = roadsignBackgroundTexture;
+        roadsign.useBackgroundTexture = useBackgroundTexture;
         
         [roadsign initRoadsignFromView:self.signBackgroundView];
         
@@ -303,6 +314,7 @@
         self.lockedView.objectsLocked = roadsign.objectsLocked;
         self.lockedView.canvasAnchored = roadsign.canvasAnchored;
         self.snapToGrid = roadsign.snapToGrid;
+        self.snapRotation = roadsign.snapRotation;
         self.snapToGridSize = roadsign.snapToGridSize;
         self.exportFormatSelectedIndex = roadsign.exportFormatSelectedIndex;
         self.pngExportTransparentBackground = roadsign.pngExportTransparentBackground;

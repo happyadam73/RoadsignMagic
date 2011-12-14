@@ -69,6 +69,7 @@ enum {
     
     AWBLockedView *lockedView;
     BOOL snapToGrid;
+    BOOL snapRotation;
     CGFloat snapToGridSize;
     CGFloat exportSize;    
     NSUInteger exportFormatSelectedIndex;
@@ -125,6 +126,7 @@ enum {
 @property (nonatomic, retain) ZFont *roadsignFont;
 @property (nonatomic, retain) AWBLockedView *lockedView;
 @property (nonatomic, assign) BOOL snapToGrid;
+@property (nonatomic, assign) BOOL snapRotation;
 @property (nonatomic, assign) CGFloat snapToGridSize;
 @property (nonatomic, assign) CGFloat exportSize;
 @property (nonatomic, retain) NSString *labelTextLine1;

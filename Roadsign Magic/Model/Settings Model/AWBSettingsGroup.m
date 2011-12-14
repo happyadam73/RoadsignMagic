@@ -220,9 +220,9 @@
 
 + (AWBSettingsGroup *)snapToGridSettingsGroupWithInfo:(NSDictionary *)info
 {
-    NSMutableArray *snapToGridSettings = [NSMutableArray arrayWithObjects:[AWBSetting switchSettingWithText:@"Snap to Grid" value:[info objectForKey:kAWBInfoKeySnapToGrid] key:kAWBInfoKeySnapToGrid], nil];
+    NSMutableArray *snapToGridSettings = [NSMutableArray arrayWithObjects:[AWBSetting switchSettingWithText:@"Snap to Grid" value:[info objectForKey:kAWBInfoKeySnapToGrid] key:kAWBInfoKeySnapToGrid], [AWBSetting switchSettingWithText:@"Snap Rotation" value:[info objectForKey:kAWBInfoKeySnapRotation] key:kAWBInfoKeySnapRotation], nil];
     
-    return [[[self alloc] initWithSettings:snapToGridSettings header:nil footer:nil] autorelease];
+    return [[[self alloc] initWithSettings:snapToGridSettings header:nil footer:@"Snap to Grid limits sizing and position. Snap Rotation limits the angle of rotation."] autorelease];
 }
 
 + (AWBSettingsGroup *)backgroundColorPickerSettingsGroupWithInfo:(NSDictionary *)info

@@ -139,17 +139,17 @@ static AWBRoadsignStore *defaultStore = nil;
     
     // If we tried to read one from disk but does not exist, then first try and copy the help collages from the bundle 
     if (!allRoadsigns) {
-        [[NSUserDefaults standardUserDefaults] setInteger:2 forKey:kAWBInfoKeyRoadsignSequenceNumber];
+        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:kAWBInfoKeyRoadsignSequenceNumber];
         [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:kAWBInfoKeyRoadsignStoreRoadsignIndex];
-//        BOOL success = AWBCopyRoadsignHelpFilesForDevice();  
-//        if (success) {
-//            NSString *path = [self roadsignDescriptorArchivePath];
-//            allRoadsigns = [[NSKeyedUnarchiver unarchiveObjectWithFile:path] retain];
-//        }
+        BOOL success = AWBCopyRoadsignHelpFilesForDevice();  
+        if (success) {
+            NSString *path = [self roadsignDescriptorArchivePath];
+            allRoadsigns = [[NSKeyedUnarchiver unarchiveObjectWithFile:path] retain];
+        }
     }
     
     if (!allRoadsigns) {
-        //collage help files not copied so create empty collage store
+        //roadsign help files not copied so create empty collage store
         allRoadsigns = [[NSMutableArray alloc] init];
     }
 }

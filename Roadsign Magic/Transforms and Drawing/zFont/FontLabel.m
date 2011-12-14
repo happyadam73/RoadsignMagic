@@ -38,9 +38,9 @@
 
 - (id)initWithFrame:(CGRect)frame zFont:(ZFont *)font {
 	if ((self = [super initWithFrame:frame])) {
-//        CATiledLayer *layerForView = (CATiledLayer *)self.layer;
-//        layerForView.levelsOfDetailBias = 2;
-//        layerForView.levelsOfDetail = 2;
+        CATiledLayer *layerForView = (CATiledLayer *)self.layer;
+        layerForView.levelsOfDetailBias = 0;
+        layerForView.levelsOfDetail = 4;
 		zFont = [font retain];
 	}
 	return self;

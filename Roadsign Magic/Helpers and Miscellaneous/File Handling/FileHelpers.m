@@ -204,12 +204,12 @@ BOOL AWBCopyBundleItemAtPathToDocumentsFolder(NSString *bundleSubdirectory, NSSt
     return success;
 }
 
-BOOL AWBCopyCollageHelpFilesForDevice(void)
+BOOL AWBCopyRoadsignHelpFilesForDevice(void)
 {
-    NSString *bundleSubdirectory = (DEVICE_IS_IPAD ? @"iPad" : @"iPhone");
-    BOOL success = AWBCopyBundleItemAtPathToDocumentsFolder(bundleSubdirectory, @"Collage 1");
-    success = success && AWBCopyBundleItemAtPathToDocumentsFolder(bundleSubdirectory, @"Collage 2");
-    success = success && AWBCopyBundleItemAtPathToDocumentsFolder(bundleSubdirectory, @"collageDescriptors.data");
+    //NSString *bundleSubdirectory = (DEVICE_IS_IPAD ? @"iPad" : @"iPhone");
+    NSString *bundleSubdirectory = @"Help Files/iPhone";
+    BOOL success = AWBCopyBundleItemAtPathToDocumentsFolder(bundleSubdirectory, @"Roadsign 1");
+    success = success && AWBCopyBundleItemAtPathToDocumentsFolder(bundleSubdirectory, @"roadsignDescriptors.data");
     
     return success;
 }

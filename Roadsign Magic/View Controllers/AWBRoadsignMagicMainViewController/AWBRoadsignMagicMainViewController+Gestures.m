@@ -66,11 +66,11 @@
 //    [longPressRecognizer release];
 //    [self.view addGestureRecognizer:self.longPressGestureRecognizer];
     
-    UILongPressGestureRecognizer *longDoublePressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongDoublePresses:)];
-    longDoublePressRecognizer.numberOfTouchesRequired = 2;
-    self.longDoublePressGestureRecognizer = longDoublePressRecognizer;
-    [longDoublePressRecognizer release];
-    [self.view addGestureRecognizer:self.longDoublePressGestureRecognizer];
+//    UILongPressGestureRecognizer *longDoublePressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongDoublePresses:)];
+//    longDoublePressRecognizer.numberOfTouchesRequired = 2;
+//    self.longDoublePressGestureRecognizer = longDoublePressRecognizer;
+//    [longDoublePressRecognizer release];
+//    [self.view addGestureRecognizer:self.longDoublePressGestureRecognizer];
 }
 
 - (void)deallocGestureRecognizers
@@ -124,7 +124,7 @@
         } else {
             capturedView.pendingRotationAngleInRadians = paramSender.rotation;
         }
-        [capturedView rotateAndScaleWithSnapToGrid:snapToGrid gridSize:snapToGridSize]; 
+        [capturedView rotateAndScaleWithSnapToGrid:snapToGrid gridSize:snapToGridSize snapRotation:snapRotation]; 
         
         if ((paramSender.state == UIGestureRecognizerStateEnded) || (paramSender.state == UIGestureRecognizerStateFailed) || (paramSender.state == UIGestureRecognizerStateCancelled)) {
             currentlyRotating = NO;
@@ -172,7 +172,7 @@
         }  else {
             capturedView.currentScale = paramSender.scale;
         }
-        [capturedView rotateAndScaleWithSnapToGrid:snapToGrid gridSize:snapToGridSize];  
+        [capturedView rotateAndScaleWithSnapToGrid:snapToGrid gridSize:snapToGridSize snapRotation:snapRotation];  
         
         
         if ((paramSender.state == UIGestureRecognizerStateEnded) || (paramSender.state == UIGestureRecognizerStateFailed) || (paramSender.state == UIGestureRecognizerStateCancelled)) {
@@ -288,7 +288,7 @@
     
     if (view) {
         view.horizontalFlip = view.horizontalFlip ? NO : YES; 
-        [view rotateAndScaleWithSnapToGrid:snapToGrid gridSize:snapToGridSize];       
+        [view rotateAndScaleWithSnapToGrid:snapToGrid gridSize:snapToGridSize snapRotation:snapRotation];       
     }
 }
 

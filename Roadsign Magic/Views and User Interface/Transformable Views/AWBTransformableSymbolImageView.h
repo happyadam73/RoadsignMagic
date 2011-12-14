@@ -19,7 +19,9 @@
     CGFloat shadowOffset;
     UIImageView *imageView;
     CGFloat initialHeight;
-    BOOL rotationAndScaleCurrentlyQuantised;
+//    BOOL rotationAndScaleCurrentlyQuantised;
+    BOOL rotationCurrentlyQuantised;
+    BOOL scaleCurrentlyQuantised;
     CGFloat currentQuantisedScale;
     CGFloat currentQuantisedRotation;
     CAShapeLayer *selectionMarquee1;

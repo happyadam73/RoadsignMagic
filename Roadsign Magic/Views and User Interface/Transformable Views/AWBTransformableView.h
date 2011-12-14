@@ -24,7 +24,7 @@
 @property (nonatomic, assign) BOOL roundedBorder;
 
 - (void)rotateAndScale;
-- (void)rotateAndScaleWithSnapToGrid:(BOOL)snapToGrid gridSize:(CGFloat)gridSize;
+- (void)rotateAndScaleWithSnapToGrid:(BOOL)snapToGrid gridSize:(CGFloat)gridSize snapRotation:(BOOL)snapRotation;
 - (void)applyPendingRotationToCapturedView;
 - (void)initialiseForSelection;
 - (void)removeSelection;
