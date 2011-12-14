@@ -60,7 +60,7 @@ static NSString *const kAWBInfoKeyTextFontName = @"TextFontName";
 static NSString *const kAWBInfoKeyLabelTextLine1 = @"LabelTextLine1";
 static NSString *const kAWBInfoKeyLabelTextLine2 = @"LabelTextLine2";
 static NSString *const kAWBInfoKeyLabelTextLine3 = @"LabelTextLine3";
-
+static NSString *const kAWBBackgroundSettingsFooterText = @"By default, this background is not included when exporting or printing.  You can change this in Export Settings.";
 
 @class AWBSetting;
 @class AWBSettings;
@@ -119,9 +119,9 @@ static NSString *const kAWBInfoKeyLabelTextLine3 = @"LabelTextLine3";
 + (AWBSettingsGroup *)canvasLockSettingsGroupWithInfo:(NSDictionary *)info;
 + (AWBSettingsGroup *)objectLockSettingsGroupWithInfo:(NSDictionary *)info;
 + (AWBSettingsGroup *)snapToGridSettingsGroupWithInfo:(NSDictionary *)info;
-+ (AWBSettingsGroup *)backgroundColorPickerSettingsGroupWithInfo:(NSDictionary *)info;
++ (AWBSettingsGroup *)backgroundColorPickerSettingsGroupWithInfo:(NSDictionary *)info header:(NSString *)header footer:(NSString *)footer;
 + (AWBSettingsGroup *)backgroundTextureListSettingsGroupWithInfo:(NSDictionary *)info header:(NSString *)header footer:(NSString *)footer;  
-+ (AWBSettingsGroup *)backgroundTextureSwitchSettingsGroupWithInfo:(NSDictionary *)info;
++ (AWBSettingsGroup *)backgroundTextureSwitchSettingsGroupWithInfo:(NSDictionary *)info header:(NSString *)header footer:(NSString *)footer;
 
 @end
 

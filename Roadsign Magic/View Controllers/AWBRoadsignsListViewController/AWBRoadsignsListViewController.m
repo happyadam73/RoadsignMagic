@@ -214,7 +214,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self loadRoadsignAtIndexPath:indexPath];
+    [self loadRoadsignAtIndexPath:indexPath withSettingsInfo:nil];
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath    
@@ -235,10 +235,16 @@
     [navController release];
 }
 
-- (void)loadRoadsignAtIndexPath:(NSIndexPath *)indexPath
+- (void)loadRoadsignAtIndexPath:(NSIndexPath *)indexPath withSettingsInfo:(NSDictionary *)info
 {
     AWBRoadsignDescriptor *roadsign = [[[AWBRoadsignStore defaultStore] allRoadsigns] objectAtIndex:[indexPath row]];
     AWBRoadsignMagicMainViewController *roadsignController = [[[AWBRoadsignMagicMainViewController alloc] initWithRoadsignDescriptor:roadsign] autorelease];  
+    
+    if (info) {
+        roadsignController.useBackgroundTexture = [[info objectForKey:kAWBInfoKeyRoadsignUseBackgroundTexture] boolValue];
+        roadsignController.roadsignBackgroundTexture = [info objectForKey:kAWBInfoKeyRoadsignBackgroundTexture];
+        roadsignController.roadsignBackgroundColor = [info objectForKey:kAWBInfoKeyRoadsignBackgroundColor];
+    }
     
     //first transition animation - if there's more than 15 objects then don't animate the transition
     animateTransition = YES;
@@ -290,7 +296,7 @@
 {
     [self setEditing:NO animated:YES];
     NSString *nextDefaultRoadsignName = [[AWBRoadsignStore defaultStore] nextDefaultRoadsignName];
-    NSMutableDictionary *settingsInfo = [NSMutableDictionary dictionaryWithObjectsAndKeys:nextDefaultRoadsignName, kAWBInfoKeyRoadsignName, nil];
+    NSMutableDictionary *settingsInfo = [NSMutableDictionary dictionaryWithObjectsAndKeys:nextDefaultRoadsignName, kAWBInfoKeyRoadsignName, [NSNumber numberWithBool:YES], kAWBInfoKeyRoadsignUseBackgroundTexture, @"Metal", kAWBInfoKeyRoadsignBackgroundTexture, [UIColor yellowSignBackgroundColor], kAWBInfoKeyRoadsignBackgroundColor, nil];
     AWBRoadsignMagicSettingsTableViewController *settingsController = [[AWBRoadsignMagicSettingsTableViewController alloc] initWithSettings:[AWBSettings createRoadsignSettingsWithInfo:settingsInfo] settingsInfo:settingsInfo rootController:nil]; 
     settingsController.delegate = self;
     settingsController.controllerType = AWBSettingsControllerTypeNewRoadsignSettings;
@@ -310,7 +316,7 @@
         NSUInteger totalRoadsignCount = [[[AWBRoadsignStore defaultStore] allRoadsigns] count];
         if (totalRoadsignCount > 0) {
             NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow:(totalRoadsignCount - 1) inSection:0];
-            [self loadRoadsignAtIndexPath:scrollIndexPath];            
+            [self loadRoadsignAtIndexPath:scrollIndexPath withSettingsInfo:info];            
         }
     } else if (settingsController.controllerType == AWBSettingsControllerTypeRoadsignInfoSettings) {
         NSUInteger roadsignStoreIndex = [[info objectForKey:kAWBInfoKeyRoadsignStoreRoadsignIndex] intValue];

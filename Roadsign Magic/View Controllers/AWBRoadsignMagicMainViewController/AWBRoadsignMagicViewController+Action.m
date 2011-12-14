@@ -15,6 +15,7 @@
 #import "AWBTransforms.h"
 #import "AWBRoadsignDescriptor.h"
 #import "AWBDeviceHelper.h"
+#import "UIColor+Texture.h"
 #import <Twitter/Twitter.h>
 #import "UIImage+NonCached.h"
 #import <AssetsLibrary/AssetsLibrary.h>
@@ -114,7 +115,25 @@
 
 - (UIImage *)generateRoadsignImageWithScaleFactor:(CGFloat)scaleFactor
 {
-    UIGraphicsBeginImageContextWithOptions(self.signBackgroundView.bounds.size, NO, scaleFactor);
+    //first determine if we need to include the background and whether it's opaque or not
+    BOOL isOpaque = (self.exportFormatSelectedIndex == kAWBExportFormatIndexJPEG) || (!self.pngExportTransparentBackground);
+    CGSize backgroundViewSize = self.signBackgroundView.bounds.size;
+    
+    UIGraphicsBeginImageContextWithOptions(backgroundViewSize, isOpaque, scaleFactor);
+    
+    if (isOpaque) {
+        //need to fill in the background
+        if (self.useBackgroundTexture && self.roadsignBackgroundTexture) {
+            //background texture fill
+            UIImage *image = [UIColor textureImageWithDescription:self.roadsignBackgroundTexture];
+            CGContextDrawTiledImage(UIGraphicsGetCurrentContext(), CGRectMake(0.0, 0.0, (image.size.width * scaleFactor),  (image.size.height * scaleFactor)), [image CGImage]);
+        } else {
+            //solid color fill
+            [self.roadsignBackgroundColor setFill];        
+            UIRectFill(CGRectMake(0.0, 0.0, backgroundViewSize.width, backgroundViewSize.height));
+        }
+    }
+        
 //    if (self.useBackgroundTexture && self.collageBackgroundTexture) {
 //        UIImage *image = [UIColor textureImageWithDescription:self.collageBackgroundTexture];
 //        CGContextDrawTiledImage(UIGraphicsGetCurrentContext(), CGRectMake(0.0, 0.0, (image.size.width/scaleFactor),  (image.size.height/scaleFactor)), [image CGImage]);
@@ -126,9 +145,6 @@
     
     [self.signBackgroundView.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *roadsignImage = UIGraphicsGetImageFromCurrentImageContext();
-//    if (self.useBackgroundTexture && self.collageBackgroundTexture) {
-//        self.view.backgroundColor = [UIColor textureColorWithDescription:self.collageBackgroundTexture];
-//    }
     UIGraphicsEndImageContext();
     
     NSLog(@"Roadsign Image %f x %f", roadsignImage.size.width, roadsignImage.size.height);
@@ -155,8 +171,18 @@
 
 - (void)saveImageToSavedPhotosAlbum:(UIImage *)image 
 {
-    NSData *data = UIImagePNGRepresentation(image);
+    //NSData *data = UIImagePNGRepresentation(image);
     //NSData *data = UIImageJPEGRepresentation(image, 0.7);
+    
+    NSData *data;
+    if (self.exportFormatSelectedIndex == kAWBExportFormatIndexJPEG) {
+        data = UIImageJPEGRepresentation(image, self.jpgExportQualityValue);
+        NSLog(@"Exporting as JPEG with quality: %f", self.jpgExportQualityValue);
+    } else {
+        data = UIImagePNGRepresentation(image);
+        NSLog(@"Exporting as PNG");        
+    }
+        
     ALAssetsLibrary *al = [[ALAssetsLibrary alloc] init];
 	[al writeImageDataToSavedPhotosAlbum:data metadata:nil completionBlock:^(NSURL *assetURL, NSError *error) {}];
     [al release];
@@ -199,9 +225,20 @@
     [picker setSubject:subjectLine];
     
     // Attach an image to the email
-    NSData *imageData = UIImagePNGRepresentation(image);
-    [picker addAttachmentData:imageData mimeType:@"image/png" fileName:@"roadsign.png"];
+//    NSData *imageData = UIImagePNGRepresentation(image);
+//    [picker addAttachmentData:imageData mimeType:@"image/png" fileName:@"roadsign.png"];
     
+    NSData *imageData;
+    if (self.exportFormatSelectedIndex == kAWBExportFormatIndexJPEG) {
+        imageData = UIImageJPEGRepresentation(image, self.jpgExportQualityValue);
+        [picker addAttachmentData:imageData mimeType:@"image/jpeg" fileName:@"roadsign.jpg"];
+        NSLog(@"Emailing as JPEG with quality: %f", self.jpgExportQualityValue);
+    } else {
+        imageData = UIImagePNGRepresentation(image);
+        [picker addAttachmentData:imageData mimeType:@"image/png" fileName:@"roadsign.png"];
+        NSLog(@"Emailing as PNG");        
+    }
+        
     // Fill out the email body text
     NSString *emailBody = [NSString stringWithFormat:@"This %@ was made on my %@ using Roadsign Magic", [self typeOfRoadsignDescription], machineFriendlyName()];
     [picker setMessageBody:emailBody isHTML:NO];

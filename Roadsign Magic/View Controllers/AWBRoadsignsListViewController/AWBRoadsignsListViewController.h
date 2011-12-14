@@ -23,7 +23,7 @@
 
 - (CGFloat)borderThickness;
 - (void)addNewRoadsignDescriptor:(id)sender;
-- (void)loadRoadsignAtIndexPath:(NSIndexPath *)indexPath;
+- (void)loadRoadsignAtIndexPath:(NSIndexPath *)indexPath withSettingsInfo:(NSDictionary *)info;
 - (void)navigateToRoadsignController:(AWBRoadsignMagicMainViewController *)roadsignController;
 - (CGPoint)centerOfVisibleRows;
 

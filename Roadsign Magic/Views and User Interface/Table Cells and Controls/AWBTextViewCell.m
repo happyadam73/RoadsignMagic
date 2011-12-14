@@ -29,7 +29,15 @@
         // Initialization code
         textView = [[UITextView alloc] initWithFrame:CGRectZero];
         textView.editable = NO;
+        textView.backgroundColor = [UIColor clearColor];
         textView.text = text;
+        UIFont *textFont;
+        if (IS_IPAD) {
+            textFont = [UIFont systemFontOfSize:20.0];
+        } else {
+            textFont = [UIFont systemFontOfSize:14.0];
+        }
+        textView.font = textFont;        
         [[self contentView] addSubview:textView];
         [textView release];
     }
@@ -39,7 +47,10 @@
 - (void)layoutSubviews  
 {
     [super layoutSubviews];
-    textView.frame = self.contentView.bounds;
+    CGFloat marginX = 5.0;
+    CGFloat marginY = 5.0;
+    CGSize contentViewSize = self.contentView.bounds.size;
+    textView.frame = CGRectMake(marginX, marginY, contentViewSize.width - (2.0 * marginX), contentViewSize.height - (2.0 * marginY));
 }
 
 @end

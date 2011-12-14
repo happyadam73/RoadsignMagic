@@ -165,17 +165,36 @@
     return [roadsignDescriptionSettings autorelease];
 }
 
+//+ (AWBSettings *)createRoadsignSettingsWithInfo:(NSDictionary *)info
+//{
+//    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup roadsignNameSettingsGroupWithInfo:info], nil];
+//    return [[[self alloc] initWithSettingsGroups:settings title:@"New Roadsign"] autorelease];
+//}
+
 + (AWBSettings *)createRoadsignSettingsWithInfo:(NSDictionary *)info
 {
-    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup roadsignNameSettingsGroupWithInfo:info], nil];
-    return [[[self alloc] initWithSettingsGroups:settings title:@"New Roadsign"] autorelease];
+    AWBSettingsGroup *roadsignNameSettings = [AWBSettingsGroup roadsignNameSettingsGroupWithInfo:info];
+    AWBSettingsGroup *backgroundTypeSettings = [AWBSettingsGroup backgroundTextureSwitchSettingsGroupWithInfo:info header:@"Choose a Background" footer:@"You can change this later in Background Settings"];
+    AWBSettingsGroup *backgroundColorSettings = [AWBSettingsGroup backgroundColorPickerSettingsGroupWithInfo:info header:nil footer:kAWBBackgroundSettingsFooterText];
+    AWBSettingsGroup *backgroundTextureSettings = [AWBSettingsGroup backgroundTextureListSettingsGroupWithInfo:info header:nil footer:kAWBBackgroundSettingsFooterText];
+    
+    NSMutableArray *settings = [NSMutableArray arrayWithObjects:roadsignNameSettings, backgroundTypeSettings, backgroundColorSettings, backgroundTextureSettings, nil];
+    AWBSettings *newRoadsignSettings = [[self alloc] initWithSettingsGroups:settings title:@"New Roadsign"];
+    
+    backgroundTypeSettings.parentSettings = newRoadsignSettings;
+    backgroundTypeSettings.dependentVisibleSettingsGroup = backgroundTextureSettings;
+    backgroundTypeSettings.dependentHiddenSettingsGroup = backgroundColorSettings;
+    backgroundTextureSettings.visible = backgroundTypeSettings.masterSwitchIsOn;
+    backgroundColorSettings.visible = !backgroundTypeSettings.masterSwitchIsOn;
+    
+    return [newRoadsignSettings autorelease];    
 }
 
 + (AWBSettings *)backgroundSettingsWithInfo:(NSDictionary *)info
 {
-    AWBSettingsGroup *backgroundTypeSettings = [AWBSettingsGroup backgroundTextureSwitchSettingsGroupWithInfo:info];
-    AWBSettingsGroup *backgroundColorSettings = [AWBSettingsGroup backgroundColorPickerSettingsGroupWithInfo:info];
-    AWBSettingsGroup *backgroundTextureSettings = [AWBSettingsGroup backgroundTextureListSettingsGroupWithInfo:info header:@"Choose a Background Texture" footer:nil];
+    AWBSettingsGroup *backgroundTypeSettings = [AWBSettingsGroup backgroundTextureSwitchSettingsGroupWithInfo:info header:nil footer:nil];
+    AWBSettingsGroup *backgroundColorSettings = [AWBSettingsGroup backgroundColorPickerSettingsGroupWithInfo:info header:nil footer:kAWBBackgroundSettingsFooterText];
+    AWBSettingsGroup *backgroundTextureSettings = [AWBSettingsGroup backgroundTextureListSettingsGroupWithInfo:info header:nil footer:kAWBBackgroundSettingsFooterText];
     
     NSMutableArray *settings = [NSMutableArray arrayWithObjects:backgroundTypeSettings, backgroundColorSettings, backgroundTextureSettings, nil];
     AWBSettings *backgroundSettings = [[self alloc] initWithSettingsGroups:settings title:@"Background"];
