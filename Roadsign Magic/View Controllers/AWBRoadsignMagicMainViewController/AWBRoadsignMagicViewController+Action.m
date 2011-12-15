@@ -118,31 +118,35 @@
     //first determine if we need to include the background and whether it's opaque or not
     BOOL isOpaque = (self.exportFormatSelectedIndex == kAWBExportFormatIndexJPEG) || (!self.pngExportTransparentBackground);
     CGSize backgroundViewSize = self.signBackgroundView.bounds.size;
+    CGFloat leftMargin = 0.0;
+    CGFloat topMargin = 0.0;
+    CGFloat marginScaleFactor = 0.07;
     
-    UIGraphicsBeginImageContextWithOptions(backgroundViewSize, isOpaque, scaleFactor);
+    if (isOpaque) {
+        //want to resize so you get some of the background all around the sign - 12.5% margins all around
+        leftMargin = backgroundViewSize.width * marginScaleFactor;
+        topMargin = backgroundViewSize.height * marginScaleFactor;
+    }
+    
+    CGRect canvasRect = CGRectMake(0.0, 0.0, backgroundViewSize.width + (2.0 * leftMargin), backgroundViewSize.height + (2.0 * topMargin));
+    
+    UIGraphicsBeginImageContextWithOptions(canvasRect.size, isOpaque, scaleFactor);
     
     if (isOpaque) {
         //need to fill in the background
         if (self.useBackgroundTexture && self.roadsignBackgroundTexture) {
             //background texture fill
             UIImage *image = [UIColor textureImageWithDescription:self.roadsignBackgroundTexture];
-            CGContextDrawTiledImage(UIGraphicsGetCurrentContext(), CGRectMake(0.0, 0.0, (image.size.width * scaleFactor),  (image.size.height * scaleFactor)), [image CGImage]);
+            CGContextDrawTiledImage(UIGraphicsGetCurrentContext(), CGRectMake(0.0, 0.0, (image.size.width * image.scale),  (image.size.height * image.scale)), [image CGImage]);
         } else {
             //solid color fill
             [self.roadsignBackgroundColor setFill];        
-            UIRectFill(CGRectMake(0.0, 0.0, backgroundViewSize.width, backgroundViewSize.height));
+            UIRectFill(canvasRect);
         }
     }
         
-//    if (self.useBackgroundTexture && self.collageBackgroundTexture) {
-//        UIImage *image = [UIColor textureImageWithDescription:self.collageBackgroundTexture];
-//        CGContextDrawTiledImage(UIGraphicsGetCurrentContext(), CGRectMake(0.0, 0.0, (image.size.width/scaleFactor),  (image.size.height/scaleFactor)), [image CGImage]);
-//        self.view.backgroundColor = [UIColor clearColor];
-//    }
-    
-//    UIImage *image = [UIImage imageFromFile:@"concrete.jpg"];
-//    CGContextDrawTiledImage(UIGraphicsGetCurrentContext(), CGRectMake(0.0, 0.0, (image.size.width * scaleFactor),  (image.size.height * scaleFactor)), [image CGImage]);
-    
+    CGContextRef resizedContext = UIGraphicsGetCurrentContext();
+    CGContextTranslateCTM(resizedContext, leftMargin, topMargin);
     [self.signBackgroundView.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *roadsignImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
@@ -171,9 +175,6 @@
 
 - (void)saveImageToSavedPhotosAlbum:(UIImage *)image 
 {
-    //NSData *data = UIImagePNGRepresentation(image);
-    //NSData *data = UIImageJPEGRepresentation(image, 0.7);
-    
     NSData *data;
     if (self.exportFormatSelectedIndex == kAWBExportFormatIndexJPEG) {
         data = UIImageJPEGRepresentation(image, self.jpgExportQualityValue);
@@ -185,11 +186,7 @@
         
     ALAssetsLibrary *al = [[ALAssetsLibrary alloc] init];
 	[al writeImageDataToSavedPhotosAlbum:data metadata:nil completionBlock:^(NSURL *assetURL, NSError *error) {}];
-    [al release];
-    
-        
-//    [image retain];
-//    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+    [al release];    
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError: (NSError *) error contextInfo: (void *) contextInfo 
@@ -323,50 +320,25 @@
     CGRect rect = CGRectMake(0.0, 0.0, actualWidth + leftMargin + rightMargin, actualHeight + topMargin + bottomMargin);
     UIGraphicsBeginImageContextWithOptions(rect.size, YES, scaleFactor);    
        
-//    self.view.backgroundColor = [UIColor clearColor];
-    
-    //for non mosaics, switch off mask to bounds
-//    CollageThemeType themeType = self.collageDescriptor.themeType;
-//    switch (themeType) {
-//        case kAWBCollageThemeTypePhotoMosaicSmallImagesBlack:
-//        case kAWBCollageThemeTypePhotoMosaicSmallImagesWhite:
-//        case kAWBCollageThemeTypePhotoMosaicLargeImagesBlack:
-//        case kAWBCollageThemeTypePhotoMosaicLargeImagesWhite:
-//        case kAWBCollageThemeTypePhotoMosaicMicroImagesBlack:
-//            [self view].layer.masksToBounds = YES;
-//            break;
-//        default:
-//            [self view].layer.masksToBounds = NO;        
-//    } 
-    
-//    if (self.useBackgroundTexture) {
-//        UIImage *image = [UIColor textureImageWithDescription:self.collageBackgroundTexture];
-//        CGContextDrawTiledImage(UIGraphicsGetCurrentContext(), CGRectMake(0.0, 0.0, (image.size.width/scaleFactor),  (image.size.height/scaleFactor)), [image CGImage]);        
-//    } else {
-//        [self.collageBackgroundColor setFill];        
-//        UIRectFill(rect);
-//    }
-
-    [[UIColor whiteColor] setFill];        
-    UIRectFill(rect);
+    //need to fill in the background
+    if (self.useBackgroundTexture && self.roadsignBackgroundTexture) {
+        //background texture fill
+        UIImage *image = [UIColor textureImageWithDescription:self.roadsignBackgroundTexture];
+        CGContextDrawTiledImage(UIGraphicsGetCurrentContext(), CGRectMake(0.0, 0.0, (image.size.width * image.scale),  (image.size.height * image.scale)), [image CGImage]);
+    } else {
+        //solid color fill
+        [self.roadsignBackgroundColor setFill];        
+        UIRectFill(rect);
+    }
 
     CGContextRef resizedContext = UIGraphicsGetCurrentContext();
     CGContextTranslateCTM(resizedContext, offsetLeft, offsetTop);
     [self.signBackgroundView.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *roadsignImage = UIGraphicsGetImageFromCurrentImageContext();
     
-//    if (self.useBackgroundTexture) {
-//        self.view.backgroundColor = [UIColor textureColorWithDescription:self.collageBackgroundTexture];
-//    } else {
-//        self.view.backgroundColor = self.collageBackgroundColor;        
-//    }
-//    if (self.addCollageBorder && self.collageBorderColor) {
-//        [self addCollageBorderToView];
-//    }
     
     UIGraphicsEndImageContext();      
     
-//    [self view].layer.masksToBounds = YES;    
     self.busyView.hidden = NO;
     [self toggleFullscreen];
     

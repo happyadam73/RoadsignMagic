@@ -28,6 +28,7 @@
     BOOL scaleCurrentlyQuantised;
     CGFloat currentQuantisedScale;
     CGFloat currentQuantisedRotation;
+    CGFloat currentSnapToGridSize;
     CAShapeLayer *selectionMarquee1;
     CAShapeLayer *selectionMarquee2;    
 }

@@ -34,6 +34,7 @@
     
     rotationCurrentlyQuantised = NO;
     scaleCurrentlyQuantised = NO;
+    currentSnapToGridSize = 0.0;
     rotationAngleInRadians = rotation;
     pendingRotationAngleInRadians = 0.0;
     currentScale = scale;
@@ -241,7 +242,8 @@
         [self addViewBorder];
     }
     
-    [self rotateAndScale];
+    //[self rotateAndScale];
+    [self rotateAndScaleWithSnapToGrid:scaleCurrentlyQuantised gridSize:currentSnapToGridSize snapRotation:rotationCurrentlyQuantised];
 }
 
 - (void)updateLabelTextWithFont:(ZFont *)font
@@ -302,9 +304,11 @@
         CGFloat quantisedHeight = AWBQuantizeFloat(scaledHeight, gridSize, YES);
         scale = quantisedHeight / initialHeight;
         scaleCurrentlyQuantised = YES;
+        currentSnapToGridSize = gridSize;
         currentQuantisedScale = scale;
     } else {
         scaleCurrentlyQuantised = NO;
+        currentSnapToGridSize = 0.0;
     }
     
     if (snapRotation) {
