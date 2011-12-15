@@ -60,7 +60,7 @@ static NSString *const kAWBInfoKeyTextFontName = @"TextFontName";
 static NSString *const kAWBInfoKeyLabelTextLine1 = @"LabelTextLine1";
 static NSString *const kAWBInfoKeyLabelTextLine2 = @"LabelTextLine2";
 static NSString *const kAWBInfoKeyLabelTextLine3 = @"LabelTextLine3";
-static NSString *const kAWBBackgroundSettingsFooterText = @"By default, this background is not included when exporting or printing.  You can change this in Export Settings.";
+static NSString *const kAWBBackgroundSettingsFooterText = @"By default, this background is not included when exporting or sharing.  You can change this in Export Settings.";
 
 @class AWBSetting;
 @class AWBSettings;
