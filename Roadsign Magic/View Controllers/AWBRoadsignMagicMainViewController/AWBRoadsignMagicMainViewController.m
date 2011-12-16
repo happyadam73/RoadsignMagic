@@ -36,7 +36,7 @@
 @synthesize exportSize, snapToGrid, snapRotation, snapToGridSize, lockedView;
 @synthesize selectedSignBackground, selectedSignSymbol, isSignInEditMode;
 @synthesize deleteConfirmationSheet, chooseActionTypeSheet, busyView;
-@synthesize totalSymbolSubviews, totalLabelSubviews, roadsignDescriptor, roadsignSaveDocumentsSubdirectory;
+@synthesize totalSymbolSubviews, totalLabelSubviews, totalSubviews, roadsignDescriptor, roadsignSaveDocumentsSubdirectory;
 @synthesize exportFormatSelectedIndex, pngExportTransparentBackground, jpgExportQualityValue;
 @synthesize roadsignBackgroundTexture, roadsignBackgroundColor, useBackgroundTexture;
 
@@ -74,7 +74,11 @@
 
     if (!self.isSignInEditMode) {
         self.toolbarItems = [self normalToolbarButtons];
-        self.navigationItem.rightBarButtonItem = self.editButton;
+        if (self.totalSubviews > 0) {
+            [self.navigationItem setRightBarButtonItem:self.editButton animated:YES];
+        } else {
+            [self.navigationItem setRightBarButtonItem:nil animated:YES];
+        }        
         if (self.navigationController.toolbarHidden) {
             [self toggleFullscreen];
         }
@@ -85,7 +89,9 @@
             roadsignLoadRequired = NO;
             [self loadChanges];
         }        
-    }    
+    } else {
+        [self updateLayoutForNewOrientation:self.interfaceOrientation];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -151,6 +157,30 @@
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {    
+    [self updateLayoutForNewOrientation:toInterfaceOrientation];
+//    mainScrollView.contentSize = signBackgroundView.bounds.size;    
+//    float minWidthScale  = ((mainScrollView.bounds.size.width)  / signBackgroundView.bounds.size.width) * 0.96;
+//    float minHeightScale  = ((mainScrollView.bounds.size.height)  / signBackgroundView.bounds.size.height) * 0.96;    
+//    float currentZoomScale = mainScrollView.zoomScale;
+//    BOOL currentZoomScaleIsMin = (currentZoomScale == mainScrollView.minimumZoomScale);
+//    [mainScrollView setMinimumZoomScale:MIN(minWidthScale, minHeightScale)];
+//    float newScale = ((currentZoomScaleIsMin || (currentZoomScale <= mainScrollView.minimumZoomScale)) ? mainScrollView.minimumZoomScale : currentZoomScale);
+//    [mainScrollView setZoomScale:newScale];
+//    [self scrollViewDidZoom:mainScrollView];
+//        
+//    if (signBackgroundPickerView) {        
+//        CGRect frame = signBackgroundPickerView.frame;
+//        if (signBackgroundPickerViewShowing) {
+//            frame.origin.y = (self.view.bounds.size.height - self.navigationController.toolbar.bounds.size.height - frame.size.height);            
+//        } else {
+//            frame.origin.y = (self.view.bounds.size.height);                        
+//        }
+//        signBackgroundPickerView.frame = frame;
+//    }   
+}
+
+- (void) updateLayoutForNewOrientation: (UIInterfaceOrientation) orientation 
+{
     mainScrollView.contentSize = signBackgroundView.bounds.size;    
     float minWidthScale  = ((mainScrollView.bounds.size.width)  / signBackgroundView.bounds.size.width) * 0.96;
     float minHeightScale  = ((mainScrollView.bounds.size.height)  / signBackgroundView.bounds.size.height) * 0.96;    
@@ -160,7 +190,7 @@
     float newScale = ((currentZoomScaleIsMin || (currentZoomScale <= mainScrollView.minimumZoomScale)) ? mainScrollView.minimumZoomScale : currentZoomScale);
     [mainScrollView setZoomScale:newScale];
     [self scrollViewDidZoom:mainScrollView];
-        
+    
     if (signBackgroundPickerView) {        
         CGRect frame = signBackgroundPickerView.frame;
         if (signBackgroundPickerViewShowing) {
@@ -169,8 +199,7 @@
             frame.origin.y = (self.view.bounds.size.height);                        
         }
         signBackgroundPickerView.frame = frame;
-    }
-    
+    }  
 }
 
 - (void)loadView {
@@ -339,11 +368,36 @@
         
         [roadsign addRoadsignToView:self.signBackgroundView];
         
-        totalSymbolSubviews = roadsign.totalSymbols;
-        totalLabelSubviews = roadsign.totalLabels;
+        self.totalSymbolSubviews = roadsign.totalSymbols;
+        self.totalLabelSubviews = roadsign.totalLabels;
     }
     
     [pool drain];
+}
+
+- (NSUInteger)totalSubviews
+{
+    return (totalLabelSubviews + totalSymbolSubviews);
+}
+
+- (void)setTotalLabelSubviews:(NSUInteger)total
+{
+    totalLabelSubviews = total;
+    if (self.totalSubviews > 0) {
+        [self.navigationItem setRightBarButtonItem:self.editButton animated:YES];
+    } else {
+        [self.navigationItem setRightBarButtonItem:nil animated:YES];
+    }
+}
+
+- (void)setTotalSymbolSubviews:(NSUInteger)total
+{
+    totalSymbolSubviews = total;
+    if (self.totalSubviews > 0) {
+        [self.navigationItem setRightBarButtonItem:self.editButton animated:YES];
+    } else {
+        [self.navigationItem setRightBarButtonItem:nil animated:YES];
+    }
 }
 
 - (NSString *)archivePath

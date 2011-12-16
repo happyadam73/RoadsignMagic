@@ -50,7 +50,7 @@
         [self.navigationItem setHidesBackButton:YES animated:YES];
         self.navigationItem.titleView = nil;
         self.navigationItem.title = @"Select Objects";
-        self.navigationItem.rightBarButtonItem = self.cancelButton;
+        [self.navigationItem setRightBarButtonItem:self.cancelButton animated:YES];        
         [self setToolbarForEditMode];
         
         self.selectNoneOrAllButton.title = @"Select All";
@@ -114,7 +114,13 @@
         self.navigationItem.title = nil;
         [self.navigationItem setHidesBackButton:NO animated:YES];
         self.navigationItem.titleView = lockedView;
-        self.navigationItem.rightBarButtonItem = self.editButton;
+        
+        if (self.totalSubviews > 0) {
+            [self.navigationItem setRightBarButtonItem:self.editButton animated:YES];
+        } else {
+            [self.navigationItem setRightBarButtonItem:nil animated:YES];
+        }
+        
         [self resetToNormalToolbar];
         [self saveChanges:NO];
     }

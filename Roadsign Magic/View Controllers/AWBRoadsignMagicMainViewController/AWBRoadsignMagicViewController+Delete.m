@@ -51,9 +51,9 @@
                 if (view.alpha == SELECTED_ALPHA) {
                     [view removeSelection];
                     if ([view isKindOfClass:[AWBTransformableZFontLabel class]]) {
-                        totalLabelSubviews -= 1;
+                        self.totalLabelSubviews -= 1;
                     } else if ([view isKindOfClass:[AWBTransformableSymbolImageView class]]) {
-                        totalSymbolSubviews -= 1;
+                        self.totalSymbolSubviews -= 1;
                     }
                     animationDelay = 0.5;
                     [UIView animateWithDuration:animationDelay delay:0.0 options:UIViewAnimationOptionAllowUserInteraction animations: ^ {[view setCenter:[self deleteButtonApproxPosition]]; [view setAlpha:0.0]; view.transform = CGAffineTransformMakeScale(0.1, 0.1);} 

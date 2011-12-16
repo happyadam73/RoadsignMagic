@@ -142,8 +142,9 @@ enum {
 @property (nonatomic, retain) UIActionSheet *chooseActionTypeSheet;
 @property (nonatomic, retain) AWBBusyView *busyView;
 @property (nonatomic, retain) NSString *roadsignSaveDocumentsSubdirectory;
-@property (nonatomic, readonly) NSUInteger totalLabelSubviews;
-@property (nonatomic, readonly) NSUInteger totalSymbolSubviews;
+@property (nonatomic, assign) NSUInteger totalLabelSubviews;
+@property (nonatomic, assign) NSUInteger totalSymbolSubviews;
+@property (nonatomic, readonly) NSUInteger totalSubviews;
 @property (nonatomic, assign) AWBRoadsignDescriptor *roadsignDescriptor;
 @property (nonatomic, assign) NSUInteger exportFormatSelectedIndex;
 @property (nonatomic, assign) BOOL pngExportTransparentBackground;
@@ -152,6 +153,8 @@ enum {
 @property (nonatomic, retain) NSString *roadsignBackgroundTexture;
 @property (nonatomic, assign) BOOL useBackgroundTexture;
 
+
+- (void) updateLayoutForNewOrientation: (UIInterfaceOrientation) orientation;
 - (id)initWithRoadsignDescriptor:(AWBRoadsignDescriptor *)roadsign;
 - (BOOL)saveChanges:(BOOL)saveThumbnail;
 - (void)loadChanges;

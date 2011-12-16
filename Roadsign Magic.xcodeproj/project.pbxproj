@@ -4666,6 +4666,8 @@
 		06A9601A14781F9F00915359 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Adam Buckley";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Adam Buckley";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Roadsign Magic/Roadsign Magic-Prefix.pch";
 				INFOPLIST_FILE = "Roadsign Magic/Roadsign Magic-Info.plist";
@@ -4676,6 +4678,8 @@
 				);
 				"OTHER_CFLAGS[arch=armv7]" = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "29CD1314-9647-4B34-89D6-BA2A833EAC02";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "29CD1314-9647-4B34-89D6-BA2A833EAC02";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Distribution;
