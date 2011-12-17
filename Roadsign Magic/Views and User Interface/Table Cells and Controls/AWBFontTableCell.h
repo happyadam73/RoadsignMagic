@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AWBCollageFont.h"
+#import "AWBRoadsignFont.h"
 #import "AWBSettingTableCell.h"
 
 @interface AWBFontTableCell : UITableViewCell 

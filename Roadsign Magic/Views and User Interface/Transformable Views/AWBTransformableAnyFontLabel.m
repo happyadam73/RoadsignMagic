@@ -1,18 +1,19 @@
 //
-//  AWBTransformableLabel.m
+//  AWBTransformableAnyFontLabel.m
 //  Roadsign Magic
 //
-//  Created by Adam Buckley on 10/08/2011.
-//  Copyright 2011 happyadam development. All rights reserved.
+//  Created by Buckley Adam on 16/12/2011.
+//  Copyright (c) 2011 Callcredit. All rights reserved.
 //
 
-#import "AWBTransformableZFontLabel.h"
+#import "AWBTransformableAnyFontLabel.h"
 #import "AWBTransforms.h"
 #import "UIView+Animation.h"
 #import "FontLabelStringDrawing.h"
 #import "FontManager.h"
 #import "UIView+SelectionMarquee.h"
 #import "CAShapeLayer+Animation.h"
+#import "AWBRoadsignFont.h"
 
 #define BORDER_HEIGHT_RATIO 24.0
 #define SHADOW_OFFSET_HEIGHT_RATIO 8.0
@@ -20,18 +21,14 @@
 #define MAX_SCALE_PIXELS 1536
 #define DEFAULT_FONT_POINT_SIZE 160.0
 
-@implementation AWBTransformableZFontLabel
+@implementation AWBTransformableAnyFontLabel
 
 @synthesize rotationAngleInRadians, currentScale, pendingRotationAngleInRadians, horizontalFlip;
 @synthesize roundedBorder, viewBorderColor, viewShadowColor, addShadow, addBorder;
-@synthesize labelView, selectionMarquee1, selectionMarquee2;
+@synthesize labelView, isZFontLabel, selectionMarquee1, selectionMarquee2;
 
 - (void)initialiseLayerRotation:(CGFloat)rotation scale:(CGFloat)scale  
 {
-//    CATiledLayer *layerForView = (CATiledLayer *)self.layer;
-//    layerForView.levelsOfDetailBias = 4;
-//    layerForView.levelsOfDetail = 4;
-    
     rotationCurrentlyQuantised = NO;
     scaleCurrentlyQuantised = NO;
     currentSnapToGridSize = 0.0;
@@ -40,12 +37,10 @@
     currentScale = scale;
     horizontalFlip = NO;  
     
-//    CGSize screenSize = [[UIScreen mainScreen] applicationFrame].size;    
     CGFloat minLength = MIN(self.frame.size.width, self.frame.size.height);
     CGFloat maxLength = MAX(self.frame.size.width, self.frame.size.height);
     
     minScale = MAX((48.0/maxLength),((DEVICE_IS_IPAD ? 32.0 : 24.0)/minLength));    
-    //maxScale = (MAX(screenSize.width, screenSize.height))/maxLength;
     maxScale = MAX_SCALE_PIXELS/maxLength;
     
     [self setUserInteractionEnabled:YES];
@@ -57,6 +52,7 @@
     self.roundedBorder = YES;
     
     self.labelView.numberOfLines = 0;
+//    self.zFontLabel.numberOfLines = 0;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -71,11 +67,11 @@
     CGFloat labelRotation = [aDecoder decodeFloatForKey:@"labelRotation"];
     CGFloat labelScale = [aDecoder decodeFloatForKey:@"labelScale"];
     BOOL labelHFlip = [aDecoder decodeBoolForKey:@"labelHFlip"];
-        
-    ZFont *labelFont = [[FontManager sharedManager] zFontWithName:labelFontName pointSize:labelFontSize];
+    
+//    ZFont *labelFont = [[FontManager sharedManager] zFontWithName:labelFontName pointSize:labelFontSize];
     CGPoint offset = CGPointMake(labelOffsetX, labelOffsetY);
     
-    self = [self initWithTextLines:[labelText componentsSeparatedByString:@"\r\n"] font:labelFont offset:offset rotation:labelRotation scale:labelScale horizontalFlip:labelHFlip color:labelColor alignment:alignment];
+    self = [self initWithTextLines:[labelText componentsSeparatedByString:@"\r\n"] fontName:labelFontName fontSize:labelFontSize offset:offset rotation:labelRotation scale:labelScale horizontalFlip:labelHFlip color:labelColor alignment:alignment];
     
     [self setCenter:offset];
     return  self;
@@ -83,15 +79,27 @@
 
 - (id)initWithText:(NSString *)text offset:(CGPoint) point rotation:(CGFloat)rotation scale:(CGFloat)scale
 {
-    return [self initWithText:text font:[ZFont fontWithUIFont:[UIFont systemFontOfSize:28.0]] offset:point rotation:rotation scale:scale horizontalFlip:NO color:[UIColor blackColor] alignment:UITextAlignmentCenter];
+    return [self initWithText:text fontName:@"Helvetica" fontSize:80.0 offset:point rotation:rotation scale:scale horizontalFlip:NO color:[UIColor blackColor] alignment:UITextAlignmentCenter];
 }
 
-- (id)initWithText:(NSString *)text font:(ZFont *)font offset:(CGPoint) point rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip color:(UIColor *)color alignment:(UITextAlignment)alignment
+- (id)initWithText:(NSString *)text fontName:(NSString *)fontName fontSize:(CGFloat)fontSize offset:(CGPoint)point rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip color:(UIColor *)color alignment:(UITextAlignment)alignment
 {
-    return [self initWithTextLines:[NSArray arrayWithObject:text] font:font offset:point rotation:rotation scale:scale horizontalFlip:flip color:color alignment:alignment];
+    return [self initWithTextLines:[NSArray arrayWithObject:text] fontName:fontName fontSize:fontSize offset:point rotation:rotation scale:scale horizontalFlip:flip color:color alignment:alignment];
 }
 
-- (id)initWithTextLines:(NSArray *)lines font:(ZFont *)font offset:(CGPoint) point rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip color:(UIColor *)color alignment:(UITextAlignment)alignment
+- (id)initWithTextLines:(NSArray *)lines fontName:(NSString *)fontName fontSize:(CGFloat)fontSize offset:(CGPoint)point rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip color:(UIColor *)color alignment:(UITextAlignment)alignment
+{
+    BOOL isZFont = [AWBRoadsignFont isZFont:fontName];
+    if (isZFont) {
+        ZFont *zFont = [[FontManager sharedManager] zFontWithName:fontName pointSize:fontSize];
+        return [self initWithTextLines:lines zFont:zFont offset:point rotation:rotation scale:scale horizontalFlip:flip color:color alignment:alignment];
+    } else {
+        UIFont *iOSFont = [UIFont fontWithName:fontName size:fontSize];
+        return [self initWithTextLines:lines iOSFont:iOSFont offset:point rotation:rotation scale:scale horizontalFlip:flip color:color alignment:alignment];
+    }
+}
+
+- (id)initWithTextLines:(NSArray *)lines zFont:(ZFont *)font offset:(CGPoint)point rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip color:(UIColor *)color alignment:(UITextAlignment)alignment
 {
     ZFont *textFont = font;
     if (!textFont) {
@@ -100,8 +108,8 @@
     if (!color) {
         color = [UIColor darkGrayColor];
     }
-        
-    [self updateTextDimensionsWithLines:lines font:textFont];
+    
+    [self updateTextDimensionsWithLines:lines zFont:textFont];
     
     CGFloat frameWidth = (1.2 * maxWidth) + (0.25 * maxHeight);
     CGFloat frameHeight = (1.1 * totalHeight) + 10.0;
@@ -109,6 +117,7 @@
     self = [super initWithFrame:CGRectMake(point.x, point.y, frameWidth, frameHeight)];
     if (self) { 
         
+        isZFontLabel = YES;
         initialHeight = frameHeight;
         
         FontLabel *label = [[FontLabel alloc] initWithFrame:CGRectMake(0.0, 0.0, frameWidth, frameHeight) zFont:textFont];
@@ -125,6 +134,52 @@
         [self initialiseLayerRotation:rotation scale:scale];
         [self setHorizontalFlip:flip];
         //[self.labelView setFont:textFont];
+        [self.labelView setTextColor:color];
+        [self setBackgroundColor:[UIColor clearColor]];
+        [self.labelView setBackgroundColor:[UIColor clearColor]];
+        [self.labelView setTextAlignment:alignment];
+        [self.labelView setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
+        [self.labelView setText:[lines componentsJoinedByString:@"\r\n"]];
+        [self rotateAndScale];
+    }
+    return self;
+}
+
+- (id)initWithTextLines:(NSArray *)lines iOSFont:(UIFont *)font offset:(CGPoint)point rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip color:(UIColor *)color alignment:(UITextAlignment)alignment
+{
+    UIFont *textFont = font;
+    if (!textFont) {
+        textFont = [UIFont systemFontOfSize:DEFAULT_FONT_POINT_SIZE];
+    }
+    if (!color) {
+        color = [UIColor darkGrayColor];
+    }
+    
+    [self updateTextDimensionsWithLines:lines iOSFont:textFont];
+    
+    CGFloat frameWidth = (1.2 * maxWidth) + (0.25 * maxHeight);
+    CGFloat frameHeight = (1.1 * totalHeight) + 10.0;
+    
+    self = [super initWithFrame:CGRectMake(point.x, point.y, frameWidth, frameHeight)];
+    if (self) { 
+        
+        isZFontLabel = NO;
+        initialHeight = frameHeight;
+        
+        AWBLabel *label = [[AWBLabel alloc] initWithFrame:CGRectMake(0.0, 0.0, frameWidth, frameHeight)];
+        label.layer.masksToBounds = YES;
+        self.labelView = label;
+        [label release];
+        [self addSubview:self.labelView];
+        
+        CGFloat minLabelLength = MIN(frameWidth, frameHeight);
+        borderThickness = (minLabelLength/BORDER_HEIGHT_RATIO);
+        if (borderThickness < 2.0) {
+            borderThickness = 2.0;
+        }        
+        [self initialiseLayerRotation:rotation scale:scale];
+        [self setHorizontalFlip:flip];
+        [self.labelView setFont:textFont];
         [self.labelView setTextColor:color];
         [self setBackgroundColor:[UIColor clearColor]];
         [self.labelView setBackgroundColor:[UIColor clearColor]];
@@ -165,7 +220,7 @@
     } else {
         [self stopSelectionAnimation];
     }
-
+    
     [self showSelection];    
 }
 
@@ -194,7 +249,7 @@
     self.selectionMarquee2.opacity = opacity;    
 }
 
-- (void)updateTextDimensionsWithLines:(NSArray *)lines font:(ZFont *)font
+- (void)updateTextDimensionsWithLines:(NSArray *)lines zFont:(ZFont *)font
 {
     CGSize textLineSize;
     maxWidth = 0;
@@ -213,25 +268,70 @@
     }  
 }
 
-- (void)updateLabelTextLines:(NSArray *)lines withFont:(ZFont *)font
+- (void)updateTextDimensionsWithLines:(NSArray *)lines iOSFont:(UIFont *)font
+{
+    CGSize textLineSize;
+    maxWidth = 0;
+    maxHeight = 0;
+    totalHeight = 0;
+    
+    for (NSString *textLine in lines) {
+        textLineSize = [textLine sizeWithFont:font];  
+        if (textLineSize.width > maxWidth) {
+            maxWidth = textLineSize.width;
+        }
+        if (textLineSize.height > maxHeight) {
+            maxHeight = textLineSize.height;
+        }        
+        totalHeight += textLineSize.height;
+    }  
+}
+
+- (void)updateLabelTextLines:(NSArray *)lines withFontName:(NSString *)fontName fontSize:(CGFloat)fontSize 
+{
+    BOOL isZFont = [AWBRoadsignFont isZFont:fontName];
+    if (isZFont) {
+        ZFont *zFont = [[FontManager sharedManager] zFontWithName:fontName pointSize:fontSize];
+        [self updateLabelTextLines:lines withZFont:zFont];
+    } else {
+        UIFont *iOSFont = [UIFont fontWithName:fontName size:fontSize];
+        [self updateLabelTextLines:lines withiOSFont:iOSFont];
+    }    
+}
+
+- (void)updateLabelTextLines:(NSArray *)lines withZFont:(ZFont *)font
 {    
-    [self updateTextDimensionsWithLines:lines font:font];
+    //OK, we're expecting a ZFont label - if it's not currently then we need to remove the iOS font label and create a new ZFont label
+    if (!isZFontLabel) {
+        [self.labelView removeFromSuperview];
+        FontLabel *label = [[FontLabel alloc] initWithFrame:CGRectZero];
+        label.layer.masksToBounds = YES;
+        label.numberOfLines = 0;
+        label.backgroundColor = [UIColor clearColor];
+        label.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
+        self.labelView = label;
+        [label release];
+        [self addSubview:self.labelView];
+        isZFontLabel = YES;
+    }
+    
+    [self updateTextDimensionsWithLines:lines zFont:font];
     CGRect newBounds = CGRectMake(0.0, 0.0, (1.2 * maxWidth) + (0.25 * maxHeight), (1.1 * totalHeight) + 10.0);
-    [self.labelView setZFont:font];
+    [(FontLabel *)self.labelView setZFont:font];
     [self.labelView setText:[lines componentsJoinedByString:@"\r\n"]];
     [self setBounds:newBounds];
     [self.labelView setBounds:newBounds];
     self.labelView.center = CGPointMake((newBounds.size.width/2.0), (newBounds.size.height/2.0));
     
-//    CGSize screenSize = [[UIScreen mainScreen] applicationFrame].size;    
+    //    CGSize screenSize = [[UIScreen mainScreen] applicationFrame].size;    
     CGFloat minLabelLength = MIN(newBounds.size.width, newBounds.size.height);
     CGFloat maxLabelLength = MAX(newBounds.size.width, newBounds.size.height);
     initialHeight = newBounds.size.height;    
-
+    
     minScale = MAX((48.0/maxLabelLength),((DEVICE_IS_IPAD ? 32.0 : 24.0)/minLabelLength));    
     //maxScale = (MAX(screenSize.width, screenSize.height))/maxLabelLength;
     maxScale = MAX_SCALE_PIXELS/maxLabelLength;
-
+    
     [self setCurrentScale:currentScale];
     borderThickness = (minLabelLength/BORDER_HEIGHT_RATIO);
     if (borderThickness < 2.0) {
@@ -246,19 +346,76 @@
     [self rotateAndScaleWithSnapToGrid:scaleCurrentlyQuantised gridSize:currentSnapToGridSize snapRotation:rotationCurrentlyQuantised];
 }
 
-- (void)updateLabelTextWithFont:(ZFont *)font
-{
-    if (font) {
-        [self updateLabelTextLines:[self.labelView.text componentsSeparatedByString:@"\r\n"] withFont:font];        
+- (void)updateLabelTextLines:(NSArray *)lines withiOSFont:(UIFont *)font
+{    
+    //OK, we're expecting an iOS label - if it's not currently then we need to remove the ZFont label and create a new iOSFont label
+    if (isZFontLabel) {
+        [self.labelView removeFromSuperview];
+        AWBLabel *label = [[AWBLabel alloc] initWithFrame:CGRectZero];
+        label.layer.masksToBounds = YES;
+        label.numberOfLines = 0;
+        label.backgroundColor = [UIColor clearColor];
+        label.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
+        self.labelView = label;
+        [label release];
+        [self addSubview:self.labelView];
+        isZFontLabel = NO;
     }
+    
+    [self updateTextDimensionsWithLines:lines iOSFont:font];
+    CGRect newBounds = CGRectMake(0.0, 0.0, (1.2 * maxWidth) + (0.25 * maxHeight), (1.1 * totalHeight) + 10.0);
+    [self.labelView setFont:font];
+    [self.labelView setText:[lines componentsJoinedByString:@"\r\n"]];
+    [self setBounds:newBounds];
+    [self.labelView setBounds:newBounds];
+    self.labelView.center = CGPointMake((newBounds.size.width/2.0), (newBounds.size.height/2.0));
+    
+    //    CGSize screenSize = [[UIScreen mainScreen] applicationFrame].size;    
+    CGFloat minLabelLength = MIN(newBounds.size.width, newBounds.size.height);
+    CGFloat maxLabelLength = MAX(newBounds.size.width, newBounds.size.height);
+    initialHeight = newBounds.size.height;    
+    
+    minScale = MAX((48.0/maxLabelLength),((DEVICE_IS_IPAD ? 32.0 : 24.0)/minLabelLength));    
+    //maxScale = (MAX(screenSize.width, screenSize.height))/maxLabelLength;
+    maxScale = MAX_SCALE_PIXELS/maxLabelLength;
+    
+    [self setCurrentScale:currentScale];
+    borderThickness = (minLabelLength/BORDER_HEIGHT_RATIO);
+    if (borderThickness < 2.0) {
+        borderThickness = 2.0;
+    }
+    
+    if (addBorder) {
+        [self addViewBorder];
+    }
+    
+    //[self rotateAndScale];
+    [self rotateAndScaleWithSnapToGrid:scaleCurrentlyQuantised gridSize:currentSnapToGridSize snapRotation:rotationCurrentlyQuantised];
+}
+
+- (void)updateLabelTextWithFontName:(NSString *)fontName fontSize:(CGFloat)fontSize 
+{
+    BOOL isZFont = [AWBRoadsignFont isZFont:fontName];
+    if (isZFont) {
+        ZFont *zFont = [[FontManager sharedManager] zFontWithName:fontName pointSize:fontSize];
+        [self updateLabelTextLines:[self.labelView.text componentsSeparatedByString:@"\r\n"] withZFont:zFont];
+    } else {
+        UIFont *iOSFont = [UIFont fontWithName:fontName size:fontSize];
+        [self updateLabelTextLines:[self.labelView.text componentsSeparatedByString:@"\r\n"] withiOSFont:iOSFont];
+    }    
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [self applyPendingRotationToCapturedView];
     [aCoder encodeObject:self.labelView.text forKey:@"labelText"];
-    [aCoder encodeObject:self.labelView.zFont.fontName forKey:@"labelFontName"];
-    [aCoder encodeFloat:self.labelView.zFont.pointSize forKey:@"labelFontSize"];
+    if (self.isZFontLabel) {
+        [aCoder encodeObject:((FontLabel *)self.labelView).zFont.fontName forKey:@"labelFontName"];
+        [aCoder encodeFloat:((FontLabel *)self.labelView).zFont.pointSize forKey:@"labelFontSize"];
+    } else {
+        [aCoder encodeObject:self.labelView.font.fontName forKey:@"labelFontName"];
+        [aCoder encodeFloat:self.labelView.font.pointSize forKey:@"labelFontSize"];        
+    }
     [aCoder encodeObject:self.labelView.textColor forKey:@"labelColor"];
     [aCoder encodeInteger:self.labelView.textAlignment forKey:@"labelTextAlignment"];
     [aCoder encodeFloat:self.center.x forKey:@"labelOffsetX"];
@@ -421,3 +578,4 @@
 }
 
 @end
+

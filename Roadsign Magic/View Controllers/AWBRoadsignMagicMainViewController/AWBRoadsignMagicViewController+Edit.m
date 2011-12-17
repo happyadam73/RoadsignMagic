@@ -12,7 +12,8 @@
 #import "FileHelpers.h"
 #import "UIColor+SignColors.h"
 #import "AWBRoadsignMagicMainViewController+Toolbar.h"
-#import "AWBTransformableZFontLabel.h"
+//#import "AWBTransformableZFontLabel.h"
+#import "AWBTransformableAnyFontLabel.h"
 #import "AWBTransformableLabel.h"
 
 @implementation AWBRoadsignMagicMainViewController (Edit)
@@ -26,7 +27,7 @@
         [view showSelectionWithAnimation:NO];
         //deselecting
         totalSelectedInEditMode -= 1;
-        if ([view isKindOfClass:[AWBTransformableZFontLabel class]]) {
+        if ([view isKindOfClass:[AWBTransformableAnyFontLabel class]]) {
             totalSelectedLabelsInEditMode -= 1;
         }
     } else {
@@ -34,7 +35,7 @@
         [view setSelectionOpacity:SELECTED_ALPHA];
         [view showSelectionWithAnimation:YES];
         totalSelectedInEditMode += 1;
-        if ([view isKindOfClass:[AWBTransformableZFontLabel class]]) {
+        if ([view isKindOfClass:[AWBTransformableAnyFontLabel class]]) {
             totalSelectedLabelsInEditMode += 1;
         }
     }    
@@ -83,7 +84,7 @@
                 [view setSelectionOpacity:SELECTED_ALPHA];
                 [view showSelectionWithAnimation:YES];
                 totalSelectedInEditMode += 1;
-                if ([view isKindOfClass:[AWBTransformableZFontLabel class]]) {
+                if ([view isKindOfClass:[AWBTransformableAnyFontLabel class]]) {
                     totalSelectedLabelsInEditMode += 1;
                 }
             } else {

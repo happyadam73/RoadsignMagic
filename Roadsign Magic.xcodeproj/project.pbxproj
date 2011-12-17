@@ -195,6 +195,7 @@
 		060BC4F8148B995100799B01 /* S23025.png in Resources */ = {isa = PBXBuildFile; fileRef = 060BC4EB148B995100799B01 /* S23025.png */; };
 		060BC4F9148B995100799B01 /* S23026.png in Resources */ = {isa = PBXBuildFile; fileRef = 060BC4EC148B995100799B01 /* S23026.png */; };
 		0620CB211483E71600A39703 /* AWBSignBackgroundPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0620CB201483E71600A39703 /* AWBSignBackgroundPickerView.m */; };
+		0626C9BE149B79CC00B8FB63 /* AWBTransformableAnyFontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0626C9BD149B79CC00B8FB63 /* AWBTransformableAnyFontLabel.m */; };
 		0633D8A914903069000CEDA5 /* S12004@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0633D89E14903069000CEDA5 /* S12004@2x.png */; };
 		0633D8AA14903069000CEDA5 /* S12005@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0633D89F14903069000CEDA5 /* S12005@2x.png */; };
 		0633D8AB14903069000CEDA5 /* S12006@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0633D8A014903069000CEDA5 /* S12006@2x.png */; };
@@ -909,7 +910,7 @@
 		B5E0452014784EA1006A8D5C /* AWBSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E0451C14784EA1006A8D5C /* AWBSettings.m */; };
 		B5E0452114784EA1006A8D5C /* AWBSettingsGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E0451E14784EA1006A8D5C /* AWBSettingsGroup.m */; };
 		B5E0452414784F97006A8D5C /* AWBFontTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E0452314784F97006A8D5C /* AWBFontTableCell.m */; };
-		B5E0452714784FDD006A8D5C /* AWBCollageFont.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E0452614784FDD006A8D5C /* AWBCollageFont.m */; };
+		B5E0452714784FDD006A8D5C /* AWBRoadsignFont.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E0452614784FDD006A8D5C /* AWBRoadsignFont.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1102,6 +1103,8 @@
 		060BC4EC148B995100799B01 /* S23026.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = S23026.png; sourceTree = "<group>"; };
 		0620CB1F1483E71600A39703 /* AWBSignBackgroundPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBSignBackgroundPickerView.h; path = "Views and User Interface/SignBackgroundPickerView/AWBSignBackgroundPickerView.h"; sourceTree = "<group>"; };
 		0620CB201483E71600A39703 /* AWBSignBackgroundPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBSignBackgroundPickerView.m; path = "Views and User Interface/SignBackgroundPickerView/AWBSignBackgroundPickerView.m"; sourceTree = "<group>"; };
+		0626C9BC149B79CC00B8FB63 /* AWBTransformableAnyFontLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBTransformableAnyFontLabel.h; sourceTree = "<group>"; };
+		0626C9BD149B79CC00B8FB63 /* AWBTransformableAnyFontLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBTransformableAnyFontLabel.m; sourceTree = "<group>"; };
 		0633D89E14903069000CEDA5 /* S12004@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S12004@2x.png"; sourceTree = "<group>"; };
 		0633D89F14903069000CEDA5 /* S12005@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S12005@2x.png"; sourceTree = "<group>"; };
 		0633D8A014903069000CEDA5 /* S12006@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S12006@2x.png"; sourceTree = "<group>"; };
@@ -1886,8 +1889,8 @@
 		B5E0451E14784EA1006A8D5C /* AWBSettingsGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AWBSettingsGroup.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B5E0452214784F97006A8D5C /* AWBFontTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AWBFontTableCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		B5E0452314784F97006A8D5C /* AWBFontTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AWBFontTableCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		B5E0452514784FDD006A8D5C /* AWBCollageFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBCollageFont.h; sourceTree = "<group>"; };
-		B5E0452614784FDD006A8D5C /* AWBCollageFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AWBCollageFont.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B5E0452514784FDD006A8D5C /* AWBRoadsignFont.h */ = {isa = PBXFileReference; fileEncoding = 4; path = AWBRoadsignFont.h; sourceTree = "<group>"; };
+		B5E0452614784FDD006A8D5C /* AWBRoadsignFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AWBRoadsignFont.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3494,6 +3497,8 @@
 				06565DAF1481008B00B4F2CF /* AWBTransformableLabel.m */,
 				B5E044D91478471F006A8D5C /* AWBTransformableZFontLabel.h */,
 				B5E044DA1478471F006A8D5C /* AWBTransformableZFontLabel.m */,
+				0626C9BC149B79CC00B8FB63 /* AWBTransformableAnyFontLabel.h */,
+				0626C9BD149B79CC00B8FB63 /* AWBTransformableAnyFontLabel.m */,
 			);
 			name = "Transformable Views";
 			path = "Views and User Interface/Transformable Views";
@@ -3575,8 +3580,8 @@
 				B5E0451C14784EA1006A8D5C /* AWBSettings.m */,
 				B5E0451D14784EA1006A8D5C /* AWBSettingsGroup.h */,
 				B5E0451E14784EA1006A8D5C /* AWBSettingsGroup.m */,
-				B5E0452514784FDD006A8D5C /* AWBCollageFont.h */,
-				B5E0452614784FDD006A8D5C /* AWBCollageFont.m */,
+				B5E0452514784FDD006A8D5C /* AWBRoadsignFont.h */,
+				B5E0452614784FDD006A8D5C /* AWBRoadsignFont.m */,
 			);
 			path = "Settings Model";
 			sourceTree = "<group>";
@@ -4506,7 +4511,7 @@
 				B5E0452014784EA1006A8D5C /* AWBSettings.m in Sources */,
 				B5E0452114784EA1006A8D5C /* AWBSettingsGroup.m in Sources */,
 				B5E0452414784F97006A8D5C /* AWBFontTableCell.m in Sources */,
-				B5E0452714784FDD006A8D5C /* AWBCollageFont.m in Sources */,
+				B5E0452714784FDD006A8D5C /* AWBRoadsignFont.m in Sources */,
 				0668E1A3147929FF0089937B /* AWBRoadsignMagicMainViewController.m in Sources */,
 				06420DFB147C10D800E6CE9A /* NSString+Helpers.m in Sources */,
 				06420DFF147C15DB00E6CE9A /* AWBRoadsignMagicMainViewController+Gestures.m in Sources */,
@@ -4537,6 +4542,7 @@
 				06D1AEE41494D9560096099B /* AWBExportQualitySliderCell.m in Sources */,
 				06D1AEEF1495071D0096099B /* AWBTextViewCell.m in Sources */,
 				06D1AEF2149518300096099B /* UIColor+Texture.m in Sources */,
+				0626C9BE149B79CC00B8FB63 /* AWBTransformableAnyFontLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

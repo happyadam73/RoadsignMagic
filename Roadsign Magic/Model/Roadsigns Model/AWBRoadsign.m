@@ -7,7 +7,7 @@
 //
 
 #import "AWBRoadsign.h"
-#import "AWBTransformableZFontLabel.h"
+#import "AWBTransformableAnyFontLabel.h"
 #import "AWBTransformableSymbolImageView.h"
 #import "AWBSettingsGroup.h"
 
@@ -63,7 +63,7 @@
             for(UIView <AWBTransformableView> *view in self.roadsignViews) {
                 [roadsignBackgroundView addSubview:view];
                 [view initialiseForSelection];
-                if ([view isKindOfClass:[AWBTransformableZFontLabel class]]) {
+                if ([view isKindOfClass:[AWBTransformableAnyFontLabel class]]) {
                     totalLabels += 1;
                 }
                 if ([view isKindOfClass:[AWBTransformableSymbolImageView class]]) {
@@ -95,7 +95,7 @@
                 if (view) {
                     [self.roadsignViews addObject:view];
                 }
-                if ([view isKindOfClass:[AWBTransformableZFontLabel class]]) {
+                if ([view isKindOfClass:[AWBTransformableAnyFontLabel class]]) {
                     totalLabels += 1;
                 }
                 if ([view isKindOfClass:[AWBTransformableSymbolImageView class]]) {

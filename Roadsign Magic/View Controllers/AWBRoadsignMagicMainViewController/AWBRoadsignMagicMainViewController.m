@@ -14,7 +14,8 @@
 #import "FontManager.h"
 #import "AWBRoadsignMagicMainViewController+Gestures.h"
 #import "FontManager.h"
-#import "AWBTransformableZFontLabel.h"
+//#import "AWBTransformableZFontLabel.h"
+#import "AWBTransformableAnyFontLabel.h"
 #import "AWBRoadsignMagicMainViewController+Toolbar.h"
 #import "AWBRoadsignMagicMainViewController+UI.h"
 #import "UIView+SelectionMarquee.h"
@@ -207,15 +208,20 @@
     
     ZFont *font = [[FontManager sharedManager] zFontWithName:@"BritishRoadsign" pointSize:DEFAULT_FONT_POINT_SIZE];
     //ZFont *font = [ZFont fontWithUIFont:[UIFont fontWithName:@"Thonburi-Bold" size:DEFAULT_FONT_POINT_SIZE]];
-    
     self.roadsignFont = font;
+    self.labelTextFont = @"BritishRoadsign";
+    
+//    for (NSString *familyName in [UIFont familyNames]) {
+//        NSLog(@"FONT %@", familyName);
+//        for (NSString *fontName in [UIFont fontNamesForFamilyName:familyName]) {
+//            NSLog(@"%@", fontName);
+//        }        
+//    }
+        
     currentlyPinching = NO;
     currentlyRotating = NO;
     
     self.wantsFullScreenLayout = YES;
-//    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageFromFile:@"concrete.jpg"]];
-//    self.view.backgroundColor = [UIColor concreteTextureColor];
-    
     if (self.useBackgroundTexture && self.roadsignBackgroundTexture) {
         self.view.backgroundColor = [UIColor textureColorWithDescription:self.roadsignBackgroundTexture];
     } else {
@@ -355,7 +361,7 @@
         self.labelTextLine2 = roadsign.labelTextLine2;
         self.labelTextLine3 = roadsign.labelTextLine3;
         self.labelTextColor = roadsign.labelTextColor;
-        self.labelTextFont = roadsign.labelTextFont;
+        //self.labelTextFont = roadsign.labelTextFont;
         self.labelTextAlignment = roadsign.labelTextAlignment;
         
         if (self.useBackgroundTexture && self.roadsignBackgroundTexture) {

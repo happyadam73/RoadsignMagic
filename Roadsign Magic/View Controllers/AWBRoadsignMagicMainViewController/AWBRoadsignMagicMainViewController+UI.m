@@ -199,14 +199,16 @@
             self.labelTextLine2 = [info objectForKey:kAWBInfoKeyLabelTextLine2];
             self.labelTextLine3 = [info objectForKey:kAWBInfoKeyLabelTextLine3];
             self.labelTextColor = [info objectForKey:kAWBInfoKeyTextColor];
-            self.labelTextFont = [info objectForKey:kAWBInfoKeyTextFontName];
+            NSLog(@"Font Name: %@", self.labelTextFont);
+            //self.labelTextFont = [info objectForKey:kAWBInfoKeyTextFontName];
             self.labelTextAlignment = [[info objectForKey:kAWBInfoKeyTextAlignment] integerValue];
             
             if (self.labelTextLine1 || self.labelTextLine2 || self.labelTextLine3) {
                 NSMutableArray *lines = [self textLabelLines];
                 if ([lines count] > 0) {
-                    AWBTransformableZFontLabel *label = [[AWBTransformableZFontLabel alloc] initWithTextLines:lines font:self.roadsignFont offset:CGPointZero rotation:0.0 scale:1.0 horizontalFlip:NO color:self.labelTextColor alignment:self.labelTextAlignment];                    
-                    [self applySettingsToLabel:label];
+//                    AWBTransformableZFontLabel *label = [[AWBTransformableZFontLabel alloc] initWithTextLines:lines font:self.roadsignFont offset:CGPointZero rotation:0.0 scale:1.0 horizontalFlip:NO color:self.labelTextColor alignment:self.labelTextAlignment];                    
+                    AWBTransformableAnyFontLabel *label = [[AWBTransformableAnyFontLabel alloc] initWithTextLines:lines fontName:self.labelTextFont fontSize:DEFAULT_FONT_POINT_SIZE offset:CGPointZero rotation:0.0 scale:1.0 horizontalFlip:NO color:self.labelTextColor alignment:self.labelTextAlignment];                    
+                    //[self applySettingsToLabel:label];
                     label.center = [self.signBackgroundView convertPoint:self.signBackgroundView.center fromView:self.signBackgroundView.superview];
                     [self.signBackgroundView addSubview:label];
                     [label initialiseForSelection];
@@ -219,13 +221,14 @@
             break;
         case AWBSettingsControllerTypeEditTextSettings:
             self.labelTextColor = [info objectForKey:kAWBInfoKeyTextColor];
-            self.labelTextFont = [info objectForKey:kAWBInfoKeyTextFontName];
+            NSLog(@"Font Name: %@", self.labelTextFont);
+            //self.labelTextFont = [info objectForKey:kAWBInfoKeyTextFontName];
             self.labelTextAlignment = [[info objectForKey:kAWBInfoKeyTextAlignment] integerValue];
             
             for(UIView <AWBTransformableView> *view in [[self.signBackgroundView subviews] reverseObjectEnumerator]) {
                 if ([view conformsToProtocol:@protocol(AWBTransformableView)]) {
-                    if ((view.alpha == SELECTED_ALPHA) && [view isKindOfClass:[AWBTransformableZFontLabel class]]) {
-                        AWBTransformableZFontLabel *label = (AWBTransformableZFontLabel *)view;
+                    if ((view.alpha == SELECTED_ALPHA) && [view isKindOfClass:[AWBTransformableAnyFontLabel class]]) {
+                        AWBTransformableAnyFontLabel *label = (AWBTransformableAnyFontLabel *)view;
                         
                         label.labelView.textAlignment = self.labelTextAlignment;
                         if (self.labelTextColor) {
@@ -239,15 +242,18 @@
                             self.labelTextLine3 = [info objectForKey:kAWBInfoKeyLabelTextLine3];
                             NSMutableArray *lines = [self textLabelLines];
                             if ([lines count] > 0) {
-                                [label updateLabelTextLines:lines withFont:self.roadsignFont];
+                                //[label updateLabelTextLines:lines withFont:self.roadsignFont];
+                                [label updateLabelTextLines:lines withFontName:self.labelTextFont fontSize:DEFAULT_FONT_POINT_SIZE];
                             } else {
-                                [label updateLabelTextWithFont:self.roadsignFont];                                    
+                                //[label updateLabelTextWithFont:self.roadsignFont];  
+                                [label updateLabelTextWithFontName:self.labelTextFont fontSize:DEFAULT_FONT_POINT_SIZE];
                             }
                             // break because there's just one label
                             break;
                         } else {
                             // more than one label - update the font so frame is adjusted
-                            [label updateLabelTextWithFont:self.roadsignFont];                                    
+                            //[label updateLabelTextWithFont:self.roadsignFont];
+                            [label updateLabelTextWithFontName:self.labelTextFont fontSize:DEFAULT_FONT_POINT_SIZE];
                         }
                     }
                 }            
@@ -265,7 +271,7 @@
 //
 //}
 
-- (void)applySettingsToLabel:(AWBTransformableZFontLabel *)label
+- (void)applySettingsToLabel:(AWBTransformableAnyFontLabel *)label
 {
 //    [label setRoundedBorder:self.textRoundedBorders];
 //    [label setViewBorderColor:self.textBorderColor];

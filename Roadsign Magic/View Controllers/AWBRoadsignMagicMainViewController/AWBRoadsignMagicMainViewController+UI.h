@@ -8,7 +8,8 @@
 
 #import "AWBRoadsignMagicMainViewController.h"
 #import "AWBRoadsignMagicSettingsTableViewController.h"
-#import "AWBTransformableZFontLabel.h"
+//#import "AWBTransformableZFontLabel.h"
+#import "AWBTransformableAnyFontLabel.h"
 
 #define NORMAL_ALPHA 1.0
 #define UNSELECTED_ALPHA 0.4
@@ -28,7 +29,7 @@
 - (void)setBackgroundSettingsFromSettingsInfo:(NSDictionary *)info;
 - (void)setCollageDrawingAidsFromSettingsInfo:(NSDictionary *)info;
 - (NSMutableDictionary *)settingsInfo;
-- (void)applySettingsToLabel:(AWBTransformableZFontLabel *)label;
+- (void)applySettingsToLabel:(AWBTransformableAnyFontLabel *)label;
 - (void)toggleFullscreen;
 - (CGRect)zoomRectForScale:(float)scale withCenter:(CGPoint)center;
 

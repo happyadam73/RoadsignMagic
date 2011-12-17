@@ -7,7 +7,7 @@
 //
 
 #import "AWBRoadsignMagicMainViewController+Text.h"
-#import "FontLabel.h"
+//#import "FontLabel.h"
 #import "AWBRoadsignMagicMainViewController+UI.h"
 #import "AWBRoadsignMagicViewController+Edit.h"
 
@@ -46,15 +46,30 @@
     AWBRoadsignMagicSettingsTableViewController *settingsController = nil;
     if (totalSelectedLabelsInEditMode == 1) {
         //get selected label
-        FontLabel *selectedLabel = nil;
+//        FontLabel *selectedLabel = nil;
+//        for(UIView <AWBTransformableView> *view in [[self.signBackgroundView subviews] reverseObjectEnumerator]) {
+//            if ([view conformsToProtocol:@protocol(AWBTransformableView)]) {
+//                if ((view.alpha == SELECTED_ALPHA) && [view isKindOfClass:[AWBTransformableZFontLabel class]]) {
+//                    selectedLabel = [(AWBTransformableZFontLabel *)view labelView];
+//                    break;
+//                }
+//            }            
+//        } 
+
+        UILabel *selectedLabel = nil;
+        BOOL isZFontLabel;
+        
         for(UIView <AWBTransformableView> *view in [[self.signBackgroundView subviews] reverseObjectEnumerator]) {
             if ([view conformsToProtocol:@protocol(AWBTransformableView)]) {
-                if ((view.alpha == SELECTED_ALPHA) && [view isKindOfClass:[AWBTransformableZFontLabel class]]) {
-                    selectedLabel = [(AWBTransformableZFontLabel *)view labelView];
+                if ((view.alpha == SELECTED_ALPHA) && [view isKindOfClass:[AWBTransformableAnyFontLabel class]]) {
+                    selectedLabel = [(AWBTransformableAnyFontLabel *)view labelView];
+                    isZFontLabel = [(AWBTransformableAnyFontLabel *)view isZFontLabel];
                     break;
                 }
             }            
         } 
+
+        
         //set info for selected label
         if (selectedLabel) {
             NSArray *lines = [[selectedLabel text] componentsSeparatedByString:@"\r\n"];
@@ -74,7 +89,14 @@
             } else {
                 self.labelTextLine3 = nil;
             }
-            self.labelTextFont = selectedLabel.font.fontName;
+            
+            if (isZFontLabel) {
+                //NSLog(@"Family: %@  Font: %@", ((FontLabel *)selectedLabel).zFont.familyName, ((FontLabel *)selectedLabel).zFont.fontName);
+                self.labelTextFont = ((FontLabel *)selectedLabel).zFont.familyName;
+            } else {
+                self.labelTextFont = selectedLabel.font.fontName;
+            }
+            
             self.labelTextColor = selectedLabel.textColor;
             self.labelTextAlignment = selectedLabel.textAlignment;
 

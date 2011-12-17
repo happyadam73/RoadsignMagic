@@ -9,7 +9,7 @@
 #import "AWBSettingsGroup.h"
 #import "AWBSetting.h"
 #import "AWBSettings.h"
-#import "AWBCollageFont.h"
+#import "AWBRoadsignFont.h"
 #import "FileHelpers.h"
 #import "UIImage+NonCached.h"
 #import "AWBRoadsignDescriptor.h"

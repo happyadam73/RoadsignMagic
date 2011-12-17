@@ -24,8 +24,8 @@
 - (void)initialiseLayerRotation:(CGFloat)rotation scale:(CGFloat)scale  
 {
     CATiledLayer *layerForView = (CATiledLayer *)self.layer;
-    layerForView.levelsOfDetailBias = 4;
-    //layerForView.levelsOfDetail = 4;
+    layerForView.levelsOfDetailBias = 0;
+    layerForView.levelsOfDetail = 4;
     
     rotationCurrentlyQuantised = NO;
     scaleCurrentlyQuantised = NO;

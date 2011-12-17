@@ -50,7 +50,7 @@
             if ([view conformsToProtocol:@protocol(AWBTransformableView)]) {
                 if (view.alpha == SELECTED_ALPHA) {
                     [view removeSelection];
-                    if ([view isKindOfClass:[AWBTransformableZFontLabel class]]) {
+                    if ([view isKindOfClass:[AWBTransformableAnyFontLabel class]]) {
                         self.totalLabelSubviews -= 1;
                     } else if ([view isKindOfClass:[AWBTransformableSymbolImageView class]]) {
                         self.totalSymbolSubviews -= 1;

@@ -7,13 +7,13 @@
 //
 
 #import "AWBFontTableCell.h"
-#import "AWBCollageFont.h"
+#import "AWBRoadsignFont.h"
 
 @implementation AWBFontTableCell
 
 - (void)initialiseWithFontType:(AWBCollageFontType)fontType
 {
-    AWBCollageFont *font = [[AWBCollageFont alloc] initWithFontType:fontType];
+    AWBRoadsignFont *font = [[AWBRoadsignFont alloc] initWithFontType:fontType];
     [[self textLabel] setFont:[font fontWithSize:18.0]];    
     self.textLabel.text = [font fontDescription];
     [font release];
