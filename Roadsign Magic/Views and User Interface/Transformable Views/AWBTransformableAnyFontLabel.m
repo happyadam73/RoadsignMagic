@@ -410,7 +410,7 @@
     [self applyPendingRotationToCapturedView];
     [aCoder encodeObject:self.labelView.text forKey:@"labelText"];
     if (self.isZFontLabel) {
-        [aCoder encodeObject:((FontLabel *)self.labelView).zFont.fontName forKey:@"labelFontName"];
+        [aCoder encodeObject:((FontLabel *)self.labelView).zFont.familyName forKey:@"labelFontName"];
         [aCoder encodeFloat:((FontLabel *)self.labelView).zFont.pointSize forKey:@"labelFontSize"];
     } else {
         [aCoder encodeObject:self.labelView.font.fontName forKey:@"labelFontName"];

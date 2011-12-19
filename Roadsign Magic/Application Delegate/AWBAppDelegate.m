@@ -145,4 +145,10 @@
      */
 }
 
+-(BOOL) application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    
+    NSLog(@"handleOpenURL");
+    return YES;
+}
+
 @end

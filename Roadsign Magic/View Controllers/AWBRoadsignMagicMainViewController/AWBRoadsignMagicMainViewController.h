@@ -50,9 +50,7 @@ enum {
         
     AWBRoadsignBackground *selectedSignBackground;
     AWBRoadsignSymbol *selectedSignSymbol;
-    
-    ZFont *roadsignFont;
-    
+        
     UIRotationGestureRecognizer *rotationGestureRecognizer;
     UIPanGestureRecognizer *panGestureRecognizer;
     UIPinchGestureRecognizer *pinchGestureRecognizer;
@@ -123,7 +121,6 @@ enum {
 @property (nonatomic, retain) UISwipeGestureRecognizer *swipeGestureRecognizer;
 @property (nonatomic, retain) UILongPressGestureRecognizer *longPressGestureRecognizer;
 @property (nonatomic, retain) UILongPressGestureRecognizer *longDoublePressGestureRecognizer;
-@property (nonatomic, retain) ZFont *roadsignFont;
 @property (nonatomic, retain) AWBLockedView *lockedView;
 @property (nonatomic, assign) BOOL snapToGrid;
 @property (nonatomic, assign) BOOL snapRotation;

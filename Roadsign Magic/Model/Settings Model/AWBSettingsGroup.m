@@ -105,7 +105,7 @@
 
 + (AWBSettingsGroup *)textColorPickerSettingsGroupWithInfo:(NSDictionary *)info
 {
-    return [[[self alloc] initWithSettings:[NSMutableArray arrayWithObject:[AWBSetting colorSettingWithValue:[info objectForKey:kAWBInfoKeyTextColor] andKey:kAWBInfoKeyTextColor]] header:@"Text Colour" footer:nil] autorelease];
+    return [[[self alloc] initWithSettings:[NSMutableArray arrayWithObject:[AWBSetting colorSettingWithValue:[info objectForKey:kAWBInfoKeyTextColor] andKey:kAWBInfoKeyTextColor]] header:nil footer:nil] autorelease];
 }
 
 + (AWBSettingsGroup *)textAlignmentPickerSettingsGroupWithInfo:(NSDictionary *)info
@@ -270,5 +270,35 @@
     return [backgroundTextureSwitchSettings autorelease];
 }
 
++ (AWBSettingsGroup *)fontSettingsGroupWithInfo:(NSDictionary *)info
+{
+    NSMutableArray *fontSettings = nil;
+    fontSettings = [NSMutableArray arrayWithObjects:[AWBSetting zFontSettingWithValue:[NSNumber numberWithInteger:AWBRoadsignFontTypeBritishRoadsign]], [AWBSetting fontSettingWithValue:[NSNumber numberWithInteger:AWBRoadsignFontTypeArialRoundedMTBold]], [AWBSetting fontSettingWithValue:[NSNumber numberWithInteger:AWBRoadsignFontTypeHelvetica]], nil];
+    
+    NSString *osVersion = [[UIDevice currentDevice] systemVersion];
+    NSString *versionWithExtraFonts = @"5.0";
+    BOOL extraFontsAvailable = ([versionWithExtraFonts compare:osVersion options:NSNumericSearch] != NSOrderedDescending);
+    if (extraFontsAvailable) {
+        [fontSettings addObject:[AWBSetting fontSettingWithValue:[NSNumber numberWithInteger:AWBRoadsignFontTypeGillSans]]];
+    }
+    
+    AWBSettingsGroup *fontGroup = [[self alloc] initWithSettings:fontSettings header:@"Select a Font" footer:@"The British Roadsign Font does not support all international languages - for full international keypboard support, select Arial or Helvetica."];
+    fontGroup.isMutuallyExclusive = YES;
+    fontGroup.settingKeyForMutuallyExclusiveObjects = kAWBInfoKeyTextFontName;
+    fontGroup.mutuallyExclusiveObjects = [NSMutableArray arrayWithObjects:@"BritishRoadsign", @"ArialRoundedMTBold", @"Helvetica", nil]; 
+    if (extraFontsAvailable) {
+        [fontGroup.mutuallyExclusiveObjects addObject:@"GillSans"];
+    }
+    fontGroup.selectedIndex = [fontGroup.mutuallyExclusiveObjects indexOfObject:[info objectForKey:kAWBInfoKeyTextFontName]];
+    
+    return [fontGroup autorelease];
+}
+
++ (AWBSettingsGroup *)textSettingsDrilldownSettingsGroupWithInfo:(NSDictionary *)info
+{
+    NSMutableArray *buttonSettings = [NSMutableArray arrayWithObjects:[AWBSetting drilldownSettingWithText:@"Fonts" value:nil key:nil childSettings:[AWBSettings fontSettingsWithInfo:info]], [AWBSetting drilldownSettingWithText:@"Borders" value:nil key:nil childSettings:[AWBSettings fontSettingsWithInfo:info]], nil];
+    
+    return [[[self alloc] initWithSettings:buttonSettings header:nil footer:nil] autorelease];    
+}
 
 @end

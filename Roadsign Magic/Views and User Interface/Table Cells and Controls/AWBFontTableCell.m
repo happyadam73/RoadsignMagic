@@ -11,7 +11,7 @@
 
 @implementation AWBFontTableCell
 
-- (void)initialiseWithFontType:(AWBCollageFontType)fontType
+- (void)initialiseWithFontType:(AWBRoadsignFontType)fontType
 {
     AWBRoadsignFont *font = [[AWBRoadsignFont alloc] initWithFontType:fontType];
     [[self textLabel] setFont:[font fontWithSize:18.0]];    
@@ -19,7 +19,7 @@
     [font release];
 }
 
-- (id)initWithFontType:(AWBCollageFontType)fontType reuseIdentifier:(NSString *)reuseIdentifier
+- (id)initWithFontType:(AWBRoadsignFontType)fontType reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     if (self) {
@@ -31,12 +31,12 @@
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    return [self initWithFontType:AWBCollageFontTypeHelvetica reuseIdentifier:reuseIdentifier];
+    return [self initWithFontType:AWBRoadsignFontTypeHelvetica reuseIdentifier:reuseIdentifier];
 }
 
 - (void)updateCellWithSetting:(AWBSetting *)aSetting
 {
-    AWBCollageFontType fontType = [aSetting.settingValue integerValue];
+    AWBRoadsignFontType fontType = [aSetting.settingValue integerValue];
     [self initialiseWithFontType:fontType];
 }
 

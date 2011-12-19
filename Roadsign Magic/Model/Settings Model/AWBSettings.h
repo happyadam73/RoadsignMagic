@@ -50,5 +50,6 @@
 + (AWBSettings *)aboutSettingsWithInfo:(NSDictionary *)info;
 + (AWBSettings *)drawingAidsSettingsWithInfo:(NSDictionary *)info;
 + (AWBSettings *)backgroundSettingsWithInfo:(NSDictionary *)info;
++ (AWBSettings *)fontSettingsWithInfo:(NSDictionary *)info;
 
 @end

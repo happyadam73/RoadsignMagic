@@ -21,6 +21,7 @@
 #import "AWBSubtitleTableCell.h"
 #import "AWBExportQualitySliderCell.h"
 #import "AWBTextViewCell.h"
+#import "AWBZFontTableCell.h"
 
 @implementation AWBSetting
 
@@ -118,6 +119,11 @@
     return [[[self alloc] initWithText:nil controlType:AWBSettingControlTypeFont value:aValue key:nil] autorelease];
 }
 
++ (AWBSetting *)zFontSettingWithValue:(id)aValue
+{
+    return [[[self alloc] initWithText:nil controlType:AWBSettingControlTypeZFont value:aValue key:nil] autorelease];
+}
+
 + (AWBSetting *)drilldownSettingWithText:(NSString *)aText value:(id)aValue key:(NSString *)aKey childSettings:(AWBSettings *)settings
 {
     AWBSetting *setting = [[self alloc] initWithText:aText controlType:AWBSettingControlTypeDrilldown value:aValue key:aKey];
@@ -159,6 +165,8 @@
             return @"AWBSettingControlTypeColorPicker";
         case AWBSettingControlTypeFont:
             return @"AWBSettingControlTypeFont";
+        case AWBSettingControlTypeZFont:
+            return @"AWBSettingControlTypeZFont";
         case AWBSettingControlTypeDrilldown:
             return @"AWBSettingControlTypeDrilldown";
         case AWBSettingControlTypeDefault:
@@ -214,6 +222,10 @@
             break;
         case AWBSettingControlTypeFont:
             tableCell = [[AWBFontTableCell alloc] initWithFontType:[settingValue integerValue] reuseIdentifier:self.cellReuseIdentifier];
+            tableCell.selectionStyle = UITableViewCellSelectionStyleBlue;
+            break;
+        case AWBSettingControlTypeZFont:
+            tableCell = [[AWBZFontTableCell alloc] initWithFontType:[settingValue integerValue] reuseIdentifier:self.cellReuseIdentifier];
             tableCell.selectionStyle = UITableViewCellSelectionStyleBlue;
             break;
         case AWBSettingControlTypeDrilldown:
@@ -279,6 +291,9 @@
             self.settingValue = [(AWBColorPickerSegmentedControl *)sender selectedColor];
             break;
         case AWBSettingControlTypeFont:
+            self.settingValue = nil;
+            break;
+        case AWBSettingControlTypeZFont:
             self.settingValue = nil;
             break;
         case AWBSettingControlTypeTextView:

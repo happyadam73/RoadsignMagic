@@ -194,6 +194,11 @@
 		060BC4F7148B995100799B01 /* S23024.png in Resources */ = {isa = PBXBuildFile; fileRef = 060BC4EA148B995100799B01 /* S23024.png */; };
 		060BC4F8148B995100799B01 /* S23025.png in Resources */ = {isa = PBXBuildFile; fileRef = 060BC4EB148B995100799B01 /* S23025.png */; };
 		060BC4F9148B995100799B01 /* S23026.png in Resources */ = {isa = PBXBuildFile; fileRef = 060BC4EC148B995100799B01 /* S23026.png */; };
+		0611EBD8149F525C00A3588C /* AWBZFontTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0611EBD7149F525C00A3588C /* AWBZFontTableCell.m */; };
+		0611EBDC149F6BA400A3588C /* S12043@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0611EBDA149F6BA400A3588C /* S12043@2x.png */; };
+		0611EBDD149F6BA400A3588C /* S12044@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0611EBDB149F6BA400A3588C /* S12044@2x.png */; };
+		0611EBE0149F6BB300A3588C /* S22043.png in Resources */ = {isa = PBXBuildFile; fileRef = 0611EBDE149F6BB300A3588C /* S22043.png */; };
+		0611EBE1149F6BB300A3588C /* S22044.png in Resources */ = {isa = PBXBuildFile; fileRef = 0611EBDF149F6BB300A3588C /* S22044.png */; };
 		0620CB211483E71600A39703 /* AWBSignBackgroundPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0620CB201483E71600A39703 /* AWBSignBackgroundPickerView.m */; };
 		0626C9BE149B79CC00B8FB63 /* AWBTransformableAnyFontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0626C9BD149B79CC00B8FB63 /* AWBTransformableAnyFontLabel.m */; };
 		0633D8A914903069000CEDA5 /* S12004@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0633D89E14903069000CEDA5 /* S12004@2x.png */; };
@@ -1101,6 +1106,12 @@
 		060BC4EA148B995100799B01 /* S23024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = S23024.png; sourceTree = "<group>"; };
 		060BC4EB148B995100799B01 /* S23025.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = S23025.png; sourceTree = "<group>"; };
 		060BC4EC148B995100799B01 /* S23026.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = S23026.png; sourceTree = "<group>"; };
+		0611EBD6149F525C00A3588C /* AWBZFontTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBZFontTableCell.h; sourceTree = "<group>"; };
+		0611EBD7149F525C00A3588C /* AWBZFontTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBZFontTableCell.m; sourceTree = "<group>"; };
+		0611EBDA149F6BA400A3588C /* S12043@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S12043@2x.png"; sourceTree = "<group>"; };
+		0611EBDB149F6BA400A3588C /* S12044@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S12044@2x.png"; sourceTree = "<group>"; };
+		0611EBDE149F6BB300A3588C /* S22043.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = S22043.png; sourceTree = "<group>"; };
+		0611EBDF149F6BB300A3588C /* S22044.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = S22044.png; sourceTree = "<group>"; };
 		0620CB1F1483E71600A39703 /* AWBSignBackgroundPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBSignBackgroundPickerView.h; path = "Views and User Interface/SignBackgroundPickerView/AWBSignBackgroundPickerView.h"; sourceTree = "<group>"; };
 		0620CB201483E71600A39703 /* AWBSignBackgroundPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBSignBackgroundPickerView.m; path = "Views and User Interface/SignBackgroundPickerView/AWBSignBackgroundPickerView.m"; sourceTree = "<group>"; };
 		0626C9BC149B79CC00B8FB63 /* AWBTransformableAnyFontLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBTransformableAnyFontLabel.h; sourceTree = "<group>"; };
@@ -1889,7 +1900,7 @@
 		B5E0451E14784EA1006A8D5C /* AWBSettingsGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AWBSettingsGroup.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B5E0452214784F97006A8D5C /* AWBFontTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AWBFontTableCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		B5E0452314784F97006A8D5C /* AWBFontTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AWBFontTableCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		B5E0452514784FDD006A8D5C /* AWBRoadsignFont.h */ = {isa = PBXFileReference; fileEncoding = 4; path = AWBRoadsignFont.h; sourceTree = "<group>"; };
+		B5E0452514784FDD006A8D5C /* AWBRoadsignFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBRoadsignFont.h; sourceTree = "<group>"; };
 		B5E0452614784FDD006A8D5C /* AWBRoadsignFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AWBRoadsignFont.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 /* End PBXFileReference section */
 
@@ -2686,6 +2697,8 @@
 				0633D8F41490DA28000CEDA5 /* S12040@2x.png */,
 				0633D8F51490DA28000CEDA5 /* S12041@2x.png */,
 				0633D8F61490DA28000CEDA5 /* S12042@2x.png */,
+				0611EBDA149F6BA400A3588C /* S12043@2x.png */,
+				0611EBDB149F6BA400A3588C /* S12044@2x.png */,
 			);
 			path = "S12 Thumbnails";
 			sourceTree = "<group>";
@@ -2735,6 +2748,8 @@
 				0633D92C1490DA39000CEDA5 /* S22040.png */,
 				0633D92D1490DA39000CEDA5 /* S22041.png */,
 				0633D92E1490DA39000CEDA5 /* S22042.png */,
+				0611EBDE149F6BB300A3588C /* S22043.png */,
+				0611EBDF149F6BB300A3588C /* S22044.png */,
 			);
 			path = "S22 Full Size";
 			sourceTree = "<group>";
@@ -3480,6 +3495,8 @@
 				B5E044CF1478471F006A8D5C /* AWBTextValueTableCell.m */,
 				06903FD6148E39C200232B9E /* AWBSizeableImageTableCell.h */,
 				06903FD7148E39C200232B9E /* AWBSizeableImageTableCell.m */,
+				0611EBD6149F525C00A3588C /* AWBZFontTableCell.h */,
+				0611EBD7149F525C00A3588C /* AWBZFontTableCell.m */,
 			);
 			name = "Table Cells and Controls";
 			path = "Views and User Interface/Table Cells and Controls";
@@ -4465,6 +4482,10 @@
 				06DA20E9149A3F1F006390D6 /* 17015@2x.png in Resources */,
 				06DA20ED149A3F29006390D6 /* 27014.png in Resources */,
 				06DA20EE149A3F29006390D6 /* 27015.png in Resources */,
+				0611EBDC149F6BA400A3588C /* S12043@2x.png in Resources */,
+				0611EBDD149F6BA400A3588C /* S12044@2x.png in Resources */,
+				0611EBE0149F6BB300A3588C /* S22043.png in Resources */,
+				0611EBE1149F6BB300A3588C /* S22044.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4543,6 +4564,7 @@
 				06D1AEEF1495071D0096099B /* AWBTextViewCell.m in Sources */,
 				06D1AEF2149518300096099B /* UIColor+Texture.m in Sources */,
 				0626C9BE149B79CC00B8FB63 /* AWBTransformableAnyFontLabel.m in Sources */,
+				0611EBD8149F525C00A3588C /* AWBZFontTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

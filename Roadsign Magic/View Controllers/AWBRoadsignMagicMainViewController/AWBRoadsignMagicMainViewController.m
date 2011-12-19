@@ -32,7 +32,6 @@
 @synthesize signBackgroundPickerButton, toolbarSpacing, textButton, editButton, editTextButton, cancelButton, deleteButton, selectNoneOrAllButton, signSymbolPickerButton, actionButton, settingsButton, fixedToolbarSpacing;
 @synthesize signBackgroundPickerView, signSymbolPickerView; 
 @synthesize rotationGestureRecognizer, panGestureRecognizer, pinchGestureRecognizer, singleTapGestureRecognizer, doubleTapGestureRecognizer, swipeGestureRecognizer, longPressGestureRecognizer, longDoublePressGestureRecognizer;
-@synthesize roadsignFont; 
 @synthesize labelTextColor, labelTextFont, labelTextLine1, labelTextLine2, labelTextLine3, labelTextAlignment;
 @synthesize exportSize, snapToGrid, snapRotation, snapToGridSize, lockedView;
 @synthesize selectedSignBackground, selectedSignSymbol, isSignInEditMode;
@@ -64,7 +63,8 @@
         self.jpgExportQualityValue = 0.7;
         self.roadsignBackgroundColor = [UIColor yellowSignBackgroundColor];
         self.roadsignBackgroundTexture = @"Metal";
-        self.useBackgroundTexture = YES;        
+        self.useBackgroundTexture = YES;  
+        self.labelTextFont = @"BritishRoadsign";
     }
     return self;
 }
@@ -115,7 +115,6 @@
     self.selectedSignBackground = nil;
     self.selectedSignSymbol = nil;
     self.lockedView = nil;
-    self.roadsignFont = nil;
     self.signBackgroundView = nil;
     self.mainScrollView = nil;
     self.signBackgroundPickerView = nil;
@@ -159,25 +158,6 @@
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {    
     [self updateLayoutForNewOrientation:toInterfaceOrientation];
-//    mainScrollView.contentSize = signBackgroundView.bounds.size;    
-//    float minWidthScale  = ((mainScrollView.bounds.size.width)  / signBackgroundView.bounds.size.width) * 0.96;
-//    float minHeightScale  = ((mainScrollView.bounds.size.height)  / signBackgroundView.bounds.size.height) * 0.96;    
-//    float currentZoomScale = mainScrollView.zoomScale;
-//    BOOL currentZoomScaleIsMin = (currentZoomScale == mainScrollView.minimumZoomScale);
-//    [mainScrollView setMinimumZoomScale:MIN(minWidthScale, minHeightScale)];
-//    float newScale = ((currentZoomScaleIsMin || (currentZoomScale <= mainScrollView.minimumZoomScale)) ? mainScrollView.minimumZoomScale : currentZoomScale);
-//    [mainScrollView setZoomScale:newScale];
-//    [self scrollViewDidZoom:mainScrollView];
-//        
-//    if (signBackgroundPickerView) {        
-//        CGRect frame = signBackgroundPickerView.frame;
-//        if (signBackgroundPickerViewShowing) {
-//            frame.origin.y = (self.view.bounds.size.height - self.navigationController.toolbar.bounds.size.height - frame.size.height);            
-//        } else {
-//            frame.origin.y = (self.view.bounds.size.height);                        
-//        }
-//        signBackgroundPickerView.frame = frame;
-//    }   
 }
 
 - (void) updateLayoutForNewOrientation: (UIInterfaceOrientation) orientation 
@@ -206,18 +186,18 @@
 - (void)loadView {
     [super loadView];
     
-    ZFont *font = [[FontManager sharedManager] zFontWithName:@"BritishRoadsign" pointSize:DEFAULT_FONT_POINT_SIZE];
-    //ZFont *font = [ZFont fontWithUIFont:[UIFont fontWithName:@"Thonburi-Bold" size:DEFAULT_FONT_POINT_SIZE]];
-    self.roadsignFont = font;
-    self.labelTextFont = @"BritishRoadsign";
-    
-//    for (NSString *familyName in [UIFont familyNames]) {
-//        NSLog(@"FONT %@", familyName);
-//        for (NSString *fontName in [UIFont fontNamesForFamilyName:familyName]) {
-//            NSLog(@"%@", fontName);
-//        }        
-//    }
-        
+//    NSString *fontPath = [[NSBundle mainBundle] pathForResource:@"BritishRoadsign" ofType:@"ttf"];
+//    NSLog(@"fontPath: %@", fontPath);
+//
+//    
+//    ZFont *font = [[FontManager sharedManager] zFontWithName:@"BritishRoadsign" pointSize:DEFAULT_FONT_POINT_SIZE];
+//    //ZFont *font = [ZFont fontWithUIFont:[UIFont fontWithName:@"Thonburi-Bold" size:DEFAULT_FONT_POINT_SIZE]];
+//    self.roadsignFont = font;
+//    self.labelTextFont = @"BritishRoadsign";
+//    
+//    ZFont *testFont = [[FontManager sharedManager] zFontWithURL:[NSURL URLWithString:@"file://localhost/private/var/mobile/Applications/93B63B8B-0365-4532-B8B2-596C0D158E2D/Documents/Inbox/KeepCalm.otf"] pointSize:DEFAULT_FONT_POINT_SIZE];
+//    NSLog(@"ZFont: %@ %@", testFont.familyName, testFont.fontName);
+            
     currentlyPinching = NO;
     currentlyRotating = NO;
     
@@ -361,7 +341,7 @@
         self.labelTextLine2 = roadsign.labelTextLine2;
         self.labelTextLine3 = roadsign.labelTextLine3;
         self.labelTextColor = roadsign.labelTextColor;
-        //self.labelTextFont = roadsign.labelTextFont;
+        self.labelTextFont = roadsign.labelTextFont;
         self.labelTextAlignment = roadsign.labelTextAlignment;
         
         if (self.useBackgroundTexture && self.roadsignBackgroundTexture) {
@@ -420,7 +400,6 @@
     [self deallocGestureRecognizers];
     [selectedSignBackground release];
     [selectedSignSymbol release];
-    [roadsignFont release];
     [signBackgroundPickerView release];
     [signSymbolPickerView release];
     [toolbarSpacing release];

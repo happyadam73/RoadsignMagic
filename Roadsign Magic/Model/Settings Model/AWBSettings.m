@@ -141,19 +141,19 @@
 
 + (AWBSettings *)textSettingsWithInfo:(NSDictionary *)info
 {
-    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup textEditSettingsGroupWithInfo:info], [AWBSettingsGroup textAlignmentPickerSettingsGroupWithInfo:info], [AWBSettingsGroup textColorPickerSettingsGroupWithInfo:info], nil];
+    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup textEditSettingsGroupWithInfo:info], [AWBSettingsGroup textAlignmentPickerSettingsGroupWithInfo:info], [AWBSettingsGroup textColorPickerSettingsGroupWithInfo:info], [AWBSettingsGroup textSettingsDrilldownSettingsGroupWithInfo:info], nil];
     return [[[self alloc] initWithSettingsGroups:settings title:@"Add Text Settings"] autorelease];
 }
 
 + (AWBSettings *)editTextSettingsWithInfo:(NSDictionary *)info
 {
-    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup textAlignmentPickerSettingsGroupWithInfo:info], [AWBSettingsGroup textColorPickerSettingsGroupWithInfo:info], nil];
+    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup textAlignmentPickerSettingsGroupWithInfo:info], [AWBSettingsGroup textColorPickerSettingsGroupWithInfo:info], [AWBSettingsGroup textSettingsDrilldownSettingsGroupWithInfo:info], nil];
     return [[[self alloc] initWithSettingsGroups:settings title:@"Edit Text Labels"] autorelease];
 }
 
 + (AWBSettings *)editSingleTextSettingsWithInfo:(NSDictionary *)info
 {
-    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup textEditSettingsGroupWithInfo:info], [AWBSettingsGroup textAlignmentPickerSettingsGroupWithInfo:info], [AWBSettingsGroup textColorPickerSettingsGroupWithInfo:info], nil];
+    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup textEditSettingsGroupWithInfo:info], [AWBSettingsGroup textAlignmentPickerSettingsGroupWithInfo:info], [AWBSettingsGroup textColorPickerSettingsGroupWithInfo:info], [AWBSettingsGroup textSettingsDrilldownSettingsGroupWithInfo:info], nil];
     return [[[self alloc] initWithSettingsGroups:settings title:@"Edit Text Label"] autorelease];
 }
 
@@ -164,12 +164,6 @@
     roadsignDescriptionSettings.headerView = header;
     return [roadsignDescriptionSettings autorelease];
 }
-
-//+ (AWBSettings *)createRoadsignSettingsWithInfo:(NSDictionary *)info
-//{
-//    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup roadsignNameSettingsGroupWithInfo:info], nil];
-//    return [[[self alloc] initWithSettingsGroups:settings title:@"New Roadsign"] autorelease];
-//}
 
 + (AWBSettings *)createRoadsignSettingsWithInfo:(NSDictionary *)info
 {
@@ -206,6 +200,12 @@
     backgroundColorSettings.visible = !backgroundTypeSettings.masterSwitchIsOn;
     
     return [backgroundSettings autorelease];    
+}
+
++ (AWBSettings *)fontSettingsWithInfo:(NSDictionary *)info
+{
+    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup fontSettingsGroupWithInfo:info], nil];
+    return [[[self alloc] initWithSettingsGroups:settings title:@"Choose a Font"] autorelease];
 }
 
 @end

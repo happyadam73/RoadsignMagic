@@ -7,12 +7,13 @@
 //
 
 #import "AWBRoadsignFont.h"
+#import "FontManager.h"
 
 @implementation AWBRoadsignFont
 
 @synthesize fontType;
 
-- (id)initWithFontType:(AWBCollageFontType)aFontType
+- (id)initWithFontType:(AWBRoadsignFontType)aFontType
 {
     self = [super init];
     if (self) {
@@ -21,35 +22,33 @@
     return self;
 }
 
+- (BOOL)isZFont
+{
+    switch (fontType) {
+        case AWBRoadsignFontTypeArialRoundedMTBold:
+            return NO;
+        case AWBRoadsignFontTypeHelvetica:
+            return NO;
+        case AWBRoadsignFontTypeGillSans:
+            return NO;            
+        case AWBRoadsignFontTypeBritishRoadsign:
+            return YES;
+        default:
+            return NO;
+    }
+}
+
 - (NSString *)fontFamilyName
 {
     switch (fontType) {
-        case AWBCollageFontTypeAmericanTypewriter:
-            return @"AmericanTypewriter";
-        case AWBCollageFontTypeAppleGothic:
-            return @"AppleGothic";
-        case AWBCollageFontTypeArialRoundedMTBold:
+        case AWBRoadsignFontTypeArialRoundedMTBold:
             return @"ArialRoundedMTBold";
-        case AWBCollageFontTypeHelvetica:
+        case AWBRoadsignFontTypeHelvetica:
             return @"Helvetica";
-        case AWBCollageFontTypeMarkerFeltThin:
-            return @"MarkerFelt-Thin";
-        case AWBCollageFontTypeSnellRoundhand:
-            return @"SnellRoundhand";
-        case AWBCollageFontTypeTrebuchetMSItalic:
-            return @"TrebuchetMS-Italic";
-        case AWBCollageFontTypeZapfino:
-            return @"Zapfino";
-        case AWBCollageFontTypeChalkduster:
-            return @"Chalkduster";
-        case AWBCollageFontTypeAcademyEngravedLetPlain:
-            return @"AcademyEngravedLetPlain";
-        case AWBCollageFontTypeBradleyHandITCTTBold:
-            return @"BradleyHandITCTT-Bold";
-        case AWBCollageFontTypePapyrus:
-            return @"Papyrus";
-        case AWBCollageFontTypePartyLetPlain:
-            return @"PartyLetPlain";
+        case AWBRoadsignFontTypeGillSans:
+            return @"GillSans";            
+        case AWBRoadsignFontTypeBritishRoadsign:
+            return @"BritishRoadsign";
         default:
             return @"Helvetica";
     }
@@ -58,32 +57,14 @@
 - (NSString *)fontDescription
 {
     switch (fontType) {
-        case AWBCollageFontTypeAmericanTypewriter:
-            return @"Typewriter";
-        case AWBCollageFontTypeAppleGothic:
-            return @"Gothic";
-        case AWBCollageFontTypeArialRoundedMTBold:
+        case AWBRoadsignFontTypeArialRoundedMTBold:
             return @"Arial Bold";
-        case AWBCollageFontTypeHelvetica:
+        case AWBRoadsignFontTypeHelvetica:
             return @"Helvetica";
-        case AWBCollageFontTypeMarkerFeltThin:
-            return @"Marker Pen";
-        case AWBCollageFontTypeSnellRoundhand:
-            return @"Roundhand";
-        case AWBCollageFontTypeTrebuchetMSItalic:
-            return @"Trebuchet Italic";
-        case AWBCollageFontTypeZapfino:
-            return @"Zapfino";
-        case AWBCollageFontTypeChalkduster:
-            return @"Chalkduster";
-        case AWBCollageFontTypeAcademyEngravedLetPlain:
-            return @"Engraved";
-        case AWBCollageFontTypeBradleyHandITCTTBold:
-            return @"Handwriting";
-        case AWBCollageFontTypePapyrus:
-            return @"Papyrus";
-        case AWBCollageFontTypePartyLetPlain:
-            return @"Party";
+        case AWBRoadsignFontTypeGillSans:
+            return @"Gill Sans";            
+        case AWBRoadsignFontTypeBritishRoadsign:
+            return @"British Roadsign";
         default:
             return @"Helvetica";
     }
@@ -91,7 +72,18 @@
 
 - (UIFont *)fontWithSize:(CGFloat)size
 {
+    if (self.isZFont) {
+        return nil;
+    }
     return [UIFont fontWithName:[self fontFamilyName] size:size];
+}
+
+- (ZFont *)zFontWithSize:(CGFloat)size
+{
+    if (!self.isZFont) {
+        return nil;
+    }
+    return [[FontManager sharedManager] zFontWithName:[self fontFamilyName] pointSize:size];
 }
 
 + (BOOL)isZFont:(NSString *)fontName

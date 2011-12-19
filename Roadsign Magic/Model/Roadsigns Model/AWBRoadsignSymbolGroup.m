@@ -55,7 +55,7 @@
     return [NSArray arrayWithObjects:
             [AWBRoadsignSymbolGroup roadsignSymbolGroupWithCategoryId:0 count:42 description:@"Arrow Sign Symbols"],
             [AWBRoadsignSymbolGroup roadsignSymbolGroupWithCategoryId:1 count:31 description:@"Regulatory Sign Symbols"],
-            [AWBRoadsignSymbolGroup roadsignSymbolGroupWithCategoryId:2 count:42 description:@"Tourist Sign Symbols"],
+            [AWBRoadsignSymbolGroup roadsignSymbolGroupWithCategoryId:2 count:44 description:@"Tourist Sign Symbols"],
             [AWBRoadsignSymbolGroup roadsignSymbolGroupWithCategoryId:3 count:26 description:@"Junction Sign Symbols"],
             [AWBRoadsignSymbolGroup roadsignSymbolGroupWithCategoryId:4 count:40 description:@"People and Animal Sign Symbols"],
             [AWBRoadsignSymbolGroup roadsignSymbolGroupWithCategoryId:5 count:38 description:@"Vehicle Sign Symbols"],

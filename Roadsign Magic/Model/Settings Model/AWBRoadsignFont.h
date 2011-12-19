@@ -7,33 +7,27 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ZFont.h"
 
 typedef enum {
-    AWBCollageFontTypeHelvetica,
-    AWBCollageFontTypeArialRoundedMTBold,              
-    AWBCollageFontTypeMarkerFeltThin,
-    AWBCollageFontTypeAmericanTypewriter,
-    AWBCollageFontTypeSnellRoundhand,
-    AWBCollageFontTypeZapfino,
-    AWBCollageFontTypeAppleGothic,
-    AWBCollageFontTypeTrebuchetMSItalic,
-    AWBCollageFontTypeChalkduster,
-    AWBCollageFontTypeAcademyEngravedLetPlain,
-    AWBCollageFontTypeBradleyHandITCTTBold,
-    AWBCollageFontTypePapyrus,
-    AWBCollageFontTypePartyLetPlain
-} AWBCollageFontType;
+    AWBRoadsignFontTypeHelvetica,
+    AWBRoadsignFontTypeArialRoundedMTBold,              
+    AWBRoadsignFontTypeBritishRoadsign,
+    AWBRoadsignFontTypeGillSans
+} AWBRoadsignFontType;
 
 @interface AWBRoadsignFont : NSObject {
-    AWBCollageFontType fontType;
+    AWBRoadsignFontType fontType;
 }
 
-@property (nonatomic, assign) AWBCollageFontType fontType;
+@property (nonatomic, assign) AWBRoadsignFontType fontType;
+@property (nonatomic, readonly) BOOL isZFont;
 
-- (id)initWithFontType:(AWBCollageFontType)aFontType;
+- (id)initWithFontType:(AWBRoadsignFontType)aFontType;
 - (NSString *)fontFamilyName;
 - (NSString *)fontDescription;
 - (UIFont *)fontWithSize:(CGFloat)size;
+- (ZFont *)zFontWithSize:(CGFloat)size;
 + (BOOL)isZFont:(NSString *)fontName;
 
 @end

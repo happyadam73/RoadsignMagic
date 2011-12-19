@@ -12,7 +12,7 @@
 
 @interface AWBFontTableCell : UITableViewCell 
 
-- (void)initialiseWithFontType:(AWBCollageFontType)fontType;
-- (id)initWithFontType:(AWBCollageFontType)fontType reuseIdentifier:(NSString *)reuseIdentifier;
+- (void)initialiseWithFontType:(AWBRoadsignFontType)fontType;
+- (id)initWithFontType:(AWBRoadsignFontType)fontType reuseIdentifier:(NSString *)reuseIdentifier;
 
 @end
