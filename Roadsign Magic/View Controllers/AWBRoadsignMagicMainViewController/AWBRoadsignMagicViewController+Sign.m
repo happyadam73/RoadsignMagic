@@ -92,16 +92,14 @@
 - (void)awbSignBackgroundPickerView:(AWBSignBackgroundPickerView *)backgroundPicker didSelectSignBackground:(AWBRoadsignBackground *)signBackground
 {
     [self updateSignBackground:signBackground willAnimateAndSave:YES];
-//    self.selectedSignBackground = signBackground;
-//    self.labelTextColor = [UIColor foregroundColorWithBackgroundSignColorCode:signBackground.primaryColorCode];
-//    NSString *filename = signBackground.fullsizeImageFilename;        
-//    [self updateSignBackgroundWithImageFromFile:filename willAnimateAndSave:YES];
 }
 
 - (void)updateSignBackground:(AWBRoadsignBackground *)signBackground willAnimateAndSave:(BOOL)animateAndSave
 {
     self.selectedSignBackground = signBackground;
     self.labelTextColor = [UIColor foregroundColorWithBackgroundSignColorCode:signBackground.primaryColorCode];
+    self.textBorderColor = [UIColor foregroundColorWithBackgroundSignColorCode:signBackground.primaryColorCode];
+    self.textBackgroundColor = [UIColor backgroundColorWithBackgroundSignColorCode:signBackground.primaryColorCode];
     NSString *filename = signBackground.fullsizeImageFilename;        
     [self updateSignBackgroundWithImageFromFile:filename willAnimateAndSave:animateAndSave];    
 }

@@ -158,6 +158,9 @@
                                  [NSNumber numberWithBool:self.pngExportTransparentBackground], kAWBInfoKeyPNGExportTransparentBackground,
                                  [NSNumber numberWithFloat:self.jpgExportQualityValue], kAWBInfoKeyJPGExportQualityValue,
                                  [NSNumber numberWithBool:self.useBackgroundTexture], kAWBInfoKeyRoadsignUseBackgroundTexture,
+                                 [NSNumber numberWithBool:self.addTextBorders], kAWBInfoKeyTextBorders,
+                                 [NSNumber numberWithBool:self.textRoundedBorders], kAWBInfoKeyTextRoundedBorders,
+                                 [NSNumber numberWithBool:self.addTextBackground], kAWBInfoKeyTextBackground,
                                  nil];
              
     if (self.roadsignBackgroundColor) {
@@ -181,6 +184,12 @@
     if (self.labelTextLine3) {
         [info setObject:self.labelTextLine3 forKey:kAWBInfoKeyLabelTextLine3];
     }
+    if (self.textBorderColor) {
+        [info setObject:self.textBorderColor forKey:kAWBInfoKeyTextBorderColor];
+    }
+    if (self.textBackgroundColor) {
+        [info setObject:self.textBackgroundColor forKey:kAWBInfoKeyTextBackgroundColor];
+    }
     
     return info;
 }
@@ -201,12 +210,17 @@
             self.labelTextColor = [info objectForKey:kAWBInfoKeyTextColor];
             self.labelTextFont = [info objectForKey:kAWBInfoKeyTextFontName];
             self.labelTextAlignment = [[info objectForKey:kAWBInfoKeyTextAlignment] integerValue];
+            self.addTextBorders = [[info objectForKey:kAWBInfoKeyTextBorders] boolValue];
+            self.addTextBackground = [[info objectForKey:kAWBInfoKeyTextBackground] boolValue];
+            self.textRoundedBorders = [[info objectForKey:kAWBInfoKeyTextRoundedBorders] boolValue];
+            self.textBorderColor = [info objectForKey:kAWBInfoKeyTextBorderColor];
+            self.textBackgroundColor = [info objectForKey:kAWBInfoKeyTextBackgroundColor];
             
             if (self.labelTextLine1 || self.labelTextLine2 || self.labelTextLine3) {
                 NSMutableArray *lines = [self textLabelLines];
                 if ([lines count] > 0) {
                     AWBTransformableAnyFontLabel *label = [[AWBTransformableAnyFontLabel alloc] initWithTextLines:lines fontName:self.labelTextFont fontSize:DEFAULT_FONT_POINT_SIZE offset:CGPointZero rotation:0.0 scale:1.0 horizontalFlip:NO color:self.labelTextColor alignment:self.labelTextAlignment];                    
-                    //[self applySettingsToLabel:label];
+                    [self applySettingsToLabel:label];
                     label.center = [self.signBackgroundView convertPoint:self.signBackgroundView.center fromView:self.signBackgroundView.superview];
                     [self.signBackgroundView addSubview:label];
                     [label initialiseForSelection];
@@ -214,14 +228,18 @@
                     [label release];                        
                 }
             }
-            
             [self saveChanges:NO];
             break;
         case AWBSettingsControllerTypeEditTextSettings:
             self.labelTextColor = [info objectForKey:kAWBInfoKeyTextColor];
             self.labelTextFont = [info objectForKey:kAWBInfoKeyTextFontName];
             self.labelTextAlignment = [[info objectForKey:kAWBInfoKeyTextAlignment] integerValue];
-            
+            self.addTextBorders = [[info objectForKey:kAWBInfoKeyTextBorders] boolValue];
+            self.addTextBackground = [[info objectForKey:kAWBInfoKeyTextBackground] boolValue];
+            self.textRoundedBorders = [[info objectForKey:kAWBInfoKeyTextRoundedBorders] boolValue];
+            self.textBorderColor = [info objectForKey:kAWBInfoKeyTextBorderColor];
+            self.textBackgroundColor = [info objectForKey:kAWBInfoKeyTextBackgroundColor];          
+                        
             for(UIView <AWBTransformableView> *view in [[self.signBackgroundView subviews] reverseObjectEnumerator]) {
                 if ([view conformsToProtocol:@protocol(AWBTransformableView)]) {
                     if ((view.alpha == SELECTED_ALPHA) && [view isKindOfClass:[AWBTransformableAnyFontLabel class]]) {
@@ -243,12 +261,12 @@
                             } else {
                                 [label updateLabelTextWithFontName:self.labelTextFont fontSize:DEFAULT_FONT_POINT_SIZE];
                             }
-                            // break because there's just one label
-                            break;
                         } else {
                             // more than one label - update the font so frame is adjusted
                             [label updateLabelTextWithFontName:self.labelTextFont fontSize:DEFAULT_FONT_POINT_SIZE];
                         }
+                        
+                        [self applySettingsToLabel:label];
                     }
                 }            
             } 
@@ -267,15 +285,11 @@
 
 - (void)applySettingsToLabel:(AWBTransformableAnyFontLabel *)label
 {
-//    [label setRoundedBorder:self.textRoundedBorders];
-//    [label setViewBorderColor:self.textBorderColor];
-//    [label setViewShadowColor:self.textShadowColor];
-//    label.addBorder = self.addTextBorders;
-//    label.addShadow = self.addTextShadows;
-//    
-//    if (self.addTextBackground) {
-//        [label setTextBackgroundColor:self.textBackgroundColor];
-//    }
+    [label setRoundedBorder:self.textRoundedBorders];
+    [label setViewBorderColor:self.textBorderColor];
+    [label setTextBackgroundColor:self.textBackgroundColor];
+    label.addBorder = self.addTextBorders;
+    label.addTextBackground = self.addTextBackground;
 }
 
 - (void)toggleFullscreen

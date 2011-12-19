@@ -282,7 +282,7 @@
         [fontSettings addObject:[AWBSetting fontSettingWithValue:[NSNumber numberWithInteger:AWBRoadsignFontTypeGillSans]]];
     }
     
-    AWBSettingsGroup *fontGroup = [[self alloc] initWithSettings:fontSettings header:@"Select a Font" footer:@"The British Roadsign Font does not support all international languages - for full international keypboard support, select Arial or Helvetica."];
+    AWBSettingsGroup *fontGroup = [[self alloc] initWithSettings:fontSettings header:@"Select a Font" footer:@"The British Roadsign Font does not support all international languages - for full international keyboard support, select Arial or Helvetica."];
     fontGroup.isMutuallyExclusive = YES;
     fontGroup.settingKeyForMutuallyExclusiveObjects = kAWBInfoKeyTextFontName;
     fontGroup.mutuallyExclusiveObjects = [NSMutableArray arrayWithObjects:@"BritishRoadsign", @"ArialRoundedMTBold", @"Helvetica", nil]; 
@@ -296,9 +296,44 @@
 
 + (AWBSettingsGroup *)textSettingsDrilldownSettingsGroupWithInfo:(NSDictionary *)info
 {
-    NSMutableArray *buttonSettings = [NSMutableArray arrayWithObjects:[AWBSetting drilldownSettingWithText:@"Fonts" value:nil key:nil childSettings:[AWBSettings fontSettingsWithInfo:info]], [AWBSetting drilldownSettingWithText:@"Borders" value:nil key:nil childSettings:[AWBSettings fontSettingsWithInfo:info]], nil];
+    NSMutableArray *buttonSettings = [NSMutableArray arrayWithObjects:[AWBSetting drilldownSettingWithText:@"Fonts" value:nil key:nil childSettings:[AWBSettings fontSettingsWithInfo:info]], [AWBSetting drilldownSettingWithText:@"Borders & Background" value:nil key:nil childSettings:[AWBSettings extraTextSettingsWithInfo:info]], nil];
     
     return [[[self alloc] initWithSettings:buttonSettings header:nil footer:nil] autorelease];    
+}
+
++ (AWBSettingsGroup *)textBordersSettingsGroupWithInfo:(NSDictionary *)info
+{
+    AWBSetting *addTextBordersSetting = [AWBSetting switchSettingWithText:@"Add Text Border" value:[info objectForKey:kAWBInfoKeyTextBorders] key:kAWBInfoKeyTextBorders];
+    addTextBordersSetting.masterSlaveType = AWBSettingMasterSlaveTypeMasterSwitch;
+    AWBSetting *roundedBordersSetting = [AWBSetting switchSettingWithText:@"Rounded Border" value:[info objectForKey:kAWBInfoKeyTextRoundedBorders] key:kAWBInfoKeyTextRoundedBorders];
+    roundedBordersSetting.masterSlaveType = AWBSettingMasterSlaveTypeSlaveCell;
+    roundedBordersSetting.visible = addTextBordersSetting.isSwitchedOn;
+    NSMutableArray *buttonSettings = [NSMutableArray arrayWithObjects:addTextBordersSetting, roundedBordersSetting, nil];
+    AWBSettingsGroup *textBorderSettings = [[self alloc] initWithSettings:buttonSettings header:nil footer:nil];    
+    textBorderSettings.masterSwitchIsOn = addTextBordersSetting.isSwitchedOn;
+    addTextBordersSetting.parentGroup = textBorderSettings; 
+    return [textBorderSettings autorelease];    
+}
+
++ (AWBSettingsGroup *)textBorderColorPickerSettingsGroupWithInfo:(NSDictionary *)info
+{
+    return [[[self alloc] initWithSettings:[NSMutableArray arrayWithObject:[AWBSetting colorSettingWithValue:[info objectForKey:kAWBInfoKeyTextBorderColor] andKey:kAWBInfoKeyTextBorderColor]] header:@"Text Border Colour" footer:nil] autorelease];
+}
+
++ (AWBSettingsGroup *)textBackgroundSettingsGroupWithInfo:(NSDictionary *)info
+{
+    AWBSetting *addTextBackgroundSetting = [AWBSetting switchSettingWithText:@"Add Text Background" value:[info objectForKey:kAWBInfoKeyTextBackground] key:kAWBInfoKeyTextBackground];
+    addTextBackgroundSetting.masterSlaveType = AWBSettingMasterSlaveTypeMasterSwitch;
+    NSMutableArray *buttonSettings = [NSMutableArray arrayWithObject:addTextBackgroundSetting];
+    AWBSettingsGroup *textBackgroundSettings = [[self alloc] initWithSettings:buttonSettings header:nil footer:nil];
+    textBackgroundSettings.masterSwitchIsOn = addTextBackgroundSetting.isSwitchedOn;
+    addTextBackgroundSetting.parentGroup = textBackgroundSettings;
+    return [textBackgroundSettings autorelease];    
+}
+
++ (AWBSettingsGroup *)textBackgroundColorPickerSettingsGroupWithInfo:(NSDictionary *)info
+{
+    return [[[self alloc] initWithSettings:[NSMutableArray arrayWithObject:[AWBSetting colorSettingWithValue:[info objectForKey:kAWBInfoKeyTextBackgroundColor] andKey:kAWBInfoKeyTextBackgroundColor]] header:@"Text Background Colour" footer:nil] autorelease];
 }
 
 @end

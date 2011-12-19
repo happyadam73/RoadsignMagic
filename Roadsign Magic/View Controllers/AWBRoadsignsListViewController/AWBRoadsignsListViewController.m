@@ -257,7 +257,13 @@
     
     //secondly - load progress busy indicator.  Only enable if there are some symbols or text to load   
     if (roadsign.totalObjects > 0) {
-        NSString *busyTextDetail = [NSString stringWithFormat:@"(with %d symbols)", roadsign.totalSymbolObjects];
+        NSString *objectString;
+        if (roadsign.totalObjects == 1) {
+            objectString = @"object";
+        } else {
+            objectString = @"objects";
+        }
+        NSString *busyTextDetail = [NSString stringWithFormat:@"(with %d %@)", roadsign.totalObjects, objectString];
         AWBBusyView *busyIndicatorView = [[AWBBusyView alloc] initWithText:@"Preparing Roadsign" detailText:busyTextDetail parentView:self.view centerAtPoint:[self centerOfVisibleRows]];
         [self performSelector:@selector(navigateToRoadsignController:) withObject:roadsignController afterDelay:0];
         self.busyView = busyIndicatorView;

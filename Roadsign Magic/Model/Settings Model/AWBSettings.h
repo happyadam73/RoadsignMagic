@@ -51,5 +51,6 @@
 + (AWBSettings *)drawingAidsSettingsWithInfo:(NSDictionary *)info;
 + (AWBSettings *)backgroundSettingsWithInfo:(NSDictionary *)info;
 + (AWBSettings *)fontSettingsWithInfo:(NSDictionary *)info;
++ (AWBSettings *)extraTextSettingsWithInfo:(NSDictionary *)info;    
 
 @end

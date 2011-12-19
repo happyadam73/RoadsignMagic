@@ -142,19 +142,19 @@
 + (AWBSettings *)textSettingsWithInfo:(NSDictionary *)info
 {
     NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup textEditSettingsGroupWithInfo:info], [AWBSettingsGroup textAlignmentPickerSettingsGroupWithInfo:info], [AWBSettingsGroup textColorPickerSettingsGroupWithInfo:info], [AWBSettingsGroup textSettingsDrilldownSettingsGroupWithInfo:info], nil];
-    return [[[self alloc] initWithSettingsGroups:settings title:@"Add Text Settings"] autorelease];
+    return [[[self alloc] initWithSettingsGroups:settings title:@"Add Text"] autorelease];
 }
 
 + (AWBSettings *)editTextSettingsWithInfo:(NSDictionary *)info
 {
     NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup textAlignmentPickerSettingsGroupWithInfo:info], [AWBSettingsGroup textColorPickerSettingsGroupWithInfo:info], [AWBSettingsGroup textSettingsDrilldownSettingsGroupWithInfo:info], nil];
-    return [[[self alloc] initWithSettingsGroups:settings title:@"Edit Text Labels"] autorelease];
+    return [[[self alloc] initWithSettingsGroups:settings title:@"Edit Labels"] autorelease];
 }
 
 + (AWBSettings *)editSingleTextSettingsWithInfo:(NSDictionary *)info
 {
     NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup textEditSettingsGroupWithInfo:info], [AWBSettingsGroup textAlignmentPickerSettingsGroupWithInfo:info], [AWBSettingsGroup textColorPickerSettingsGroupWithInfo:info], [AWBSettingsGroup textSettingsDrilldownSettingsGroupWithInfo:info], nil];
-    return [[[self alloc] initWithSettingsGroups:settings title:@"Edit Text Label"] autorelease];
+    return [[[self alloc] initWithSettingsGroups:settings title:@"Edit Label"] autorelease];
 }
 
 + (AWBSettings *)roadsignDescriptionSettingsWithInfo:(NSDictionary *)info header:(UIView *)header
@@ -207,5 +207,25 @@
     NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup fontSettingsGroupWithInfo:info], nil];
     return [[[self alloc] initWithSettingsGroups:settings title:@"Choose a Font"] autorelease];
 }
+
++ (AWBSettings *)extraTextSettingsWithInfo:(NSDictionary *)info    
+{
+    AWBSettingsGroup *textBorderSettings = [AWBSettingsGroup textBordersSettingsGroupWithInfo:info];
+    AWBSettingsGroup *textBorderColorPicker = [AWBSettingsGroup textBorderColorPickerSettingsGroupWithInfo:info];
+    AWBSettingsGroup *textBackgroundSettings = [AWBSettingsGroup textBackgroundSettingsGroupWithInfo:info];
+    AWBSettingsGroup *textBackgroundColorPicker = [AWBSettingsGroup textBackgroundColorPickerSettingsGroupWithInfo:info];
+
+    NSMutableArray *settings = [NSMutableArray arrayWithObjects:textBorderSettings, textBorderColorPicker, textBackgroundSettings, textBackgroundColorPicker, nil];
+    AWBSettings *textSettings = [[self alloc] initWithSettingsGroups:settings title:@"Text Settings"];
+    textBorderSettings.parentSettings = textSettings;
+    textBorderSettings.dependentVisibleSettingsGroup = textBorderColorPicker;
+    textBorderColorPicker.visible = textBorderSettings.masterSwitchIsOn;
+    textBackgroundSettings.parentSettings = textSettings;
+    textBackgroundSettings.dependentVisibleSettingsGroup = textBackgroundColorPicker;
+    textBackgroundColorPicker.visible = textBackgroundSettings.masterSwitchIsOn;
+    
+    return [textSettings autorelease];
+}
+
 
 @end

@@ -31,13 +31,15 @@
     CAShapeLayer *selectionMarquee2;
     UILabel *labelView;
     BOOL isZFontLabel;
-
+    UIColor *textBackgroundColor;
 }
 
 @property (nonatomic, retain) CAShapeLayer *selectionMarquee1;
 @property (nonatomic, retain) CAShapeLayer *selectionMarquee2;    
 @property (nonatomic, retain) UILabel *labelView;
 @property (nonatomic, assign) BOOL isZFontLabel;
+@property (nonatomic, assign) BOOL addTextBackground;
+@property (nonatomic, retain) UIColor *textBackgroundColor;
 
 - (void)initialiseLayerRotation:(CGFloat)rotation scale:(CGFloat)scale;
 - (id)initWithText:(NSString *)text offset:(CGPoint)point;
@@ -46,11 +48,12 @@
 - (id)initWithTextLines:(NSArray *)lines fontName:(NSString *)fontName fontSize:(CGFloat)fontSize offset:(CGPoint) point rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip color:(UIColor *)color alignment:(UITextAlignment)alignment;
 - (id)initWithTextLines:(NSArray *)lines zFont:(ZFont *)font offset:(CGPoint)point rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip color:(UIColor *)color alignment:(UITextAlignment)alignment;
 - (id)initWithTextLines:(NSArray *)lines iOSFont:(UIFont *)font offset:(CGPoint)point rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip color:(UIColor *)color alignment:(UITextAlignment)alignment;
-- (void)setTextBackgroundColor:(UIColor *)backgroundColor;
 - (void)addViewShadow;
 - (void)removeViewShadow;
 - (void)addViewBorder;
 - (void)removeViewBorder;
+- (void)addViewTextBackground;
+- (void)removeViewTextBackground;
 - (void)updateTextDimensionsWithLines:(NSArray *)lines zFont:(ZFont *)font;
 - (void)updateTextDimensionsWithLines:(NSArray *)lines iOSFont:(UIFont *)font;
 - (void)updateLabelTextLines:(NSArray *)lines withFontName:(NSString *)fontName fontSize:(CGFloat)fontSize;

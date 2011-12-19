@@ -26,6 +26,7 @@
 @synthesize rotationAngleInRadians, currentScale, pendingRotationAngleInRadians, horizontalFlip;
 @synthesize roundedBorder, viewBorderColor, viewShadowColor, addShadow, addBorder;
 @synthesize labelView, isZFontLabel, selectionMarquee1, selectionMarquee2;
+@synthesize addTextBackground, textBackgroundColor;
 
 - (void)initialiseLayerRotation:(CGFloat)rotation scale:(CGFloat)scale  
 {
@@ -50,9 +51,9 @@
     self.viewBorderColor = [UIColor blackColor];
     self.viewShadowColor = [UIColor blackColor];
     self.roundedBorder = YES;
+    self.textBackgroundColor = [UIColor clearColor];
     
     self.labelView.numberOfLines = 0;
-//    self.zFontLabel.numberOfLines = 0;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -67,11 +68,20 @@
     CGFloat labelRotation = [aDecoder decodeFloatForKey:@"labelRotation"];
     CGFloat labelScale = [aDecoder decodeFloatForKey:@"labelScale"];
     BOOL labelHFlip = [aDecoder decodeBoolForKey:@"labelHFlip"];
-    
-//    ZFont *labelFont = [[FontManager sharedManager] zFontWithName:labelFontName pointSize:labelFontSize];
+    BOOL labelAddBorder = [aDecoder decodeBoolForKey:@"labelAddBorder"];
+    BOOL labelRoundedBorder = [aDecoder decodeBoolForKey:@"labelRoundedBorder"];
+    BOOL labelAddTextBackground = [aDecoder decodeBoolForKey:@"labelAddTextBackground"];
+    UIColor *labelTextBackgroundColor = [aDecoder decodeObjectForKey:@"labelTextBackgroundColor"];
+    UIColor *labelTextBorderColor = [aDecoder decodeObjectForKey:@"labelTextBorderColor"];
     CGPoint offset = CGPointMake(labelOffsetX, labelOffsetY);
     
     self = [self initWithTextLines:[labelText componentsSeparatedByString:@"\r\n"] fontName:labelFontName fontSize:labelFontSize offset:offset rotation:labelRotation scale:labelScale horizontalFlip:labelHFlip color:labelColor alignment:alignment];
+    
+    [self setRoundedBorder:labelRoundedBorder];
+    [self setViewBorderColor:labelTextBorderColor];
+    [self setTextBackgroundColor:labelTextBackgroundColor];
+    self.addBorder = labelAddBorder;
+    self.addTextBackground = labelAddTextBackground;
     
     [self setCenter:offset];
     return  self;
@@ -303,12 +313,17 @@
 {    
     //OK, we're expecting a ZFont label - if it's not currently then we need to remove the iOS font label and create a new ZFont label
     if (!isZFontLabel) {
+        //before removing the iOS label, we need to get the alignment and color values
+        UITextAlignment alignment = self.labelView.textAlignment;
+        CGColorRef colorRef = [self.labelView.textColor  CGColor];
         [self.labelView removeFromSuperview];
         FontLabel *label = [[FontLabel alloc] initWithFrame:CGRectZero];
         label.layer.masksToBounds = YES;
         label.numberOfLines = 0;
         label.backgroundColor = [UIColor clearColor];
         label.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
+        label.textAlignment = alignment;
+        label.textColor = [UIColor colorWithCGColor:colorRef];
         self.labelView = label;
         [label release];
         [self addSubview:self.labelView];
@@ -350,12 +365,17 @@
 {    
     //OK, we're expecting an iOS label - if it's not currently then we need to remove the ZFont label and create a new iOSFont label
     if (isZFontLabel) {
+        //before removing the iOS label, we need to get the alignment and color values
+        UITextAlignment alignment = self.labelView.textAlignment;
+        CGColorRef colorRef = [self.labelView.textColor  CGColor];
         [self.labelView removeFromSuperview];
         AWBLabel *label = [[AWBLabel alloc] initWithFrame:CGRectZero];
         label.layer.masksToBounds = YES;
         label.numberOfLines = 0;
         label.backgroundColor = [UIColor clearColor];
         label.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
+        label.textAlignment = alignment;
+        label.textColor = [UIColor colorWithCGColor:colorRef];
         self.labelView = label;
         [label release];
         [self addSubview:self.labelView];
@@ -423,6 +443,11 @@
     [aCoder encodeFloat:self.quantisedRotation forKey:@"labelRotation"];
     [aCoder encodeFloat:self.quantisedScale forKey:@"labelScale"];
     [aCoder encodeBool:self.horizontalFlip forKey:@"labelHFlip"];
+    [aCoder encodeBool:self.addBorder forKey:@"labelAddBorder"];
+    [aCoder encodeBool:self.roundedBorder forKey:@"labelRoundedBorder"];
+    [aCoder encodeBool:self.addTextBackground forKey:@"labelAddTextBackground"];
+    [aCoder encodeObject:self.textBackgroundColor forKey:@"labelTextBackgroundColor"];
+    [aCoder encodeObject:self.viewBorderColor forKey:@"labelTextBorderColor"];
 }
 
 -(void)setCurrentScale:(CGFloat)scale
@@ -528,11 +553,26 @@
     roundedBorder = roundedBorderValue;
 }
 
-- (void)setTextBackgroundColor:(UIColor *)backgroundColor
+- (void)setAddTextBackground:(BOOL)addTextBackgroundValue
 {
-    if (backgroundColor) {
-        [self.labelView setBackgroundColor:backgroundColor];        
+    addTextBackground = addTextBackgroundValue;
+    if (addTextBackground) {
+        [self addViewTextBackground];
+    } else {
+        [self removeViewTextBackground];
     }
+}
+
+- (void)addViewTextBackground
+{
+    if (self.textBackgroundColor) {
+        self.labelView.backgroundColor = self.textBackgroundColor;
+    }
+}
+
+- (void)removeViewTextBackground
+{
+    self.labelView.backgroundColor = [UIColor clearColor];
 }
 
 - (void)addViewShadow
@@ -574,6 +614,7 @@
     [labelView release];
     [viewBorderColor release];
     [viewShadowColor release];
+    [textBackgroundColor release];
     [super dealloc];
 }
 

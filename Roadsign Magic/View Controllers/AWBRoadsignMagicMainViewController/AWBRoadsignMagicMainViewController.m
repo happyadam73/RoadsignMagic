@@ -33,6 +33,7 @@
 @synthesize signBackgroundPickerView, signSymbolPickerView; 
 @synthesize rotationGestureRecognizer, panGestureRecognizer, pinchGestureRecognizer, singleTapGestureRecognizer, doubleTapGestureRecognizer, swipeGestureRecognizer, longPressGestureRecognizer, longDoublePressGestureRecognizer;
 @synthesize labelTextColor, labelTextFont, labelTextLine1, labelTextLine2, labelTextLine3, labelTextAlignment;
+@synthesize addTextBorders, addTextBackground, textRoundedBorders, textBorderColor, textBackgroundColor;
 @synthesize exportSize, snapToGrid, snapRotation, snapToGridSize, lockedView;
 @synthesize selectedSignBackground, selectedSignSymbol, isSignInEditMode;
 @synthesize deleteConfirmationSheet, chooseActionTypeSheet, busyView;
@@ -65,6 +66,11 @@
         self.roadsignBackgroundTexture = @"Metal";
         self.useBackgroundTexture = YES;  
         self.labelTextFont = @"BritishRoadsign";
+        self.addTextBorders = NO;
+        self.addTextBackground = NO;
+        self.textRoundedBorders = YES;
+        self.textBorderColor = [UIColor blackColor];
+        self.textBackgroundColor = [UIColor blackColor];
     }
     return self;
 }
@@ -141,6 +147,8 @@
     self.roadsignBackgroundTexture = nil;
     self.roadsignBackgroundColor = nil;
     self.busyView = nil;
+    self.textBorderColor = nil;
+    self.textBackgroundColor = nil;
 }
 
 - (void)viewDidLoad
@@ -283,6 +291,11 @@
         roadsign.roadsignBackgroundColor = roadsignBackgroundColor;
         roadsign.roadsignBackgroundTexture = roadsignBackgroundTexture;
         roadsign.useBackgroundTexture = useBackgroundTexture;
+        roadsign.addTextBorders  = addTextBorders;
+        roadsign.textRoundedBorders = textRoundedBorders;
+        roadsign.textBorderColor = textBorderColor;
+        roadsign.addTextBackground = addTextBackground;
+        roadsign.textBackgroundColor = textBackgroundColor;
         
         [roadsign initRoadsignFromView:self.signBackgroundView];
         
@@ -334,16 +347,40 @@
         self.exportFormatSelectedIndex = roadsign.exportFormatSelectedIndex;
         self.pngExportTransparentBackground = roadsign.pngExportTransparentBackground;
         self.jpgExportQualityValue = roadsign.jpgExportQualityValue;
-        self.roadsignBackgroundColor = roadsign.roadsignBackgroundColor;
-        self.roadsignBackgroundTexture = roadsign.roadsignBackgroundTexture;
         self.useBackgroundTexture = roadsign.useBackgroundTexture;
-        self.labelTextLine1 = roadsign.labelTextLine1;
-        self.labelTextLine2 = roadsign.labelTextLine2;
-        self.labelTextLine3 = roadsign.labelTextLine3;
-        self.labelTextColor = roadsign.labelTextColor;
-        self.labelTextFont = roadsign.labelTextFont;
         self.labelTextAlignment = roadsign.labelTextAlignment;
+        self.addTextBorders = roadsign.addTextBorders;
+        self.textRoundedBorders = roadsign.textRoundedBorders;
+        self.addTextBackground = roadsign.addTextBackground;
         
+        if (roadsign.roadsignBackgroundColor) {
+            self.roadsignBackgroundColor = roadsign.roadsignBackgroundColor;
+        }
+        if (roadsign.roadsignBackgroundColor) {
+            self.roadsignBackgroundTexture = roadsign.roadsignBackgroundTexture;
+        }
+        if (roadsign.labelTextLine1) {
+            self.labelTextLine1 = roadsign.labelTextLine1;
+        }
+        if (roadsign.labelTextLine2) {
+            self.labelTextLine2 = roadsign.labelTextLine2;
+        }
+        if (roadsign.labelTextLine3) {
+            self.labelTextLine3 = roadsign.labelTextLine3;
+        }
+        if (roadsign.labelTextColor) {
+            self.labelTextColor = roadsign.labelTextColor;
+        }
+        if (roadsign.labelTextFont) {
+            self.labelTextFont = roadsign.labelTextFont;
+        }
+        if (roadsign.textBorderColor) {
+            self.textBorderColor = roadsign.textBorderColor;
+        }   
+        if (roadsign.textBackgroundColor) {
+            self.textBackgroundColor = roadsign.textBackgroundColor;
+        }
+
         if (self.useBackgroundTexture && self.roadsignBackgroundTexture) {
             self.view.backgroundColor = [UIColor textureColorWithDescription:self.roadsignBackgroundTexture];
         } else {
@@ -419,6 +456,8 @@
     [labelTextLine1 release];
     [labelTextLine2 release];
     [labelTextLine3 release];
+    [textBorderColor release];
+    [textBackgroundColor release];
     [lockedView release];
     [deleteConfirmationSheet release];
     [chooseActionTypeSheet release];

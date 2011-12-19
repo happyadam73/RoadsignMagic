@@ -44,35 +44,40 @@
     }
     
     AWBRoadsignMagicSettingsTableViewController *settingsController = nil;
+    
+    UILabel *selectedLabelView = nil;
+    AWBTransformableAnyFontLabel *selectedLabel;
+    BOOL isZFontLabel;
+    
+    for(UIView <AWBTransformableView> *view in [[self.signBackgroundView subviews] reverseObjectEnumerator]) {
+        if ([view conformsToProtocol:@protocol(AWBTransformableView)]) {
+            if ((view.alpha == SELECTED_ALPHA) && [view isKindOfClass:[AWBTransformableAnyFontLabel class]]) {
+                selectedLabel = (AWBTransformableAnyFontLabel *)view;
+                selectedLabelView = [(AWBTransformableAnyFontLabel *)view labelView];
+                isZFontLabel = [(AWBTransformableAnyFontLabel *)view isZFontLabel];
+                break;
+            }
+        }            
+    }    
+    
+    if (isZFontLabel) {
+        self.labelTextFont = ((FontLabel *)selectedLabelView).zFont.familyName;
+    } else {
+        self.labelTextFont = selectedLabelView.font.fontName;
+    }
+    
+    self.labelTextColor = selectedLabelView.textColor;
+    self.labelTextAlignment = selectedLabelView.textAlignment;
+    self.addTextBorders = selectedLabel.addBorder;
+    self.addTextBackground = selectedLabel.addTextBackground;
+    self.textRoundedBorders = selectedLabel.roundedBorder;
+    self.textBorderColor = selectedLabel.viewBorderColor;
+    self.textBackgroundColor = selectedLabel.textBackgroundColor;
+    
     if (totalSelectedLabelsInEditMode == 1) {
-        //get selected label
-//        FontLabel *selectedLabel = nil;
-//        for(UIView <AWBTransformableView> *view in [[self.signBackgroundView subviews] reverseObjectEnumerator]) {
-//            if ([view conformsToProtocol:@protocol(AWBTransformableView)]) {
-//                if ((view.alpha == SELECTED_ALPHA) && [view isKindOfClass:[AWBTransformableZFontLabel class]]) {
-//                    selectedLabel = [(AWBTransformableZFontLabel *)view labelView];
-//                    break;
-//                }
-//            }            
-//        } 
-
-        UILabel *selectedLabel = nil;
-        BOOL isZFontLabel;
-        
-        for(UIView <AWBTransformableView> *view in [[self.signBackgroundView subviews] reverseObjectEnumerator]) {
-            if ([view conformsToProtocol:@protocol(AWBTransformableView)]) {
-                if ((view.alpha == SELECTED_ALPHA) && [view isKindOfClass:[AWBTransformableAnyFontLabel class]]) {
-                    selectedLabel = [(AWBTransformableAnyFontLabel *)view labelView];
-                    isZFontLabel = [(AWBTransformableAnyFontLabel *)view isZFontLabel];
-                    break;
-                }
-            }            
-        } 
-
-        
         //set info for selected label
-        if (selectedLabel) {
-            NSArray *lines = [[selectedLabel text] componentsSeparatedByString:@"\r\n"];
+        if (selectedLabelView) {
+            NSArray *lines = [[selectedLabelView text] componentsSeparatedByString:@"\r\n"];
             NSUInteger lineCount = [lines count];
             if (lineCount > 0) {
                 self.labelTextLine1 = [lines objectAtIndex:0];
@@ -89,17 +94,6 @@
             } else {
                 self.labelTextLine3 = nil;
             }
-            
-            if (isZFontLabel) {
-                //NSLog(@"Family: %@  Font: %@", ((FontLabel *)selectedLabel).zFont.familyName, ((FontLabel *)selectedLabel).zFont.fontName);
-                self.labelTextFont = ((FontLabel *)selectedLabel).zFont.familyName;
-            } else {
-                self.labelTextFont = selectedLabel.font.fontName;
-            }
-            
-            self.labelTextColor = selectedLabel.textColor;
-            self.labelTextAlignment = selectedLabel.textAlignment;
-
         }
         settingsController = [[AWBRoadsignMagicSettingsTableViewController alloc] initWithSettings:[AWBSettings editSingleTextSettingsWithInfo:[self settingsInfo]] settingsInfo:[self settingsInfo] rootController:nil];        
     } else {

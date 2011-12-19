@@ -20,6 +20,7 @@
 @synthesize exportFormatSelectedIndex, pngExportTransparentBackground, jpgExportQualityValue;
 @synthesize roadsignBackgroundColor, roadsignBackgroundTexture, useBackgroundTexture;
 @synthesize labelTextAlignment, labelTextColor, labelTextFont, labelTextLine1, labelTextLine2, labelTextLine3;
+@synthesize addTextBorders, addTextBackground, textRoundedBorders, textBorderColor, textBackgroundColor;
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -43,7 +44,12 @@
     self.labelTextLine2 = [aDecoder decodeObjectForKey:kAWBInfoKeyLabelTextLine2];
     self.labelTextLine3 = [aDecoder decodeObjectForKey:kAWBInfoKeyLabelTextLine3];
     self.labelTextAlignment = [aDecoder decodeIntegerForKey:kAWBInfoKeyTextAlignment];
-    
+    self.addTextBorders = [aDecoder decodeBoolForKey:kAWBInfoKeyTextBorders];
+    self.textRoundedBorders = [aDecoder decodeBoolForKey:kAWBInfoKeyTextRoundedBorders];
+    self.addTextBackground = [aDecoder decodeBoolForKey:kAWBInfoKeyTextBackground];
+    self.textBorderColor = [aDecoder decodeObjectForKey:kAWBInfoKeyTextBorderColor];
+    self.textBackgroundColor = [aDecoder decodeObjectForKey:kAWBInfoKeyTextBackgroundColor];
+
     return  self;   
 }
 
@@ -129,7 +135,12 @@
     [aCoder encodeObject:self.labelTextLine1 forKey:kAWBInfoKeyLabelTextLine1]; 
     [aCoder encodeObject:self.labelTextLine2 forKey:kAWBInfoKeyLabelTextLine2]; 
     [aCoder encodeObject:self.labelTextLine3 forKey:kAWBInfoKeyLabelTextLine3]; 
-    [aCoder encodeInteger:self.labelTextAlignment forKey:kAWBInfoKeyTextAlignment];     
+    [aCoder encodeInteger:self.labelTextAlignment forKey:kAWBInfoKeyTextAlignment]; 
+    [aCoder encodeObject:self.textBorderColor forKey:kAWBInfoKeyTextBorderColor];
+    [aCoder encodeObject:self.textBackgroundColor forKey:kAWBInfoKeyTextBackgroundColor];
+    [aCoder encodeBool:self.addTextBorders forKey:kAWBInfoKeyTextBorders];
+    [aCoder encodeBool:self.textRoundedBorders forKey:kAWBInfoKeyTextRoundedBorders];
+    [aCoder encodeBool:self.addTextBackground forKey:kAWBInfoKeyTextBackground];
 }
 
 - (void)dealloc
@@ -139,6 +150,8 @@
     [labelTextLine1 release];
     [labelTextLine2 release];
     [labelTextLine3 release];
+    [textBorderColor release];
+    [textBackgroundColor release];
     [roadsignViews release];
     [roadsignBackgroundColor release];
     [roadsignBackgroundTexture release];

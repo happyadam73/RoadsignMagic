@@ -29,6 +29,7 @@
 
 - (void)updateCellWithSetting:(AWBSetting *)aSetting
 {
+    self.textLabel.text = aSetting.text;
     [self.detailTextLabel setText:[aSetting settingValueDescription]];
 }
 

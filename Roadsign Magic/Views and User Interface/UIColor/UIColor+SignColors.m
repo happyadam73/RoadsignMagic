@@ -86,6 +86,44 @@
     return color;    
 }
 
++ (id)backgroundColorWithBackgroundSignColorCode:(AWBSignColorCode)colorCode
+{
+    UIColor *color = nil;
+    switch (colorCode) {
+        case kAWBSignColorCodeBlackBackgroundColor:
+            color = [UIColor blackColor];
+            break;
+        case kAWBSignColorCodeWhiteBackgroundColor:
+            color = [UIColor whiteColor];
+            break;
+        case kAWBSignColorCodeDarkGreenSignBackgroundColor:
+            color = [UIColor blackColor];
+            break;
+        case kAWBSignColorCodeRedSignBackgroundColor:
+            color = [UIColor blackColor];
+            break;
+        case kAWBSignColorCodeBlueSignBackgroundColor:
+            color = [UIColor blackColor];
+            break;
+        case kAWBSignColorCodeYellowSignBackgroundColor:
+            color = [UIColor whiteColor];
+            break;
+        case kAWBSignColorCodeBrownSignBackgroundColor:
+            color = [UIColor blackColor];
+            break;
+        case kAWBSignColorCodeLightGreenSignBackgroundColor:
+            color = [UIColor blackColor];
+            break;
+        case kAWBSignColorCodeOrangeSignBackgroundColor:
+            color = [UIColor whiteColor];
+            break;
+        default:
+            color = [UIColor blackColor];
+            break;
+    }
+    return color;    
+}
+
 + (id)darkGreenSignBackgroundColor
 {
     return [UIColor colorWithRed:0.0/255.0 green:112.0/255.0 blue:60.0/255.0 alpha:1.0];

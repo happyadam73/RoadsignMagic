@@ -82,7 +82,12 @@ enum {
     UIColor *labelTextColor;
     NSString *labelTextFont;
     UITextAlignment labelTextAlignment;
-    
+    BOOL addTextBorders;
+    BOOL textRoundedBorders;
+    BOOL addTextBackground;
+    UIColor *textBorderColor;
+    UIColor *textBackgroundColor;
+
     BOOL isSignInEditMode;
     NSUInteger totalSelectedInEditMode;
     NSUInteger totalSelectedLabelsInEditMode; 
@@ -132,6 +137,11 @@ enum {
 @property (nonatomic, retain) UIColor *labelTextColor;
 @property (nonatomic, retain) NSString *labelTextFont;
 @property (nonatomic, assign) UITextAlignment labelTextAlignment;
+@property (nonatomic, assign) BOOL addTextBorders;
+@property (nonatomic, assign) BOOL textRoundedBorders;
+@property (nonatomic, assign) BOOL addTextBackground;
+@property (nonatomic, retain) UIColor *textBorderColor;
+@property (nonatomic, retain) UIColor *textBackgroundColor;
 @property (nonatomic, retain) AWBRoadsignBackground *selectedSignBackground;
 @property (nonatomic, retain) AWBRoadsignSymbol *selectedSignSymbol;
 @property (assign) BOOL isSignInEditMode;
@@ -149,7 +159,6 @@ enum {
 @property (nonatomic, retain) UIColor *roadsignBackgroundColor;
 @property (nonatomic, retain) NSString *roadsignBackgroundTexture;
 @property (nonatomic, assign) BOOL useBackgroundTexture;
-
 
 - (void) updateLayoutForNewOrientation: (UIInterfaceOrientation) orientation;
 - (id)initWithRoadsignDescriptor:(AWBRoadsignDescriptor *)roadsign;

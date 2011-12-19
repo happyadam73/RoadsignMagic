@@ -25,6 +25,7 @@ typedef enum {
 
 + (id)colorWithSignColorCode:(AWBSignColorCode)colorCode;
 + (id)foregroundColorWithBackgroundSignColorCode:(AWBSignColorCode)colorCode;
++ (id)backgroundColorWithBackgroundSignColorCode:(AWBSignColorCode)colorCode;
 + (id)darkGreenSignBackgroundColor;
 + (id)redSignBackgroundColor;
 + (id)blueSignBackgroundColor;
