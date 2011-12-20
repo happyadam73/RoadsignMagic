@@ -9,10 +9,10 @@
 #import "AWBRoadsignMagicMainViewController.h"
 #import <MessageUI/MFMailComposeViewController.h>
 
-@interface AWBRoadsignMagicMainViewController (Action) <MFMailComposeViewControllerDelegate, UIPrintInteractionControllerDelegate> 
+@interface AWBRoadsignMagicMainViewController (Action) <MFMailComposeViewControllerDelegate, UIPrintInteractionControllerDelegate, UIActionSheetDelegate> 
 
 - (void)performAction:(id)sender;
-- (void)chooseActionTypeActionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex;
+- (void)chooseActionTypeActionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex;
 - (UIImage *)generateRoadsignImageWithScaleFactor:(CGFloat)scaleFactor;
 - (void)saveImageToSavedPhotosAlbum:(UIImage *)image; 
 - (void)saveRoadsignAsPhoto;

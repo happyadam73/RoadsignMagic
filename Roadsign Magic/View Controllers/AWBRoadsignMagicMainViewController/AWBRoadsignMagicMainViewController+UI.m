@@ -103,12 +103,12 @@
     [navController release];
 }
 
-- (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (actionSheet == self.deleteConfirmationSheet) {
-        [self deleteConfirmationActionSheet:actionSheet willDismissWithButtonIndex:buttonIndex];
+        [self deleteConfirmationActionSheet:actionSheet didDismissWithButtonIndex:buttonIndex];
     } else if (actionSheet == self.chooseActionTypeSheet) {
-        [self chooseActionTypeActionSheet:actionSheet willDismissWithButtonIndex:buttonIndex];
+        [self chooseActionTypeActionSheet:actionSheet didDismissWithButtonIndex:buttonIndex];
     }
 }
 

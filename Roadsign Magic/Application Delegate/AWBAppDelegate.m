@@ -14,17 +14,24 @@
 #import "AWBRoadsignsListViewController.h"
 #import "AWBRoadsignStore.h"
 #import "AWBRoadsignDescriptor.h"
+#import "Facebook.h"
+
+static NSString* kAppId = @"289600444412359";
 
 @implementation AWBAppDelegate
 
 @synthesize window=_window;
 @synthesize mainNavigationController;
 @synthesize signBackgroundSize;
+@synthesize facebook;
+@synthesize userPermissions;
 
 - (void)dealloc
 {
     [_window release];
     [mainNavigationController release];
+    [facebook release];
+    [userPermissions release];
     [super dealloc];
 }
 
@@ -71,12 +78,20 @@
         [roadsignController release];        
     }
     
+    // Initialize Facebook
+    facebook = [[Facebook alloc] initWithAppId:kAppId urlSchemeSuffix:@"rsm" andDelegate:nil];
+    
+    // Initialize user permissions
+    userPermissions = [[NSMutableDictionary alloc] initWithCapacity:1];
+    
     self.mainNavigationController = navController;
     self.window.rootViewController = self.mainNavigationController;
     [navController release];
     [listController release];
     [self.window makeKeyAndVisible];
     return YES;
+    
+    //TODO - need to handle URL stuff in here as well since App may no longer be in background
     
     
 //    AWBRoadsignMagicMainViewController *viewController = [[AWBRoadsignMagicMainViewController alloc] init];
@@ -145,10 +160,20 @@
      */
 }
 
--(BOOL) application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+-(BOOL) application:(UIApplication *)application handleOpenURL:(NSURL *)url 
+{       
+    NSLog(@"URL: %@", url);
     
-    NSLog(@"handleOpenURL");
-    return YES;
+    if ([[url absoluteString] hasPrefix:[self.facebook getOwnBaseUrl]]) {
+        return [self.facebook handleOpenURL:url];
+    } else {
+        if ([url isFileURL]) {
+            //my font stuff
+            return YES;            
+        } else {
+            return NO;
+        }
+    }   
 }
 
 @end

@@ -46,8 +46,8 @@
     AWBRoadsignMagicSettingsTableViewController *settingsController = nil;
     
     UILabel *selectedLabelView = nil;
-    AWBTransformableAnyFontLabel *selectedLabel;
-    BOOL isZFontLabel;
+    AWBTransformableAnyFontLabel *selectedLabel = nil;
+    BOOL isZFontLabel = NO;
     
     for(UIView <AWBTransformableView> *view in [[self.signBackgroundView subviews] reverseObjectEnumerator]) {
         if ([view conformsToProtocol:@protocol(AWBTransformableView)]) {

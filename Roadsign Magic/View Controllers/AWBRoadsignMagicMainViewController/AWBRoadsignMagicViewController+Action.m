@@ -41,19 +41,20 @@
             actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self 
                                              cancelButtonTitle:@"Cancel" 
                                         destructiveButtonTitle:nil 
-                                             otherButtonTitles:@"Save Roadsign as Photo", @"Email Roadsign", @"Print (4x6, A6)", @"Print (Letter, A4)", @"Twitter", nil];                
+                                             otherButtonTitles:@"Save Roadsign as Photo", @"Email Roadsign", @"Facebook", @"Print (4x6, A6)", @"Print (Letter, A4)", @"Twitter", nil];                
         } else {                
             actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self 
                                              cancelButtonTitle:@"Cancel" 
                                         destructiveButtonTitle:nil 
-                                             otherButtonTitles:@"Save Roadsign as Photo", @"Email Roadsign", @"Print (4x6, A6)", @"Print (Letter, A4)", nil];
+                                             otherButtonTitles:@"Save Roadsign as Photo", @"Email Roadsign", @"Facebook", @"Print (4x6, A6)", @"Print (Letter, A4)", nil];
         }
     } else {
         actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self 
                                          cancelButtonTitle:@"Cancel" 
                                     destructiveButtonTitle:nil 
-                                         otherButtonTitles:@"Save Roadsign as Photo", @"Email Roadsign", nil];
+                                         otherButtonTitles:@"Save Roadsign as Photo", @"Email Roadsign", @"Facebook", nil];
     }
+    
     self.chooseActionTypeSheet = actionSheet;
     [actionSheet release];
     
@@ -61,7 +62,7 @@
 
 }
 
-- (void)chooseActionTypeActionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex
+- (void)chooseActionTypeActionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex != [actionSheet cancelButtonIndex]) {
         
@@ -85,21 +86,28 @@
             busyTextDetail = [NSString stringWithFormat:@"(Size: %@)", AWBImageSizeFromExportSizeValue(self.exportSize)];
             methodSelector = @selector(emailRoadsignAsPhoto);
         } else if (buttonIndex == ([actionSheet firstOtherButtonIndex]+2)) {
+            //Email Image
+            busyText = @"Uploading to Facebook";
+            CGFloat quality = 1.0;
+            busyTextDetail = [NSString stringWithFormat:@"(Size: %@)", AWBImageSizeFromExportSizeValue(quality)];
+            methodSelector = @selector(loginToFacebook);            
+        } else if (buttonIndex == ([actionSheet firstOtherButtonIndex]+3)) {
             // Print Image (4x6, A6)
             busyText = @"Preparing for Print";
             busyTextDetail = @"(4x6, A6)";
             methodSelector = @selector(printItemWithSize:);
             methodObject = [NSNumber numberWithInteger:0];
-        } else if (buttonIndex == ([actionSheet firstOtherButtonIndex]+3)) {
+        } else if (buttonIndex == ([actionSheet firstOtherButtonIndex]+4)) {
             // Print Image
             busyText = @"Preparing for Print";
             busyTextDetail = @"(Letter, A4)";
             methodSelector = @selector(printItemWithSize:);
             methodObject = [NSNumber numberWithInteger:1];
-        } else if (buttonIndex == ([actionSheet firstOtherButtonIndex]+4)) {
+        } else if (buttonIndex == ([actionSheet firstOtherButtonIndex]+5)) {
             // Twitter Image
             busyText = @"Preparing for Twitter";
-            CGFloat quality = (DEVICE_IS_IPAD? 1.0 : 2.0);
+            //CGFloat quality = (DEVICE_IS_IPAD? 1.0 : 2.0);
+            CGFloat quality = 1.0;
             busyTextDetail = [NSString stringWithFormat:@"(Size: %@)", AWBImageSizeFromExportSizeValue(quality)];
             methodSelector = @selector(twitterRoadsignAsPhoto);
         }

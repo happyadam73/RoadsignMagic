@@ -7,14 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FBConnect.h"
 
 @interface AWBAppDelegate : UIResponder <UIApplicationDelegate> {
     UINavigationController *mainNavigationController;
     CGSize signBackgroundSize;
+    Facebook *facebook;
+    NSMutableDictionary *userPermissions;
 }
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, retain) UINavigationController *mainNavigationController;
 @property (nonatomic, assign) CGSize signBackgroundSize;
+@property (nonatomic, retain) Facebook *facebook;
+@property (nonatomic, retain) NSMutableDictionary *userPermissions;
 
 @end

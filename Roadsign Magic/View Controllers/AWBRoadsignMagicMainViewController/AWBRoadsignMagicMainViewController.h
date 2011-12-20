@@ -99,7 +99,7 @@ enum {
     
     UIActionSheet *deleteConfirmationSheet;
     UIActionSheet *chooseActionTypeSheet;
-    AWBBusyView *busyView;
+    AWBBusyView *busyView;    
 }
 
 @property (nonatomic, retain) UIBarButtonItem *signBackgroundPickerButton;

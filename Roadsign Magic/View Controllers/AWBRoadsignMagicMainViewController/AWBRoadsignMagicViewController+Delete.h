@@ -11,6 +11,6 @@
 @interface AWBRoadsignMagicMainViewController (Delete)
 
 - (void)deleteSelectedViews:(id)sender;
-- (void)deleteConfirmationActionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex;
+- (void)deleteConfirmationActionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex;
 
 @end
