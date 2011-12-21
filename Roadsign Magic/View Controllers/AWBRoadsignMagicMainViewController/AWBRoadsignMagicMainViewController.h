@@ -26,7 +26,7 @@ enum {
     kAWBExportFormatIndexJPEG = 1
 };
 
-@interface AWBRoadsignMagicMainViewController : UIViewController <AWBLockedViewDelegate>
+@interface AWBRoadsignMagicMainViewController : UIViewController <AWBLockedViewDelegate, FBSessionDelegate>
 {    
     UIScrollView *mainScrollView;
     UIImageView *signBackgroundView;
@@ -99,7 +99,10 @@ enum {
     
     UIActionSheet *deleteConfirmationSheet;
     UIActionSheet *chooseActionTypeSheet;
-    AWBBusyView *busyView;    
+    AWBBusyView *busyView; 
+    
+    FBRequest *currentFacebookRequest;
+    Facebook *facebook;
 }
 
 @property (nonatomic, retain) UIBarButtonItem *signBackgroundPickerButton;

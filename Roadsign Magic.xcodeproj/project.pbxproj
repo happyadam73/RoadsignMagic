@@ -211,6 +211,7 @@
 		0611EC1514A0BC3200A3588C /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0611EC0914A0BC3200A3588C /* SBJsonParser.m */; };
 		0611EC1614A0BC3200A3588C /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0611EC0B14A0BC3200A3588C /* SBJsonWriter.m */; };
 		0611EC1A14A0E2EB00A3588C /* AWBRoadsignMagicMainViewController+Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 0611EC1914A0E2EA00A3588C /* AWBRoadsignMagicMainViewController+Facebook.m */; };
+		0611EC2314A1F81D00A3588C /* AWBFacebookSignoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0611EC2214A1F81D00A3588C /* AWBFacebookSignoutView.m */; };
 		0620CB211483E71600A39703 /* AWBSignBackgroundPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0620CB201483E71600A39703 /* AWBSignBackgroundPickerView.m */; };
 		0626C9BE149B79CC00B8FB63 /* AWBTransformableAnyFontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0626C9BD149B79CC00B8FB63 /* AWBTransformableAnyFontLabel.m */; };
 		0633D8A914903069000CEDA5 /* S12004@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0633D89E14903069000CEDA5 /* S12004@2x.png */; };
@@ -1149,6 +1150,8 @@
 		0611EC0B14A0BC3200A3588C /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		0611EC1814A0E2E900A3588C /* AWBRoadsignMagicMainViewController+Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AWBRoadsignMagicMainViewController+Facebook.h"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainViewController+Facebook.h"; sourceTree = "<group>"; };
 		0611EC1914A0E2EA00A3588C /* AWBRoadsignMagicMainViewController+Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AWBRoadsignMagicMainViewController+Facebook.m"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainViewController+Facebook.m"; sourceTree = "<group>"; };
+		0611EC2114A1F81D00A3588C /* AWBFacebookSignoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBFacebookSignoutView.h; path = "Views and User Interface/FacebookSignoutView/AWBFacebookSignoutView.h"; sourceTree = "<group>"; };
+		0611EC2214A1F81D00A3588C /* AWBFacebookSignoutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBFacebookSignoutView.m; path = "Views and User Interface/FacebookSignoutView/AWBFacebookSignoutView.m"; sourceTree = "<group>"; };
 		0620CB1F1483E71600A39703 /* AWBSignBackgroundPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBSignBackgroundPickerView.h; path = "Views and User Interface/SignBackgroundPickerView/AWBSignBackgroundPickerView.h"; sourceTree = "<group>"; };
 		0620CB201483E71600A39703 /* AWBSignBackgroundPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBSignBackgroundPickerView.m; path = "Views and User Interface/SignBackgroundPickerView/AWBSignBackgroundPickerView.m"; sourceTree = "<group>"; };
 		0626C9BC149B79CC00B8FB63 /* AWBTransformableAnyFontLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBTransformableAnyFontLabel.h; sourceTree = "<group>"; };
@@ -2281,6 +2284,15 @@
 			path = JSON;
 			sourceTree = "<group>";
 		};
+		0611EC1F14A1F7CE00A3588C /* FacebookSignoutView */ = {
+			isa = PBXGroup;
+			children = (
+				0611EC2114A1F81D00A3588C /* AWBFacebookSignoutView.h */,
+				0611EC2214A1F81D00A3588C /* AWBFacebookSignoutView.m */,
+			);
+			name = FacebookSignoutView;
+			sourceTree = "<group>";
+		};
 		0620CB1D1483E40700A39703 /* SignBackgroundPickerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2679,6 +2691,7 @@
 			children = (
 				06C3451C14850B24000A3CC8 /* SignSymbolPickerView */,
 				0620CB1D1483E40700A39703 /* SignBackgroundPickerView */,
+				0611EC1F14A1F7CE00A3588C /* FacebookSignoutView */,
 				06E37432147FF3F600EA536C /* LockedView */,
 				B5E044B41478471F006A8D5C /* ProgressView */,
 				B5E044B71478471F006A8D5C /* Table Cells and Controls */,
@@ -4655,6 +4668,7 @@
 				0611EC1514A0BC3200A3588C /* SBJsonParser.m in Sources */,
 				0611EC1614A0BC3200A3588C /* SBJsonWriter.m in Sources */,
 				0611EC1A14A0E2EB00A3588C /* AWBRoadsignMagicMainViewController+Facebook.m in Sources */,
+				0611EC2314A1F81D00A3588C /* AWBFacebookSignoutView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,22 +17,36 @@
 
 - (void)loginToFacebook
 {
-    AWBAppDelegate *delegate = (AWBAppDelegate *)[[UIApplication sharedApplication] delegate];
+    //AWBAppDelegate *delegate = (AWBAppDelegate *)[[UIApplication sharedApplication] delegate];
     
     // Check and retrieve authorization information
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if ([defaults objectForKey:@"FBAccessTokenKey"] 
         && [defaults objectForKey:@"FBExpirationDateKey"]) {
-        [delegate facebook].accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
-        [delegate facebook].expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
+        facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
+        facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
     }
-    if (![[delegate facebook] isSessionValid]) {
-        [delegate facebook].sessionDelegate = self;
+    if (![facebook isSessionValid]) {
+        facebook.sessionDelegate = self;
         NSArray *myPermissions = [NSArray arrayWithObjects: @"publish_stream", nil];
-        [[delegate facebook] authorize:myPermissions];
+        [facebook authorize:myPermissions];
     } else {
-        [self uploadImageToFacebook];
+        [self confirmUploadImageToFacebook];
     }
+}
+
+- (void)confirmUploadImageToFacebook
+{
+    UIAlertView *alertView = [[UIAlertView alloc] 
+                              initWithTitle:@"Post image to Facebook?" 
+                              message:@"Upload image to the Roadsign Magic Facebook album?" 
+                              delegate:self 
+                              cancelButtonTitle:@"No" 
+                              otherButtonTitles:@"Yes", 
+                              nil];
+    [alertView show];
+    [alertView release];   
+
 }
 
 - (void)uploadImageToFacebook
@@ -57,17 +71,22 @@
  */
 - (void) facebookPostImage:(UIImage *)image
 {
-    AWBAppDelegate *delegate = (AWBAppDelegate *)[[UIApplication sharedApplication] delegate]; 
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    image, @"picture",
                                    @"Created using Roadsign Magic", @"message", 
-                                   @"Roadsign Magic", @"caption", 
                                    nil];
+
+    //                                   @"Roadsign Magic", @"caption", 
+
     
-    [[delegate facebook] requestWithGraphPath:@"me/photos"
-                                    andParams:params
-                                andHttpMethod:@"POST"
-                                  andDelegate:self];
+    if (currentFacebookRequest) {
+        currentFacebookRequest.delegate = nil;
+    }
+    
+    currentFacebookRequest = [facebook requestWithGraphPath:@"me/photos"
+                                                             andParams:params
+                                                         andHttpMethod:@"POST"
+                                                           andDelegate:self];
 }
 
 #pragma mark - FBSessionDelegate Methods
@@ -76,16 +95,16 @@
  */
 - (void)fbDidLogin 
 {    
-    AWBAppDelegate *delegate = (AWBAppDelegate *)[[UIApplication sharedApplication] delegate];
+//    AWBAppDelegate *delegate = (AWBAppDelegate *)[[UIApplication sharedApplication] delegate];
     
     // Save authorization information
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[[delegate facebook] accessToken] forKey:@"FBAccessTokenKey"];
-    [defaults setObject:[[delegate facebook] expirationDate] forKey:@"FBExpirationDateKey"];
+    [defaults setObject:[facebook accessToken] forKey:@"FBAccessTokenKey"];
+    [defaults setObject:[facebook expirationDate] forKey:@"FBExpirationDateKey"];
     [defaults synchronize];
     
     //complete facebook upload
-    [self uploadImageToFacebook];
+    [self confirmUploadImageToFacebook];
 }
 
 /**
@@ -115,6 +134,25 @@
 {
     [self.busyView removeFromParentView];
     self.busyView = nil;
+    
+    // Remove saved authorization information if it exists and it is
+    // ok to clear it (logout, session invalid, app unauthorized)
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults objectForKey:@"FBAccessTokenKey"]) {
+        [defaults removeObjectForKey:@"FBAccessTokenKey"];
+        [defaults removeObjectForKey:@"FBExpirationDateKey"];
+        [defaults synchronize];
+        
+        // Nil out the session variables to prevent
+        // the app from thinking there is a valid session
+        if (nil != [facebook accessToken]) {
+            facebook.accessToken = nil;
+        }
+        if (nil != [facebook expirationDate]) {
+            facebook.expirationDate = nil;
+        }
+    }    
+
     NSLog(@"fbDidLogout");
 }
 
@@ -173,5 +211,17 @@
     [alertView show];
     [alertView release];
 }
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == alertView.firstOtherButtonIndex) {
+        [self uploadImageToFacebook];
+    } else {
+        [self.busyView removeFromParentView];
+        self.busyView = nil;
+        NSLog(@"Cancelled image upload to Facebook.");
+    }
+}
+
 
 @end

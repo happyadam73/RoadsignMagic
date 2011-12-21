@@ -24,14 +24,14 @@ static NSString* kAppId = @"289600444412359";
 @synthesize mainNavigationController;
 @synthesize signBackgroundSize;
 @synthesize facebook;
-@synthesize userPermissions;
+//@synthesize userPermissions;
 
 - (void)dealloc
 {
     [_window release];
     [mainNavigationController release];
     [facebook release];
-    [userPermissions release];
+//    [userPermissions release];
     [super dealloc];
 }
 
@@ -39,7 +39,20 @@ static NSString* kAppId = @"289600444412359";
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     self.signBackgroundSize = CGSizeZero;
+    // Initialize Facebook
+    facebook = [[Facebook alloc] initWithAppId:kAppId urlSchemeSuffix:@"rsm" andDelegate:nil];
     
+    NSURL *url = (NSURL *)[launchOptions valueForKey:UIApplicationLaunchOptionsURLKey];
+    if (url) {
+        NSLog(@"URL: %@", url);
+        if ([[url absoluteString] hasPrefix:[self.facebook getOwnBaseUrl]]) {
+            [self.facebook handleOpenURL:url];
+        }   
+    }
+    
+    // Initialize user permissions
+    //    userPermissions = [[NSMutableDictionary alloc] initWithCapacity:1];
+
     AWBRoadsignDescriptor *roadsign = nil;
     NSUInteger totalSavedRoadsigns = [[[AWBRoadsignStore defaultStore] allRoadsigns] count];
     NSInteger roadsignIndex = [[NSUserDefaults standardUserDefaults] integerForKey:kAWBInfoKeyRoadsignStoreRoadsignIndex];
@@ -77,13 +90,7 @@ static NSString* kAppId = @"289600444412359";
         [navController pushViewController:roadsignController animated:NO];
         [roadsignController release];        
     }
-    
-    // Initialize Facebook
-    facebook = [[Facebook alloc] initWithAppId:kAppId urlSchemeSuffix:@"rsm" andDelegate:nil];
-    
-    // Initialize user permissions
-    userPermissions = [[NSMutableDictionary alloc] initWithCapacity:1];
-    
+        
     self.mainNavigationController = navController;
     self.window.rootViewController = self.mainNavigationController;
     [navController release];

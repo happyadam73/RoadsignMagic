@@ -52,5 +52,6 @@
 + (AWBSettings *)backgroundSettingsWithInfo:(NSDictionary *)info;
 + (AWBSettings *)fontSettingsWithInfo:(NSDictionary *)info;
 + (AWBSettings *)extraTextSettingsWithInfo:(NSDictionary *)info;    
++ (AWBSettings *)facebookSettingsWithInfo:(NSDictionary *)info;
 
 @end

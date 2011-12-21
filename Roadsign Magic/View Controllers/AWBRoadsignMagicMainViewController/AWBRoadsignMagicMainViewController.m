@@ -51,6 +51,9 @@
 {
     self = [super init];
     if (self) {  
+        
+        AWBAppDelegate *delegate = (AWBAppDelegate *)[[UIApplication sharedApplication] delegate];
+        facebook = [delegate facebook];
         self.roadsignDescriptor = roadsign;
         [self setRoadsignSaveDocumentsSubdirectory:roadsign.roadsignSaveDocumentsSubdirectory];
         self.snapToGrid = NO;
@@ -101,6 +104,16 @@
     }
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    facebook.sessionDelegate = self;
+    if (self.busyView) {
+        [self.busyView removeFromParentView];
+        self.busyView = nil;
+    }
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     if (!self.modalViewController) {
@@ -118,6 +131,12 @@
 {
     [super viewDidUnload];
     [self dereferenceGestureRecognizers];
+    
+    facebook.sessionDelegate = nil;
+    if (currentFacebookRequest) {
+        currentFacebookRequest.delegate = nil;
+    }
+    
     self.selectedSignBackground = nil;
     self.selectedSignSymbol = nil;
     self.lockedView = nil;
@@ -435,6 +454,11 @@
 
 - (void)dealloc {
     [self deallocGestureRecognizers];
+//    AWBAppDelegate *delegate = (AWBAppDelegate *)[[UIApplication sharedApplication] delegate];
+    facebook.sessionDelegate = nil;
+    if (currentFacebookRequest) {
+        currentFacebookRequest.delegate = nil;
+    }
     [selectedSignBackground release];
     [selectedSignSymbol release];
     [signBackgroundPickerView release];

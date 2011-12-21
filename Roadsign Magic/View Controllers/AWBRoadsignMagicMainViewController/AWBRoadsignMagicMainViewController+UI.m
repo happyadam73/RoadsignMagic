@@ -196,6 +196,7 @@
 
 - (void)awbRoadsignMagicSettingsTableViewController:(AWBRoadsignMagicSettingsTableViewController *)settingsController didFinishSettingsWithInfo:(NSDictionary *)info;
 {
+    facebook.sessionDelegate = self;
     switch (settingsController.controllerType) {
         case AWBSettingsControllerTypeMainSettings:
             [self setExportSettingsFromSettingsInfo:info];
@@ -278,10 +279,10 @@
     }
 }
 
-//- (void)awbRoadsignMagicSettingsTableViewControllerDidDissmiss:(AWBRoadsignMagicSettingsTableViewController *)settingsController
-//{
-//
-//}
+- (void)awbRoadsignMagicSettingsTableViewControllerDidDissmiss:(AWBRoadsignMagicSettingsTableViewController *)settingsController
+{
+    facebook.sessionDelegate = self;
+}
 
 - (void)applySettingsToLabel:(AWBTransformableAnyFontLabel *)label
 {

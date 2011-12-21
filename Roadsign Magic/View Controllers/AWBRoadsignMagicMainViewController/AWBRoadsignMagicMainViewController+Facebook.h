@@ -10,9 +10,10 @@
 #import "AWBRoadsignMagicMainViewController.h"
 #import "FBConnect.h"
 
-@interface AWBRoadsignMagicMainViewController (Facebook) <FBRequestDelegate,FBSessionDelegate> 
+@interface AWBRoadsignMagicMainViewController (Facebook) <FBRequestDelegate, UIAlertViewDelegate> 
 
 - (void)loginToFacebook;
+- (void)confirmUploadImageToFacebook;
 - (void)uploadImageToFacebook;
 - (void) facebookPostImage:(UIImage *)image;
 

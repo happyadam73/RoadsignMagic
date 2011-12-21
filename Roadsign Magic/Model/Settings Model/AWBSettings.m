@@ -7,6 +7,7 @@
 //
 
 #import "AWBSettings.h"
+#import "AWBFacebookSignoutView.h"
 
 @implementation AWBSettings
 
@@ -227,5 +228,16 @@
     return [textSettings autorelease];
 }
 
++ (AWBSettings *)facebookSettingsWithInfo:(NSDictionary *)info
+{
+    AWBSettings *facebookSettings = [[self alloc] initWithSettingsGroups:nil title:@"Facebook"];
+    
+    AWBFacebookSignoutView *facebookSignOutView = [[AWBFacebookSignoutView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 200.0)];
+    [facebookSignOutView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin];
+    facebookSettings.headerView = facebookSignOutView;
+    [facebookSignOutView release];
+    
+    return [facebookSettings autorelease];
+}
 
 @end
