@@ -19,7 +19,6 @@
         //iterator will still go through every view including non transformable, so ensure conformance to the transformable protocol
         if ([view conformsToProtocol:@protocol(AWBTransformableView)]) {
             
-            //CGFloat theta = [view rotationAngleInRadians]+[view pendingRotationAngleInRadians];
             CGFloat theta = [view quantisedRotation];
             CGFloat scale = [view quantisedScale];
             

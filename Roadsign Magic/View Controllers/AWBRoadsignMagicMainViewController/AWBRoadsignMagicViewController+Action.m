@@ -229,10 +229,6 @@
     NSString *subjectLine = [NSString stringWithFormat:@"Check Out My New %@!", [self typeOfRoadsignDescription]];
     [picker setSubject:subjectLine];
     
-    // Attach an image to the email
-//    NSData *imageData = UIImagePNGRepresentation(image);
-//    [picker addAttachmentData:imageData mimeType:@"image/png" fileName:@"roadsign.png"];
-    
     NSData *imageData;
     if (self.exportFormatSelectedIndex == kAWBExportFormatIndexJPEG) {
         imageData = UIImageJPEGRepresentation(image, self.jpgExportQualityValue);
@@ -406,7 +402,6 @@
             [self toggleFullscreen];
         }
         self.busyView.hidden = YES;
-        //CGFloat quality = (DEVICE_IS_IPAD? 1.0 : 2.0);
         CGFloat quality = 1.0;
         UIImage *roadsignImage = [self generateRoadsignImageWithScaleFactor:quality];
         [self toggleFullscreen];

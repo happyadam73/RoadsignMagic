@@ -14,7 +14,4 @@
 + (UIImage *)imageFromFile:(NSString *)fileName withNoUpscaleForNonRetina:(BOOL)noUpscaleForNonRetina;
 - (id)initFromFile:(NSString *)filename withNoUpscaleForNonRetina:(BOOL)noUpscaleForNonRetina;
 
-//- (id)initWithContentsOfResolutionIndependentFile:(NSString *)aFileName;
-//+ (UIImage*)imageWithContentsOfResolutionIndependentFile:(NSString *)aFileName;
-
 @end

@@ -10,15 +10,14 @@
 #import "FBConnect.h"
 #import "AWBRoadsignMagicMainViewController+UI.h"
 #import "AWBRoadsignMagicViewController+Action.h"
+#import "AWBDeviceHelper.h"
 
 @implementation AWBRoadsignMagicMainViewController (Facebook)
 
 #pragma mark - FBSessionDelegate Methods
 
 - (void)loginToFacebook
-{
-    //AWBAppDelegate *delegate = (AWBAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
+{   
     // Check and retrieve authorization information
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if ([defaults objectForKey:@"FBAccessTokenKey"] 
@@ -71,14 +70,13 @@
  */
 - (void) facebookPostImage:(UIImage *)image
 {
+    NSString *message = [NSString stringWithFormat:@"Created on my %@ using Roadsign Magic", machineFriendlyName()];
+    
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    image, @"picture",
-                                   @"Created using Roadsign Magic", @"message", 
+                                   message, @"message", 
                                    nil];
 
-    //                                   @"Roadsign Magic", @"caption", 
-
-    
     if (currentFacebookRequest) {
         currentFacebookRequest.delegate = nil;
     }
@@ -95,8 +93,6 @@
  */
 - (void)fbDidLogin 
 {    
-//    AWBAppDelegate *delegate = (AWBAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
     // Save authorization information
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:[facebook accessToken] forKey:@"FBAccessTokenKey"];

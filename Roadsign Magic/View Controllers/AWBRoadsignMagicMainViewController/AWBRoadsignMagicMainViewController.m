@@ -14,7 +14,6 @@
 #import "FontManager.h"
 #import "AWBRoadsignMagicMainViewController+Gestures.h"
 #import "FontManager.h"
-//#import "AWBTransformableZFontLabel.h"
 #import "AWBTransformableAnyFontLabel.h"
 #import "AWBRoadsignMagicMainViewController+Toolbar.h"
 #import "AWBRoadsignMagicMainViewController+UI.h"
@@ -248,7 +247,6 @@
     [scrollView release];
     [[self view] addSubview:self.mainScrollView];
     
-    //UIImageView *backgroundView = [[UIImageView alloc] initWithFrame:self.mainScrollView.bounds];
     UIImageView *backgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 1400.0, 1400.0)];
     backgroundView.userInteractionEnabled = YES;
     self.signBackgroundView = backgroundView;
@@ -329,12 +327,10 @@
         if (saveThumbnail) {
             CGSize signSize = self.signBackgroundView.bounds.size;
             CGFloat scale = MIN((256.0/signSize.width), (192.0/signSize.height));
-            //UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, YES, scale);
             UIGraphicsBeginImageContextWithOptions(signSize, NO, scale);
             [self.signBackgroundView.layer renderInContext:UIGraphicsGetCurrentContext()];
             UIImage *roadsignImage = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
-            //NSData *imageData = UIImageJPEGRepresentation(roadsignImage, 0.5);
             NSData *imageData = UIImagePNGRepresentation(roadsignImage);
             [imageData writeToFile:[self thumbnailArchivePath] atomically:YES];
         }
@@ -454,7 +450,6 @@
 
 - (void)dealloc {
     [self deallocGestureRecognizers];
-//    AWBAppDelegate *delegate = (AWBAppDelegate *)[[UIApplication sharedApplication] delegate];
     facebook.sessionDelegate = nil;
     if (currentFacebookRequest) {
         currentFacebookRequest.delegate = nil;

@@ -60,7 +60,7 @@ static AWBRoadsignStore *defaultStore = nil;
 
 - (NSArray *)allRoadsigns
 {
-    // This ensures allCollages is created
+    // This ensures allRoadsigns is created
     [self fetchRoadsignsIfNecessary];
     
     return allRoadsigns;
@@ -74,7 +74,6 @@ static AWBRoadsignStore *defaultStore = nil;
     sequenceId += 1;
     [[NSUserDefaults standardUserDefaults] setInteger:sequenceId forKey:kAWBInfoKeyRoadsignSequenceNumber];
     AWBRoadsignDescriptor *roadsign = [[[AWBRoadsignDescriptor alloc] initWithRoadsignDocumentsSubdirectory:[NSString stringWithFormat:@"Roadsign %d", sequenceId]] autorelease];
-//    collage.themeType = [[NSUserDefaults standardUserDefaults] integerForKey:kAWBInfoKeyCollageThemeType];
     if (roadsign) {
         [allRoadsigns addObject:roadsign];
     }

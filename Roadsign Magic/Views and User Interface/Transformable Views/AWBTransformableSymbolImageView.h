@@ -19,7 +19,6 @@
     CGFloat shadowOffset;
     UIImageView *imageView;
     CGFloat initialHeight;
-//    BOOL rotationAndScaleCurrentlyQuantised;
     BOOL rotationCurrentlyQuantised;
     BOOL scaleCurrentlyQuantised;
     CGFloat currentQuantisedScale;

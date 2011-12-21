@@ -143,7 +143,6 @@
         }        
         [self initialiseLayerRotation:rotation scale:scale];
         [self setHorizontalFlip:flip];
-        //[self.labelView setFont:textFont];
         [self.labelView setTextColor:color];
         [self setBackgroundColor:[UIColor clearColor]];
         [self.labelView setBackgroundColor:[UIColor clearColor]];
@@ -338,13 +337,11 @@
     [self.labelView setBounds:newBounds];
     self.labelView.center = CGPointMake((newBounds.size.width/2.0), (newBounds.size.height/2.0));
     
-    //    CGSize screenSize = [[UIScreen mainScreen] applicationFrame].size;    
     CGFloat minLabelLength = MIN(newBounds.size.width, newBounds.size.height);
     CGFloat maxLabelLength = MAX(newBounds.size.width, newBounds.size.height);
     initialHeight = newBounds.size.height;    
     
     minScale = MAX((48.0/maxLabelLength),((DEVICE_IS_IPAD ? 32.0 : 24.0)/minLabelLength));    
-    //maxScale = (MAX(screenSize.width, screenSize.height))/maxLabelLength;
     maxScale = MAX_SCALE_PIXELS/maxLabelLength;
     
     [self setCurrentScale:currentScale];
@@ -357,7 +354,6 @@
         [self addViewBorder];
     }
     
-    //[self rotateAndScale];
     [self rotateAndScaleWithSnapToGrid:scaleCurrentlyQuantised gridSize:currentSnapToGridSize snapRotation:rotationCurrentlyQuantised];
 }
 
@@ -390,13 +386,11 @@
     [self.labelView setBounds:newBounds];
     self.labelView.center = CGPointMake((newBounds.size.width/2.0), (newBounds.size.height/2.0));
     
-    //    CGSize screenSize = [[UIScreen mainScreen] applicationFrame].size;    
     CGFloat minLabelLength = MIN(newBounds.size.width, newBounds.size.height);
     CGFloat maxLabelLength = MAX(newBounds.size.width, newBounds.size.height);
     initialHeight = newBounds.size.height;    
     
     minScale = MAX((48.0/maxLabelLength),((DEVICE_IS_IPAD ? 32.0 : 24.0)/minLabelLength));    
-    //maxScale = (MAX(screenSize.width, screenSize.height))/maxLabelLength;
     maxScale = MAX_SCALE_PIXELS/maxLabelLength;
     
     [self setCurrentScale:currentScale];
@@ -409,7 +403,6 @@
         [self addViewBorder];
     }
     
-    //[self rotateAndScale];
     [self rotateAndScaleWithSnapToGrid:scaleCurrentlyQuantised gridSize:currentSnapToGridSize snapRotation:rotationCurrentlyQuantised];
 }
 
@@ -602,10 +595,6 @@
     self.labelView.layer.cornerRadius = 0.0;
     self.labelView.layer.borderColor = [[UIColor blackColor] CGColor];
 }
-
-//+ (Class)layerClass {
-//    return [CATiledLayer class]; 
-//}
 
 - (void)dealloc
 {

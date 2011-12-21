@@ -8,7 +8,6 @@
 
 #import "AWBRoadsignMagicMainViewController.h"
 #import "AWBRoadsignMagicSettingsTableViewController.h"
-//#import "AWBTransformableZFontLabel.h"
 #import "AWBTransformableAnyFontLabel.h"
 
 #define NORMAL_ALPHA 1.0

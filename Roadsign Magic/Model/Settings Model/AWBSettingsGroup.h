@@ -8,35 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-//static NSString *const kAWBInfoKeyCollageThemeName = @"CollageThemeName";
-//static NSString *const kAWBInfoKeyCollageTheme = @"CollageTheme";
-//static NSString *const kAWBInfoKeyCollageThemeThumbnailFileName = @"CollageThemeThumbnailFileName";
-//static NSString *const kAWBInfoKeyCollageBackgroundColor = @"CollageBackgroundColor";
-//static NSString *const kAWBInfoKeyCollageBackgroundTexture = @"CollageBackgroundTexture";
-//static NSString *const kAWBInfoKeyCollageUseBackgroundTexture = @"CollageUseBackgroundTexture";
-//static NSString *const kAWBInfoKeyCollageBorder = @"CollageBorder";
-//static NSString *const kAWBInfoKeyCollageBorderColor = @"CollageBorderColor";
-//static NSString *const kAWBInfoKeyImageShadows = @"ImageShadows";
-//static NSString *const kAWBInfoKeyTextShadows = @"TextShadows";
-//static NSString *const kAWBInfoKeyImageShadowColor = @"ImageShadowColor";
-//static NSString *const kAWBInfoKeyTextShadowColor = @"TextShadowColor";
-//static NSString *const kAWBInfoKeyImageBorders = @"ImageBorders";
-//static NSString *const kAWBInfoKeyImageRoundedBorders = @"ImageRoundedBorders";
-//static NSString *const kAWBInfoKeyImageBorderColor = @"ImageBorderColor";
-//static NSString *const kAWBInfoKeyLabelTextLine4 = @"LabelTextLine4";
-//static NSString *const kAWBInfoKeySymbolColor = @"SymbolColor";
-//static NSString *const kAWBInfoKeyLuckyDipSourceSelectedIndex = @"LuckyDipSourceSelectedIndex";
-//static NSString *const kAWBInfoKeyLuckyDipAmountSelectedIndex = @"LuckyDipAmountSelectedIndex";
-//static NSString *const kAWBInfoKeyAssetGroups = @"AssetGroups";
-//static NSString *const kAWBInfoKeySelectedAssetGroup = @"SelectedAssetGroup";
-//static NSString *const kAWBInfoKeySelectedAssetGroupName = @"SelectedAssetGroupName";
-//static NSString *const kAWBInfoKeyLuckyDipContactTypeSelectedIndex = @"LuckyDipContactTypeSelectedIndex";
-//static NSString *const kAWBInfoKeyLuckyDipContactIncludePhoneNumber = @"LuckyDipContactIncludePhoneNumber";
-//static NSString *const kAWBInfoKeyObjectPlacementIndex = @"ObjectPlacementIndex";
-//static NSString *const kAWBAllPhotosGroupName = @"All Photos";
-//static NSString *const kAWBAllPhotosGroupPersistentID = @"+MM/AllPhotos";
-//static NSString *const kAWBInfoKeyAddContentOnCreation = @"AddContentOnCreation";
-
 static NSString *const kAWBInfoKeyLockCanvas = @"LockCanvas";
 static NSString *const kAWBInfoKeyScrollLocked = @"ScrollLocked";
 static NSString *const kAWBInfoKeySnapToGrid = @"SnapToGrid";

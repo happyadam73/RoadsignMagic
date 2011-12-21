@@ -24,7 +24,6 @@
         selectedSignBackgroundCategory = 0;
         
         //slideup view background
-//        self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageFromFile:@"asphalt.jpg"]];
         self.backgroundColor = [UIColor asphaltTextureColor];
         self.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
         self.alpha = 0.9;

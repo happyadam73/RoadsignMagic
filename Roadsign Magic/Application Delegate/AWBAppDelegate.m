@@ -96,33 +96,7 @@ static NSString* kAppId = @"289600444412359";
     [navController release];
     [listController release];
     [self.window makeKeyAndVisible];
-    return YES;
-    
-    //TODO - need to handle URL stuff in here as well since App may no longer be in background
-    
-    
-//    AWBRoadsignMagicMainViewController *viewController = [[AWBRoadsignMagicMainViewController alloc] init];
-////    AWBRoadsignMagicSettingsTableViewController *settingsController = [[AWBRoadsignMagicSettingsTableViewController alloc] initWithSettings:[AWBSettings mainSettingsWithInfo:[viewController settingsInfo]] settingsInfo:[viewController settingsInfo] rootController:nil]; 
-////    settingsController.controllerType = AWBSettingsControllerTypeMainSettings;  
-////    settingsController.navigationItem.title = @"My Signs";
-////    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsController];
-//    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController];
-////    [navController pushViewController:viewController animated:YES];
-//    [viewController release];
-////    [settingsController release];
-//    
-//    navController.navigationBar.barStyle = UIBarStyleBlack;
-//    navController.navigationBar.translucent = YES;
-//    navController.navigationBarHidden = NO;
-//    navController.toolbar.barStyle = UIBarStyleBlack;
-//    navController.toolbar.translucent = YES;
-//    navController.toolbarHidden = NO;
-//    self.mainNavigationController = navController;
-//    self.window.rootViewController = navController;    
-//    [navController release];    
-//    
-//    [self.window makeKeyAndVisible];
-//    return YES;
+    return YES;    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

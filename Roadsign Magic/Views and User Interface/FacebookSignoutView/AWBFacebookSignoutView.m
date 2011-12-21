@@ -91,19 +91,19 @@
     CGFloat topMargin = 140.0;
     CGFloat frameWidth = 300.0;
     CGFloat frameHeight = 50.0;
-    CGFloat fontSize = 24.0;
+    CGFloat fontSize = 18.0;
     
     if (DEVICE_IS_IPAD) {
         leftMargin = 10.0;
         topMargin = 140.0;
         frameWidth = 300.0;
         frameHeight = 50.0;
-        fontSize = 24.0;
+        fontSize = 18.0;
     } 
     
     signOutButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
     signOutButton.frame = CGRectMake(leftMargin, topMargin, frameWidth, frameHeight);
-    [signOutButton.titleLabel setFont:[UIFont boldSystemFontOfSize:18.0]];
+    [signOutButton.titleLabel setFont:[UIFont boldSystemFontOfSize:fontSize]];
     [signOutButton setTitle:@"Sign Out from Facebook" forState:(UIControlStateNormal | UIControlStateNormal)];
     [signOutButton setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
     signOutButton.autoresizingMask = UIViewAutoresizingFlexibleWidth;

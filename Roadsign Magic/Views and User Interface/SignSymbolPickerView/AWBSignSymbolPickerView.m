@@ -25,7 +25,6 @@
         selectedSignSymbolCategory = 0;
         
         //slideup view background
-//        self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageFromFile:@"wood.jpg"]];
         self.backgroundColor = [UIColor woodTextureColor];
         self.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
         self.alpha = 0.9;

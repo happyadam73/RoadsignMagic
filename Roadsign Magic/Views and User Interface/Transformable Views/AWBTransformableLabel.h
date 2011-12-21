@@ -21,7 +21,6 @@
     CGFloat totalHeight;
     AWBLabel *labelView;
     CGFloat initialHeight;
-    //    BOOL rotationAndScaleCurrentlyQuantised;
     BOOL rotationCurrentlyQuantised;
     BOOL scaleCurrentlyQuantised;
     CGFloat currentQuantisedScale;

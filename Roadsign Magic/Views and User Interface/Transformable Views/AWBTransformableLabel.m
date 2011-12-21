@@ -34,7 +34,6 @@
     currentScale = scale;
     horizontalFlip = NO;  
     
-    //CGSize screenSize = [[UIScreen mainScreen] applicationFrame].size;    
     CGFloat minLength = MIN(self.frame.size.width, self.frame.size.height);
     CGFloat maxLength = MAX(self.frame.size.width, self.frame.size.height);
     

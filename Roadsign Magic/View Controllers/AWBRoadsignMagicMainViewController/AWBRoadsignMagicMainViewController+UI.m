@@ -75,15 +75,7 @@
 
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
 {
-//    self.imagePickerPopover = nil;
-//    self.addressBookPopover = nil;
-//    self.addSymbolPopover = nil;
-//    self.luckyDipPopover = nil;
-//    self.memoryWarningPopover = nil;
-//    if (!self.isImporting && dismissAssetsLibrary) {
-//        self.selectedAssetsGroup = nil;
-//        self.assetsLibrary = nil;        
-//    }
+
 }
 
 - (void)settingsButtonAction:(id)sender

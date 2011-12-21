@@ -42,8 +42,6 @@
 
 - (void)dealloc
 {
-//    [objectsLockedButton release];
-//    [canvasAnchoredButton release];
     [super dealloc];
 }
 

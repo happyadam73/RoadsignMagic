@@ -322,13 +322,7 @@
     NSString *description = nil;
     if (settingValue) {
         id value = [settingValue objectForKey:settingKey];
-//        if ([value isEqual:[NSNull null]]) {
-//            description = kAWBAllPhotosGroupName;
-//        } else if ([value isKindOfClass:[ALAssetsGroup class]]) {
-//            description = [value valueForProperty:ALAssetsGroupPropertyName];
-//        } else {
-            description = [value description];
-//        }
+        description = [value description];
     }
     return description;
 }
