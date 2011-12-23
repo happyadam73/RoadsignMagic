@@ -8,25 +8,30 @@
 
 #import <Foundation/Foundation.h>
 
-static NSString *const kAWBInfoKeyRoadsignSequenceNumber = @"RoadsignSequenceNumber";
-static NSString *const kAWBInfoKeyRoadsignStoreRoadsignIndex = @"RoadsignStoreRoadsignIndex";
-static NSString *const kAWBInfoKeyScrollToRoadsignStoreRoadsignIndex = @"ScrollToRoadsignStoreRoadsignIndex";
+static NSString *const kAWBInfoKeyMyRoadsignSequenceNumber = @"RoadsignSequenceNumber";
+static NSString *const kAWBInfoKeyMyRoadsignStoreRoadsignIndex = @"RoadsignStoreRoadsignIndex";
+static NSString *const kAWBInfoKeyScrollToRoadsignStoreMyRoadsignIndex = @"ScrollToRoadsignStoreRoadsignIndex";
 
 @class AWBRoadsignDescriptor;
 
 @interface AWBRoadsignStore : NSObject {
-    NSMutableArray *allRoadsigns;
+    NSMutableArray *myRoadsigns;
+    NSMutableArray *templateRoadsigns;
 }
 
 + (AWBRoadsignStore *)defaultStore;
 
-- (NSArray *)allRoadsigns;
-- (AWBRoadsignDescriptor *)createRoadsign;
-- (void)removeRoadsign:(AWBRoadsignDescriptor *)roadsign;
-- (void)moveRoadsignAtIndex:(int)from toIndex:(int)to;
-- (NSString *)roadsignDescriptorArchivePath;
-- (BOOL)saveAllRoadsigns;
-- (void)fetchRoadsignsIfNecessary;
+- (NSArray *)myRoadsigns;
+- (NSArray *)templateRoadsigns;
+- (AWBRoadsignDescriptor *)createMyRoadsign;
+- (AWBRoadsignDescriptor *)createMyRoadsignFromTemplateRoadsign:(AWBRoadsignDescriptor *)templateRoadsign;
+- (void)removeMyRoadsign:(AWBRoadsignDescriptor *)roadsign;
+- (void)moveMyRoadsignAtIndex:(int)from toIndex:(int)to;
+- (NSString *)myRoadsignDescriptorArchivePath;
+- (NSString *)templateRoadsignDescriptorArchivePath;
+- (BOOL)saveMyRoadsigns;
+- (void)fetchMyRoadsignsIfNecessary;
+- (void)fetchTemplateRoadsignsIfNecessary;
 - (NSString *)nextDefaultRoadsignName;
 
 @end

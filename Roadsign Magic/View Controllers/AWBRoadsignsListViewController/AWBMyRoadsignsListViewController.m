@@ -2,11 +2,11 @@
 //  AWBRoadsignsListViewController.m
 //  Roadsign Magic
 //
-//  Created by Buckley Adam on 23/12/2011.
-//  Copyright (c) 2011 Callcredit. All rights reserved.
+//  Created by Adam Buckley on 05/12/2011.
+//  Copyright (c) 2011 happyadam development. All rights reserved.
 //
 
-#import "AWBRoadsignsListViewController.h"
+#import "AWBMyRoadsignsListViewController.h"
 #import "FileHelpers.h"
 #import "AWBRoadsignMagicMainViewController.h"
 #import "AWBRoadsignDescriptor.h"
@@ -14,25 +14,14 @@
 #import "AWBSettingsGroup.h"
 #import "AWBSizeableImageTableCell.h"
 
-@implementation AWBRoadsignsListViewController
+@implementation AWBMyRoadsignsListViewController
 
-@synthesize theTableView;
-@synthesize dataSource;
 @synthesize busyView;
 
-// this is the custom initialization method for the ElementsTableViewController
-// it expects an object that conforms to both the UITableViewDataSource protocol
-// which provides data to the tableview, and the ElementDataSource protocol which
-// provides information about the elements data that is displayed,
-- (id)initWithDataSource:(id <UITableViewDataSource, AWBRoadsignDataSource>)theDataSource 
-{
-	if ([self init]) {
-		theTableView = nil;
-		
-		// retain the data source
-		self.dataSource = theDataSource;
-        self.dataSource.parentViewController = self;
-        
+- (id)init
+{    
+    self = [super initWithStyle:UITableViewStyleGrouped];
+    if (self) {
         // Custom initialization
         scrollToRow = -1;
         self.navigationItem.title = @"My Signs";
@@ -40,49 +29,36 @@
         [[self navigationItem] setRightBarButtonItem:addButton];
         [addButton release];
         [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
-	}
-	return self;
+    }
+    return self;
 }
 
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    return [self init];
+}
 
-- (void)dealloc {
-	theTableView.delegate = nil;
-	theTableView.dataSource = nil;
-	[theTableView release];
-	[dataSource release];
+- (void)dealloc
+{
     [busyView release];
-	[super dealloc];
+    [super dealloc];
 }
 
-- (void)loadView {
-	
-	// create a new table using the full application frame
-	// we'll ask the datasource which type of table to use (plain or grouped)
-	UITableView *tableView = [[UITableView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame] 
-														  style:UITableViewStyleGrouped];
-	
-	// set the autoresizing mask so that the table will always fill the view
-	tableView.autoresizingMask = (UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight);
-		
-	// set the tableview delegate to this object and the datasource to the datasource which has already been set
-	tableView.delegate = self;
-	tableView.dataSource = dataSource;
-	
-	// set the tableview as the controller view
-    self.theTableView = tableView;
-	self.view = tableView;
-	[tableView release];
-    
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
 }
+
+#pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     if (DEVICE_IS_IPAD) {
-        theTableView.rowHeight = 212;
+        [self tableView].rowHeight = 212;
     } else {
-        theTableView.rowHeight = 100;    
+        [self tableView].rowHeight = 100;    
     } 
 }
 
@@ -96,9 +72,9 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setToolbarHidden:YES animated:YES];
-    //    [self addToolbar];
+//    [self addToolbar];
     [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:kAWBInfoKeyMyRoadsignStoreRoadsignIndex];
-    [theTableView reloadData];
+    [[self tableView] reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -109,7 +85,7 @@
     scrollToRow = [[NSUserDefaults standardUserDefaults] integerForKey:kAWBInfoKeyScrollToRoadsignStoreMyRoadsignIndex];
     if (scrollToRow >= 0) {
         @try {
-            [theTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:scrollToRow inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+            [[self tableView] scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:scrollToRow inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
         }
         @catch (NSException *e) {
             NSLog(@"%@", [e reason]);
@@ -141,26 +117,98 @@
     return YES;
 }
 
-- (void)setEditing:(BOOL)editing animated:(BOOL)animated    
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    [super setEditing:editing animated:animated];
-    [theTableView setEditing:editing animated:animated];
+    // Return the number of sections.
+    return 1;
 }
 
-- (void)addNewRoadsignDescriptor:(id)sender
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    [self setEditing:NO animated:YES];
-    NSString *nextDefaultRoadsignName = [[AWBRoadsignStore defaultStore] nextDefaultRoadsignName];
-    NSMutableDictionary *settingsInfo = [NSMutableDictionary dictionaryWithObjectsAndKeys:nextDefaultRoadsignName, kAWBInfoKeyRoadsignName, [NSNumber numberWithBool:YES], kAWBInfoKeyRoadsignUseBackgroundTexture, @"Metal", kAWBInfoKeyRoadsignBackgroundTexture, [UIColor yellowSignBackgroundColor], kAWBInfoKeyRoadsignBackgroundColor, nil];
-    AWBRoadsignMagicSettingsTableViewController *settingsController = [[AWBRoadsignMagicSettingsTableViewController alloc] initWithSettings:[AWBSettings createRoadsignSettingsWithInfo:settingsInfo] settingsInfo:settingsInfo rootController:nil]; 
-    settingsController.delegate = self;
-    settingsController.controllerType = AWBSettingsControllerTypeNewRoadsignSettings;
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsController];
-    navController.modalPresentationStyle = UIModalPresentationPageSheet;
-    navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;  
-    [self presentModalViewController:navController animated:YES];
-    [settingsController release];   
-    [navController release];
+    // Return the number of rows in the section.
+    return [[[AWBRoadsignStore defaultStore] myRoadsigns] count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"RoadsignDescriptorCell";
+
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[AWBSizeableImageTableCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+    }
+    
+    AWBRoadsignDescriptor *roadsign = [[[AWBRoadsignStore defaultStore] myRoadsigns] objectAtIndex:[indexPath row]];
+    NSString *subDir = roadsign.roadsignSaveDocumentsSubdirectory;
+    
+    if (roadsign.roadsignName && ([roadsign.roadsignName length] > 0)) {
+        cell.textLabel.text = [NSString stringWithFormat:@"%@", roadsign.roadsignName];
+    } else {
+        cell.textLabel.text = [NSString stringWithFormat:@"%@", subDir];
+    }
+    
+    UIImage *thumbnail = [UIImage imageWithContentsOfFile:AWBPathInDocumentSubdirectory(subDir, @"thumbnail.png")];
+    
+    cell.imageView.image = thumbnail;
+    cell.detailTextLabel.numberOfLines = 2;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Created %@\r\nUpdated %@", AWBDateStringForCurrentLocale(roadsign.createdDate), AWBDocumentSubdirectoryModifiedDate(subDir)];        
+    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath 
+{
+    // If the table view is asking to commit a delete command...
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        AWBRoadsignStore *rs = [AWBRoadsignStore defaultStore];
+        NSUInteger roadsignCountBeforeDelete = [[rs myRoadsigns] count];
+        NSArray *roadsigns = [rs myRoadsigns];
+        AWBRoadsignDescriptor *roadsign = [roadsigns objectAtIndex:[indexPath row]];
+        [rs removeMyRoadsign:roadsign];
+        [[AWBRoadsignStore defaultStore] saveMyRoadsigns];
+        NSUInteger roadsignCountAfterDelete = [[[AWBRoadsignStore defaultStore] myRoadsigns] count];
+        
+        // We also remove that row from the table view with an animation
+        if ((roadsignCountBeforeDelete - roadsignCountAfterDelete) == 1) {
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                             withRowAnimation:YES];
+        }
+        
+        if (roadsignCountAfterDelete == 0) {
+            [self.tableView reloadData];
+        }        
+    }
+}
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath 
+{
+    [[AWBRoadsignStore defaultStore] moveMyRoadsignAtIndex:[fromIndexPath row] toIndex:[toIndexPath row]];
+}
+
+- (CGFloat)borderThickness
+{
+    if (DEVICE_IS_IPAD) {
+        return 6.0;
+    } else {
+        return 3.0;    
+    }    
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section 
+{
+    NSUInteger totalRoadsignCount = [[[AWBRoadsignStore defaultStore] myRoadsigns] count];
+    if (totalRoadsignCount > 0) {
+        self.navigationItem.leftBarButtonItem = [self editButtonItem];
+        return @"Click the + button to create a new roadsign.";
+    } else {
+        [self setEditing:NO];
+        self.navigationItem.leftBarButtonItem = nil;
+        return @"There are no saved roadsigns.  Click the + button to create a new roadsign.";
+    }
 }
 
 #pragma mark - Table view delegate
@@ -186,16 +234,6 @@
     [self presentModalViewController:navController animated:YES];
     [settingsController release];   
     [navController release];
-}
-
-- (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath  
-{
-    [self setEditing:YES animated:YES];
-}
-
-- (void)tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath 
-{
-    [self setEditing:NO animated:YES];
 }
 
 - (void)loadRoadsignAtIndexPath:(NSIndexPath *)indexPath withSettingsInfo:(NSDictionary *)info
@@ -239,10 +277,10 @@
 - (CGPoint)centerOfVisibleRows
 {
     CGPoint center = CGPointZero;
-    NSArray *rowPaths = [theTableView indexPathsForVisibleRows];
+    NSArray *rowPaths = [self.tableView indexPathsForVisibleRows];
     if (rowPaths && ([rowPaths count] > 0)) {
-        CGRect topRect = [theTableView rectForRowAtIndexPath:[rowPaths objectAtIndex:0]];
-        CGRect bottomRect = [theTableView rectForRowAtIndexPath:[rowPaths objectAtIndex:([rowPaths count]-1)]];
+        CGRect topRect = [self.tableView rectForRowAtIndexPath:[rowPaths objectAtIndex:0]];
+        CGRect bottomRect = [self.tableView rectForRowAtIndexPath:[rowPaths objectAtIndex:([rowPaths count]-1)]];
         CGPoint topLeft = topRect.origin;
         CGPoint bottomRight = CGPointMake(bottomRect.origin.x + bottomRect.size.width, bottomRect.origin.y + bottomRect.size.height);
         CGFloat totalWidth = bottomRight.x - topLeft.x;
@@ -259,6 +297,22 @@
     [self.navigationController pushViewController:roadsignController animated:animateTransition];
     [self.busyView removeFromParentView];
     self.busyView = nil;
+}
+
+- (void)addNewRoadsignDescriptor:(id)sender
+{
+    [self setEditing:NO animated:YES];
+    NSString *nextDefaultRoadsignName = [[AWBRoadsignStore defaultStore] nextDefaultRoadsignName];
+    NSMutableDictionary *settingsInfo = [NSMutableDictionary dictionaryWithObjectsAndKeys:nextDefaultRoadsignName, kAWBInfoKeyRoadsignName, [NSNumber numberWithBool:YES], kAWBInfoKeyRoadsignUseBackgroundTexture, @"Metal", kAWBInfoKeyRoadsignBackgroundTexture, [UIColor yellowSignBackgroundColor], kAWBInfoKeyRoadsignBackgroundColor, nil];
+    AWBRoadsignMagicSettingsTableViewController *settingsController = [[AWBRoadsignMagicSettingsTableViewController alloc] initWithSettings:[AWBSettings createRoadsignSettingsWithInfo:settingsInfo] settingsInfo:settingsInfo rootController:nil]; 
+    settingsController.delegate = self;
+    settingsController.controllerType = AWBSettingsControllerTypeNewRoadsignSettings;
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsController];
+    navController.modalPresentationStyle = UIModalPresentationPageSheet;
+    navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;  
+    [self presentModalViewController:navController animated:YES];
+    [settingsController release];   
+    [navController release];
 }
 
 - (void)awbRoadsignMagicSettingsTableViewController:(AWBRoadsignMagicSettingsTableViewController *)settingsController didFinishSettingsWithInfo:(NSDictionary *)info
@@ -278,7 +332,7 @@
             roadsign.roadsignName = [info objectForKey:kAWBInfoKeyRoadsignName];
             [[AWBRoadsignStore defaultStore] saveMyRoadsigns];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:roadsignStoreIndex inSection:0];
-            [theTableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone]; 
+            [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone]; 
         }
     }
 }

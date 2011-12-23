@@ -58,98 +58,154 @@ static AWBRoadsignStore *defaultStore = nil;
     return NSUIntegerMax;
 }
 
-- (NSArray *)allRoadsigns
+- (NSArray *)myRoadsigns
 {
     // This ensures allRoadsigns is created
-    [self fetchRoadsignsIfNecessary];
+    [self fetchMyRoadsignsIfNecessary];
     
-    return allRoadsigns;
+    return myRoadsigns;
 }
 
-- (AWBRoadsignDescriptor *)createRoadsign
+- (NSArray *)templateRoadsigns
 {
-    [self fetchRoadsignsIfNecessary];
+    // This ensures sample roadsigns are created
+    [self fetchTemplateRoadsignsIfNecessary];
     
-    NSInteger sequenceId = [[NSUserDefaults standardUserDefaults] integerForKey:kAWBInfoKeyRoadsignSequenceNumber];
+    return templateRoadsigns;
+}
+
+- (AWBRoadsignDescriptor *)createMyRoadsign
+{
+    [self fetchMyRoadsignsIfNecessary];
+    
+    NSInteger sequenceId = [[NSUserDefaults standardUserDefaults] integerForKey:kAWBInfoKeyMyRoadsignSequenceNumber];
     sequenceId += 1;
-    [[NSUserDefaults standardUserDefaults] setInteger:sequenceId forKey:kAWBInfoKeyRoadsignSequenceNumber];
+    [[NSUserDefaults standardUserDefaults] setInteger:sequenceId forKey:kAWBInfoKeyMyRoadsignSequenceNumber];
     AWBRoadsignDescriptor *roadsign = [[[AWBRoadsignDescriptor alloc] initWithRoadsignDocumentsSubdirectory:[NSString stringWithFormat:@"Roadsign %d", sequenceId]] autorelease];
     if (roadsign) {
-        [allRoadsigns addObject:roadsign];
+        [myRoadsigns addObject:roadsign];
     }
     
     return roadsign;
 }
 
+- (AWBRoadsignDescriptor *)createMyRoadsignFromTemplateRoadsign:(AWBRoadsignDescriptor *)templateRoadsign
+{
+    
+    [self fetchMyRoadsignsIfNecessary];
+    [self fetchTemplateRoadsignsIfNecessary];
+    
+    NSInteger sequenceId = [[NSUserDefaults standardUserDefaults] integerForKey:kAWBInfoKeyMyRoadsignSequenceNumber];
+    sequenceId += 1;
+    [[NSUserDefaults standardUserDefaults] setInteger:sequenceId forKey:kAWBInfoKeyMyRoadsignSequenceNumber];
+
+    NSString *bundleSubPath = @"Template Roadsigns";
+    NSString *templateRoadsignPath = [bundleSubPath stringByAppendingPathComponent:templateRoadsign.roadsignSaveDocumentsSubdirectory];
+    NSString *docSubPath = [NSString stringWithFormat:@"Roadsign %d", sequenceId];
+    
+    BOOL success = AWBCopyBundleFolderToDocumentsFolder(templateRoadsignPath, docSubPath);
+    if (success) {
+        AWBRoadsignDescriptor *roadsign = [[[AWBRoadsignDescriptor alloc] initWithRoadsignDocumentsSubdirectory:docSubPath] autorelease];
+        if (roadsign) {
+            roadsign.roadsignName = templateRoadsign.roadsignName;
+            roadsign.totalImageMemoryBytes = templateRoadsign.totalImageMemoryBytes;
+            roadsign.totalLabelObjects = templateRoadsign.totalLabelObjects;
+            roadsign.totalSymbolObjects = templateRoadsign.totalSymbolObjects;
+            [myRoadsigns addObject:roadsign];
+        }
+        return roadsign;           
+    } else {
+        return nil;
+    }
+}
+
 - (NSString *)nextDefaultRoadsignName
 {
-    NSInteger sequenceId = [[NSUserDefaults standardUserDefaults] integerForKey:kAWBInfoKeyRoadsignSequenceNumber];
+    NSInteger sequenceId = [[NSUserDefaults standardUserDefaults] integerForKey:kAWBInfoKeyMyRoadsignSequenceNumber];
     sequenceId += 1;
     return [NSString stringWithFormat:@"Roadsign %d", sequenceId];
 }
 
-- (void)removeRoadsign:(AWBRoadsignDescriptor *)roadsign
+- (void)removeMyRoadsign:(AWBRoadsignDescriptor *)roadsign
 {
     NSError *error;
     NSString *path = AWBDocumentSubdirectory([roadsign roadsignSaveDocumentsSubdirectory]);
     [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
-    [allRoadsigns removeObjectIdenticalTo:roadsign];
+    [myRoadsigns removeObjectIdenticalTo:roadsign];
 }
 
-- (void)moveRoadsignAtIndex:(int)from toIndex:(int)to
+- (void)moveMyRoadsignAtIndex:(int)from toIndex:(int)to
 {
     if (from == to) {
         return;
     }
     // Get pointer to object being moved
-    AWBRoadsignDescriptor *roadsign = [allRoadsigns objectAtIndex:from];
+    AWBRoadsignDescriptor *roadsign = [myRoadsigns objectAtIndex:from];
     
     // Retain it... (retain count of p = 2)
     [roadsign retain];
     
     // Remove p from array, it is automatically sent release (retain count of p = 1)
-    [allRoadsigns removeObjectAtIndex:from];
+    [myRoadsigns removeObjectAtIndex:from];
     
     // Insert p in array at new location, retained by array (retain count of p = 2)
-    [allRoadsigns insertObject:roadsign atIndex:to];
+    [myRoadsigns insertObject:roadsign atIndex:to];
     
     // Release p (retain count = 1, only owner is now array)
     [roadsign release];
 }
 
-- (NSString *)roadsignDescriptorArchivePath
+- (NSString *)myRoadsignDescriptorArchivePath
 {
     return AWBPathInDocumentDirectory(@"roadsignDescriptors.data");
 }
 
-- (BOOL)saveAllRoadsigns
+- (NSString *)templateRoadsignDescriptorArchivePath
 {
-    // returns success or failure
-    return [NSKeyedArchiver archiveRootObject:allRoadsigns 
-                                       toFile:[self roadsignDescriptorArchivePath]];
+    return AWBPathInMainBundleSubdirectory(@"Template Roadsigns", @"roadsignDescriptors.data");
 }
 
-- (void)fetchRoadsignsIfNecessary
+- (BOOL)saveMyRoadsigns
 {
-    if (!allRoadsigns) {
-        NSString *path = [self roadsignDescriptorArchivePath];
-        allRoadsigns = [[NSKeyedUnarchiver unarchiveObjectWithFile:path] retain];
+    // returns success or failure
+    return [NSKeyedArchiver archiveRootObject:myRoadsigns 
+                                       toFile:[self myRoadsignDescriptorArchivePath]];
+}
+
+- (void)fetchMyRoadsignsIfNecessary
+{
+    if (!myRoadsigns) {
+        NSString *path = [self myRoadsignDescriptorArchivePath];
+        myRoadsigns = [[NSKeyedUnarchiver unarchiveObjectWithFile:path] retain];
     }
     
     // If we tried to read one from disk but does not exist, then first try and copy the help collages from the bundle 
-    if (!allRoadsigns) {
-        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:kAWBInfoKeyRoadsignSequenceNumber];
-        [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:kAWBInfoKeyRoadsignStoreRoadsignIndex];
+    if (!myRoadsigns) {
+        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:kAWBInfoKeyMyRoadsignSequenceNumber];
+        [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:kAWBInfoKeyMyRoadsignStoreRoadsignIndex];
         BOOL success = AWBCopyRoadsignHelpFilesForDevice();  
         if (success) {
-            NSString *path = [self roadsignDescriptorArchivePath];
-            allRoadsigns = [[NSKeyedUnarchiver unarchiveObjectWithFile:path] retain];
+            NSString *path = [self myRoadsignDescriptorArchivePath];
+            myRoadsigns = [[NSKeyedUnarchiver unarchiveObjectWithFile:path] retain];
         }
     }
     
-    if (!allRoadsigns) {
+    if (!myRoadsigns) {
         //roadsign help files not copied so create empty collage store
-        allRoadsigns = [[NSMutableArray alloc] init];
+        myRoadsigns = [[NSMutableArray alloc] init];
+    }
+}
+
+- (void)fetchTemplateRoadsignsIfNecessary
+{
+    if (!templateRoadsigns) {
+        NSString *path = [self templateRoadsignDescriptorArchivePath];
+        templateRoadsigns = [[NSKeyedUnarchiver unarchiveObjectWithFile:path] retain];
+    }
+    
+    if (!templateRoadsigns) {
+        //shouldn't happen - but don't want a nil if it does
+        templateRoadsigns = [[NSMutableArray alloc] init];
     }
 }
 

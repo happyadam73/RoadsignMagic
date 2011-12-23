@@ -42,7 +42,7 @@
 
 - (id)init
 {
-    AWBRoadsignDescriptor *roadsign = [[AWBRoadsignStore defaultStore] createRoadsign];
+    AWBRoadsignDescriptor *roadsign = [[AWBRoadsignStore defaultStore] createMyRoadsign];
     return [self initWithRoadsignDescriptor:roadsign];
 }
 
@@ -319,7 +319,7 @@
         self.roadsignDescriptor.totalSymbolObjects = self.totalSymbolSubviews;
         self.roadsignDescriptor.totalLabelObjects = self.totalLabelSubviews;
         self.roadsignDescriptor.totalImageMemoryBytes = roadsign.totalImageMemoryBytes;
-        [[AWBRoadsignStore defaultStore] saveAllRoadsigns];
+        [[AWBRoadsignStore defaultStore] saveMyRoadsigns];
         
         success = [NSKeyedArchiver archiveRootObject:roadsign toFile:[self archivePath]];
         [roadsign release];

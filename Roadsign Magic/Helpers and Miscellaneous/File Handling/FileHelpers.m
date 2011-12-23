@@ -188,6 +188,20 @@ void AWBRemoveImageWithKey(NSString *imageKey)
     }  
 }
 
+BOOL AWBCopyBundleFolderToDocumentsFolder(NSString *bundleSubdirectory, NSString *docsSubdirectory)
+{
+    NSString *bundleSubdirectoryPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:bundleSubdirectory];
+    NSString *docsSubdirectoryPath = [AWBDocumentDirectory() stringByAppendingPathComponent:docsSubdirectory];
+    
+    BOOL success = NO;
+    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:bundleSubdirectoryPath];
+    if (fileExists) {
+        success = [[NSFileManager defaultManager] copyItemAtPath:bundleSubdirectoryPath toPath:docsSubdirectoryPath error:nil];
+    }
+    
+    return success;
+}
+
 BOOL AWBCopyBundleItemAtPathToDocumentsFolder(NSString *bundleSubdirectory, NSString *filename)
 {
     NSString *bundleSubdirectoryPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:bundleSubdirectory];
@@ -201,6 +215,15 @@ BOOL AWBCopyBundleItemAtPathToDocumentsFolder(NSString *bundleSubdirectory, NSSt
     }
     
     return success;
+}
+
+
+NSString *AWBPathInMainBundleSubdirectory(NSString *bundleSubdirectory, NSString *filename)
+{
+    NSString *bundleSubdirectoryPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:bundleSubdirectory];
+    NSString *fullBundlePath = [bundleSubdirectoryPath stringByAppendingPathComponent:filename];
+
+	return fullBundlePath;
 }
 
 BOOL AWBCopyRoadsignHelpFilesForDevice(void)

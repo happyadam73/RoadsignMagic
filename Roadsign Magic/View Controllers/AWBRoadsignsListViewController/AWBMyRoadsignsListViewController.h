@@ -2,31 +2,26 @@
 //  AWBRoadsignsListViewController.h
 //  Roadsign Magic
 //
-//  Created by Buckley Adam on 23/12/2011.
-//  Copyright (c) 2011 Callcredit. All rights reserved.
+//  Created by Adam Buckley on 05/12/2011.
+//  Copyright (c) 2011 happyadam development. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "AWBBusyView.h"
 #import "AWBRoadsignMagicSettingsTableViewController.h"
-#import "AWBRoadsignDataSource.h"
+#import "AWBBusyView.h"
 
 @class AWBRoadsignMagicMainViewController;
 
-@interface AWBRoadsignsListViewController : UIViewController <UITableViewDelegate> {
-	UITableView *theTableView;
-	id <UITableViewDataSource, AWBRoadsignDataSource> dataSource;
-
+@interface AWBMyRoadsignsListViewController : UITableViewController <AWBRoadsignMagicSettingsTableViewControllerDelegate>
+{
     NSInteger scrollToRow;
     AWBBusyView *busyView;
     BOOL animateTransition;
 }
 
-@property (nonatomic,retain) UITableView *theTableView;
-@property (nonatomic,retain) id <UITableViewDataSource, AWBRoadsignDataSource> dataSource;
 @property (nonatomic, retain) AWBBusyView *busyView;
 
-- (id)initWithDataSource:(id <UITableViewDataSource, AWBRoadsignDataSource>)theDataSource;
+- (CGFloat)borderThickness;
 - (void)addNewRoadsignDescriptor:(id)sender;
 - (void)loadRoadsignAtIndexPath:(NSIndexPath *)indexPath withSettingsInfo:(NSDictionary *)info;
 - (void)navigateToRoadsignController:(AWBRoadsignMagicMainViewController *)roadsignController;

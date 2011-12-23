@@ -11,7 +11,9 @@
 #import "AWBRoadsignMagicMainViewController+UI.h"
 #import "AWBRoadsignMagicSettingsTableViewController.h"
 #import "AWBSettings.h"
+#import "AWBMyRoadsignsListViewController.h"
 #import "AWBRoadsignsListViewController.h"
+#import "AWBMyRoadsignsDataSource.h"
 #import "AWBRoadsignStore.h"
 #import "AWBRoadsignDescriptor.h"
 #import "Facebook.h"
@@ -54,14 +56,14 @@ static NSString* kAppId = @"289600444412359";
     //    userPermissions = [[NSMutableDictionary alloc] initWithCapacity:1];
 
     AWBRoadsignDescriptor *roadsign = nil;
-    NSUInteger totalSavedRoadsigns = [[[AWBRoadsignStore defaultStore] allRoadsigns] count];
-    NSInteger roadsignIndex = [[NSUserDefaults standardUserDefaults] integerForKey:kAWBInfoKeyRoadsignStoreRoadsignIndex];
+    NSUInteger totalSavedRoadsigns = [[[AWBRoadsignStore defaultStore] myRoadsigns] count];
+    NSInteger roadsignIndex = [[NSUserDefaults standardUserDefaults] integerForKey:kAWBInfoKeyMyRoadsignStoreRoadsignIndex];
     if (totalSavedRoadsigns==0) {
         //no roadsigns
         //if user default index is -1 then this was by choice - user deleted them all so roadsign is nil otherwise this
         //is the first ever start so create one for the user automatically
         if (roadsignIndex != -1) {
-            roadsign = [[AWBRoadsignStore defaultStore] createRoadsign];
+            roadsign = [[AWBRoadsignStore defaultStore] createMyRoadsign];
             //first roadsign
             roadsign.roadsignName = @"Roadsign 1";
         }
@@ -69,7 +71,7 @@ static NSString* kAppId = @"289600444412359";
         //check what the last selected roadsign was
         //if it's -1 (last used the list view) or it's outside array bounds, then roadsign not set
         if ((roadsignIndex >= 0) && (roadsignIndex < totalSavedRoadsigns)) {
-            roadsign = [[[AWBRoadsignStore defaultStore] allRoadsigns] objectAtIndex:roadsignIndex];
+            roadsign = [[[AWBRoadsignStore defaultStore] myRoadsigns] objectAtIndex:roadsignIndex];
 //            if (collage.totalObjects >= [CollageMakerViewController excessiveSubviewCountThreshold]) {
 //                NSLog(@"Collage Total Objects: %d - exceed threshold (%d), so don't load", collage.totalObjects, [CollageMakerViewController excessiveSubviewCountThreshold]);
 //                collage = nil;
@@ -77,7 +79,10 @@ static NSString* kAppId = @"289600444412359";
         }
     }
     
-    AWBRoadsignsListViewController *listController = [[AWBRoadsignsListViewController alloc] init];
+    //AWBMyRoadsignsListViewController *listController = [[AWBMyRoadsignsListViewController alloc] init];
+    AWBMyRoadsignsDataSource *myRoadsignsDataSource = [[AWBMyRoadsignsDataSource alloc] init];
+    AWBRoadsignsListViewController *listController = [[AWBRoadsignsListViewController alloc] initWithDataSource:myRoadsignsDataSource];
+    
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:listController];
     navController.navigationBar.barStyle = UIBarStyleBlack;
     navController.navigationBar.translucent = YES;
@@ -95,6 +100,7 @@ static NSString* kAppId = @"289600444412359";
     self.window.rootViewController = self.mainNavigationController;
     [navController release];
     [listController release];
+    [myRoadsignsDataSource release];
     [self.window makeKeyAndVisible];
     return YES;    
 }
@@ -150,6 +156,11 @@ static NSString* kAppId = @"289600444412359";
     } else {
         if ([url isFileURL]) {
             //my font stuff
+            [self.mainNavigationController.visibleViewController dismissModalViewControllerAnimated:YES];
+            NSLog(@"Top View Controller: %@", self.mainNavigationController.topViewController);
+            AWBRoadsignMagicMainViewController *controller = [[AWBRoadsignMagicMainViewController alloc] init];
+            [self.mainNavigationController pushViewController:controller animated:YES];
+            [controller release];
             return YES;            
         } else {
             return NO;
