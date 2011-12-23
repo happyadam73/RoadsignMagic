@@ -14,6 +14,7 @@
 #import "AWBMyRoadsignsListViewController.h"
 #import "AWBRoadsignsListViewController.h"
 #import "AWBMyRoadsignsDataSource.h"
+#import "AWBTemplateRoadsignsDataSource.h"
 #import "AWBRoadsignStore.h"
 #import "AWBRoadsignDescriptor.h"
 #import "Facebook.h"
@@ -81,7 +82,11 @@ static NSString* kAppId = @"289600444412359";
     
     //AWBMyRoadsignsListViewController *listController = [[AWBMyRoadsignsListViewController alloc] init];
     AWBMyRoadsignsDataSource *myRoadsignsDataSource = [[AWBMyRoadsignsDataSource alloc] init];
-    AWBRoadsignsListViewController *listController = [[AWBRoadsignsListViewController alloc] initWithDataSource:myRoadsignsDataSource];
+    AWBTemplateRoadsignsDataSource *templateRoadsignsDataSource = [[AWBTemplateRoadsignsDataSource alloc] init];
+    NSArray *dataSources = [NSArray arrayWithObjects:myRoadsignsDataSource, templateRoadsignsDataSource, nil];
+    AWBRoadsignsListViewController *listController = [[AWBRoadsignsListViewController alloc] initWithDataSources:dataSources];
+    [myRoadsignsDataSource release];
+    [templateRoadsignsDataSource release];
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:listController];
     navController.navigationBar.barStyle = UIBarStyleBlack;
@@ -100,7 +105,6 @@ static NSString* kAppId = @"289600444412359";
     self.window.rootViewController = self.mainNavigationController;
     [navController release];
     [listController release];
-    [myRoadsignsDataSource release];
     [self.window makeKeyAndVisible];
     return YES;    
 }

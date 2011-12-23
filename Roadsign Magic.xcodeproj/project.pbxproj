@@ -600,7 +600,7 @@
 		069F442A14A4F2050037C72C /* Template Roadsigns in Resources */ = {isa = PBXBuildFile; fileRef = 069F442914A4F2050037C72C /* Template Roadsigns */; };
 		069F442E14A4F8060037C72C /* AWBRoadsignsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 069F442D14A4F8060037C72C /* AWBRoadsignsListViewController.m */; };
 		069F443114A4F82B0037C72C /* AWBMyRoadsignsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 069F443014A4F82B0037C72C /* AWBMyRoadsignsDataSource.m */; };
-		069F443414A4F8420037C72C /* AWBSampleRoadsignsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 069F443314A4F8420037C72C /* AWBSampleRoadsignsDataSource.m */; };
+		069F443414A4F8420037C72C /* AWBTemplateRoadsignsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 069F443314A4F8420037C72C /* AWBTemplateRoadsignsDataSource.m */; };
 		06A0799D147A82310065A6DB /* asphalt@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 06A0799C147A82310065A6DB /* asphalt@2x.jpg */; };
 		06A95FEB14781B6000915359 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A95FEA14781B6000915359 /* UIKit.framework */; };
 		06A95FED14781B6000915359 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A95FEC14781B6000915359 /* Foundation.framework */; };
@@ -1567,8 +1567,8 @@
 		069F442D14A4F8060037C72C /* AWBRoadsignsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBRoadsignsListViewController.m; path = AWBRoadsignsListViewController/AWBRoadsignsListViewController.m; sourceTree = "<group>"; };
 		069F442F14A4F82B0037C72C /* AWBMyRoadsignsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBMyRoadsignsDataSource.h; path = AWBRoadsignsListViewController/AWBMyRoadsignsDataSource.h; sourceTree = "<group>"; };
 		069F443014A4F82B0037C72C /* AWBMyRoadsignsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBMyRoadsignsDataSource.m; path = AWBRoadsignsListViewController/AWBMyRoadsignsDataSource.m; sourceTree = "<group>"; };
-		069F443214A4F8420037C72C /* AWBSampleRoadsignsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBSampleRoadsignsDataSource.h; path = AWBRoadsignsListViewController/AWBSampleRoadsignsDataSource.h; sourceTree = "<group>"; };
-		069F443314A4F8420037C72C /* AWBSampleRoadsignsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBSampleRoadsignsDataSource.m; path = AWBRoadsignsListViewController/AWBSampleRoadsignsDataSource.m; sourceTree = "<group>"; };
+		069F443214A4F8420037C72C /* AWBTemplateRoadsignsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; name = AWBTemplateRoadsignsDataSource.h; path = AWBRoadsignsListViewController/AWBTemplateRoadsignsDataSource.h; sourceTree = "<group>"; };
+		069F443314A4F8420037C72C /* AWBTemplateRoadsignsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBTemplateRoadsignsDataSource.m; path = AWBRoadsignsListViewController/AWBTemplateRoadsignsDataSource.m; sourceTree = "<group>"; };
 		069F443514A51EB00037C72C /* AWBRoadsignDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBRoadsignDataSource.h; path = AWBRoadsignsListViewController/AWBRoadsignDataSource.h; sourceTree = "<group>"; };
 		06A0799C147A82310065A6DB /* asphalt@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "asphalt@2x.jpg"; sourceTree = "<group>"; };
 		06A95FE614781B6000915359 /* Roadsign Magic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Roadsign Magic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2922,8 +2922,8 @@
 				069F442D14A4F8060037C72C /* AWBRoadsignsListViewController.m */,
 				069F442F14A4F82B0037C72C /* AWBMyRoadsignsDataSource.h */,
 				069F443014A4F82B0037C72C /* AWBMyRoadsignsDataSource.m */,
-				069F443214A4F8420037C72C /* AWBSampleRoadsignsDataSource.h */,
-				069F443314A4F8420037C72C /* AWBSampleRoadsignsDataSource.m */,
+				069F443214A4F8420037C72C /* AWBTemplateRoadsignsDataSource.h */,
+				069F443314A4F8420037C72C /* AWBTemplateRoadsignsDataSource.m */,
 				069F443514A51EB00037C72C /* AWBRoadsignDataSource.h */,
 			);
 			name = AWBRoadsignsListViewController;
@@ -4692,7 +4692,7 @@
 				0611EC2314A1F81D00A3588C /* AWBFacebookSignoutView.m in Sources */,
 				069F442E14A4F8060037C72C /* AWBRoadsignsListViewController.m in Sources */,
 				069F443114A4F82B0037C72C /* AWBMyRoadsignsDataSource.m in Sources */,
-				069F443414A4F8420037C72C /* AWBSampleRoadsignsDataSource.m in Sources */,
+				069F443414A4F8420037C72C /* AWBTemplateRoadsignsDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

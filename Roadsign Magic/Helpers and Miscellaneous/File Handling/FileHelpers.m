@@ -217,12 +217,20 @@ BOOL AWBCopyBundleItemAtPathToDocumentsFolder(NSString *bundleSubdirectory, NSSt
     return success;
 }
 
-
 NSString *AWBPathInMainBundleSubdirectory(NSString *bundleSubdirectory, NSString *filename)
 {
     NSString *bundleSubdirectoryPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:bundleSubdirectory];
     NSString *fullBundlePath = [bundleSubdirectoryPath stringByAppendingPathComponent:filename];
 
+	return fullBundlePath;
+}
+
+NSString *AWBPathInMainBundleTemplateSubdirectory(NSString *bundleTemplateSubdirectory, NSString *filename)
+{
+    NSString *templateBundlePath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Template Roadsigns"];
+    NSString *bundleSubdirectoryPath = [templateBundlePath stringByAppendingPathComponent:bundleTemplateSubdirectory];
+    NSString *fullBundlePath = [bundleSubdirectoryPath stringByAppendingPathComponent:filename];
+    
 	return fullBundlePath;
 }
 

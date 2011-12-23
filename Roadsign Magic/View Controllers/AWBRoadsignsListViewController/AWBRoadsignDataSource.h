@@ -9,10 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@class AWBRoadsignsListViewController;
+
 @protocol AWBRoadsignDataSource <NSObject>
 
 @required
 
-@property (nonatomic, assign) UIViewController *parentViewController;
+@property (nonatomic, assign) AWBRoadsignsListViewController *parentViewController;
 
 @end

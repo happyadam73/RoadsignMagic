@@ -1,5 +1,5 @@
 //
-//  AWBMyRoadsignsDataSource.h
+//  AWBSampleRoadsignsDataSource.h
 //  Roadsign Magic
 //
 //  Created by Buckley Adam on 23/12/2011.
@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "AWBRoadsignDataSource.h"
 
-@interface AWBMyRoadsignsDataSource : NSObject <UITableViewDataSource, UITableViewDelegate, AWBRoadsignDataSource>
+@interface AWBTemplateRoadsignsDataSource : NSObject <UITableViewDataSource, UITableViewDelegate, AWBRoadsignDataSource>
 
 @end

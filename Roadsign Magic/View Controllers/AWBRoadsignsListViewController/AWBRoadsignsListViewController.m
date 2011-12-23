@@ -17,25 +17,49 @@
 @implementation AWBRoadsignsListViewController
 
 @synthesize theTableView;
-@synthesize dataSource;
+@synthesize dataSources;
 @synthesize busyView;
+@synthesize selectedDataSource;
 
 // this is the custom initialization method for the ElementsTableViewController
 // it expects an object that conforms to both the UITableViewDataSource protocol
 // which provides data to the tableview, and the ElementDataSource protocol which
 // provides information about the elements data that is displayed,
-- (id)initWithDataSource:(id <UITableViewDataSource, AWBRoadsignDataSource>)theDataSource 
+//- (id)initWithDataSource:(id <UITableViewDataSource, UITableViewDelegate, AWBRoadsignDataSource>)theDataSource 
+//{
+//	if ([self init]) {
+//		theTableView = nil;
+//		
+//		// retain the data source
+//		self.dataSource = theDataSource;
+//        self.dataSource.parentViewController = self;
+//        
+//        // Custom initialization
+//        scrollToRow = -1;
+//        //self.navigationItem.title = @"My Signs";
+//        UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewRoadsignDescriptor:)];
+//        [[self navigationItem] setRightBarButtonItem:addButton];
+//        [addButton release];
+//        [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
+//	}
+//	return self;
+//}
+
+- (id)initWithDataSources:(NSArray *)theDataSources 
 {
 	if ([self init]) {
 		theTableView = nil;
 		
 		// retain the data source
-		self.dataSource = theDataSource;
-        self.dataSource.parentViewController = self;
+		self.dataSources = theDataSources;
+        for (id <UITableViewDataSource, UITableViewDelegate, AWBRoadsignDataSource> dataSource in self.dataSources) {
+            dataSource.parentViewController = self;
+        }
+        selectedDataSource = 0;
         
         // Custom initialization
         scrollToRow = -1;
-        self.navigationItem.title = @"My Signs";
+        //self.navigationItem.title = @"My Signs";
         UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewRoadsignDescriptor:)];
         [[self navigationItem] setRightBarButtonItem:addButton];
         [addButton release];
@@ -44,12 +68,11 @@
 	return self;
 }
 
-
 - (void)dealloc {
 	theTableView.delegate = nil;
 	theTableView.dataSource = nil;
 	[theTableView release];
-	[dataSource release];
+	[dataSources release];
     [busyView release];
 	[super dealloc];
 }
@@ -65,13 +88,15 @@
 	tableView.autoresizingMask = (UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight);
 		
 	// set the tableview delegate to this object and the datasource to the datasource which has already been set
-	tableView.delegate = self;
-	tableView.dataSource = dataSource;
+	tableView.delegate = [dataSources objectAtIndex:selectedDataSource];
+	tableView.dataSource = [dataSources objectAtIndex:selectedDataSource];
 	
 	// set the tableview as the controller view
     self.theTableView = tableView;
 	self.view = tableView;
 	[tableView release];
+    
+    [self addTitleView];
     
 }
 
@@ -163,41 +188,6 @@
     [navController release];
 }
 
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [self loadRoadsignAtIndexPath:indexPath withSettingsInfo:nil];
-}
-
-- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath    
-{
-    AWBRoadsignDescriptor *roadsign = [[[AWBRoadsignStore defaultStore] myRoadsigns] objectAtIndex:[indexPath row]];
-    NSUInteger totalDiskBytes = AWBDocumentSubdirectoryFolderSize(roadsign.roadsignSaveDocumentsSubdirectory);
-    [[NSUserDefaults standardUserDefaults] setInteger:[indexPath row] forKey:kAWBInfoKeyScrollToRoadsignStoreMyRoadsignIndex]; 
-    
-    NSMutableDictionary *settingsInfo = [NSMutableDictionary dictionaryWithObjectsAndKeys:roadsign.roadsignName, kAWBInfoKeyRoadsignName, [NSNumber numberWithInt:roadsign.totalSymbolObjects], kAWBInfoKeyRoadsignTotalImageObjects, [NSNumber numberWithInt:roadsign.totalLabelObjects], kAWBInfoKeyRoadsignTotalLabelObjects, [NSNumber numberWithInt:[indexPath row]], kAWBInfoKeyMyRoadsignStoreRoadsignIndex, [NSNumber numberWithInt:roadsign.totalImageMemoryBytes], kAWBInfoKeyRoadsignTotalImageMemoryBytes, [NSNumber numberWithInt:totalDiskBytes], kAWBInfoKeyRoadsignTotalDiskBytes, nil];
-    AWBRoadsignMagicSettingsTableViewController *settingsController = [[AWBRoadsignMagicSettingsTableViewController alloc] initWithSettings:[AWBSettings roadsignDescriptionSettingsWithInfo:settingsInfo header:[roadsign roadsignInfoHeaderView]] settingsInfo:settingsInfo rootController:nil]; 
-    settingsController.delegate = self;
-    settingsController.controllerType = AWBSettingsControllerTypeRoadsignInfoSettings;
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsController];
-    navController.modalPresentationStyle = UIModalPresentationPageSheet;
-    navController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;  
-    [self presentModalViewController:navController animated:YES];
-    [settingsController release];   
-    [navController release];
-}
-
-- (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath  
-{
-    [self setEditing:YES animated:YES];
-}
-
-- (void)tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath 
-{
-    [self setEditing:NO animated:YES];
-}
-
 - (void)loadRoadsignAtIndexPath:(NSIndexPath *)indexPath withSettingsInfo:(NSDictionary *)info
 {
     AWBRoadsignDescriptor *roadsign = [[[AWBRoadsignStore defaultStore] myRoadsigns] objectAtIndex:[indexPath row]];
@@ -283,21 +273,28 @@
     }
 }
 
-- (void)addToolbar
+- (void)addTitleView
 {
-    NSArray *segItemsArray = [NSArray arrayWithObjects: @"My Signs", @"Examples", @"Store", nil];
+    NSArray *segItemsArray = [NSArray arrayWithObjects: @"My Signs", @"Templates", nil];
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:segItemsArray];
-    segmentedControl.frame = CGRectMake(0, 0, 300, (self.navigationController.toolbar.bounds.size.height - 10));
+    segmentedControl.frame = CGRectMake(0, 0, 170, self.navigationController.navigationBar.bounds.size.height - 14);
     segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-    segmentedControl.selectedSegmentIndex = 0;
-    UIBarButtonItem *segmentedControlButtonItem = [[UIBarButtonItem alloc] initWithCustomView:(UIView *)segmentedControl];
-    UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    NSArray *barArray = [NSArray arrayWithObjects: flexibleSpace, segmentedControlButtonItem, flexibleSpace, nil];
-    [self setToolbarItems:barArray];
-    [segmentedControlButtonItem release];
-    [flexibleSpace release];
+    segmentedControl.selectedSegmentIndex = selectedDataSource;
+    [segmentedControl addTarget:self action:@selector(switchDatasource:) forControlEvents:UIControlEventValueChanged];
+    self.navigationItem.titleView = segmentedControl;
     [segmentedControl release];
-    self.navigationController.toolbarHidden = NO;
+}
+
+- (void)switchDatasource:(id)sender
+{
+    UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;
+    NSLog(@"Selected Index: %d", segmentedControl.selectedSegmentIndex);
+    
+    selectedDataSource = segmentedControl.selectedSegmentIndex;
+    theTableView.delegate = [dataSources objectAtIndex:selectedDataSource];
+	theTableView.dataSource = [dataSources objectAtIndex:selectedDataSource];
+    
+    [theTableView reloadData];
 }
 
 @end

@@ -1,12 +1,12 @@
 //
-//  AWBMyRoadsignsDataSource.m
+//  AWBSampleRoadsignsDataSource.m
 //  Roadsign Magic
 //
 //  Created by Buckley Adam on 23/12/2011.
 //  Copyright (c) 2011 Callcredit. All rights reserved.
 //
 
-#import "AWBMyRoadsignsDataSource.h"
+#import "AWBTemplateRoadsignsDataSource.h"
 #import "FileHelpers.h"
 #import "AWBRoadsignMagicMainViewController.h"
 #import "AWBRoadsignDescriptor.h"
@@ -15,7 +15,7 @@
 #import "AWBSizeableImageTableCell.h"
 #import "AWBRoadsignsListViewController.h"
 
-@implementation AWBMyRoadsignsDataSource
+@implementation AWBTemplateRoadsignsDataSource
 
 @synthesize parentViewController;
 
@@ -30,19 +30,19 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [[[AWBRoadsignStore defaultStore] myRoadsigns] count];
+    return [[[AWBRoadsignStore defaultStore] templateRoadsigns] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"RoadsignDescriptorCell";
+    static NSString *CellIdentifier = @"TemplateRoadsignDescriptorCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[AWBSizeableImageTableCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    AWBRoadsignDescriptor *roadsign = [[[AWBRoadsignStore defaultStore] myRoadsigns] objectAtIndex:[indexPath row]];
+    AWBRoadsignDescriptor *roadsign = [[[AWBRoadsignStore defaultStore] templateRoadsigns] objectAtIndex:[indexPath row]];
     NSString *subDir = roadsign.roadsignSaveDocumentsSubdirectory;
     
     if (roadsign.roadsignName && ([roadsign.roadsignName length] > 0)) {
@@ -51,67 +51,65 @@
         cell.textLabel.text = [NSString stringWithFormat:@"%@", subDir];
     }
     
-    UIImage *thumbnail = [UIImage imageWithContentsOfFile:AWBPathInDocumentSubdirectory(subDir, @"thumbnail.png")];
+    UIImage *thumbnail = [UIImage imageWithContentsOfFile:AWBPathInMainBundleTemplateSubdirectory(subDir, @"thumbnail.png")];
     
     cell.imageView.image = thumbnail;
-    cell.detailTextLabel.numberOfLines = 2;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Created %@\r\nUpdated %@", AWBDateStringForCurrentLocale(roadsign.createdDate), AWBDocumentSubdirectoryModifiedDate(subDir)];        
+//    cell.detailTextLabel.numberOfLines = 2;
+//    cell.detailTextLabel.text = [NSString stringWithFormat:@"Created %@", AWBDateStringForCurrentLocale(roadsign.createdDate)];        
     cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath 
-{
-    // If the table view is asking to commit a delete command...
-    if (editingStyle == UITableViewCellEditingStyleDelete)
-    {
-        AWBRoadsignStore *rs = [AWBRoadsignStore defaultStore];
-        NSUInteger roadsignCountBeforeDelete = [[rs myRoadsigns] count];
-        NSArray *roadsigns = [rs myRoadsigns];
-        AWBRoadsignDescriptor *roadsign = [roadsigns objectAtIndex:[indexPath row]];
-        [rs removeMyRoadsign:roadsign];
-        [[AWBRoadsignStore defaultStore] saveMyRoadsigns];
-        NSUInteger roadsignCountAfterDelete = [[[AWBRoadsignStore defaultStore] myRoadsigns] count];
-        
-        // We also remove that row from the table view with an animation
-        if ((roadsignCountBeforeDelete - roadsignCountAfterDelete) == 1) {
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                             withRowAnimation:YES];
-        }
-        
-        if (roadsignCountAfterDelete == 0) {
-            [tableView reloadData];
-        }        
-    }
-}
-
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath 
-{
-    [[AWBRoadsignStore defaultStore] moveMyRoadsignAtIndex:[fromIndexPath row] toIndex:[toIndexPath row]];
-}
+//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath 
+//{
+//    // If the table view is asking to commit a delete command...
+//    if (editingStyle == UITableViewCellEditingStyleDelete)
+//    {
+//        AWBRoadsignStore *rs = [AWBRoadsignStore defaultStore];
+//        NSUInteger roadsignCountBeforeDelete = [[rs myRoadsigns] count];
+//        NSArray *roadsigns = [rs myRoadsigns];
+//        AWBRoadsignDescriptor *roadsign = [roadsigns objectAtIndex:[indexPath row]];
+//        [rs removeMyRoadsign:roadsign];
+//        [[AWBRoadsignStore defaultStore] saveMyRoadsigns];
+//        NSUInteger roadsignCountAfterDelete = [[[AWBRoadsignStore defaultStore] myRoadsigns] count];
+//        
+//        // We also remove that row from the table view with an animation
+//        if ((roadsignCountBeforeDelete - roadsignCountAfterDelete) == 1) {
+//            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+//                             withRowAnimation:YES];
+//        }
+//        
+//        if (roadsignCountAfterDelete == 0) {
+//            [tableView reloadData];
+//        }        
+//    }
+//}
+//
+//- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath 
+//{
+//    [[AWBRoadsignStore defaultStore] moveMyRoadsignAtIndex:[fromIndexPath row] toIndex:[toIndexPath row]];
+//}
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section 
 {
-    NSUInteger totalRoadsignCount = [[[AWBRoadsignStore defaultStore] myRoadsigns] count];
-    if (totalRoadsignCount > 0) {
-        parentViewController.navigationItem.leftBarButtonItem = [parentViewController editButtonItem];
-        return @"Click the + button to create a new roadsign.";
-    } else {
-        [parentViewController setEditing:NO];
-        parentViewController.navigationItem.leftBarButtonItem = nil;
-        return @"There are no saved roadsigns.  Click the + button to create a new roadsign.";
-    }
+    return @"Select a template to create a new roadsign.";    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [parentViewController loadRoadsignAtIndexPath:indexPath withSettingsInfo:nil];
+    AWBRoadsignDescriptor *templateRoadsign = [[[AWBRoadsignStore defaultStore] templateRoadsigns] objectAtIndex:[indexPath row]];
+    AWBRoadsignDescriptor *newRoadsign =  [[AWBRoadsignStore defaultStore] createMyRoadsignFromTemplateRoadsign:templateRoadsign];
+    
+    if (newRoadsign) {
+        NSIndexPath *myRoadsignIndexPath = [NSIndexPath indexPathForRow:([[[AWBRoadsignStore defaultStore] myRoadsigns] count] - 1) inSection:0];
+        [parentViewController loadRoadsignAtIndexPath:myRoadsignIndexPath withSettingsInfo:nil];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath    
 {
-    AWBRoadsignDescriptor *roadsign = [[[AWBRoadsignStore defaultStore] myRoadsigns] objectAtIndex:[indexPath row]];
+    AWBRoadsignDescriptor *roadsign = [[[AWBRoadsignStore defaultStore] templateRoadsigns] objectAtIndex:[indexPath row]];
     NSUInteger totalDiskBytes = AWBDocumentSubdirectoryFolderSize(roadsign.roadsignSaveDocumentsSubdirectory);
     [[NSUserDefaults standardUserDefaults] setInteger:[indexPath row] forKey:kAWBInfoKeyScrollToRoadsignStoreMyRoadsignIndex]; 
     
@@ -125,16 +123,6 @@
     [parentViewController presentModalViewController:navController animated:YES];
     [settingsController release];   
     [navController release];
-}
-
-- (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath  
-{
-    [parentViewController setEditing:YES animated:YES];
-}
-
-- (void)tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath 
-{
-    [parentViewController setEditing:NO animated:YES];
 }
 
 @end

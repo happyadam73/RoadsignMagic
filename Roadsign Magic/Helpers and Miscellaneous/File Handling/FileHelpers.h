@@ -26,3 +26,5 @@ BOOL AWBCopyBundleItemAtPathToDocumentsFolder(NSString *bundleSubdirectory, NSSt
 BOOL AWBCopyBundleFolderToDocumentsFolder(NSString *bundleSubdirectory, NSString *docsSubdirectory);
 BOOL AWBCopyRoadsignHelpFilesForDevice(void);
 NSString *AWBPathInMainBundleSubdirectory(NSString *bundleSubdirectory, NSString *filename);
+NSString *AWBPathInMainBundleTemplateSubdirectory(NSString *bundleTemplateSubdirectory, NSString *filename);
+

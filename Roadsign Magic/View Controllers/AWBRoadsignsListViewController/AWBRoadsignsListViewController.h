@@ -15,22 +15,27 @@
 
 @interface AWBRoadsignsListViewController : UIViewController <UITableViewDelegate> {
 	UITableView *theTableView;
-	id <UITableViewDataSource, AWBRoadsignDataSource> dataSource;
-
+	//id <UITableViewDataSource, UITableViewDelegate, AWBRoadsignDataSource> dataSource;
+    NSArray *dataSources;
+    NSUInteger selectedDataSource;
     NSInteger scrollToRow;
     AWBBusyView *busyView;
     BOOL animateTransition;
 }
 
 @property (nonatomic,retain) UITableView *theTableView;
-@property (nonatomic,retain) id <UITableViewDataSource, AWBRoadsignDataSource> dataSource;
+//@property (nonatomic,retain) id <UITableViewDataSource, UITableViewDelegate, AWBRoadsignDataSource> dataSource;
+@property (nonatomic, retain) NSArray *dataSources;
 @property (nonatomic, retain) AWBBusyView *busyView;
+@property (nonatomic, assign) NSUInteger selectedDataSource;
 
-- (id)initWithDataSource:(id <UITableViewDataSource, AWBRoadsignDataSource>)theDataSource;
+//- (id)initWithDataSource:(id <UITableViewDataSource, UITableViewDelegate, AWBRoadsignDataSource>)theDataSource;
+- (id)initWithDataSources:(NSArray *)theDataSources;
 - (void)addNewRoadsignDescriptor:(id)sender;
 - (void)loadRoadsignAtIndexPath:(NSIndexPath *)indexPath withSettingsInfo:(NSDictionary *)info;
 - (void)navigateToRoadsignController:(AWBRoadsignMagicMainViewController *)roadsignController;
 - (CGPoint)centerOfVisibleRows;
-- (void)addToolbar;
+- (void)addTitleView;
+- (void)switchDatasource:(id)sender;
 
 @end
