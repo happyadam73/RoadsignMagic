@@ -294,13 +294,30 @@
 
 - (void)handleLongPresses:(UILongPressGestureRecognizer *)paramSender
 {
-    if (paramSender.state == UIGestureRecognizerStateEnded) {
-        if (!self.isSignInEditMode && self.navigationController.toolbarHidden) {
-            [self toggleFullscreen];
-        }
-        lockedView.canvasAnchored = !lockedView.canvasAnchored;
-        mainScrollView.scrollEnabled = !lockedView.canvasAnchored;
-    }
+
+//    if (self.isSignInEditMode || self.lockedView.objectsLocked) {
+//        return;
+//    } else {
+//        if (!self.navigationController.toolbarHidden) {
+//            [self toggleFullscreen];
+//        }
+//    }
+//
+//    CGPoint point = [paramSender locationInView:self.signBackgroundView]; 
+//    UIView <AWBTransformableView> *view = [self.signBackgroundView topTransformableViewAtPoint:point];
+//    
+//    if (view) {
+//        [self.signBackgroundView sendSubviewToBack:view];
+//    }    
+    
+    
+//    if (paramSender.state == UIGestureRecognizerStateEnded) {
+//        if (!self.isSignInEditMode && self.navigationController.toolbarHidden) {
+//            [self toggleFullscreen];
+//        }
+//        lockedView.canvasAnchored = !lockedView.canvasAnchored;
+//        mainScrollView.scrollEnabled = !lockedView.canvasAnchored;
+//    }
 }
 
 - (void)handleLongDoublePresses:(UILongPressGestureRecognizer *)paramSender
