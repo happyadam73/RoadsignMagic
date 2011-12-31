@@ -12,7 +12,7 @@
 #import "AWBRoadsignDescriptor.h"
 #import "AWBRoadsignStore.h"
 #import "AWBSettingsGroup.h"
-#import "AWBSizeableImageTableCell.h"
+#import "AWBSizeableImageTableCell2.h"
 #import "AWBRoadsignsListViewController.h"
 
 @implementation AWBTemplateRoadsignsDataSource
@@ -39,7 +39,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[AWBSizeableImageTableCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[AWBSizeableImageTableCell2 alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
     AWBRoadsignDescriptor *roadsign = [[[AWBRoadsignStore defaultStore] templateRoadsigns] objectAtIndex:[indexPath row]];
@@ -56,7 +56,7 @@
     cell.imageView.image = thumbnail;
 //    cell.detailTextLabel.numberOfLines = 2;
 //    cell.detailTextLabel.text = [NSString stringWithFormat:@"Created %@", AWBDateStringForCurrentLocale(roadsign.createdDate)];        
-    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+//    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     
     return cell;
 }
@@ -91,9 +91,14 @@
 //    [[AWBRoadsignStore defaultStore] moveMyRoadsignAtIndex:[fromIndexPath row] toIndex:[toIndexPath row]];
 //}
 
-- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section 
+//- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section 
+//{
+//    return @"Select a template to create a new roadsign.";    
+//}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section 
 {
-    return @"Select a template to create a new roadsign.";    
+    return @"Select a template to make an editable copy in My Signs.";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -107,22 +112,22 @@
     }
 }
 
-- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath    
-{
-    AWBRoadsignDescriptor *roadsign = [[[AWBRoadsignStore defaultStore] templateRoadsigns] objectAtIndex:[indexPath row]];
-    NSUInteger totalDiskBytes = AWBDocumentSubdirectoryFolderSize(roadsign.roadsignSaveDocumentsSubdirectory);
-    [[NSUserDefaults standardUserDefaults] setInteger:[indexPath row] forKey:kAWBInfoKeyScrollToRoadsignStoreMyRoadsignIndex]; 
-    
-    NSMutableDictionary *settingsInfo = [NSMutableDictionary dictionaryWithObjectsAndKeys:roadsign.roadsignName, kAWBInfoKeyRoadsignName, [NSNumber numberWithInt:roadsign.totalSymbolObjects], kAWBInfoKeyRoadsignTotalImageObjects, [NSNumber numberWithInt:roadsign.totalLabelObjects], kAWBInfoKeyRoadsignTotalLabelObjects, [NSNumber numberWithInt:[indexPath row]], kAWBInfoKeyMyRoadsignStoreRoadsignIndex, [NSNumber numberWithInt:roadsign.totalImageMemoryBytes], kAWBInfoKeyRoadsignTotalImageMemoryBytes, [NSNumber numberWithInt:totalDiskBytes], kAWBInfoKeyRoadsignTotalDiskBytes, nil];
-    AWBRoadsignMagicSettingsTableViewController *settingsController = [[AWBRoadsignMagicSettingsTableViewController alloc] initWithSettings:[AWBSettings roadsignDescriptionSettingsWithInfo:settingsInfo header:[roadsign roadsignInfoHeaderView]] settingsInfo:settingsInfo rootController:nil]; 
-    settingsController.delegate = self;
-    settingsController.controllerType = AWBSettingsControllerTypeRoadsignInfoSettings;
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsController];
-    navController.modalPresentationStyle = UIModalPresentationPageSheet;
-    navController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;  
-    [parentViewController presentModalViewController:navController animated:YES];
-    [settingsController release];   
-    [navController release];
-}
+//- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath    
+//{
+//    AWBRoadsignDescriptor *roadsign = [[[AWBRoadsignStore defaultStore] templateRoadsigns] objectAtIndex:[indexPath row]];
+//    NSUInteger totalDiskBytes = AWBDocumentSubdirectoryFolderSize(roadsign.roadsignSaveDocumentsSubdirectory);
+//    [[NSUserDefaults standardUserDefaults] setInteger:[indexPath row] forKey:kAWBInfoKeyScrollToRoadsignStoreMyRoadsignIndex]; 
+//    
+//    NSMutableDictionary *settingsInfo = [NSMutableDictionary dictionaryWithObjectsAndKeys:roadsign.roadsignName, kAWBInfoKeyRoadsignName, [NSNumber numberWithInt:roadsign.totalSymbolObjects], kAWBInfoKeyRoadsignTotalImageObjects, [NSNumber numberWithInt:roadsign.totalLabelObjects], kAWBInfoKeyRoadsignTotalLabelObjects, [NSNumber numberWithInt:[indexPath row]], kAWBInfoKeyMyRoadsignStoreRoadsignIndex, [NSNumber numberWithInt:roadsign.totalImageMemoryBytes], kAWBInfoKeyRoadsignTotalImageMemoryBytes, [NSNumber numberWithInt:totalDiskBytes], kAWBInfoKeyRoadsignTotalDiskBytes, nil];
+//    AWBRoadsignMagicSettingsTableViewController *settingsController = [[AWBRoadsignMagicSettingsTableViewController alloc] initWithSettings:[AWBSettings roadsignDescriptionSettingsWithInfo:settingsInfo header:[roadsign roadsignInfoHeaderView]] settingsInfo:settingsInfo rootController:nil]; 
+//    settingsController.delegate = self;
+//    settingsController.controllerType = AWBSettingsControllerTypeRoadsignInfoSettings;
+//    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsController];
+//    navController.modalPresentationStyle = UIModalPresentationPageSheet;
+//    navController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;  
+//    [parentViewController presentModalViewController:navController animated:YES];
+//    [settingsController release];   
+//    [navController release];
+//}
 
 @end

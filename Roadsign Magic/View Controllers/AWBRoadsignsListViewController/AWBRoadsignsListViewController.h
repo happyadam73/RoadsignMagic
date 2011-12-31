@@ -37,5 +37,6 @@
 - (CGPoint)centerOfVisibleRows;
 - (void)addTitleView;
 - (void)switchDatasource:(id)sender;
+- (void)switchDatasourceWithSelectedIndex:(NSUInteger)selectedIndex;
 
 @end

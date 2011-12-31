@@ -59,11 +59,11 @@
         
         // Custom initialization
         scrollToRow = -1;
-        //self.navigationItem.title = @"My Signs";
-        UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewRoadsignDescriptor:)];
-        [[self navigationItem] setRightBarButtonItem:addButton];
-        [addButton release];
-        [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
+        self.navigationItem.title = @"My Signs";
+//        UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewRoadsignDescriptor:)];
+//        [[self navigationItem] setRightBarButtonItem:addButton];
+//        [addButton release];
+//        [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
 	}
 	return self;
 }
@@ -123,7 +123,12 @@
     [self.navigationController setToolbarHidden:YES animated:YES];
     //    [self addToolbar];
     [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:kAWBInfoKeyMyRoadsignStoreRoadsignIndex];
-    [theTableView reloadData];
+    UISegmentedControl *datasourceControl = (UISegmentedControl *)self.navigationItem.titleView;
+    if (datasourceControl.selectedSegmentIndex == 0) {
+        [theTableView reloadData];
+    } else {
+        datasourceControl.selectedSegmentIndex = 0;        
+    }    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -289,12 +294,24 @@
 {
     UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;
     NSLog(@"Selected Index: %d", segmentedControl.selectedSegmentIndex);
-    
-    selectedDataSource = segmentedControl.selectedSegmentIndex;
+    [self switchDatasourceWithSelectedIndex:segmentedControl.selectedSegmentIndex];
+}
+
+- (void)switchDatasourceWithSelectedIndex:(NSUInteger)selectedIndex
+{
+    selectedDataSource = selectedIndex;
+    if (selectedDataSource == 0) {
+        UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewRoadsignDescriptor:)];
+        [[self navigationItem] setRightBarButtonItem:addButton];
+        [addButton release];
+        [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];        
+    } else {
+        [[self navigationItem] setRightBarButtonItem:nil];
+        [[self navigationItem] setLeftBarButtonItem:nil];                
+    }
     theTableView.delegate = [dataSources objectAtIndex:selectedDataSource];
-	theTableView.dataSource = [dataSources objectAtIndex:selectedDataSource];
-    
-    [theTableView reloadData];
+    theTableView.dataSource = [dataSources objectAtIndex:selectedDataSource];
+    [theTableView reloadData];        
 }
 
 @end
