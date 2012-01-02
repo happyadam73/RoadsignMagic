@@ -13,6 +13,7 @@
 #import "AWBRoadsignStore.h"
 #import "AWBSettingsGroup.h"
 #import "AWBSizeableImageTableCell.h"
+#import "AWBMyFontsListViewController.h"
 
 @implementation AWBRoadsignsListViewController
 
@@ -20,6 +21,7 @@
 @synthesize dataSources;
 @synthesize busyView;
 @synthesize selectedDataSource;
+@synthesize myFontsButton;
 
 // this is the custom initialization method for the ElementsTableViewController
 // it expects an object that conforms to both the UITableViewDataSource protocol
@@ -71,6 +73,7 @@
 	[theTableView release];
 	[dataSources release];
     [busyView release];
+    [myFontsButton release];
 	[super dealloc];
 }
 
@@ -117,7 +120,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setToolbarHidden:YES animated:YES];
+    [self.navigationController setToolbarHidden:NO animated:YES];
+    self.toolbarItems = [self mySignsToolbarButtons];
     //    [self addToolbar];
     [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:kAWBInfoKeyMyRoadsignStoreRoadsignIndex];
     UISegmentedControl *datasourceControl = (UISegmentedControl *)self.navigationItem.titleView;
@@ -281,8 +285,8 @@
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:segItemsArray];
     segmentedControl.frame = CGRectMake(0, 0, 170, self.navigationController.navigationBar.bounds.size.height - 14);
     segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-    segmentedControl.selectedSegmentIndex = selectedDataSource;
     [segmentedControl addTarget:self action:@selector(switchDatasource:) forControlEvents:UIControlEventValueChanged];
+    segmentedControl.selectedSegmentIndex = selectedDataSource;
     self.navigationItem.titleView = segmentedControl;
     [segmentedControl release];
 }
@@ -300,14 +304,36 @@
         UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewRoadsignDescriptor:)];
         [[self navigationItem] setRightBarButtonItem:addButton];
         [addButton release];
-        [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];        
+        [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
+        [self.navigationController setToolbarHidden:NO animated:YES];
     } else {
         [[self navigationItem] setRightBarButtonItem:nil];
-        [[self navigationItem] setLeftBarButtonItem:nil];                
+        [[self navigationItem] setLeftBarButtonItem:nil]; 
+        [self.navigationController setToolbarHidden:YES animated:YES];
     }
     theTableView.delegate = [dataSources objectAtIndex:selectedDataSource];
     theTableView.dataSource = [dataSources objectAtIndex:selectedDataSource];
     [theTableView reloadData];        
+}
+
+- (UIBarButtonItem *)myFontsButton
+{
+    if (!myFontsButton) {
+        myFontsButton = [[UIBarButtonItem alloc] initWithTitle:@"My Fonts" style:UIBarButtonItemStyleBordered target:self action:@selector(showMyFonts)];
+    }
+    return myFontsButton;    
+}
+
+- (void)showMyFonts
+{
+    AWBMyFontsListViewController *controller = [[AWBMyFontsListViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];                
+}
+
+- (NSArray *)mySignsToolbarButtons
+{
+    return [NSArray arrayWithObjects:self.myFontsButton, nil];    
 }
 
 @end

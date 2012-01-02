@@ -16,3 +16,10 @@
 - (UITextField *)cellTextField;
 
 @end
+
+@interface AWBSettingTableCell : UITableViewCell 
+
+- (void)updateCellWithSetting:(AWBSetting *)aSetting;
+
+@end
+

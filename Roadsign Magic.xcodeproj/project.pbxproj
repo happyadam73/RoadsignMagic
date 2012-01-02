@@ -698,6 +698,8 @@
 		06AA87DE14923AC7009BA0EA /* S21029.png in Resources */ = {isa = PBXBuildFile; fileRef = 06AA87C114923AC7009BA0EA /* S21029.png */; };
 		06AA87DF14923AC7009BA0EA /* S21030.png in Resources */ = {isa = PBXBuildFile; fileRef = 06AA87C214923AC7009BA0EA /* S21030.png */; };
 		06AA87E014923AC7009BA0EA /* S21031.png in Resources */ = {isa = PBXBuildFile; fileRef = 06AA87C314923AC7009BA0EA /* S21031.png */; };
+		06AD3BD514B1B63A00B68B91 /* AWBMyFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 06AD3BD414B1B63A00B68B91 /* AWBMyFont.m */; };
+		06AD3BD814B1C72300B68B91 /* AWBMyFontStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 06AD3BD714B1C72200B68B91 /* AWBMyFontStore.m */; };
 		06B473801487D51100A95A04 /* S02@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06B4737B1487D51100A95A04 /* S02@2x.png */; };
 		06B473811487D51100A95A04 /* S12001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06B4737D1487D51100A95A04 /* S12001@2x.png */; };
 		06B473821487D51100A95A04 /* S22001.png in Resources */ = {isa = PBXBuildFile; fileRef = 06B4737F1487D51100A95A04 /* S22001.png */; };
@@ -759,7 +761,7 @@
 		06BB8760148CD7180051F9CB /* AWBRoadsign.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BB875F148CD7180051F9CB /* AWBRoadsign.m */; };
 		06BB8764148CD72F0051F9CB /* AWBRoadsignDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BB8763148CD72F0051F9CB /* AWBRoadsignDescriptor.m */; };
 		06BB8767148CD7410051F9CB /* AWBRoadsignStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BB8766148CD7410051F9CB /* AWBRoadsignStore.m */; };
-		06BB876C148D22250051F9CB /* AWBMyRoadsignsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BB876B148D22250051F9CB /* AWBMyRoadsignsListViewController.m */; };
+		06BB876C148D22250051F9CB /* AWBMyFontsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BB876B148D22250051F9CB /* AWBMyFontsListViewController.m */; };
 		06C345071485075D000A3CC8 /* S00@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06C344F41485075D000A3CC8 /* S00@2x.png */; };
 		06C345081485075D000A3CC8 /* S10001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06C344F61485075D000A3CC8 /* S10001@2x.png */; };
 		06C345091485075D000A3CC8 /* S10002@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06C344F71485075D000A3CC8 /* S10002@2x.png */; };
@@ -1679,6 +1681,10 @@
 		06AA87C114923AC7009BA0EA /* S21029.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = S21029.png; sourceTree = "<group>"; };
 		06AA87C214923AC7009BA0EA /* S21030.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = S21030.png; sourceTree = "<group>"; };
 		06AA87C314923AC7009BA0EA /* S21031.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = S21031.png; sourceTree = "<group>"; };
+		06AD3BD314B1B63A00B68B91 /* AWBMyFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBMyFont.h; path = MyFonts/AWBMyFont.h; sourceTree = "<group>"; };
+		06AD3BD414B1B63A00B68B91 /* AWBMyFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBMyFont.m; path = MyFonts/AWBMyFont.m; sourceTree = "<group>"; };
+		06AD3BD614B1C72200B68B91 /* AWBMyFontStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBMyFontStore.h; path = MyFonts/AWBMyFontStore.h; sourceTree = "<group>"; };
+		06AD3BD714B1C72200B68B91 /* AWBMyFontStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBMyFontStore.m; path = MyFonts/AWBMyFontStore.m; sourceTree = "<group>"; };
 		06B4737B1487D51100A95A04 /* S02@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S02@2x.png"; sourceTree = "<group>"; };
 		06B4737D1487D51100A95A04 /* S12001@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S12001@2x.png"; sourceTree = "<group>"; };
 		06B4737F1487D51100A95A04 /* S22001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = S22001.png; sourceTree = "<group>"; };
@@ -1743,8 +1749,8 @@
 		06BB8763148CD72F0051F9CB /* AWBRoadsignDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBRoadsignDescriptor.m; path = "Roadsigns Model/AWBRoadsignDescriptor.m"; sourceTree = "<group>"; };
 		06BB8765148CD7410051F9CB /* AWBRoadsignStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBRoadsignStore.h; path = "Roadsigns Model/AWBRoadsignStore.h"; sourceTree = "<group>"; };
 		06BB8766148CD7410051F9CB /* AWBRoadsignStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBRoadsignStore.m; path = "Roadsigns Model/AWBRoadsignStore.m"; sourceTree = "<group>"; };
-		06BB876A148D22250051F9CB /* AWBMyRoadsignsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBMyRoadsignsListViewController.h; path = AWBRoadsignsListViewController/AWBMyRoadsignsListViewController.h; sourceTree = "<group>"; };
-		06BB876B148D22250051F9CB /* AWBMyRoadsignsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBMyRoadsignsListViewController.m; path = AWBRoadsignsListViewController/AWBMyRoadsignsListViewController.m; sourceTree = "<group>"; };
+		06BB876A148D22250051F9CB /* AWBMyFontsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; name = AWBMyFontsListViewController.h; path = AWBRoadsignsListViewController/AWBMyFontsListViewController.h; sourceTree = "<group>"; };
+		06BB876B148D22250051F9CB /* AWBMyFontsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBMyFontsListViewController.m; path = AWBRoadsignsListViewController/AWBMyFontsListViewController.m; sourceTree = "<group>"; };
 		06C344F41485075D000A3CC8 /* S00@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S00@2x.png"; sourceTree = "<group>"; };
 		06C344F61485075D000A3CC8 /* S10001@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S10001@2x.png"; sourceTree = "<group>"; };
 		06C344F71485075D000A3CC8 /* S10002@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S10002@2x.png"; sourceTree = "<group>"; };
@@ -2748,6 +2754,17 @@
 			name = zFont;
 			sourceTree = "<group>";
 		};
+		06AD3BD214B1B61500B68B91 /* MyFonts */ = {
+			isa = PBXGroup;
+			children = (
+				06AD3BD314B1B63A00B68B91 /* AWBMyFont.h */,
+				06AD3BD414B1B63A00B68B91 /* AWBMyFont.m */,
+				06AD3BD614B1C72200B68B91 /* AWBMyFontStore.h */,
+				06AD3BD714B1C72200B68B91 /* AWBMyFontStore.m */,
+			);
+			name = MyFonts;
+			sourceTree = "<group>";
+		};
 		06B4737A1487D51100A95A04 /* S2 Tourist Symbols */ = {
 			isa = PBXGroup;
 			children = (
@@ -2919,8 +2936,8 @@
 		06BB8769148D21C80051F9CB /* AWBRoadsignsListViewController */ = {
 			isa = PBXGroup;
 			children = (
-				06BB876A148D22250051F9CB /* AWBMyRoadsignsListViewController.h */,
-				06BB876B148D22250051F9CB /* AWBMyRoadsignsListViewController.m */,
+				06BB876A148D22250051F9CB /* AWBMyFontsListViewController.h */,
+				06BB876B148D22250051F9CB /* AWBMyFontsListViewController.m */,
 				069F442C14A4F8060037C72C /* AWBRoadsignsListViewController.h */,
 				069F442D14A4F8060037C72C /* AWBRoadsignsListViewController.m */,
 				069F442F14A4F82B0037C72C /* AWBMyRoadsignsDataSource.h */,
@@ -3698,6 +3715,7 @@
 		B5E0450D1478492F006A8D5C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				06AD3BD214B1B61500B68B91 /* MyFonts */,
 				06978F25147FB06F00171A51 /* Roadsigns Model */,
 				B5E0451814784EA1006A8D5C /* Settings Model */,
 			);
@@ -4676,7 +4694,7 @@
 				06BB8760148CD7180051F9CB /* AWBRoadsign.m in Sources */,
 				06BB8764148CD72F0051F9CB /* AWBRoadsignDescriptor.m in Sources */,
 				06BB8767148CD7410051F9CB /* AWBRoadsignStore.m in Sources */,
-				06BB876C148D22250051F9CB /* AWBMyRoadsignsListViewController.m in Sources */,
+				06BB876C148D22250051F9CB /* AWBMyFontsListViewController.m in Sources */,
 				06903FD8148E39C200232B9E /* AWBSizeableImageTableCell.m in Sources */,
 				06D1AEE41494D9560096099B /* AWBExportQualitySliderCell.m in Sources */,
 				06D1AEEF1495071D0096099B /* AWBTextViewCell.m in Sources */,
@@ -4699,6 +4717,8 @@
 				069F443114A4F82B0037C72C /* AWBMyRoadsignsDataSource.m in Sources */,
 				069F443414A4F8420037C72C /* AWBTemplateRoadsignsDataSource.m in Sources */,
 				0637298E14AF3AA00033E367 /* AWBSizeableImageTableCell2.m in Sources */,
+				06AD3BD514B1B63A00B68B91 /* AWBMyFont.m in Sources */,
+				06AD3BD814B1C72300B68B91 /* AWBMyFontStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

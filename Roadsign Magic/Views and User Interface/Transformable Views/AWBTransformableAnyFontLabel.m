@@ -27,6 +27,7 @@
 @synthesize roundedBorder, viewBorderColor, viewShadowColor, addShadow, addBorder;
 @synthesize labelView, isZFontLabel, selectionMarquee1, selectionMarquee2;
 @synthesize addTextBackground, textBackgroundColor;
+@synthesize myFontUrl;
 
 - (void)initialiseLayerRotation:(CGFloat)rotation scale:(CGFloat)scale  
 {
@@ -99,17 +100,26 @@
 
 - (id)initWithTextLines:(NSArray *)lines fontName:(NSString *)fontName fontSize:(CGFloat)fontSize offset:(CGPoint)point rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip color:(UIColor *)color alignment:(UITextAlignment)alignment
 {
+    BOOL isMyFont = [AWBRoadsignFont isMyFont:fontName];
     BOOL isZFont = [AWBRoadsignFont isZFont:fontName];
-    if (isZFont) {
-        ZFont *zFont = [[FontManager sharedManager] zFontWithName:fontName pointSize:fontSize];
-        return [self initWithTextLines:lines zFont:zFont offset:point rotation:rotation scale:scale horizontalFlip:flip color:color alignment:alignment];
+    
+    if (isZFont || isMyFont) {
+        ZFont *zFont = nil;
+        NSString *fontURL = nil;
+        if (isMyFont) {
+            fontURL = fontName;
+            zFont = [[FontManager sharedManager] zFontWithURL:[NSURL URLWithString:fontName] pointSize:fontSize];
+        } else {
+            zFont = [[FontManager sharedManager] zFontWithName:fontName pointSize:fontSize];
+        }
+        return [self initWithTextLines:lines zFont:zFont offset:point rotation:rotation scale:scale horizontalFlip:flip color:color alignment:alignment myFontURL:fontURL];
     } else {
         UIFont *iOSFont = [UIFont fontWithName:fontName size:fontSize];
         return [self initWithTextLines:lines iOSFont:iOSFont offset:point rotation:rotation scale:scale horizontalFlip:flip color:color alignment:alignment];
     }
 }
 
-- (id)initWithTextLines:(NSArray *)lines zFont:(ZFont *)font offset:(CGPoint)point rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip color:(UIColor *)color alignment:(UITextAlignment)alignment
+- (id)initWithTextLines:(NSArray *)lines zFont:(ZFont *)font offset:(CGPoint)point rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip color:(UIColor *)color alignment:(UITextAlignment)alignment myFontURL:(NSString *)fontURL
 {
     ZFont *textFont = font;
     if (!textFont) {
@@ -126,10 +136,9 @@
     
     self = [super initWithFrame:CGRectMake(point.x, point.y, frameWidth, frameHeight)];
     if (self) { 
-        
+        self.myFontUrl = fontURL;
         isZFontLabel = YES;
         initialHeight = frameHeight;
-        
         FontLabel *label = [[FontLabel alloc] initWithFrame:CGRectMake(0.0, 0.0, frameWidth, frameHeight) zFont:textFont];
         label.layer.masksToBounds = YES;
         self.labelView = label;
@@ -171,7 +180,7 @@
     
     self = [super initWithFrame:CGRectMake(point.x, point.y, frameWidth, frameHeight)];
     if (self) { 
-        
+        self.myFontUrl = nil;
         isZFontLabel = NO;
         initialHeight = frameHeight;
         
@@ -297,18 +306,27 @@
 }
 
 - (void)updateLabelTextLines:(NSArray *)lines withFontName:(NSString *)fontName fontSize:(CGFloat)fontSize 
-{
+{   
+    BOOL isMyFont = [AWBRoadsignFont isMyFont:fontName];
     BOOL isZFont = [AWBRoadsignFont isZFont:fontName];
-    if (isZFont) {
-        ZFont *zFont = [[FontManager sharedManager] zFontWithName:fontName pointSize:fontSize];
-        [self updateLabelTextLines:lines withZFont:zFont];
+    
+    if (isZFont || isMyFont) {
+        ZFont *zFont = nil;
+        NSString *fontURL = nil;
+        if (isMyFont) {
+            fontURL = fontName;
+            zFont = [[FontManager sharedManager] zFontWithURL:[NSURL URLWithString:fontName] pointSize:fontSize];
+        } else {
+            zFont = [[FontManager sharedManager] zFontWithName:fontName pointSize:fontSize];
+        }        
+        [self updateLabelTextLines:lines withZFont:zFont myFontURL:fontURL];
     } else {
         UIFont *iOSFont = [UIFont fontWithName:fontName size:fontSize];
         [self updateLabelTextLines:lines withiOSFont:iOSFont];
     }    
 }
 
-- (void)updateLabelTextLines:(NSArray *)lines withZFont:(ZFont *)font
+- (void)updateLabelTextLines:(NSArray *)lines withZFont:(ZFont *)font myFontURL:(NSString *)fontURL
 {    
     //OK, we're expecting a ZFont label - if it's not currently then we need to remove the iOS font label and create a new ZFont label
     if (!isZFontLabel) {
@@ -327,6 +345,7 @@
         [label release];
         [self addSubview:self.labelView];
         isZFontLabel = YES;
+        self.myFontUrl = fontURL;
     }
     
     [self updateTextDimensionsWithLines:lines zFont:font];
@@ -376,6 +395,7 @@
         [label release];
         [self addSubview:self.labelView];
         isZFontLabel = NO;
+        self.myFontUrl = nil;
     }
     
     [self updateTextDimensionsWithLines:lines iOSFont:font];
@@ -408,10 +428,19 @@
 
 - (void)updateLabelTextWithFontName:(NSString *)fontName fontSize:(CGFloat)fontSize 
 {
+    BOOL isMyFont = [AWBRoadsignFont isMyFont:fontName];
     BOOL isZFont = [AWBRoadsignFont isZFont:fontName];
-    if (isZFont) {
-        ZFont *zFont = [[FontManager sharedManager] zFontWithName:fontName pointSize:fontSize];
-        [self updateLabelTextLines:[self.labelView.text componentsSeparatedByString:@"\r\n"] withZFont:zFont];
+    
+    if (isZFont || isMyFont) {
+        ZFont *zFont = nil;
+        NSString *fontURL = nil;
+        if (isMyFont) {
+            fontURL = fontName;
+            zFont = [[FontManager sharedManager] zFontWithURL:[NSURL URLWithString:fontName] pointSize:fontSize];
+        } else {
+            zFont = [[FontManager sharedManager] zFontWithName:fontName pointSize:fontSize];
+        }
+        [self updateLabelTextLines:[self.labelView.text componentsSeparatedByString:@"\r\n"] withZFont:zFont myFontURL:fontURL];
     } else {
         UIFont *iOSFont = [UIFont fontWithName:fontName size:fontSize];
         [self updateLabelTextLines:[self.labelView.text componentsSeparatedByString:@"\r\n"] withiOSFont:iOSFont];
@@ -423,8 +452,12 @@
     [self applyPendingRotationToCapturedView];
     [aCoder encodeObject:self.labelView.text forKey:@"labelText"];
     if (self.isZFontLabel) {
-        [aCoder encodeObject:((FontLabel *)self.labelView).zFont.familyName forKey:@"labelFontName"];
-        [aCoder encodeFloat:((FontLabel *)self.labelView).zFont.pointSize forKey:@"labelFontSize"];
+        if (self.myFontUrl) {
+            [aCoder encodeObject:self.myFontUrl forKey:@"labelFontName"];
+        } else {
+            [aCoder encodeObject:((FontLabel *)self.labelView).zFont.familyName forKey:@"labelFontName"];
+        }
+        [aCoder encodeFloat:((FontLabel *)self.labelView).zFont.pointSize forKey:@"labelFontSize"];        
     } else {
         [aCoder encodeObject:self.labelView.font.fontName forKey:@"labelFontName"];
         [aCoder encodeFloat:self.labelView.font.pointSize forKey:@"labelFontSize"];        
@@ -604,6 +637,7 @@
     [viewBorderColor release];
     [viewShadowColor release];
     [textBackgroundColor release];
+    [myFontUrl release];
     [super dealloc];
 }
 

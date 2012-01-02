@@ -14,6 +14,8 @@
 #import "UIImage+NonCached.h"
 #import "AWBRoadsignDescriptor.h"
 #import "UIColor+Texture.h"
+#import "AWBMyFontStore.h"
+#import "AWBMyFont.h"
 
 @implementation AWBSettingsGroup
 
@@ -290,6 +292,28 @@
         [fontGroup.mutuallyExclusiveObjects addObject:@"GillSans"];
     }
     fontGroup.selectedIndex = [fontGroup.mutuallyExclusiveObjects indexOfObject:[info objectForKey:kAWBInfoKeyTextFontName]];
+    
+    return [fontGroup autorelease];
+}
+
++ (AWBSettingsGroup *)myFontSettingsGroupWithInfo:(NSDictionary *)info
+{
+    NSArray *allMyFonts = [[AWBMyFontStore defaultStore] allMyFonts];
+    NSMutableArray *fontSettings = [[NSMutableArray alloc] initWithCapacity:[allMyFonts count]];
+    NSMutableArray *fontFileUrls = [[NSMutableArray alloc] initWithCapacity:[allMyFonts count]];
+
+    for (AWBMyFont *myFont in allMyFonts) {
+        [fontSettings addObject:[AWBSetting defaultSettingWithText:myFont.fontName]];
+        [fontFileUrls addObject:[myFont.fileUrl absoluteString]];
+    }
+    
+    AWBSettingsGroup *fontGroup = [[self alloc] initWithSettings:fontSettings header:@"Select a Font" footer:nil];
+    fontGroup.isMutuallyExclusive = YES;
+    fontGroup.settingKeyForMutuallyExclusiveObjects = kAWBInfoKeyTextFontName;
+    fontGroup.mutuallyExclusiveObjects = fontFileUrls; 
+    fontGroup.selectedIndex = [fontGroup.mutuallyExclusiveObjects indexOfObject:[info objectForKey:kAWBInfoKeyTextFontName]];
+    [fontSettings release];
+    [fontFileUrls release];
     
     return [fontGroup autorelease];
 }

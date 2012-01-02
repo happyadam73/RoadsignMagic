@@ -21,6 +21,7 @@
     NSInteger scrollToRow;
     AWBBusyView *busyView;
     BOOL animateTransition;
+    UIBarButtonItem *myFontsButton;
 }
 
 @property (nonatomic,retain) UITableView *theTableView;
@@ -28,6 +29,7 @@
 @property (nonatomic, retain) NSArray *dataSources;
 @property (nonatomic, retain) AWBBusyView *busyView;
 @property (nonatomic, assign) NSUInteger selectedDataSource;
+@property (nonatomic, retain) UIBarButtonItem *myFontsButton;
 
 //- (id)initWithDataSource:(id <UITableViewDataSource, UITableViewDelegate, AWBRoadsignDataSource>)theDataSource;
 - (id)initWithDataSources:(NSArray *)theDataSources;
@@ -38,5 +40,7 @@
 - (void)addTitleView;
 - (void)switchDatasource:(id)sender;
 - (void)switchDatasourceWithSelectedIndex:(NSUInteger)selectedIndex;
+- (void)showMyFonts;
+- (NSArray *)mySignsToolbarButtons;
 
 @end

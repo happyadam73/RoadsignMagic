@@ -95,4 +95,18 @@
     }
 }
 
++ (BOOL)isMyFont:(NSString *)fontName
+{
+    NSURL *fileUrl = [NSURL URLWithString:fontName];
+    if (fileUrl) {
+        if ([fileUrl isFileURL]) {
+            return YES;
+        } else {
+            return NO;
+        }
+    } else {
+        return NO;
+    }
+}
+
 @end

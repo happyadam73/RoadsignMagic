@@ -205,7 +205,8 @@
 
 + (AWBSettings *)fontSettingsWithInfo:(NSDictionary *)info
 {
-    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup fontSettingsGroupWithInfo:info], nil];
+    //NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup fontSettingsGroupWithInfo:info], nil];
+    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup myFontSettingsGroupWithInfo:info], nil];
     return [[[self alloc] initWithSettingsGroups:settings title:@"Choose a Font"] autorelease];
 }
 

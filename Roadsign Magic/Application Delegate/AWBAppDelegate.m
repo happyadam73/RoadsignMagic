@@ -11,13 +11,15 @@
 #import "AWBRoadsignMagicMainViewController+UI.h"
 #import "AWBRoadsignMagicSettingsTableViewController.h"
 #import "AWBSettings.h"
-#import "AWBMyRoadsignsListViewController.h"
+#import "AWBMyFontsListViewController.h"
 #import "AWBRoadsignsListViewController.h"
 #import "AWBMyRoadsignsDataSource.h"
 #import "AWBTemplateRoadsignsDataSource.h"
 #import "AWBRoadsignStore.h"
 #import "AWBRoadsignDescriptor.h"
 #import "Facebook.h"
+#import "AWBMyFont.h"
+#import "AWBMyFontStore.h"
 
 static NSString* kAppId = @"289600444412359";
 
@@ -44,14 +46,6 @@ static NSString* kAppId = @"289600444412359";
     self.signBackgroundSize = CGSizeZero;
     // Initialize Facebook
     facebook = [[Facebook alloc] initWithAppId:kAppId urlSchemeSuffix:@"rsm" andDelegate:nil];
-    
-    NSURL *url = (NSURL *)[launchOptions valueForKey:UIApplicationLaunchOptionsURLKey];
-    if (url) {
-        NSLog(@"URL: %@", url);
-        if ([[url absoluteString] hasPrefix:[self.facebook getOwnBaseUrl]]) {
-            [self.facebook handleOpenURL:url];
-        }   
-    }
     
     // Initialize user permissions
     //    userPermissions = [[NSMutableDictionary alloc] initWithCapacity:1];
@@ -105,8 +99,15 @@ static NSString* kAppId = @"289600444412359";
     self.window.rootViewController = self.mainNavigationController;
     [navController release];
     [listController release];
+    
     [self.window makeKeyAndVisible];
-    return YES;    
+    
+    NSURL *url = (NSURL *)[launchOptions valueForKey:UIApplicationLaunchOptionsURLKey];
+    if (url) {
+        return [self handleOpenURL:url];  
+    } else {
+        return YES;            
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -152,19 +153,49 @@ static NSString* kAppId = @"289600444412359";
 }
 
 -(BOOL) application:(UIApplication *)application handleOpenURL:(NSURL *)url 
-{       
+{ 
+    return [self handleOpenURL:url];
+}
+
+- (BOOL)handleOpenURL:(NSURL *)url
+{
     NSLog(@"URL: %@", url);
+    NSLog(@"Last Path Component: %@", [url lastPathComponent]);
+    NSLog(@"Path: %@", [url path]);
     
     if ([[url absoluteString] hasPrefix:[self.facebook getOwnBaseUrl]]) {
         return [self.facebook handleOpenURL:url];
     } else {
         if ([url isFileURL]) {
-            //my font stuff
+//            //my font stuff
+//            AWBMyFont *myFont = [[AWBMyFont alloc] initWithUrl:url];
+//            if (myFont) {
+//                NSLog(@"Font: %@ %@ %@ %@ %@ %@ %d", myFont.familyName, myFont.fontName, myFont.postScriptName, myFont.filename, myFont.fileUrl, myFont.createdDate, myFont.fileSizeBytes);
+//                BOOL success = [[AWBMyFontStore defaultStore] installMyFont:myFont];
+//                if (success) {
+//                    NSLog(@"Installed Font: %@ %@ %@ %@ %@ %@ %d", myFont.familyName, myFont.fontName, myFont.postScriptName, myFont.filename, myFont.fileUrl, myFont.createdDate, myFont.fileSizeBytes);
+//                }
+//            } else {
+//                NSLog(@"No Font loaded!");
+//            }
+//            [myFont release];
             [self.mainNavigationController.visibleViewController dismissModalViewControllerAnimated:YES];
             NSLog(@"Top View Controller: %@", self.mainNavigationController.topViewController);
-            AWBRoadsignMagicMainViewController *controller = [[AWBRoadsignMagicMainViewController alloc] init];
-            [self.mainNavigationController pushViewController:controller animated:YES];
-            [controller release];
+            
+            if (![self.mainNavigationController.topViewController isKindOfClass:[AWBMyFontsListViewController class]]) {
+                AWBMyFontsListViewController *controller = [[AWBMyFontsListViewController alloc] init];
+                controller.pendingMyFontInstall = YES;
+                controller.pendingMyFontInstallURL = url;
+                [self.mainNavigationController pushViewController:controller animated:YES];
+                [controller release];                
+            } else {
+                AWBMyFontsListViewController *controller = (AWBMyFontsListViewController *)self.mainNavigationController.topViewController;
+                if (controller.installMyFontAlertView) {
+                    [controller.installMyFontAlertView dismissWithClickedButtonIndex:controller.installMyFontAlertView.cancelButtonIndex animated:NO];
+                } 
+                controller.pendingMyFontInstall = YES;
+                controller.pendingMyFontInstallURL = url;
+            }
             return YES;            
         } else {
             return NO;

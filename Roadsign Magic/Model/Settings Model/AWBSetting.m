@@ -22,6 +22,7 @@
 #import "AWBExportQualitySliderCell.h"
 #import "AWBTextViewCell.h"
 #import "AWBZFontTableCell.h"
+#import "AWBSettingTableCell.h"
 
 @implementation AWBSetting
 
@@ -150,6 +151,12 @@
     return [setting autorelease];
 }
 
++ (AWBSetting *)defaultSettingWithText:(NSString *)text
+{
+    AWBSetting *setting = [[self alloc] initWithText:text controlType:AWBSettingControlTypeDefault value:nil key:nil];
+    return [setting autorelease];
+}
+
 - (NSString *)cellReuseIdentifier
 {
     switch (controlType) {
@@ -250,7 +257,7 @@
             tableCell.selectionStyle = UITableViewCellSelectionStyleBlue;
             break;
         case AWBSettingControlTypeDefault:
-            tableCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.cellReuseIdentifier];
+            tableCell = [[AWBSettingTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.cellReuseIdentifier];
             tableCell.selectionStyle = UITableViewCellSelectionStyleBlue;
             tableCell.textLabel.text = self.text;
             break;

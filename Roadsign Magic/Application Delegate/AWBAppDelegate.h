@@ -20,4 +20,6 @@
 @property (nonatomic, assign) CGSize signBackgroundSize;
 @property (nonatomic, retain) Facebook *facebook;
 
+- (BOOL)handleOpenURL:(NSURL *)url;
+
 @end
