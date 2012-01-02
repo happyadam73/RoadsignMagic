@@ -47,7 +47,8 @@
 
 - (id)initWithDataSources:(NSArray *)theDataSources 
 {
-	if ([self init]) {
+    self = [super init];
+    if (self) {  
 		theTableView = nil;
 		
 		// retain the data source
@@ -60,10 +61,6 @@
         // Custom initialization
         scrollToRow = -1;
         self.navigationItem.title = @"My Signs";
-//        UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewRoadsignDescriptor:)];
-//        [[self navigationItem] setRightBarButtonItem:addButton];
-//        [addButton release];
-//        [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
 	}
 	return self;
 }
@@ -105,7 +102,7 @@
     [super viewDidLoad];
     
     if (DEVICE_IS_IPAD) {
-        theTableView.rowHeight = 212;
+        theTableView.rowHeight = 200;
     } else {
         theTableView.rowHeight = 100;    
     } 
@@ -293,7 +290,6 @@
 - (void)switchDatasource:(id)sender
 {
     UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;
-    NSLog(@"Selected Index: %d", segmentedControl.selectedSegmentIndex);
     [self switchDatasourceWithSelectedIndex:segmentedControl.selectedSegmentIndex];
 }
 
