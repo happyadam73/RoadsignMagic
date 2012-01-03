@@ -21,6 +21,7 @@
 @synthesize roadsignBackgroundColor, roadsignBackgroundTexture, useBackgroundTexture;
 @synthesize labelTextAlignment, labelTextColor, labelTextFont, labelTextLine1, labelTextLine2, labelTextLine3;
 @synthesize addTextBorders, addTextBackground, textRoundedBorders, textBorderColor, textBackgroundColor;
+@synthesize useMyFonts, labelMyFont;
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -40,6 +41,8 @@
     self.useBackgroundTexture = [aDecoder decodeBoolForKey:kAWBInfoKeyRoadsignUseBackgroundTexture];
     self.labelTextColor = [aDecoder decodeObjectForKey:kAWBInfoKeyTextColor];
     self.labelTextFont = [aDecoder decodeObjectForKey:kAWBInfoKeyTextFontName];
+    self.labelMyFont = [aDecoder decodeObjectForKey:kAWBInfoKeyMyFontName];
+    self.useMyFonts = [aDecoder decodeBoolForKey:kAWBInfoKeyUseMyFonts];
     self.labelTextLine1 = [aDecoder decodeObjectForKey:kAWBInfoKeyLabelTextLine1];
     self.labelTextLine2 = [aDecoder decodeObjectForKey:kAWBInfoKeyLabelTextLine2];
     self.labelTextLine3 = [aDecoder decodeObjectForKey:kAWBInfoKeyLabelTextLine3];
@@ -131,7 +134,9 @@
     [aCoder encodeObject:self.roadsignBackgroundTexture forKey:kAWBInfoKeyRoadsignBackgroundTexture]; 
     [aCoder encodeBool:self.useBackgroundTexture forKey:kAWBInfoKeyRoadsignUseBackgroundTexture]; 
     [aCoder encodeObject:self.labelTextColor forKey:kAWBInfoKeyTextColor]; 
-    [aCoder encodeObject:self.labelTextFont forKey:kAWBInfoKeyTextFontName]; 
+    [aCoder encodeObject:self.labelTextFont forKey:kAWBInfoKeyTextFontName];
+    [aCoder encodeObject:self.labelMyFont forKey:kAWBInfoKeyMyFontName];
+    [aCoder encodeBool:self.useMyFonts forKey:kAWBInfoKeyUseMyFonts];
     [aCoder encodeObject:self.labelTextLine1 forKey:kAWBInfoKeyLabelTextLine1]; 
     [aCoder encodeObject:self.labelTextLine2 forKey:kAWBInfoKeyLabelTextLine2]; 
     [aCoder encodeObject:self.labelTextLine3 forKey:kAWBInfoKeyLabelTextLine3]; 
@@ -147,6 +152,7 @@
 {
     [labelTextColor release];
     [labelTextFont release];
+    [labelMyFont release];
     [labelTextLine1 release];
     [labelTextLine2 release];
     [labelTextLine3 release];

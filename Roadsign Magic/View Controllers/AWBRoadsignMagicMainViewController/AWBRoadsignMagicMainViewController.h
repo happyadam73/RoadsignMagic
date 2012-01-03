@@ -81,6 +81,8 @@ enum {
     NSString *labelTextLine3;
     UIColor *labelTextColor;
     NSString *labelTextFont;
+    BOOL useMyFonts;
+    NSString *labelMyFont;
     UITextAlignment labelTextAlignment;
     BOOL addTextBorders;
     BOOL textRoundedBorders;
@@ -139,6 +141,8 @@ enum {
 @property (nonatomic, retain) NSString *labelTextLine3;
 @property (nonatomic, retain) UIColor *labelTextColor;
 @property (nonatomic, retain) NSString *labelTextFont;
+@property (nonatomic, assign) BOOL useMyFonts;
+@property (nonatomic, retain) NSString *labelMyFont;
 @property (nonatomic, assign) UITextAlignment labelTextAlignment;
 @property (nonatomic, assign) BOOL addTextBorders;
 @property (nonatomic, assign) BOOL textRoundedBorders;

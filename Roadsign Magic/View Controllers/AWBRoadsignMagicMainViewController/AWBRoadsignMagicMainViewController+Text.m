@@ -47,6 +47,7 @@
     UILabel *selectedLabelView = nil;
     AWBTransformableAnyFontLabel *selectedLabel = nil;
     BOOL isZFontLabel = NO;
+    NSString *fontURL = nil;
     
     for(UIView <AWBTransformableView> *view in [[self.signBackgroundView subviews] reverseObjectEnumerator]) {
         if ([view conformsToProtocol:@protocol(AWBTransformableView)]) {
@@ -54,14 +55,22 @@
                 selectedLabel = (AWBTransformableAnyFontLabel *)view;
                 selectedLabelView = [(AWBTransformableAnyFontLabel *)view labelView];
                 isZFontLabel = [(AWBTransformableAnyFontLabel *)view isZFontLabel];
+                fontURL = [(AWBTransformableAnyFontLabel *)view myFontUrl];
                 break;
             }
         }            
     }    
     
     if (isZFontLabel) {
-        self.labelTextFont = ((FontLabel *)selectedLabelView).zFont.familyName;
+        if (fontURL) {
+            self.useMyFonts = YES;
+            self.labelMyFont = fontURL;
+        } else {
+            self.useMyFonts = NO;
+            self.labelTextFont = ((FontLabel *)selectedLabelView).zFont.familyName;            
+        }
     } else {
+        self.useMyFonts = NO;
         self.labelTextFont = selectedLabelView.font.fontName;
     }
     

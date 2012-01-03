@@ -329,7 +329,7 @@
 - (void)updateLabelTextLines:(NSArray *)lines withZFont:(ZFont *)font myFontURL:(NSString *)fontURL
 {    
     //OK, we're expecting a ZFont label - if it's not currently then we need to remove the iOS font label and create a new ZFont label
-    if (!isZFontLabel) {
+    //if (!isZFontLabel) {
         //before removing the iOS label, we need to get the alignment and color values
         UITextAlignment alignment = self.labelView.textAlignment;
         CGColorRef colorRef = [self.labelView.textColor  CGColor];
@@ -346,7 +346,7 @@
         [self addSubview:self.labelView];
         isZFontLabel = YES;
         self.myFontUrl = fontURL;
-    }
+    //}
     
     [self updateTextDimensionsWithLines:lines zFont:font];
     CGRect newBounds = CGRectMake(0.0, 0.0, (1.2 * maxWidth) + (0.25 * maxHeight), (1.1 * totalHeight) + 10.0);

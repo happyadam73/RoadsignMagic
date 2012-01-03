@@ -22,7 +22,9 @@ static NSString *const kAWBInfoKeyRoadsignBackgroundTexture = @"RoadsignBackgrou
 static NSString *const kAWBInfoKeyRoadsignUseBackgroundTexture = @"RoadsignUseBackgroundTexture";
 static NSString *const kAWBInfoKeyTextColor = @"TextColor";
 static NSString *const kAWBInfoKeyTextAlignment = @"TextAlignment";
+static NSString *const kAWBInfoKeyUseMyFonts = @"UseMyFonts";
 static NSString *const kAWBInfoKeyTextFontName = @"TextFontName";
+static NSString *const kAWBInfoKeyMyFontName = @"MyFontName";
 static NSString *const kAWBInfoKeyLabelTextLine1 = @"LabelTextLine1";
 static NSString *const kAWBInfoKeyLabelTextLine2 = @"LabelTextLine2";
 static NSString *const kAWBInfoKeyLabelTextLine3 = @"LabelTextLine3";
@@ -96,6 +98,7 @@ static NSString *const kAWBBackgroundSettingsFooterText = @"By default, this bac
 + (AWBSettingsGroup *)backgroundTextureSwitchSettingsGroupWithInfo:(NSDictionary *)info header:(NSString *)header footer:(NSString *)footer;
 + (AWBSettingsGroup *)fontSettingsGroupWithInfo:(NSDictionary *)info;
 + (AWBSettingsGroup *)myFontSettingsGroupWithInfo:(NSDictionary *)info;
++ (AWBSettingsGroup *)myFontsSwitchSettingsGroupWithInfo:(NSDictionary *)info;
 + (AWBSettingsGroup *)textSettingsDrilldownSettingsGroupWithInfo:(NSDictionary *)info;
 + (AWBSettingsGroup *)textBordersSettingsGroupWithInfo:(NSDictionary *)info;
 + (AWBSettingsGroup *)textBorderColorPickerSettingsGroupWithInfo:(NSDictionary *)info;

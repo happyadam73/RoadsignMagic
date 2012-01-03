@@ -153,6 +153,7 @@
                                  [NSNumber numberWithBool:self.addTextBorders], kAWBInfoKeyTextBorders,
                                  [NSNumber numberWithBool:self.textRoundedBorders], kAWBInfoKeyTextRoundedBorders,
                                  [NSNumber numberWithBool:self.addTextBackground], kAWBInfoKeyTextBackground,
+                                 [NSNumber numberWithBool:self.useMyFonts], kAWBInfoKeyUseMyFonts,
                                  nil];
              
     if (self.roadsignBackgroundColor) {
@@ -167,6 +168,9 @@
     if (self.labelTextFont) {
         [info setObject:self.labelTextFont forKey:kAWBInfoKeyTextFontName];        
     }     
+    if (self.labelMyFont) {
+        [info setObject:self.labelMyFont forKey:kAWBInfoKeyMyFontName];        
+    } 
     if (self.labelTextLine1) {
         [info setObject:self.labelTextLine1 forKey:kAWBInfoKeyLabelTextLine1];
     }
@@ -202,6 +206,8 @@
             self.labelTextLine3 = [info objectForKey:kAWBInfoKeyLabelTextLine3];
             self.labelTextColor = [info objectForKey:kAWBInfoKeyTextColor];
             self.labelTextFont = [info objectForKey:kAWBInfoKeyTextFontName];
+            self.labelMyFont = [info objectForKey:kAWBInfoKeyMyFontName];
+            self.useMyFonts = [[info objectForKey:kAWBInfoKeyUseMyFonts] boolValue];
             self.labelTextAlignment = [[info objectForKey:kAWBInfoKeyTextAlignment] integerValue];
             self.addTextBorders = [[info objectForKey:kAWBInfoKeyTextBorders] boolValue];
             self.addTextBackground = [[info objectForKey:kAWBInfoKeyTextBackground] boolValue];
@@ -212,7 +218,13 @@
             if (self.labelTextLine1 || self.labelTextLine2 || self.labelTextLine3) {
                 NSMutableArray *lines = [self textLabelLines];
                 if ([lines count] > 0) {
-                    AWBTransformableAnyFontLabel *label = [[AWBTransformableAnyFontLabel alloc] initWithTextLines:lines fontName:self.labelTextFont fontSize:DEFAULT_FONT_POINT_SIZE offset:CGPointZero rotation:0.0 scale:1.0 horizontalFlip:NO color:self.labelTextColor alignment:self.labelTextAlignment];                    
+                    NSString *fontName = nil;
+                    if (self.useMyFonts) {
+                        fontName = self.labelMyFont;
+                    } else {
+                        fontName = self.labelTextFont;
+                    }
+                    AWBTransformableAnyFontLabel *label = [[AWBTransformableAnyFontLabel alloc] initWithTextLines:lines fontName:fontName fontSize:DEFAULT_FONT_POINT_SIZE offset:CGPointZero rotation:0.0 scale:1.0 horizontalFlip:NO color:self.labelTextColor alignment:self.labelTextAlignment];                    
                     [self applySettingsToLabel:label];
                     label.center = [self.signBackgroundView convertPoint:self.signBackgroundView.center fromView:self.signBackgroundView.superview];
                     [self.signBackgroundView addSubview:label];
@@ -226,13 +238,20 @@
         case AWBSettingsControllerTypeEditTextSettings:
             self.labelTextColor = [info objectForKey:kAWBInfoKeyTextColor];
             self.labelTextFont = [info objectForKey:kAWBInfoKeyTextFontName];
+            self.labelMyFont = [info objectForKey:kAWBInfoKeyMyFontName];
+            self.useMyFonts = [[info objectForKey:kAWBInfoKeyUseMyFonts] boolValue];
             self.labelTextAlignment = [[info objectForKey:kAWBInfoKeyTextAlignment] integerValue];
             self.addTextBorders = [[info objectForKey:kAWBInfoKeyTextBorders] boolValue];
             self.addTextBackground = [[info objectForKey:kAWBInfoKeyTextBackground] boolValue];
             self.textRoundedBorders = [[info objectForKey:kAWBInfoKeyTextRoundedBorders] boolValue];
             self.textBorderColor = [info objectForKey:kAWBInfoKeyTextBorderColor];
             self.textBackgroundColor = [info objectForKey:kAWBInfoKeyTextBackgroundColor];          
-                        
+            NSString *fontName = nil;
+            if (self.useMyFonts) {
+                fontName = self.labelMyFont;
+            } else {
+                fontName = self.labelTextFont;
+            }
             for(UIView <AWBTransformableView> *view in [[self.signBackgroundView subviews] reverseObjectEnumerator]) {
                 if ([view conformsToProtocol:@protocol(AWBTransformableView)]) {
                     if ((view.alpha == SELECTED_ALPHA) && [view isKindOfClass:[AWBTransformableAnyFontLabel class]]) {
@@ -250,13 +269,13 @@
                             self.labelTextLine3 = [info objectForKey:kAWBInfoKeyLabelTextLine3];
                             NSMutableArray *lines = [self textLabelLines];
                             if ([lines count] > 0) {
-                                [label updateLabelTextLines:lines withFontName:self.labelTextFont fontSize:DEFAULT_FONT_POINT_SIZE];
+                                [label updateLabelTextLines:lines withFontName:fontName fontSize:DEFAULT_FONT_POINT_SIZE];
                             } else {
-                                [label updateLabelTextWithFontName:self.labelTextFont fontSize:DEFAULT_FONT_POINT_SIZE];
+                                [label updateLabelTextWithFontName:fontName fontSize:DEFAULT_FONT_POINT_SIZE];
                             }
                         } else {
                             // more than one label - update the font so frame is adjusted
-                            [label updateLabelTextWithFontName:self.labelTextFont fontSize:DEFAULT_FONT_POINT_SIZE];
+                            [label updateLabelTextWithFontName:fontName fontSize:DEFAULT_FONT_POINT_SIZE];
                         }
                         
                         [self applySettingsToLabel:label];

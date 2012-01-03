@@ -39,6 +39,7 @@
 @synthesize totalSymbolSubviews, totalLabelSubviews, totalSubviews, roadsignDescriptor, roadsignSaveDocumentsSubdirectory;
 @synthesize exportFormatSelectedIndex, pngExportTransparentBackground, jpgExportQualityValue;
 @synthesize roadsignBackgroundTexture, roadsignBackgroundColor, useBackgroundTexture;
+@synthesize useMyFonts, labelMyFont;
 
 - (id)init
 {
@@ -68,6 +69,8 @@
         self.roadsignBackgroundTexture = @"Metal";
         self.useBackgroundTexture = YES;  
         self.labelTextFont = @"BritishRoadsign";
+        self.labelMyFont = nil;
+        self.useMyFonts = NO;
         self.addTextBorders = NO;
         self.addTextBackground = NO;
         self.textRoundedBorders = YES;
@@ -157,6 +160,7 @@
     self.fixedToolbarSpacing = nil;
     self.labelTextColor = nil;
     self.labelTextFont = nil;
+    self.labelMyFont = nil;
     self.labelTextLine1 = nil;
     self.labelTextLine2 = nil;
     self.labelTextLine3 = nil;
@@ -211,19 +215,7 @@
 
 - (void)loadView {
     [super loadView];
-    
-//    NSString *fontPath = [[NSBundle mainBundle] pathForResource:@"BritishRoadsign" ofType:@"ttf"];
-//    NSLog(@"fontPath: %@", fontPath);
-//
-//    
-//    ZFont *font = [[FontManager sharedManager] zFontWithName:@"BritishRoadsign" pointSize:DEFAULT_FONT_POINT_SIZE];
-//    //ZFont *font = [ZFont fontWithUIFont:[UIFont fontWithName:@"Thonburi-Bold" size:DEFAULT_FONT_POINT_SIZE]];
-//    self.roadsignFont = font;
-//    self.labelTextFont = @"BritishRoadsign";
-//    
-//    ZFont *testFont = [[FontManager sharedManager] zFontWithURL:[NSURL URLWithString:@"file://localhost/private/var/mobile/Applications/93B63B8B-0365-4532-B8B2-596C0D158E2D/Documents/Inbox/KeepCalm.otf"] pointSize:DEFAULT_FONT_POINT_SIZE];
-//    NSLog(@"ZFont: %@ %@", testFont.familyName, testFont.fontName);
-            
+                
     currentlyPinching = NO;
     currentlyRotating = NO;
     
@@ -304,6 +296,8 @@
         roadsign.labelTextLine3 = labelTextLine3;
         roadsign.labelTextColor = labelTextColor;
         roadsign.labelTextFont = labelTextFont;
+        roadsign.labelMyFont = labelMyFont;
+        roadsign.useMyFonts = useMyFonts;
         roadsign.labelTextAlignment = labelTextAlignment;
         roadsign.roadsignBackgroundColor = roadsignBackgroundColor;
         roadsign.roadsignBackgroundTexture = roadsignBackgroundTexture;
@@ -367,6 +361,7 @@
         self.addTextBorders = roadsign.addTextBorders;
         self.textRoundedBorders = roadsign.textRoundedBorders;
         self.addTextBackground = roadsign.addTextBackground;
+        self.useMyFonts = roadsign.useMyFonts;
         
         if (roadsign.roadsignBackgroundColor) {
             self.roadsignBackgroundColor = roadsign.roadsignBackgroundColor;
@@ -389,6 +384,9 @@
         if (roadsign.labelTextFont) {
             self.labelTextFont = roadsign.labelTextFont;
         }
+        if (roadsign.labelMyFont) {
+            self.labelMyFont = roadsign.labelMyFont;
+        }        
         if (roadsign.textBorderColor) {
             self.textBorderColor = roadsign.textBorderColor;
         }   
@@ -472,6 +470,7 @@
     [textButton release];
     [labelTextColor release];
     [labelTextFont release];
+    [labelMyFont release];
     [labelTextLine1 release];
     [labelTextLine2 release];
     [labelTextLine3 release];

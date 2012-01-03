@@ -291,8 +291,14 @@
     if (extraFontsAvailable) {
         [fontGroup.mutuallyExclusiveObjects addObject:@"GillSans"];
     }
-    fontGroup.selectedIndex = [fontGroup.mutuallyExclusiveObjects indexOfObject:[info objectForKey:kAWBInfoKeyTextFontName]];
     
+    NSUInteger foundFontIndex = [fontGroup.mutuallyExclusiveObjects indexOfObject:[info objectForKey:kAWBInfoKeyTextFontName]];
+    if (foundFontIndex == NSNotFound) {
+        fontGroup.selectedIndex = 0;
+    } else {
+        fontGroup.selectedIndex = foundFontIndex;        
+    }
+        
     return [fontGroup autorelease];
 }
 
@@ -301,21 +307,40 @@
     NSArray *allMyFonts = [[AWBMyFontStore defaultStore] allMyFonts];
     NSMutableArray *fontSettings = [[NSMutableArray alloc] initWithCapacity:[allMyFonts count]];
     NSMutableArray *fontFileUrls = [[NSMutableArray alloc] initWithCapacity:[allMyFonts count]];
-
+    NSString *selectedFontURL = [info objectForKey:kAWBInfoKeyMyFontName];
+    NSUInteger selectedFontIndex = 0;
+    NSUInteger currentFontIndex = 0;
+    
     for (AWBMyFont *myFont in allMyFonts) {
         [fontSettings addObject:[AWBSetting defaultSettingWithText:myFont.fontName]];
-        [fontFileUrls addObject:[myFont.fileUrl absoluteString]];
+        NSString *fontURL = [myFont.fileUrl absoluteString];
+        [fontFileUrls addObject:fontURL];
+        if ([selectedFontURL isEqualToString:fontURL]) {
+            selectedFontIndex = currentFontIndex;
+        }
+        currentFontIndex++;
     }
     
     AWBSettingsGroup *fontGroup = [[self alloc] initWithSettings:fontSettings header:@"Select a Font" footer:nil];
     fontGroup.isMutuallyExclusive = YES;
-    fontGroup.settingKeyForMutuallyExclusiveObjects = kAWBInfoKeyTextFontName;
+    fontGroup.settingKeyForMutuallyExclusiveObjects = kAWBInfoKeyMyFontName;
     fontGroup.mutuallyExclusiveObjects = fontFileUrls; 
-    fontGroup.selectedIndex = [fontGroup.mutuallyExclusiveObjects indexOfObject:[info objectForKey:kAWBInfoKeyTextFontName]];
+    fontGroup.selectedIndex = selectedFontIndex;
     [fontSettings release];
     [fontFileUrls release];
     
     return [fontGroup autorelease];
+}
+
++ (AWBSettingsGroup *)myFontsSwitchSettingsGroupWithInfo:(NSDictionary *)info
+{    
+    AWBSetting *useMyFontsSetting = [AWBSetting switchSettingWithText:@"Use MyFonts" value:[info objectForKey:kAWBInfoKeyUseMyFonts] key:kAWBInfoKeyUseMyFonts];
+    useMyFontsSetting.masterSlaveType = AWBSettingMasterSlaveTypeMasterSwitch;
+    NSMutableArray *buttonSettings = [NSMutableArray arrayWithObject:useMyFontsSetting];
+    AWBSettingsGroup *myFontsSettings = [[self alloc] initWithSettings:buttonSettings header:nil footer:nil];
+    myFontsSettings.masterSwitchIsOn = useMyFontsSetting.isSwitchedOn;
+    useMyFontsSetting.parentGroup = myFontsSettings;
+    return [myFontsSettings autorelease];    
 }
 
 + (AWBSettingsGroup *)textSettingsDrilldownSettingsGroupWithInfo:(NSDictionary *)info

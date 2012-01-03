@@ -8,6 +8,7 @@
 
 #import "AWBSettings.h"
 #import "AWBFacebookSignoutView.h"
+#import "AWBMyFontStore.h"
 
 @implementation AWBSettings
 
@@ -205,9 +206,27 @@
 
 + (AWBSettings *)fontSettingsWithInfo:(NSDictionary *)info
 {
-    //NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup fontSettingsGroupWithInfo:info], nil];
-    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup myFontSettingsGroupWithInfo:info], nil];
-    return [[[self alloc] initWithSettingsGroups:settings title:@"Choose a Font"] autorelease];
+    AWBSettings *fontSettings = nil;
+    NSString *settingsTitle = @"Choose a Font";
+    
+    if ([[[AWBMyFontStore defaultStore] allMyFonts] count] > 0) {
+        AWBSettingsGroup *fontTypeSettings = [AWBSettingsGroup myFontsSwitchSettingsGroupWithInfo:info];
+        AWBSettingsGroup *builtInFontSettings = [AWBSettingsGroup fontSettingsGroupWithInfo:info];
+        AWBSettingsGroup *myFontSettings = [AWBSettingsGroup myFontSettingsGroupWithInfo:info];
+        
+        NSMutableArray *settings = [NSMutableArray arrayWithObjects:fontTypeSettings, builtInFontSettings, myFontSettings, nil];
+        fontSettings = [[self alloc] initWithSettingsGroups:settings title:settingsTitle];
+        fontTypeSettings.parentSettings = fontSettings;
+        fontTypeSettings.dependentVisibleSettingsGroup = myFontSettings;
+        fontTypeSettings.dependentHiddenSettingsGroup = builtInFontSettings;
+        myFontSettings.visible = fontTypeSettings.masterSwitchIsOn;
+        builtInFontSettings.visible = !fontTypeSettings.masterSwitchIsOn;
+    } else {
+        //no my fonts installed
+        fontSettings = [[self alloc] initWithSettingsGroups:[NSMutableArray arrayWithObjects:[AWBSettingsGroup fontSettingsGroupWithInfo:info], nil] title:settingsTitle];
+    }
+       
+    return [fontSettings autorelease];
 }
 
 + (AWBSettings *)extraTextSettingsWithInfo:(NSDictionary *)info    
