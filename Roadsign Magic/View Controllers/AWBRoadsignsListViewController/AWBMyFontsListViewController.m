@@ -26,7 +26,7 @@
     self = [super init];
     if (self) {
         // Custom initialization
-        [self initialise];
+        //[self initialise];
     }
     return self;
 }
@@ -90,6 +90,9 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setToolbarHidden:YES animated:YES];
+    self.navigationItem.title = @"My Fonts";
+    [[self navigationItem] setRightBarButtonItem:[self editButtonItem]];    
+
 //    [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:kAWBInfoKeyMyRoadsignStoreRoadsignIndex];
     [self.theTableView reloadData];
 }
@@ -234,44 +237,36 @@
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath    
 {
-//    AWBRoadsignDescriptor *roadsign = [[[AWBRoadsignStore defaultStore] myRoadsigns] objectAtIndex:[indexPath row]];
-//    NSUInteger totalDiskBytes = AWBDocumentSubdirectoryFolderSize(roadsign.roadsignSaveDocumentsSubdirectory);
-//    [[NSUserDefaults standardUserDefaults] setInteger:[indexPath row] forKey:kAWBInfoKeyScrollToRoadsignStoreMyRoadsignIndex]; 
-//    
-//    NSMutableDictionary *settingsInfo = [NSMutableDictionary dictionaryWithObjectsAndKeys:roadsign.roadsignName, kAWBInfoKeyRoadsignName, [NSNumber numberWithInt:roadsign.totalSymbolObjects], kAWBInfoKeyRoadsignTotalImageObjects, [NSNumber numberWithInt:roadsign.totalLabelObjects], kAWBInfoKeyRoadsignTotalLabelObjects, [NSNumber numberWithInt:[indexPath row]], kAWBInfoKeyMyRoadsignStoreRoadsignIndex, [NSNumber numberWithInt:roadsign.totalImageMemoryBytes], kAWBInfoKeyRoadsignTotalImageMemoryBytes, [NSNumber numberWithInt:totalDiskBytes], kAWBInfoKeyRoadsignTotalDiskBytes, nil];
-//    AWBRoadsignMagicSettingsTableViewController *settingsController = [[AWBRoadsignMagicSettingsTableViewController alloc] initWithSettings:[AWBSettings roadsignDescriptionSettingsWithInfo:settingsInfo header:[roadsign roadsignInfoHeaderView]] settingsInfo:settingsInfo rootController:nil]; 
-//    settingsController.delegate = self;
-//    settingsController.controllerType = AWBSettingsControllerTypeRoadsignInfoSettings;
-//    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsController];
-//    navController.modalPresentationStyle = UIModalPresentationPageSheet;
-//    navController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;  
-//    [self presentModalViewController:navController animated:YES];
-//    [settingsController release];   
-//    [navController release];
+    AWBMyFont *myFont = [[[AWBMyFontStore defaultStore] allMyFonts] objectAtIndex:[indexPath row]];
+    //[[NSUserDefaults standardUserDefaults] setInteger:[indexPath row] forKey:kAWBInfoKeyScrollToRoadsignStoreMyRoadsignIndex]; 
+    
+    NSMutableDictionary *settingsInfo = [NSMutableDictionary dictionaryWithObjectsAndKeys:myFont.fontName, kAWBInfoKeyMyFontFontName, myFont.fileUrl, kAWBInfoKeyMyFontFileUrl, myFont.familyName, kAWBInfoKeyMyFontFamilyName, myFont.postScriptName, kAWBInfoKeyMyFontPostscriptName, myFont.filename, kAWBInfoKeyMyFontFilename, myFont.createdDate, kAWBInfoKeyMyFontCreatedDate, [NSNumber numberWithInteger:myFont.fileSizeBytes], kAWBInfoKeyMyFontFileSizeBytes, [NSNumber numberWithInt:[indexPath row]], kAWBInfoKeyMyFontStoreMyFontIndex, nil];
+
+    AWBRoadsignMagicSettingsTableViewController *settingsController = [[AWBRoadsignMagicSettingsTableViewController alloc] initWithSettings:[AWBSettings myFontDescriptionSettingsWithInfo:settingsInfo header:nil] settingsInfo:settingsInfo rootController:nil]; 
+    settingsController.delegate = self;
+    settingsController.controllerType = AWBSettingsControllerTypeMyFontInfoSettings;
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsController];
+    navController.modalPresentationStyle = UIModalPresentationPageSheet;
+    navController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;  
+    [self presentModalViewController:navController animated:YES];
+    [settingsController release];   
+    [navController release];
 }
 
-//
-//- (void)awbRoadsignMagicSettingsTableViewController:(AWBRoadsignMagicSettingsTableViewController *)settingsController didFinishSettingsWithInfo:(NSDictionary *)info
-//{
-//    if ((settingsController.controllerType == AWBSettingsControllerTypeNewRoadsignSettings) || !settingsController) {
-//        AWBRoadsignDescriptor *roadsign = [[AWBRoadsignStore defaultStore] createMyRoadsign]; 
-//        roadsign.roadsignName = [info objectForKey:kAWBInfoKeyRoadsignName];
-//        NSUInteger totalRoadsignCount = [[[AWBRoadsignStore defaultStore] myRoadsigns] count];
-//        if (totalRoadsignCount > 0) {
-//            NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow:(totalRoadsignCount - 1) inSection:0];
-//            [self loadRoadsignAtIndexPath:scrollIndexPath withSettingsInfo:info];            
-//        }
-//    } else if (settingsController.controllerType == AWBSettingsControllerTypeRoadsignInfoSettings) {
-//        NSUInteger roadsignStoreIndex = [[info objectForKey:kAWBInfoKeyMyRoadsignStoreRoadsignIndex] intValue];
-//        if (roadsignStoreIndex < [[[AWBRoadsignStore defaultStore] myRoadsigns] count]) {
-//            AWBRoadsignDescriptor *roadsign = [[[AWBRoadsignStore defaultStore] myRoadsigns] objectAtIndex:roadsignStoreIndex]; 
-//            roadsign.roadsignName = [info objectForKey:kAWBInfoKeyRoadsignName];
-//            [[AWBRoadsignStore defaultStore] saveMyRoadsigns];
-//            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:roadsignStoreIndex inSection:0];
-//            [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone]; 
-//        }
-//    }
-//}
+
+- (void)awbRoadsignMagicSettingsTableViewController:(AWBRoadsignMagicSettingsTableViewController *)settingsController didFinishSettingsWithInfo:(NSDictionary *)info
+{
+    if (settingsController.controllerType == AWBSettingsControllerTypeMyFontInfoSettings) {
+        NSUInteger myFontStoreIndex = [[info objectForKey:kAWBInfoKeyMyFontStoreMyFontIndex] intValue];
+        if (myFontStoreIndex < [[[AWBMyFontStore defaultStore] allMyFonts] count]) {
+            AWBMyFont *myFont = [[[AWBMyFontStore defaultStore] allMyFonts] objectAtIndex:myFontStoreIndex]; 
+            myFont.fontName = [info objectForKey:kAWBInfoKeyMyFontFontName];
+            [[AWBMyFontStore defaultStore] saveAllMyFonts];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:myFontStoreIndex inSection:0];
+            [self.theTableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone]; 
+        }
+    }
+}
 
 - (void)attemptMyFontInstall
 {
@@ -280,11 +275,6 @@
         pendingMyFont = [[AWBMyFont alloc] initWithUrl:pendingMyFontInstallURL];
         if (pendingMyFont) {
             [self confirmMyFontInstall:pendingMyFont.fontName];
-//            NSLog(@"Font: %@ %@ %@ %@ %@ %@ %d", myFont.familyName, myFont.fontName, myFont.postScriptName, myFont.filename, myFont.fileUrl, myFont.createdDate, myFont.fileSizeBytes);
-//            BOOL success = [[AWBMyFontStore defaultStore] installMyFont:myFont];
-//            if (success) {
-//                NSLog(@"Installed Font: %@ %@ %@ %@ %@ %@ %d", myFont.familyName, myFont.fontName, myFont.postScriptName, myFont.filename, myFont.fileUrl, myFont.createdDate, myFont.fileSizeBytes);
-//            }
         } else {
             NSLog(@"No Font loaded!");
             NSString *path = [pendingMyFontInstallURL path];

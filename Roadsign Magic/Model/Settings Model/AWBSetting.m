@@ -23,6 +23,7 @@
 #import "AWBTextViewCell.h"
 #import "AWBZFontTableCell.h"
 #import "AWBSettingTableCell.h"
+#import "AWBMyFontPreviewTableCell.h"
 
 @implementation AWBSetting
 
@@ -125,6 +126,11 @@
     return [[[self alloc] initWithText:nil controlType:AWBSettingControlTypeZFont value:aValue key:nil] autorelease];
 }
 
++ (AWBSetting *)myFontPreviewSettingWithValue:(id)aValue
+{
+    return [[[self alloc] initWithText:nil controlType:AWBSettingControlTypeMyFontPreview value:aValue key:nil] autorelease];
+}
+
 + (AWBSetting *)drilldownSettingWithText:(NSString *)aText value:(id)aValue key:(NSString *)aKey childSettings:(AWBSettings *)settings
 {
     AWBSetting *setting = [[self alloc] initWithText:aText controlType:AWBSettingControlTypeDrilldown value:aValue key:aKey];
@@ -187,7 +193,9 @@
         case AWBSettingControlTypeSubtitle:
             return @"AWBSettingControlTypeSubtitle";              
         case AWBSettingControlTypeTextView:
-            return @"AWBSettingControlTypeTextView";              
+            return @"AWBSettingControlTypeTextView"; 
+        case AWBSettingControlTypeMyFontPreview:
+            return @"AWBSettingControlTypeMyFontPreview"; 
         default:
             return @"AWBSettingControlTypeDefault";
     }    
@@ -234,6 +242,10 @@
         case AWBSettingControlTypeZFont:
             tableCell = [[AWBZFontTableCell alloc] initWithFontType:[settingValue integerValue] reuseIdentifier:self.cellReuseIdentifier];
             tableCell.selectionStyle = UITableViewCellSelectionStyleBlue;
+            break;
+        case AWBSettingControlTypeMyFontPreview:
+            tableCell = [[AWBMyFontPreviewTableCell alloc] initWithFontFileUrl:settingValue reuseIdentifier:self.cellReuseIdentifier];
+            tableCell.selectionStyle = UITableViewCellSelectionStyleNone;
             break;
         case AWBSettingControlTypeDrilldown:
             tableCell = [[AWBDrilldownCell alloc] initWithText:self.text textValue:[self settingValueDescription] reuseIdentifier:self.cellReuseIdentifier];
@@ -316,6 +328,9 @@
             self.settingValue = nil;
             break;
         case AWBSettingControlTypeSubtitle:
+            self.settingValue = nil;
+            break;
+        case AWBSettingControlTypeMyFontPreview:
             self.settingValue = nil;
             break;
         case AWBSettingControlTypeDefault:

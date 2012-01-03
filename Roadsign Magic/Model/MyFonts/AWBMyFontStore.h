@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 static NSString *const kAWBInfoKeyMyFontSequenceNumber = @"MyFontSequenceNumber";
+static NSString *const kAWBInfoKeyMyFontStoreMyFontIndex = @"MyFontStoreMyFontIndex";
 
 @class AWBMyFont;
 

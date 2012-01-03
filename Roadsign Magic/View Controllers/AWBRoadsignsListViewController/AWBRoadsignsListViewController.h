@@ -22,6 +22,7 @@
     AWBBusyView *busyView;
     BOOL animateTransition;
     UIBarButtonItem *myFontsButton;
+    BOOL changingSegmentIndex;
 }
 
 @property (nonatomic,retain) UITableView *theTableView;

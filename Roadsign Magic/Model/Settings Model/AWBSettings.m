@@ -260,4 +260,12 @@
     return [facebookSettings autorelease];
 }
 
++ (AWBSettings *)myFontDescriptionSettingsWithInfo:(NSDictionary *)info header:(UIView *)header
+{
+    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup myFontNameWithHeaderSettingsGroupWithInfo:info], [AWBSettingsGroup myFontPreviewSettingsGroupWithInfo:info], [AWBSettingsGroup myFontInfoMetricsSettingsGroupWithInfo:info], nil];
+    AWBSettings *myFontDescriptionSettings = [[self alloc] initWithSettingsGroups:settings title:@"MyFont Information"];
+    myFontDescriptionSettings.headerView = header;
+    return [myFontDescriptionSettings autorelease];
+}
+
 @end

@@ -568,6 +568,7 @@
 		0687175B1498D04F00293D39 /* brightlights100@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 068717571498D04F00293D39 /* brightlights100@2x.jpg */; };
 		0687175C1498D04F00293D39 /* metal@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 068717581498D04F00293D39 /* metal@2x.jpg */; };
 		0687175D1498D04F00293D39 /* metal100@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 068717591498D04F00293D39 /* metal100@2x.jpg */; };
+		068D7EB914B368C100C2964D /* AWBMyFontPreviewTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 068D7EB814B368C000C2964D /* AWBMyFontPreviewTableCell.m */; };
 		068F12F91483A00B00C925C2 /* wood@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 068F12F81483A00B00C925C2 /* wood@2x.jpg */; };
 		068F12FD1483A35E00C925C2 /* UIView+SelectionMarquee.m in Sources */ = {isa = PBXBuildFile; fileRef = 068F12FC1483A35E00C925C2 /* UIView+SelectionMarquee.m */; };
 		068F13001483A65F00C925C2 /* CAShapeLayer+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = 068F12FF1483A65F00C925C2 /* CAShapeLayer+Animation.m */; };
@@ -1522,6 +1523,8 @@
 		068717571498D04F00293D39 /* brightlights100@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "brightlights100@2x.jpg"; sourceTree = "<group>"; };
 		068717581498D04F00293D39 /* metal@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "metal@2x.jpg"; sourceTree = "<group>"; };
 		068717591498D04F00293D39 /* metal100@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "metal100@2x.jpg"; sourceTree = "<group>"; };
+		068D7EB714B368C000C2964D /* AWBMyFontPreviewTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBMyFontPreviewTableCell.h; sourceTree = "<group>"; };
+		068D7EB814B368C000C2964D /* AWBMyFontPreviewTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBMyFontPreviewTableCell.m; sourceTree = "<group>"; };
 		068F12F81483A00B00C925C2 /* wood@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "wood@2x.jpg"; sourceTree = "<group>"; };
 		068F12FB1483A35E00C925C2 /* UIView+SelectionMarquee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SelectionMarquee.h"; sourceTree = "<group>"; };
 		068F12FC1483A35E00C925C2 /* UIView+SelectionMarquee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SelectionMarquee.m"; sourceTree = "<group>"; };
@@ -1749,7 +1752,7 @@
 		06BB8763148CD72F0051F9CB /* AWBRoadsignDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBRoadsignDescriptor.m; path = "Roadsigns Model/AWBRoadsignDescriptor.m"; sourceTree = "<group>"; };
 		06BB8765148CD7410051F9CB /* AWBRoadsignStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBRoadsignStore.h; path = "Roadsigns Model/AWBRoadsignStore.h"; sourceTree = "<group>"; };
 		06BB8766148CD7410051F9CB /* AWBRoadsignStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBRoadsignStore.m; path = "Roadsigns Model/AWBRoadsignStore.m"; sourceTree = "<group>"; };
-		06BB876A148D22250051F9CB /* AWBMyFontsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; name = AWBMyFontsListViewController.h; path = AWBRoadsignsListViewController/AWBMyFontsListViewController.h; sourceTree = "<group>"; };
+		06BB876A148D22250051F9CB /* AWBMyFontsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBMyFontsListViewController.h; path = AWBRoadsignsListViewController/AWBMyFontsListViewController.h; sourceTree = "<group>"; };
 		06BB876B148D22250051F9CB /* AWBMyFontsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBMyFontsListViewController.m; path = AWBRoadsignsListViewController/AWBMyFontsListViewController.m; sourceTree = "<group>"; };
 		06C344F41485075D000A3CC8 /* S00@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S00@2x.png"; sourceTree = "<group>"; };
 		06C344F61485075D000A3CC8 /* S10001@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S10001@2x.png"; sourceTree = "<group>"; };
@@ -3630,6 +3633,8 @@
 				0637298D14AF3AA00033E367 /* AWBSizeableImageTableCell2.m */,
 				0611EBD6149F525C00A3588C /* AWBZFontTableCell.h */,
 				0611EBD7149F525C00A3588C /* AWBZFontTableCell.m */,
+				068D7EB714B368C000C2964D /* AWBMyFontPreviewTableCell.h */,
+				068D7EB814B368C000C2964D /* AWBMyFontPreviewTableCell.m */,
 			);
 			name = "Table Cells and Controls";
 			path = "Views and User Interface/Table Cells and Controls";
@@ -4719,6 +4724,7 @@
 				0637298E14AF3AA00033E367 /* AWBSizeableImageTableCell2.m in Sources */,
 				06AD3BD514B1B63A00B68B91 /* AWBMyFont.m in Sources */,
 				06AD3BD814B1C72300B68B91 /* AWBMyFontStore.m in Sources */,
+				068D7EB914B368C100C2964D /* AWBMyFontPreviewTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

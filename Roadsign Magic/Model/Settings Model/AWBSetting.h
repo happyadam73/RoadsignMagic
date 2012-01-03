@@ -25,7 +25,8 @@ typedef enum {
     AWBSettingControlTypeTextAndValue, 
     AWBSettingControlTypeSegmentControl,
     AWBSettingControlTypeSubtitle,
-    AWBSettingControlTypeTextView
+    AWBSettingControlTypeTextView,
+    AWBSettingControlTypeMyFontPreview
 } AWBSettingControlType;
 
 typedef enum {
@@ -71,6 +72,7 @@ typedef enum {
 + (AWBSetting *)textEditSettingWithText:(NSString *)text value:(id)aValue key:(NSString *)aKey;
 + (AWBSetting *)fontSettingWithValue:(id)aValue;
 + (AWBSetting *)zFontSettingWithValue:(id)aValue;
++ (AWBSetting *)myFontPreviewSettingWithValue:(id)aValue;
 + (AWBSetting *)drilldownSettingWithText:(NSString *)aText value:(id)aValue key:(NSString *)aKey childSettings:(AWBSettings *)settings;
 + (AWBSetting *)imageAndTextListSettingWithText:(NSString *)text value:(id)aValue;
 + (AWBSetting *)textAndValueSettingWithText:(NSString *)text value:(id)aValue;

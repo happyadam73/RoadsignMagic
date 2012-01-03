@@ -104,6 +104,9 @@ static NSString *const kAWBBackgroundSettingsFooterText = @"By default, this bac
 + (AWBSettingsGroup *)textBorderColorPickerSettingsGroupWithInfo:(NSDictionary *)info;
 + (AWBSettingsGroup *)textBackgroundSettingsGroupWithInfo:(NSDictionary *)info;
 + (AWBSettingsGroup *)textBackgroundColorPickerSettingsGroupWithInfo:(NSDictionary *)info;
++ (AWBSettingsGroup *)myFontNameWithHeaderSettingsGroupWithInfo:(NSDictionary *)info;
++ (AWBSettingsGroup *)myFontInfoMetricsSettingsGroupWithInfo:(NSDictionary *)info;
++ (AWBSettingsGroup *)myFontPreviewSettingsGroupWithInfo:(NSDictionary *)info;
 
 @end
 

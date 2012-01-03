@@ -385,4 +385,36 @@
     return [[[self alloc] initWithSettings:[NSMutableArray arrayWithObject:[AWBSetting colorSettingWithValue:[info objectForKey:kAWBInfoKeyTextBackgroundColor] andKey:kAWBInfoKeyTextBackgroundColor]] header:@"Text Background Colour" footer:nil] autorelease];
 }
 
++ (AWBSettingsGroup *)myFontNameWithHeaderSettingsGroupWithInfo:(NSDictionary *)info
+{
+    NSMutableArray *myFontNameSettings = [NSMutableArray arrayWithObjects:[AWBSetting textEditSettingWithText:@"Name" value:[info objectForKey:kAWBInfoKeyMyFontFontName] key:kAWBInfoKeyMyFontFontName], nil];
+    
+    return [[[self alloc] initWithSettings:myFontNameSettings header:@"Edit MyFont Name" footer:nil] autorelease];
+}
+
++ (AWBSettingsGroup *)myFontInfoMetricsSettingsGroupWithInfo:(NSDictionary *)info
+{
+    NSDate *installDate = [info objectForKey:kAWBInfoKeyMyFontCreatedDate];
+    NSString *installDateDescription = [NSString stringWithFormat:@"%@", AWBDateStringForCurrentLocale(installDate)];   
+    NSString *myFontDiskTotal = AWBFileSizeIntToString([[info objectForKey:kAWBInfoKeyMyFontFileSizeBytes] intValue]);
+    NSString *familyName = [info objectForKey:kAWBInfoKeyMyFontFamilyName];
+    NSString *postScriptName = [info objectForKey:kAWBInfoKeyMyFontPostscriptName];
+    NSString *filename = [info objectForKey:kAWBInfoKeyMyFontFilename];
+       
+    NSMutableArray *myFontInfoSettings = [NSMutableArray arrayWithObjects:[AWBSetting textAndValueSettingWithText:@"Family" value:familyName], [AWBSetting textAndValueSettingWithText:@"Postscript" value:postScriptName], [AWBSetting textAndValueSettingWithText:@"Filename" value:filename], [AWBSetting textAndValueSettingWithText:@"Installed" value:installDateDescription], [AWBSetting textAndValueSettingWithText:@"File Size" value:myFontDiskTotal], nil];
+    
+    return [[[self alloc] initWithSettings:myFontInfoSettings header:@"Info" footer:nil] autorelease];   
+}
+
++ (AWBSettingsGroup *)myFontPreviewSettingsGroupWithInfo:(NSDictionary *)info
+{
+    NSURL *fontFileUrl = [info objectForKey:kAWBInfoKeyMyFontFileUrl];
+    NSMutableArray *myFontPreviewSettings = [NSMutableArray arrayWithObjects:[AWBSetting myFontPreviewSettingWithValue:fontFileUrl], nil];
+    AWBSettingsGroup *myFontPreviewSettingsGroup = [[self alloc] initWithSettings:myFontPreviewSettings header:@"Preview" footer:nil];
+    myFontPreviewSettingsGroup.iPhoneRowHeight = 200;
+    myFontPreviewSettingsGroup.iPadRowHeight = 300;
+    return [myFontPreviewSettingsGroup autorelease];
+}
+
+
 @end

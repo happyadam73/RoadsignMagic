@@ -59,7 +59,11 @@
             dataSource.parentViewController = self;
         }
         selectedDataSource = 0;
-        
+        UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewRoadsignDescriptor:)];
+        [[self navigationItem] setRightBarButtonItem:addButton];
+        [addButton release];
+        [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
+        [self.navigationController setToolbarHidden:NO animated:YES];
         // Custom initialization
         scrollToRow = -1;
         self.navigationItem.title = @"My Signs";
@@ -122,13 +126,16 @@
     [super viewWillAppear:animated];
     [self.navigationController setToolbarHidden:NO animated:YES];
     self.toolbarItems = [self mySignsToolbarButtons];
-    //    [self addToolbar];
     [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:kAWBInfoKeyMyRoadsignStoreRoadsignIndex];
     UISegmentedControl *datasourceControl = (UISegmentedControl *)self.navigationItem.titleView;
     if (datasourceControl.selectedSegmentIndex == 0) {
         [theTableView reloadData];
     } else {
-        datasourceControl.selectedSegmentIndex = 0;        
+        //deal with iOS4 and 5 differences
+        changingSegmentIndex = YES;
+        datasourceControl.selectedSegmentIndex = 0;
+        changingSegmentIndex = NO;        
+        [datasourceControl sendActionsForControlEvents:UIControlEventValueChanged];
     }    
 }
 
@@ -136,7 +143,7 @@
 {
     [super viewDidAppear:animated];
     [self becomeFirstResponder];
-    
+
     scrollToRow = [[NSUserDefaults standardUserDefaults] integerForKey:kAWBInfoKeyScrollToRoadsignStoreMyRoadsignIndex];
     if (scrollToRow >= 0) {
         @try {
@@ -286,15 +293,21 @@
     segmentedControl.frame = CGRectMake(0, 0, 170, self.navigationController.navigationBar.bounds.size.height - 14);
     segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
     [segmentedControl addTarget:self action:@selector(switchDatasource:) forControlEvents:UIControlEventValueChanged];
-    segmentedControl.selectedSegmentIndex = selectedDataSource;
     self.navigationItem.titleView = segmentedControl;
+    //deal with iOS4 and 5 differences
+    changingSegmentIndex = YES;
+    segmentedControl.selectedSegmentIndex = selectedDataSource;
+    changingSegmentIndex = NO;
+    [segmentedControl sendActionsForControlEvents:UIControlEventValueChanged];
     [segmentedControl release];
 }
 
 - (void)switchDatasource:(id)sender
 {
-    UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;
-    [self switchDatasourceWithSelectedIndex:segmentedControl.selectedSegmentIndex];
+    if (!changingSegmentIndex) {
+        UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;
+        [self switchDatasourceWithSelectedIndex:segmentedControl.selectedSegmentIndex];        
+    }
 }
 
 - (void)switchDatasourceWithSelectedIndex:(NSUInteger)selectedIndex

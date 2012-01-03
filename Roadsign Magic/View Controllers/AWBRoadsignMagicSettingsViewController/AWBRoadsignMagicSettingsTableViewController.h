@@ -15,6 +15,7 @@ typedef enum {
     AWBSettingsControllerTypeEditTextSettings,
     AWBSettingsControllerTypeNewRoadsignSettings,
     AWBSettingsControllerTypeRoadsignInfoSettings,
+    AWBSettingsControllerTypeMyFontInfoSettings,
     AWBSettingsControllerTypeLuckyDipSettings
 } AWBSettingsControllerType;
 

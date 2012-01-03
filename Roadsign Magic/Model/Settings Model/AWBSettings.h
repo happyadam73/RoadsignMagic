@@ -53,5 +53,6 @@
 + (AWBSettings *)fontSettingsWithInfo:(NSDictionary *)info;
 + (AWBSettings *)extraTextSettingsWithInfo:(NSDictionary *)info;    
 + (AWBSettings *)facebookSettingsWithInfo:(NSDictionary *)info;
++ (AWBSettings *)myFontDescriptionSettingsWithInfo:(NSDictionary *)info header:(UIView *)header;
 
 @end
