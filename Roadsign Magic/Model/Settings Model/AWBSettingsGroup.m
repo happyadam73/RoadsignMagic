@@ -389,7 +389,7 @@
 {
     NSMutableArray *myFontNameSettings = [NSMutableArray arrayWithObjects:[AWBSetting textEditSettingWithText:@"Name" value:[info objectForKey:kAWBInfoKeyMyFontFontName] key:kAWBInfoKeyMyFontFontName], nil];
     
-    return [[[self alloc] initWithSettings:myFontNameSettings header:@"Edit MyFont Name" footer:nil] autorelease];
+    return [[[self alloc] initWithSettings:myFontNameSettings header:nil footer:@"Tap to edit the font name"] autorelease];
 }
 
 + (AWBSettingsGroup *)myFontInfoMetricsSettingsGroupWithInfo:(NSDictionary *)info

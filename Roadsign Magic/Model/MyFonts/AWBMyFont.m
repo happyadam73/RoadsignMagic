@@ -32,10 +32,14 @@
     if (self) {
         createdDate = [[NSDate alloc] init];
         self.familyName = font.familyName;
-        self.fontName = font.fontName;
         self.postScriptName = font.postScriptName;
         self.filename = [url lastPathComponent];
         self.fileUrl = url;
+        if (font.fontName) {
+            self.fontName = font.fontName;            
+        } else {
+            self.fontName = [url lastPathComponent];
+        }
         NSDictionary *info = [[NSFileManager defaultManager] attributesOfItemAtPath:[url path] error:NULL];
         self.fileSizeBytes = [info fileSize];
     }

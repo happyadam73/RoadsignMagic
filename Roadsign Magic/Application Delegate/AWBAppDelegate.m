@@ -20,6 +20,7 @@
 #import "Facebook.h"
 #import "AWBMyFont.h"
 #import "AWBMyFontStore.h"
+#import "AWBDeviceHelper.h"
 
 static NSString* kAppId = @"289600444412359";
 

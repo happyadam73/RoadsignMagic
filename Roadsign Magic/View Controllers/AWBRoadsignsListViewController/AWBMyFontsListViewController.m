@@ -89,6 +89,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationController setToolbarHidden:YES animated:YES];
     self.navigationItem.title = @"My Fonts";
     [[self navigationItem] setRightBarButtonItem:[self editButtonItem]];    
@@ -174,9 +176,17 @@
     AWBMyFont *myFont = [[[AWBMyFontStore defaultStore] allMyFonts] objectAtIndex:[indexPath row]];
     cell.textLabel.text = myFont.fontName;
     cell.detailTextLabel.numberOfLines = 2;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Family: %@\r\nInstalled: %@", myFont.familyName, AWBDateStringForCurrentLocale(myFont.createdDate)];        
-    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     
+    NSString *familyName;
+    if (myFont.familyName) {
+        familyName = myFont.familyName;
+    } else {
+        familyName = @"N/A";
+    }
+    
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Family: %@\r\nInstalled: %@ (%@)", familyName, AWBDateStringForCurrentLocale(myFont.createdDate), AWBFileSizeIntToString(myFont.fileSizeBytes)];        
+    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+       
     return cell;
 }
 
@@ -240,8 +250,16 @@
     AWBMyFont *myFont = [[[AWBMyFontStore defaultStore] allMyFonts] objectAtIndex:[indexPath row]];
     //[[NSUserDefaults standardUserDefaults] setInteger:[indexPath row] forKey:kAWBInfoKeyScrollToRoadsignStoreMyRoadsignIndex]; 
     
-    NSMutableDictionary *settingsInfo = [NSMutableDictionary dictionaryWithObjectsAndKeys:myFont.fontName, kAWBInfoKeyMyFontFontName, myFont.fileUrl, kAWBInfoKeyMyFontFileUrl, myFont.familyName, kAWBInfoKeyMyFontFamilyName, myFont.postScriptName, kAWBInfoKeyMyFontPostscriptName, myFont.filename, kAWBInfoKeyMyFontFilename, myFont.createdDate, kAWBInfoKeyMyFontCreatedDate, [NSNumber numberWithInteger:myFont.fileSizeBytes], kAWBInfoKeyMyFontFileSizeBytes, [NSNumber numberWithInt:[indexPath row]], kAWBInfoKeyMyFontStoreMyFontIndex, nil];
+    NSMutableDictionary *settingsInfo = [NSMutableDictionary dictionaryWithObjectsAndKeys:myFont.fontName, kAWBInfoKeyMyFontFontName, myFont.fileUrl, kAWBInfoKeyMyFontFileUrl, myFont.filename, kAWBInfoKeyMyFontFilename, myFont.createdDate, kAWBInfoKeyMyFontCreatedDate, [NSNumber numberWithInteger:myFont.fileSizeBytes], kAWBInfoKeyMyFontFileSizeBytes, [NSNumber numberWithInt:[indexPath row]], kAWBInfoKeyMyFontStoreMyFontIndex, nil];
+    
+    if (myFont.familyName) {
+        [settingsInfo setObject:myFont.familyName forKey:kAWBInfoKeyMyFontFamilyName];
+    }
 
+    if (myFont.postScriptName) {
+        [settingsInfo setObject:myFont.postScriptName forKey:kAWBInfoKeyMyFontPostscriptName];
+    }
+        
     AWBRoadsignMagicSettingsTableViewController *settingsController = [[AWBRoadsignMagicSettingsTableViewController alloc] initWithSettings:[AWBSettings myFontDescriptionSettingsWithInfo:settingsInfo header:nil] settingsInfo:settingsInfo rootController:nil]; 
     settingsController.delegate = self;
     settingsController.controllerType = AWBSettingsControllerTypeMyFontInfoSettings;

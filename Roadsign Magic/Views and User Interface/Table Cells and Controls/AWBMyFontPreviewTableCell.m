@@ -8,6 +8,7 @@
 
 #import "AWBMyFontPreviewTableCell.h"
 #import "FontManager.h"
+#import "ZFont.h"
 
 @implementation AWBMyFontPreviewTableCell
 
@@ -16,13 +17,22 @@
     self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        ZFont *zFont = [[FontManager sharedManager] zFontWithURL:fontFileUrl pointSize:(DEVICE_IS_IPAD? 44.0 : 28.0)];
-        fontLabel = [[FontLabel alloc] initWithFrame:CGRectZero zFont:zFont];
+        ZFont *myFont = [[FontManager sharedManager] zFontWithURL:fontFileUrl pointSize:(DEVICE_IS_IPAD? 44.0 : 28.0)];
+        
+//        NSLog(@"MyFont: ratio: %f unitsPerEm: %d", myFont.ratio, CGFontGetUnitsPerEm(myFont.cgFont));
+//        NSLog(@"ascender: %f", myFont.ascender);
+//        NSLog(@"descender: %f", myFont.descender);
+//        NSLog(@"leading: %f", myFont.leading);
+//        NSLog(@"xHeight: %f", myFont.xHeight);
+//        NSLog(@"capHeight: %f", myFont.capHeight);
+//        CGRect fontRect = CGFontGetFontBBox(myFont.cgFont);
+//        NSLog(@"fontRect: %f %f %f %f", fontRect.origin.x, fontRect.origin.y, fontRect.size.width, fontRect.size.height);
+        
+        fontLabel = [[FontLabel alloc] initWithFrame:CGRectZero zFont:myFont];
         fontLabel.backgroundColor = [UIColor clearColor];
         fontLabel.textAlignment = UITextAlignmentCenter;
         fontLabel.numberOfLines = 0;
         fontLabel.text = @"ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789";
-        //fontLabel.text = @"ABC";
         [[self contentView] addSubview:fontLabel];
         [fontLabel release];
     }
