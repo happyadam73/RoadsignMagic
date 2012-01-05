@@ -29,6 +29,8 @@ typedef enum {
 - (UIFont *)fontWithSize:(CGFloat)size;
 - (ZFont *)zFontWithSize:(CGFloat)size;
 + (BOOL)isZFont:(NSString *)fontName;
-+ (BOOL)isMyFont:(NSString *)fontName;
++ (BOOL)isFontNameMyFontURL:(NSString *)fontName;
++ (BOOL)isFontNameMyFontFilename:(NSString *)fontName;
++ (NSURL *)myFontUrlFromFontFilename:(NSString *)fontFilename;
 
 @end

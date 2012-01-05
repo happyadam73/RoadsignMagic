@@ -306,16 +306,16 @@
 {
     NSArray *allMyFonts = [[AWBMyFontStore defaultStore] allMyFonts];
     NSMutableArray *fontSettings = [[NSMutableArray alloc] initWithCapacity:[allMyFonts count]];
-    NSMutableArray *fontFileUrls = [[NSMutableArray alloc] initWithCapacity:[allMyFonts count]];
-    NSString *selectedFontURL = [info objectForKey:kAWBInfoKeyMyFontName];
+    NSMutableArray *fontFilenames = [[NSMutableArray alloc] initWithCapacity:[allMyFonts count]];
+    NSString *selectedFontFilename = [info objectForKey:kAWBInfoKeyMyFontName];
     NSUInteger selectedFontIndex = 0;
     NSUInteger currentFontIndex = 0;
     
     for (AWBMyFont *myFont in allMyFonts) {
         [fontSettings addObject:[AWBSetting defaultSettingWithText:myFont.fontName]];
-        NSString *fontURL = [myFont.fileUrl absoluteString];
-        [fontFileUrls addObject:fontURL];
-        if ([selectedFontURL isEqualToString:fontURL]) {
+        NSString *fontFilename = myFont.filename;
+        [fontFilenames addObject:fontFilename];
+        if ([selectedFontFilename isEqualToString:fontFilename]) {
             selectedFontIndex = currentFontIndex;
         }
         currentFontIndex++;
@@ -324,10 +324,10 @@
     AWBSettingsGroup *fontGroup = [[self alloc] initWithSettings:fontSettings header:@"Select a Font" footer:nil];
     fontGroup.isMutuallyExclusive = YES;
     fontGroup.settingKeyForMutuallyExclusiveObjects = kAWBInfoKeyMyFontName;
-    fontGroup.mutuallyExclusiveObjects = fontFileUrls; 
+    fontGroup.mutuallyExclusiveObjects = fontFilenames; 
     fontGroup.selectedIndex = selectedFontIndex;
     [fontSettings release];
-    [fontFileUrls release];
+    [fontFilenames release];
     
     return [fontGroup autorelease];
 }

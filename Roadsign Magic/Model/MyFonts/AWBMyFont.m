@@ -9,12 +9,13 @@
 #import "AWBMyFont.h"
 #import "FontManager.h"
 #import "ZFont.h"
+#import "FileHelpers.h"
 
 #define DEFAULT_FONT_POINT_SIZE 160.0
 
 @implementation AWBMyFont
 
-@synthesize familyName, fontName, postScriptName, filename, fileUrl, createdDate, fileSizeBytes;
+@synthesize familyName, fontName, postScriptName, filename, fileUrl, createdDate, fileSizeBytes, installUrl;
 
 - (id)init
 {
@@ -34,7 +35,8 @@
         self.familyName = font.familyName;
         self.postScriptName = font.postScriptName;
         self.filename = [url lastPathComponent];
-        self.fileUrl = url;
+        //self.fileUrl = url;
+        self.installUrl = url;
         if (font.fontName) {
             self.fontName = font.fontName;            
         } else {
@@ -55,7 +57,7 @@
         self.fontName = [decoder decodeObjectForKey:kAWBInfoKeyMyFontFontName];
         self.postScriptName = [decoder decodeObjectForKey:kAWBInfoKeyMyFontPostscriptName];
         self.filename = [decoder decodeObjectForKey:kAWBInfoKeyMyFontFilename];
-        self.fileUrl = [decoder decodeObjectForKey:kAWBInfoKeyMyFontFileUrl];
+        //self.fileUrl = [decoder decodeObjectForKey:kAWBInfoKeyMyFontFileUrl];
         self.fileSizeBytes = [decoder decodeIntegerForKey:kAWBInfoKeyMyFontFileSizeBytes];
         createdDate = [[decoder decodeObjectForKey:kAWBInfoKeyMyFontCreatedDate] retain];
     }
@@ -68,7 +70,7 @@
     [encoder encodeObject:self.fontName forKey:kAWBInfoKeyMyFontFontName];
     [encoder encodeObject:self.postScriptName forKey:kAWBInfoKeyMyFontPostscriptName];
     [encoder encodeObject:self.filename forKey:kAWBInfoKeyMyFontFilename];
-    [encoder encodeObject:self.fileUrl forKey:kAWBInfoKeyMyFontFileUrl];
+    //[encoder encodeObject:self.fileUrl forKey:kAWBInfoKeyMyFontFileUrl];
     [encoder encodeObject:self.createdDate forKey:kAWBInfoKeyMyFontCreatedDate];
     [encoder encodeInteger:self.fileSizeBytes forKey:kAWBInfoKeyMyFontFileSizeBytes];
 }
@@ -79,13 +81,27 @@
     [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
 }
 
+- (void)removeFromInbox
+{
+    NSString *path = [self.installUrl path];
+    [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
+}
+
+- (NSURL *)fileUrl
+{   
+    NSString *filePath = AWBPathInMyFontsDocumentsSubdirectory(self.filename);
+    //NSString *filePath = AWBPathInDocumentSubdirectory(@"My Fonts", self.filename);
+    return [NSURL fileURLWithPath:filePath];
+}
+
 - (void)dealloc
 {
     [familyName release];
     [fontName release];
     [postScriptName release];
     [filename release];
-    [fileUrl release];
+    [installUrl release];
+    //[fileUrl release];
     [createdDate release];
     [super dealloc];
 }

@@ -70,12 +70,14 @@ static AWBMyFontStore *defaultStore = nil;
 {
     //first create new font url
     NSString *filename = [NSString stringWithFormat:@"%@%@", [self nextDefaultMyFontFilenamePrefix], myFont.filename];
-    NSString *newFilePath = AWBPathInDocumentSubdirectory(@"My Fonts", filename);
+    //NSString *newFilePath = AWBPathInDocumentSubdirectory(@"My Fonts", filename);
+    NSString *newFilePath = AWBPathInMyFontsDocumentsSubdirectory(filename);
     NSURL *newFileUrl = [NSURL fileURLWithPath:newFilePath];
-    BOOL success = [[NSFileManager defaultManager] moveItemAtURL:myFont.fileUrl toURL:newFileUrl error:nil];
+    //BOOL success = [[NSFileManager defaultManager] moveItemAtURL:myFont.fileUrl toURL:newFileUrl error:nil];
+    BOOL success = [[NSFileManager defaultManager] moveItemAtURL:myFont.installUrl toURL:newFileUrl error:nil];
     if (success) {
         myFont.filename = filename;
-        myFont.fileUrl = newFileUrl;
+        //myFont.fileUrl = newFileUrl;
         NSInteger sequenceId = [[NSUserDefaults standardUserDefaults] integerForKey:kAWBInfoKeyMyFontSequenceNumber];
         sequenceId += 1;
         [[NSUserDefaults standardUserDefaults] setInteger:sequenceId forKey:kAWBInfoKeyMyFontSequenceNumber];
@@ -146,6 +148,8 @@ static AWBMyFontStore *defaultStore = nil;
         [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:kAWBInfoKeyMyFontSequenceNumber];
         allMyFonts = [[NSMutableArray alloc] init];
     }
+    
+    //NSLog(@"MyFont Count: %d", [allMyFonts count]);
 }
 
 @end

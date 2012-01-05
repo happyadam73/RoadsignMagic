@@ -31,7 +31,7 @@
     CAShapeLayer *selectionMarquee2;
     UILabel *labelView;
     BOOL isZFontLabel;
-    NSString *myFontUrl;
+    NSString *myFontFilename;
     UIColor *textBackgroundColor;
 }
 
@@ -41,14 +41,14 @@
 @property (nonatomic, assign) BOOL isZFontLabel;
 @property (nonatomic, assign) BOOL addTextBackground;
 @property (nonatomic, retain) UIColor *textBackgroundColor;
-@property (nonatomic, retain) NSString *myFontUrl;
+@property (nonatomic, retain) NSString *myFontFilename;
 
 - (void)initialiseLayerRotation:(CGFloat)rotation scale:(CGFloat)scale;
 - (id)initWithText:(NSString *)text offset:(CGPoint)point;
 - (id)initWithText:(NSString *)text offset:(CGPoint)point rotation:(CGFloat)rotation scale:(CGFloat)scale;
 - (id)initWithText:(NSString *)text fontName:(NSString *)fontName fontSize:(CGFloat)fontSize offset:(CGPoint)point rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip color:(UIColor *)color alignment:(UITextAlignment)alignment;
 - (id)initWithTextLines:(NSArray *)lines fontName:(NSString *)fontName fontSize:(CGFloat)fontSize offset:(CGPoint) point rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip color:(UIColor *)color alignment:(UITextAlignment)alignment;
-- (id)initWithTextLines:(NSArray *)lines zFont:(ZFont *)font offset:(CGPoint)point rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip color:(UIColor *)color alignment:(UITextAlignment)alignment myFontURL:(NSString *)fontURL;
+- (id)initWithTextLines:(NSArray *)lines zFont:(ZFont *)font offset:(CGPoint)point rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip color:(UIColor *)color alignment:(UITextAlignment)alignment myFontFilename:(NSString *)fontFilename;
 - (id)initWithTextLines:(NSArray *)lines iOSFont:(UIFont *)font offset:(CGPoint)point rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip color:(UIColor *)color alignment:(UITextAlignment)alignment;
 - (void)addViewShadow;
 - (void)removeViewShadow;
@@ -59,7 +59,7 @@
 - (void)updateTextDimensionsWithLines:(NSArray *)lines zFont:(ZFont *)font;
 - (void)updateTextDimensionsWithLines:(NSArray *)lines iOSFont:(UIFont *)font;
 - (void)updateLabelTextLines:(NSArray *)lines withFontName:(NSString *)fontName fontSize:(CGFloat)fontSize;
-- (void)updateLabelTextLines:(NSArray *)lines withZFont:(ZFont *)font myFontURL:(NSString *)fontURL;
+- (void)updateLabelTextLines:(NSArray *)lines withZFont:(ZFont *)font  myFontFilename:(NSString *)fontFilename;
 - (void)updateLabelTextLines:(NSArray *)lines withiOSFont:(UIFont *)font;
 - (void)updateLabelTextWithFontName:(NSString *)fontName fontSize:(CGFloat)fontSize;
 

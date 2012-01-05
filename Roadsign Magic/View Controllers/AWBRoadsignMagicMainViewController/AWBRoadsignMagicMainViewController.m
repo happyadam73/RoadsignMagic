@@ -30,7 +30,7 @@
 @synthesize mainScrollView, signBackgroundView;
 @synthesize signBackgroundPickerButton, toolbarSpacing, textButton, editButton, editTextButton, cancelButton, deleteButton, selectNoneOrAllButton, signSymbolPickerButton, actionButton, settingsButton, fixedToolbarSpacing;
 @synthesize signBackgroundPickerView, signSymbolPickerView; 
-@synthesize rotationGestureRecognizer, panGestureRecognizer, pinchGestureRecognizer, singleTapGestureRecognizer, doubleTapGestureRecognizer, swipeGestureRecognizer, longPressGestureRecognizer, longDoublePressGestureRecognizer;
+@synthesize rotationGestureRecognizer, panGestureRecognizer, pinchGestureRecognizer, singleTapGestureRecognizer, doubleTapGestureRecognizer, doubleDoubleTapGestureRecognizer, swipeGestureRecognizer, longPressGestureRecognizer, longDoublePressGestureRecognizer;
 @synthesize labelTextColor, labelTextFont, labelTextLine1, labelTextLine2, labelTextLine3, labelTextAlignment;
 @synthesize addTextBorders, addTextBackground, textRoundedBorders, textBorderColor, textBackgroundColor;
 @synthesize exportSize, snapToGrid, snapRotation, snapToGridSize, lockedView;

@@ -132,6 +132,11 @@ NSString *AWBPathInDocumentSubdirectory(NSString *docsSubdirectory, NSString *fi
 	return [directoryPath stringByAppendingPathComponent:fileName];
 }
 
+NSString *AWBPathInMyFontsDocumentsSubdirectory(NSString *filename)
+{
+    return AWBPathInDocumentSubdirectory(@"My Fonts", filename);
+}
+
 NSString *AWBGetImageKeyFromDocumentSubdirectory(NSString *docsSubdirectory, NSString *fileName)
 {
 	NSString *directoryPath = AWBDocumentSubdirectory(docsSubdirectory);

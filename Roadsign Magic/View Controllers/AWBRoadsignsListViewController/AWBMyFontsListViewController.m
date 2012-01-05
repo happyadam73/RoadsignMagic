@@ -340,7 +340,7 @@
             [self.theTableView reloadData];
         } else {
             NSLog(@"Installation of font cancelled");
-            [pendingMyFont removeFromFileSystem];
+            [pendingMyFont removeFromInbox];
         }
     }
     self.installMyFontAlertView = nil;

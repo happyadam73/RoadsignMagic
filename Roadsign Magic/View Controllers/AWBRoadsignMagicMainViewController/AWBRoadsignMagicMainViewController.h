@@ -56,6 +56,7 @@ enum {
     UIPinchGestureRecognizer *pinchGestureRecognizer;
     UITapGestureRecognizer *singleTapGestureRecognizer;
     UITapGestureRecognizer *doubleTapGestureRecognizer;
+    UITapGestureRecognizer *doubleDoubleTapGestureRecognizer;
     UISwipeGestureRecognizer *swipeGestureRecognizer;
     UILongPressGestureRecognizer *longPressGestureRecognizer;
     UILongPressGestureRecognizer *longDoublePressGestureRecognizer;
@@ -128,6 +129,7 @@ enum {
 @property (nonatomic, retain) UIPinchGestureRecognizer *pinchGestureRecognizer;
 @property (nonatomic, retain) UITapGestureRecognizer *singleTapGestureRecognizer;
 @property (nonatomic, retain) UITapGestureRecognizer *doubleTapGestureRecognizer;
+@property (nonatomic, retain) UITapGestureRecognizer *doubleDoubleTapGestureRecognizer;
 @property (nonatomic, retain) UISwipeGestureRecognizer *swipeGestureRecognizer;
 @property (nonatomic, retain) UILongPressGestureRecognizer *longPressGestureRecognizer;
 @property (nonatomic, retain) UILongPressGestureRecognizer *longDoublePressGestureRecognizer;

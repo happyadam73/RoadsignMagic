@@ -8,6 +8,7 @@
 
 #import "AWBRoadsignFont.h"
 #import "FontManager.h"
+#import "FileHelpers.h"
 
 @implementation AWBRoadsignFont
 
@@ -95,7 +96,7 @@
     }
 }
 
-+ (BOOL)isMyFont:(NSString *)fontName
++ (BOOL)isFontNameMyFontURL:(NSString *)fontName
 {
     NSURL *fileUrl = [NSURL URLWithString:fontName];
     if (fileUrl) {
@@ -107,6 +108,21 @@
     } else {
         return NO;
     }
+}
+
++ (BOOL)isFontNameMyFontFilename:(NSString *)fontName
+{
+    if ([fontName hasPrefix:@"mf"]) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
++ (NSURL *)myFontUrlFromFontFilename:(NSString *)fontFilename
+{
+    NSString *filepath = AWBPathInMyFontsDocumentsSubdirectory(fontFilename);
+    return [NSURL fileURLWithPath:filepath];
 }
 
 @end

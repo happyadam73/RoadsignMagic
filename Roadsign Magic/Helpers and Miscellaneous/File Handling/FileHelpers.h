@@ -27,4 +27,5 @@ BOOL AWBCopyBundleFolderToDocumentsFolder(NSString *bundleSubdirectory, NSString
 BOOL AWBCopyRoadsignHelpFilesForDevice(void);
 NSString *AWBPathInMainBundleSubdirectory(NSString *bundleSubdirectory, NSString *filename);
 NSString *AWBPathInMainBundleTemplateSubdirectory(NSString *bundleTemplateSubdirectory, NSString *filename);
+NSString *AWBPathInMyFontsDocumentsSubdirectory(NSString *filename);
 

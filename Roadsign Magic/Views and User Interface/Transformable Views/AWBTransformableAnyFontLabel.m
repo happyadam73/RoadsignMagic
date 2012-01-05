@@ -27,7 +27,7 @@
 @synthesize roundedBorder, viewBorderColor, viewShadowColor, addShadow, addBorder;
 @synthesize labelView, isZFontLabel, selectionMarquee1, selectionMarquee2;
 @synthesize addTextBackground, textBackgroundColor;
-@synthesize myFontUrl;
+@synthesize myFontFilename;
 
 - (void)initialiseLayerRotation:(CGFloat)rotation scale:(CGFloat)scale  
 {
@@ -100,26 +100,28 @@
 
 - (id)initWithTextLines:(NSArray *)lines fontName:(NSString *)fontName fontSize:(CGFloat)fontSize offset:(CGPoint)point rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip color:(UIColor *)color alignment:(UITextAlignment)alignment
 {
-    BOOL isMyFont = [AWBRoadsignFont isMyFont:fontName];
+    //BOOL isMyFont = [AWBRoadsignFont isMyFont:fontName];
+    BOOL isMyFont = [AWBRoadsignFont isFontNameMyFontFilename:fontName];
     BOOL isZFont = [AWBRoadsignFont isZFont:fontName];
     
     if (isZFont || isMyFont) {
         ZFont *zFont = nil;
-        NSString *fontURL = nil;
+        NSString *fontFilename = nil;
         if (isMyFont) {
-            fontURL = fontName;
-            zFont = [[FontManager sharedManager] zFontWithURL:[NSURL URLWithString:fontName] pointSize:fontSize];
+            fontFilename = fontName;
+            //zFont = [[FontManager sharedManager] zFontWithURL:[NSURL URLWithString:fontName] pointSize:fontSize];
+            zFont = [[FontManager sharedManager] zFontWithURL:[AWBRoadsignFont myFontUrlFromFontFilename:fontName] pointSize:fontSize];
         } else {
             zFont = [[FontManager sharedManager] zFontWithName:fontName pointSize:fontSize];
         }
-        return [self initWithTextLines:lines zFont:zFont offset:point rotation:rotation scale:scale horizontalFlip:flip color:color alignment:alignment myFontURL:fontURL];
+        return [self initWithTextLines:lines zFont:zFont offset:point rotation:rotation scale:scale horizontalFlip:flip color:color alignment:alignment myFontFilename:fontFilename];
     } else {
         UIFont *iOSFont = [UIFont fontWithName:fontName size:fontSize];
         return [self initWithTextLines:lines iOSFont:iOSFont offset:point rotation:rotation scale:scale horizontalFlip:flip color:color alignment:alignment];
     }
 }
 
-- (id)initWithTextLines:(NSArray *)lines zFont:(ZFont *)font offset:(CGPoint)point rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip color:(UIColor *)color alignment:(UITextAlignment)alignment myFontURL:(NSString *)fontURL
+- (id)initWithTextLines:(NSArray *)lines zFont:(ZFont *)font offset:(CGPoint)point rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip color:(UIColor *)color alignment:(UITextAlignment)alignment myFontFilename:(NSString *)fontFilename
 {
     ZFont *textFont = font;
     if (!textFont) {
@@ -132,14 +134,21 @@
     [self updateTextDimensionsWithLines:lines zFont:textFont];
     
     CGFloat frameWidth = (1.2 * maxWidth) + (0.25 * maxHeight);
-    CGFloat frameHeight = (1.1 * totalHeight) + 10.0;
-    
+    CGFloat frameHeight = (1.3 * totalHeight) + 10.0;
+
+//    CGFloat frameWidth = maxWidth;
+//    CGFloat frameHeight = totalHeight;
+
     self = [super initWithFrame:CGRectMake(point.x, point.y, frameWidth, frameHeight)];
     if (self) { 
-        self.myFontUrl = fontURL;
+        self.myFontFilename = fontFilename;
         isZFontLabel = YES;
         initialHeight = frameHeight;
         FontLabel *label = [[FontLabel alloc] initWithFrame:CGRectMake(0.0, 0.0, frameWidth, frameHeight) zFont:textFont];
+                
+//        [label setText:[lines componentsJoinedByString:@"\r\n"]];
+//        [label adjustsFontSizeToFitWidth];
+        
         label.layer.masksToBounds = YES;
         self.labelView = label;
         [label release];
@@ -180,7 +189,7 @@
     
     self = [super initWithFrame:CGRectMake(point.x, point.y, frameWidth, frameHeight)];
     if (self) { 
-        self.myFontUrl = nil;
+        self.myFontFilename = nil;
         isZFontLabel = NO;
         initialHeight = frameHeight;
         
@@ -283,7 +292,27 @@
             maxHeight = textLineSize.height;
         }        
         totalHeight += textLineSize.height;
-    }  
+    } 
+    
+    CGRect fontRect = CGFontGetFontBBox(font.cgFont);
+    CGFloat fontRectHeight = (fontRect.size.height - fontRect.origin.y) * font.ratio;
+    CGFloat diffRatio = (fontRectHeight - font.leading)/font.leading;
+    NSLog(@"zFont:%@ Leading: %f  FontRectHeight: %f  Diff: %f", font.fontName, font.leading, fontRectHeight, diffRatio);
+    NSLog(@"maxWidth: %f maxHeight: %f totalHeight: %f", maxWidth, maxHeight, totalHeight);
+    NSLog(@"zFont - Leading: %f  Ascender: %f  Descender: %f", font.leading, font.ascender, font.descender);
+    
+    if (diffRatio > 1.5) {
+        if ([lines count] > 1) {
+            totalHeight = totalHeight * 1.3;
+            NSLog(@"Font Height Trigger - add 25%% to total height");
+        } else {
+            totalHeight = totalHeight * 1.6;
+            NSLog(@"Font Height Trigger - add 50%% to total height");
+        }
+    }
+    
+//    NSLog(@"fontRect: %f %f %f %f", fontRect.origin.x, fontRect.origin.y, fontRect.size.width, fontRect.size.height);
+//    NSLog(@"Ratio: %f", font.ratio);
 }
 
 - (void)updateTextDimensionsWithLines:(NSArray *)lines iOSFont:(UIFont *)font
@@ -302,31 +331,37 @@
             maxHeight = textLineSize.height;
         }        
         totalHeight += textLineSize.height;
-    }  
+    } 
+    
+    NSLog(@"iOSFont: LineHeight: %f", font.lineHeight);
+
+        
 }
 
 - (void)updateLabelTextLines:(NSArray *)lines withFontName:(NSString *)fontName fontSize:(CGFloat)fontSize 
 {   
-    BOOL isMyFont = [AWBRoadsignFont isMyFont:fontName];
+    //BOOL isMyFont = [AWBRoadsignFont isMyFont:fontName];
+    BOOL isMyFont = [AWBRoadsignFont isFontNameMyFontFilename:fontName];
     BOOL isZFont = [AWBRoadsignFont isZFont:fontName];
     
     if (isZFont || isMyFont) {
         ZFont *zFont = nil;
-        NSString *fontURL = nil;
+        NSString *fontFilename = nil;
         if (isMyFont) {
-            fontURL = fontName;
-            zFont = [[FontManager sharedManager] zFontWithURL:[NSURL URLWithString:fontName] pointSize:fontSize];
+            fontFilename = fontName;
+            //zFont = [[FontManager sharedManager] zFontWithURL:[NSURL URLWithString:fontName] pointSize:fontSize];
+            zFont = [[FontManager sharedManager] zFontWithURL:[AWBRoadsignFont myFontUrlFromFontFilename:fontName] pointSize:fontSize];
         } else {
             zFont = [[FontManager sharedManager] zFontWithName:fontName pointSize:fontSize];
         }        
-        [self updateLabelTextLines:lines withZFont:zFont myFontURL:fontURL];
+        [self updateLabelTextLines:lines withZFont:zFont myFontFilename:fontFilename];
     } else {
         UIFont *iOSFont = [UIFont fontWithName:fontName size:fontSize];
         [self updateLabelTextLines:lines withiOSFont:iOSFont];
     }    
 }
 
-- (void)updateLabelTextLines:(NSArray *)lines withZFont:(ZFont *)font myFontURL:(NSString *)fontURL
+- (void)updateLabelTextLines:(NSArray *)lines withZFont:(ZFont *)font myFontFilename:(NSString *)fontFilename
 {    
     //OK, we're expecting a ZFont label - if it's not currently then we need to remove the iOS font label and create a new ZFont label
     //if (!isZFontLabel) {
@@ -345,11 +380,11 @@
         [label release];
         [self addSubview:self.labelView];
         isZFontLabel = YES;
-        self.myFontUrl = fontURL;
+        self.myFontFilename = fontFilename;
     //}
     
     [self updateTextDimensionsWithLines:lines zFont:font];
-    CGRect newBounds = CGRectMake(0.0, 0.0, (1.2 * maxWidth) + (0.25 * maxHeight), (1.1 * totalHeight) + 10.0);
+    CGRect newBounds = CGRectMake(0.0, 0.0, (1.2 * maxWidth) + (0.25 * maxHeight), (1.3 * totalHeight) + 10.0);
     [(FontLabel *)self.labelView setZFont:font];
     [self.labelView setText:[lines componentsJoinedByString:@"\r\n"]];
     [self setBounds:newBounds];
@@ -395,7 +430,7 @@
         [label release];
         [self addSubview:self.labelView];
         isZFontLabel = NO;
-        self.myFontUrl = nil;
+        self.myFontFilename = nil;
     }
     
     [self updateTextDimensionsWithLines:lines iOSFont:font];
@@ -428,19 +463,21 @@
 
 - (void)updateLabelTextWithFontName:(NSString *)fontName fontSize:(CGFloat)fontSize 
 {
-    BOOL isMyFont = [AWBRoadsignFont isMyFont:fontName];
+    //BOOL isMyFont = [AWBRoadsignFont isMyFont:fontName];
+    BOOL isMyFont = [AWBRoadsignFont isFontNameMyFontFilename:fontName];
     BOOL isZFont = [AWBRoadsignFont isZFont:fontName];
     
     if (isZFont || isMyFont) {
         ZFont *zFont = nil;
-        NSString *fontURL = nil;
+        NSString *fontFilename = nil;
         if (isMyFont) {
-            fontURL = fontName;
-            zFont = [[FontManager sharedManager] zFontWithURL:[NSURL URLWithString:fontName] pointSize:fontSize];
+            fontFilename = fontName;
+            //zFont = [[FontManager sharedManager] zFontWithURL:[NSURL URLWithString:fontName] pointSize:fontSize];
+            zFont = [[FontManager sharedManager] zFontWithURL:[AWBRoadsignFont myFontUrlFromFontFilename:fontName] pointSize:fontSize];
         } else {
             zFont = [[FontManager sharedManager] zFontWithName:fontName pointSize:fontSize];
-        }
-        [self updateLabelTextLines:[self.labelView.text componentsSeparatedByString:@"\r\n"] withZFont:zFont myFontURL:fontURL];
+        }        
+        [self updateLabelTextLines:[self.labelView.text componentsSeparatedByString:@"\r\n"] withZFont:zFont myFontFilename:fontFilename];
     } else {
         UIFont *iOSFont = [UIFont fontWithName:fontName size:fontSize];
         [self updateLabelTextLines:[self.labelView.text componentsSeparatedByString:@"\r\n"] withiOSFont:iOSFont];
@@ -452,8 +489,8 @@
     [self applyPendingRotationToCapturedView];
     [aCoder encodeObject:self.labelView.text forKey:@"labelText"];
     if (self.isZFontLabel) {
-        if (self.myFontUrl) {
-            [aCoder encodeObject:self.myFontUrl forKey:@"labelFontName"];
+        if (self.myFontFilename) {
+            [aCoder encodeObject:self.myFontFilename forKey:@"labelFontName"];
         } else {
             [aCoder encodeObject:((FontLabel *)self.labelView).zFont.familyName forKey:@"labelFontName"];
         }
@@ -637,7 +674,7 @@
     [viewBorderColor release];
     [viewShadowColor release];
     [textBackgroundColor release];
-    [myFontUrl release];
+    [myFontFilename release];
     [super dealloc];
 }
 

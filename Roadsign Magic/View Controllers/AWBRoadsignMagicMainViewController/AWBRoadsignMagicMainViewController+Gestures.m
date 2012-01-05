@@ -45,6 +45,13 @@
     self.doubleTapGestureRecognizer = doubleTapRecognizer;
     [doubleTapRecognizer release];
     [self.mainScrollView addGestureRecognizer:self.doubleTapGestureRecognizer]; 
+
+    UITapGestureRecognizer *doubleDoubleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleDoubleTaps:)];
+    doubleDoubleTapRecognizer.numberOfTouchesRequired = 2;
+    doubleDoubleTapRecognizer.numberOfTapsRequired = 2;
+    self.doubleDoubleTapGestureRecognizer = doubleDoubleTapRecognizer;
+    [doubleDoubleTapRecognizer release];
+    [self.mainScrollView addGestureRecognizer:self.doubleDoubleTapGestureRecognizer]; 
     
     UITapGestureRecognizer *singleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTaps:)];
     singleTapRecognizer.numberOfTouchesRequired = 1;
@@ -270,6 +277,30 @@
             CGRect zoomRect = [self zoomRectForScale:newScale withCenter:centerPoint];
             [mainScrollView zoomToRect:zoomRect animated:YES];
         }
+    }
+}
+
+- (void)handleDoubleDoubleTaps:(UITapGestureRecognizer *)paramSender
+{
+    if (self.isSignInEditMode || self.lockedView.objectsLocked) {
+        return;
+    } else {
+        if (!self.navigationController.toolbarHidden) {
+            [self toggleFullscreen];
+        }
+    }
+    
+    if (paramSender.state == UIGestureRecognizerStateEnded) {
+        CGPoint point = [paramSender locationInView:self.signBackgroundView]; 
+        UIView <AWBTransformableView> *view = [self.signBackgroundView topTransformableViewAtPoint:point];
+        
+        if (view) {
+            if ([view isInFront]) {
+                [self.signBackgroundView sendSubviewToBack:view];
+            } else {
+                [self.signBackgroundView bringSubviewToFront:view];                
+            }
+        }        
     }
 }
 

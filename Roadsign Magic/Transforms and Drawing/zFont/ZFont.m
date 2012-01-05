@@ -22,7 +22,7 @@
 #import "ZFont.h"
 
 @interface ZFont ()
-@property (nonatomic, readonly) CGFloat ratio;
+//@property (nonatomic, readonly) CGFloat ratio;
 - (NSString *)copyNameTableEntryForID:(UInt16)nameID;
 @end
 

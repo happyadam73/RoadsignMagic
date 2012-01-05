@@ -21,7 +21,8 @@ static NSString *const kAWBInfoKeyMyFontFileSizeBytes = @"MyFontFileSizeBytes";
     NSString *fontName;
     NSString *postScriptName;
     NSString *filename;
-    NSURL *fileUrl;
+    NSURL *installUrl;
+    //NSURL *fileUrl;
     NSDate *createdDate;
     NSUInteger fileSizeBytes;
 }
@@ -30,11 +31,13 @@ static NSString *const kAWBInfoKeyMyFontFileSizeBytes = @"MyFontFileSizeBytes";
 @property (nonatomic, retain) NSString *fontName;
 @property (nonatomic, retain) NSString *postScriptName;
 @property (nonatomic, retain) NSString *filename;
-@property (nonatomic, retain) NSURL *fileUrl;
+@property (nonatomic, retain) NSURL *installUrl;
+@property (nonatomic, readonly) NSURL *fileUrl;
 @property (nonatomic, readonly) NSDate *createdDate;
 @property (nonatomic, assign) NSUInteger fileSizeBytes;
 
 - (id)initWithUrl:(NSURL *)url;
 - (void)removeFromFileSystem;
+- (void)removeFromInbox;
 
 @end
