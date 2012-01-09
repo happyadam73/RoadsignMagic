@@ -104,6 +104,7 @@
     [infoView addSubview:[self roadsignNameLabel]];
     [infoView addSubview:[self roadsignCreatedDateLabel]];
     [infoView addSubview:[self roadsignUpdatedDateLabel]];
+    
     return [infoView autorelease];
 }
 

@@ -9,6 +9,7 @@
 #import "AWBSettings.h"
 #import "AWBFacebookSignoutView.h"
 #import "AWBMyFontStore.h"
+#import "FileHelpers.h"
 
 @implementation AWBSettings
 
@@ -129,6 +130,18 @@
 {
     NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup aboutTextSettingsGroupWithInfo:info], nil];
     AWBSettings *aboutSettings = [[self alloc] initWithSettingsGroups:settings title:@"About"];
+
+//    AWBSettings *aboutSettings = [[self alloc] initWithSettingsGroups:nil title:@"About"];
+//
+//    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 480.0)];
+//    NSString *path = AWBPathInMainBundleSubdirectory(@"Help Files", @"AboutRoadsignMagic.rtf");
+//    NSURL *url = [NSURL fileURLWithPath:path];
+//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//    webView.scalesPageToFit = YES;
+//    [webView loadRequest:request];
+//    [webView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+//    aboutSettings.headerView = webView;
+//    [webView release];
     
     return [aboutSettings autorelease];    
 }

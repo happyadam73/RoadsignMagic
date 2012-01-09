@@ -880,6 +880,7 @@
 		06F15FBC147BC0E8007071D0 /* 15013@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06F15F60147BC0E8007071D0 /* 15013@2x.png */; };
 		06F15FBD147BC0E8007071D0 /* 15014@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06F15F61147BC0E8007071D0 /* 15014@2x.png */; };
 		06F15FBE147BC0E8007071D0 /* 15015@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06F15F62147BC0E8007071D0 /* 15015@2x.png */; };
+		B59DE99314BB57000073578E /* AWBWebViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B59DE99214BB57000073578E /* AWBWebViewCell.m */; };
 		B5E0448014784406006A8D5C /* blackbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E0445F14784406006A8D5C /* blackbutton.png */; };
 		B5E0448114784406006A8D5C /* blackbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E0446014784406006A8D5C /* blackbutton@2x.png */; };
 		B5E0448214784406006A8D5C /* darkgraybutton.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E0446114784406006A8D5C /* darkgraybutton.png */; };
@@ -1884,6 +1885,8 @@
 		06F15F60147BC0E8007071D0 /* 15013@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "15013@2x.png"; sourceTree = "<group>"; };
 		06F15F61147BC0E8007071D0 /* 15014@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "15014@2x.png"; sourceTree = "<group>"; };
 		06F15F62147BC0E8007071D0 /* 15015@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "15015@2x.png"; sourceTree = "<group>"; };
+		B59DE99114BB57000073578E /* AWBWebViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBWebViewCell.h; sourceTree = "<group>"; };
+		B59DE99214BB57000073578E /* AWBWebViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBWebViewCell.m; sourceTree = "<group>"; };
 		B5E0445F14784406006A8D5C /* blackbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackbutton.png; sourceTree = "<group>"; };
 		B5E0446014784406006A8D5C /* blackbutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackbutton@2x.png"; sourceTree = "<group>"; };
 		B5E0446114784406006A8D5C /* darkgraybutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = darkgraybutton.png; sourceTree = "<group>"; };
@@ -3645,6 +3648,8 @@
 				06D1AEE31494D9560096099B /* AWBExportQualitySliderCell.m */,
 				06D1AEED1495071C0096099B /* AWBTextViewCell.h */,
 				06D1AEEE1495071C0096099B /* AWBTextViewCell.m */,
+				B59DE99114BB57000073578E /* AWBWebViewCell.h */,
+				B59DE99214BB57000073578E /* AWBWebViewCell.m */,
 				B5E044C41478471F006A8D5C /* AWBSegmentControlCell.h */,
 				B5E044C51478471F006A8D5C /* AWBSegmentControlCell.m */,
 				B5E044C61478471F006A8D5C /* AWBSettingTableCell.h */,
@@ -4764,6 +4769,7 @@
 				06AD3BD814B1C72300B68B91 /* AWBMyFontStore.m in Sources */,
 				068D7EB914B368C100C2964D /* AWBMyFontPreviewTableCell.m in Sources */,
 				0606FDE614B71DA600C180C8 /* UIApplication+AppDimensions.m in Sources */,
+				B59DE99314BB57000073578E /* AWBWebViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

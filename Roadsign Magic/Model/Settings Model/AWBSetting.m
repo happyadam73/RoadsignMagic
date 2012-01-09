@@ -24,6 +24,7 @@
 #import "AWBZFontTableCell.h"
 #import "AWBSettingTableCell.h"
 #import "AWBMyFontPreviewTableCell.h"
+#import "AWBWebViewCell.h"
 
 @implementation AWBSetting
 
@@ -97,6 +98,11 @@
 + (AWBSetting *)textViewSettingWithValue:(id)aValue andKey:(NSString *)aKey
 {
     return [[[self alloc] initWithText:nil controlType:AWBSettingControlTypeTextView value:aValue key:aKey] autorelease];
+}
+
++ (AWBSetting *)webViewSettingWithValue:(id)aValue andKey:(NSString *)aKey
+{
+    return [[[self alloc] initWithText:nil controlType:AWBSettingControlTypeWebView value:aValue key:aKey] autorelease];
 }
 
 + (AWBSetting *)switchSettingWithText:(NSString *)text value:(id)aValue key:(NSString *)aKey
@@ -196,6 +202,8 @@
             return @"AWBSettingControlTypeTextView"; 
         case AWBSettingControlTypeMyFontPreview:
             return @"AWBSettingControlTypeMyFontPreview"; 
+        case AWBSettingControlTypeWebView:
+            return @"AWBSettingControlTypeWebView"; 
         default:
             return @"AWBSettingControlTypeDefault";
     }    
@@ -228,6 +236,10 @@
             break;
         case AWBSettingControlTypeTextView:
             tableCell = [[AWBTextViewCell alloc] initWithText:settingValue reuseIdentifier:self.cellReuseIdentifier];
+            tableCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            break;
+        case AWBSettingControlTypeWebView:
+            tableCell = [[AWBWebViewCell alloc] initWithReuseIdentifier:self.cellReuseIdentifier];
             tableCell.selectionStyle = UITableViewCellSelectionStyleNone;
             break;
         case AWBSettingControlTypeColorPicker:
@@ -316,6 +328,9 @@
             self.settingValue = nil;
             break;
         case AWBSettingControlTypeTextView:
+            self.settingValue = nil;
+            break;
+        case AWBSettingControlTypeWebView:
             self.settingValue = nil;
             break;
         case AWBSettingControlTypeImageAndTextList:

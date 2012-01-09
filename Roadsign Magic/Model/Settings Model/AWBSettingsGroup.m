@@ -199,7 +199,8 @@
 {
     NSString *aboutText = @"\r\nRoadsign Magic is developed by happyadam development.\r\n\r\nRoadsign Magic is intended for personal use.  It is not intended for commercial use or for actual traffic sign making.  You must not reproduce roadsigns in a misleading context (e.g. not on roadside billboards where they could mislead drivers) or in any other way that may contravene local and international highway laws.\r\n\r\nThe majority of roadsign backgrounds and symbols as well as the Roadsign Typeface are Crown Copyright and reproduced with permission under the UK Open Government License v1.0.\r\nMore information on the terms of this license can be found at http://www.nationalarchives.gov.uk/doc/open-government-licence.\r\n\r\nThe Roadsign Typeface is based on the Transport Medium Typeface which is also UK Crown Copyright reproduced from the Department of Transport Working Drawings available under the UK Open Government License 1.0.  It was created between 1957 and 1963 by Jock Kinneir and Margaret Calvert as part of their work as designers for the Department of Transport's Anderson and Worboys committees.";
     
-    NSMutableArray *aboutTextSettings = [NSMutableArray arrayWithObjects:[AWBSetting textViewSettingWithValue:aboutText andKey:nil], nil];
+    //NSMutableArray *aboutTextSettings = [NSMutableArray arrayWithObjects:[AWBSetting textViewSettingWithValue:aboutText andKey:nil], nil];
+    NSMutableArray *aboutTextSettings = [NSMutableArray arrayWithObjects:[AWBSetting webViewSettingWithValue:nil andKey:nil], nil];
     AWBSettingsGroup *aboutTextSettingsGroup = [[self alloc] initWithSettings:aboutTextSettings header:nil footer:nil];
     aboutTextSettingsGroup.iPhoneRowHeight = 400;
     aboutTextSettingsGroup.iPadRowHeight = 880;
