@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0606FDE614B71DA600C180C8 /* UIApplication+AppDimensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0606FDE514B71DA600C180C8 /* UIApplication+AppDimensions.m */; };
+		0606FDF114B73CF100C180C8 /* 18001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0606FDED14B73CF100C180C8 /* 18001@2x.png */; };
+		0606FDF214B73CF100C180C8 /* 18002@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0606FDEE14B73CF100C180C8 /* 18002@2x.png */; };
+		0606FDF314B73CF100C180C8 /* 18003@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0606FDEF14B73CF100C180C8 /* 18003@2x.png */; };
+		0606FDF514B7420B00C180C8 /* 08@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0606FDF414B7420B00C180C8 /* 08@2x.png */; };
 		060BC39714896E2C00799B01 /* S13001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 060BC37C14896E2C00799B01 /* S13001@2x.png */; };
 		060BC39814896E2C00799B01 /* S13002@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 060BC37D14896E2C00799B01 /* S13002@2x.png */; };
 		060BC39914896E2C00799B01 /* S13003@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 060BC37E14896E2C00799B01 /* S13003@2x.png */; };
@@ -940,6 +945,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0606FDE414B71DA600C180C8 /* UIApplication+AppDimensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+AppDimensions.h"; sourceTree = "<group>"; };
+		0606FDE514B71DA600C180C8 /* UIApplication+AppDimensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+AppDimensions.m"; sourceTree = "<group>"; };
+		0606FDED14B73CF100C180C8 /* 18001@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "18001@2x.png"; sourceTree = "<group>"; };
+		0606FDEE14B73CF100C180C8 /* 18002@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "18002@2x.png"; sourceTree = "<group>"; };
+		0606FDEF14B73CF100C180C8 /* 18003@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "18003@2x.png"; sourceTree = "<group>"; };
+		0606FDF414B7420B00C180C8 /* 08@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "08@2x.png"; sourceTree = "<group>"; };
 		060BC37C14896E2C00799B01 /* S13001@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S13001@2x.png"; sourceTree = "<group>"; };
 		060BC37D14896E2C00799B01 /* S13002@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S13002@2x.png"; sourceTree = "<group>"; };
 		060BC37E14896E2C00799B01 /* S13003@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S13003@2x.png"; sourceTree = "<group>"; };
@@ -1987,6 +1998,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0606FDEA14B73CF100C180C8 /* 8 No Sign Backgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				0606FDF414B7420B00C180C8 /* 08@2x.png */,
+				0606FDEC14B73CF100C180C8 /* 18 Thumbnails */,
+			);
+			name = "8 No Sign Backgrounds";
+			path = "Resources/Roadsign Graphics/8 No Sign Backgrounds";
+			sourceTree = "<group>";
+		};
+		0606FDEC14B73CF100C180C8 /* 18 Thumbnails */ = {
+			isa = PBXGroup;
+			children = (
+				0606FDED14B73CF100C180C8 /* 18001@2x.png */,
+				0606FDEE14B73CF100C180C8 /* 18002@2x.png */,
+				0606FDEF14B73CF100C180C8 /* 18003@2x.png */,
+			);
+			path = "18 Thumbnails";
+			sourceTree = "<group>";
+		};
 		060BC37A14896E2C00799B01 /* S3 Junction Symbols */ = {
 			isa = PBXGroup;
 			children = (
@@ -2692,6 +2723,7 @@
 				06F15F51147BC0E8007071D0 /* 5 Yellow Rectangular Backgrounds */,
 				06565DC51481950F00B4F2CF /* 6 Signpost Backgrounds */,
 				06B473841489399B00A95A04 /* 7 Triangles and Circular Backgrounds */,
+				0606FDEA14B73CF100C180C8 /* 8 No Sign Backgrounds */,
 				06C344F31485075D000A3CC8 /* S0 Arrow Symbols */,
 				06C344FF1485075D000A3CC8 /* S1 Regulatory Symbols */,
 				06B4737A1487D51100A95A04 /* S2 Tourist Symbols */,
@@ -3684,6 +3716,8 @@
 				068F12FC1483A35E00C925C2 /* UIView+SelectionMarquee.m */,
 				068F12FE1483A65E00C925C2 /* CAShapeLayer+Animation.h */,
 				068F12FF1483A65F00C925C2 /* CAShapeLayer+Animation.m */,
+				0606FDE414B71DA600C180C8 /* UIApplication+AppDimensions.h */,
+				0606FDE514B71DA600C180C8 /* UIApplication+AppDimensions.m */,
 			);
 			name = UIView;
 			path = "Views and User Interface/UIView";
@@ -4627,6 +4661,10 @@
 				0611EBE1149F6BB300A3588C /* S22044.png in Resources */,
 				0611EC0D14A0BC3200A3588C /* FBDialog.bundle in Resources */,
 				069F442A14A4F2050037C72C /* Template Roadsigns in Resources */,
+				0606FDF114B73CF100C180C8 /* 18001@2x.png in Resources */,
+				0606FDF214B73CF100C180C8 /* 18002@2x.png in Resources */,
+				0606FDF314B73CF100C180C8 /* 18003@2x.png in Resources */,
+				0606FDF514B7420B00C180C8 /* 08@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4725,6 +4763,7 @@
 				06AD3BD514B1B63A00B68B91 /* AWBMyFont.m in Sources */,
 				06AD3BD814B1C72300B68B91 /* AWBMyFontStore.m in Sources */,
 				068D7EB914B368C100C2964D /* AWBMyFontPreviewTableCell.m in Sources */,
+				0606FDE614B71DA600C180C8 /* UIApplication+AppDimensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4811,6 +4850,8 @@
 		06A9600014781B6000915359 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Adam Buckley";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Adam Buckley";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Roadsign Magic/Roadsign Magic-Prefix.pch";
 				INFOPLIST_FILE = "Roadsign Magic/Roadsign Magic-Info.plist";
@@ -4821,6 +4862,8 @@
 				);
 				"OTHER_CFLAGS[arch=armv7]" = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "29CD1314-9647-4B34-89D6-BA2A833EAC02";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "29CD1314-9647-4B34-89D6-BA2A833EAC02";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

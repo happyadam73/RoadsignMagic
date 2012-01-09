@@ -12,5 +12,6 @@
 
 + (CAShapeLayer *)selectionMarqueeWithWhitePhase:(BOOL)isWhite;
 - (void)showSelectionMarquee:(CAShapeLayer *)marquee;
+- (void)showSelectionMarquee2:(CAShapeLayer *)marquee;
 
 @end

@@ -409,8 +409,26 @@
 + (AWBSettingsGroup *)myFontPreviewSettingsGroupWithInfo:(NSDictionary *)info
 {
     NSURL *fontFileUrl = [info objectForKey:kAWBInfoKeyMyFontFileUrl];
-    NSMutableArray *myFontPreviewSettings = [NSMutableArray arrayWithObjects:[AWBSetting myFontPreviewSettingWithValue:fontFileUrl], nil];
-    AWBSettingsGroup *myFontPreviewSettingsGroup = [[self alloc] initWithSettings:myFontPreviewSettings header:@"Preview" footer:nil];
+    NSUInteger fontDiskBytes = [[info objectForKey:kAWBInfoKeyMyFontFileSizeBytes] integerValue];
+
+    NSString *osVersion = [[UIDevice currentDevice] systemVersion];
+    NSString *versionWithBetterFontRendering = @"5.0";
+    BOOL shorterPreviewForLargeFonts = ([versionWithBetterFontRendering compare:osVersion options:NSNumericSearch] == NSOrderedDescending);
+    NSString *previewText = @"ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789";
+    NSString *footer = nil;
+    
+    if (shorterPreviewForLargeFonts) {
+        if (fontDiskBytes > 500000) {
+            previewText = @"ABC abc";
+            footer = @"This is a very large font and may render slowly on this device (fonts render quicker with iOS5 and above).  A short preview is being displayed.";
+        } else if (fontDiskBytes > 100000) {
+            previewText = @"ABCDEFG abcdefg 0123456789";            
+            footer = @"This font may render slowly on this device (fonts render quicker with iOS5 and above).  A shorter preview is being displayed.";
+        }
+    }
+    
+    NSMutableArray *myFontPreviewSettings = [NSMutableArray arrayWithObjects:[AWBSetting myFontPreviewSettingWithText:previewText value:fontFileUrl], nil];
+    AWBSettingsGroup *myFontPreviewSettingsGroup = [[self alloc] initWithSettings:myFontPreviewSettings header:@"Preview" footer:footer];
     myFontPreviewSettingsGroup.iPhoneRowHeight = 200;
     myFontPreviewSettingsGroup.iPadRowHeight = 300;
     return [myFontPreviewSettingsGroup autorelease];

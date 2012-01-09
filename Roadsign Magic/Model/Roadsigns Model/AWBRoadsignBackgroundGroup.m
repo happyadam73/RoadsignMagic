@@ -53,14 +53,15 @@
 + (NSArray *)allSignBackgroundCategories
 {
     return [NSArray arrayWithObjects:
+            [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:8 count:3 description:@"No Sign Backgrounds"],            
+            [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:6 count:28 description:@"Signpost Backgrounds"],            
+            [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:7 count:15 description:@"Triangles and Circular Backgrounds"],            
             [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:0 count:15 description:@"Blue Rectangular Backgrounds"],
             [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:1 count:9 description:@"Green Rectangular Backgrounds"],
             [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:2 count:14 description:@"Brown Rectangular Backgrounds"],
             [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:3 count:19 description:@"White Rectangular Backgrounds"],
             [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:4 count:10 description:@"Red Rectangular Backgrounds"],
             [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:5 count:15 description:@"Yellow Rectangular Backgrounds"],
-            [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:6 count:28 description:@"Signpost Backgrounds"],            
-            [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:7 count:15 description:@"Triangles and Circular Backgrounds"],            
             nil];
 }
 

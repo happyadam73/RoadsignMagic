@@ -13,6 +13,6 @@
     FontLabel *fontLabel;
 }
 
-- (id)initWithFontFileUrl:(NSURL *)fontFileUrl reuseIdentifier:(NSString *)reuseIdentifier;
+- (id)initWithFontFileUrl:(NSURL *)fontFileUrl previewText:(NSString *)previewText reuseIdentifier:(NSString *)reuseIdentifier;
 
 @end

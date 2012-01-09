@@ -16,5 +16,6 @@
 - (void)toggleSignBackgroundPickerView:(id)sender;
 - (void)updateSignBackgroundWithImageFromFile:(NSString *)name willAnimateAndSave:(BOOL)animateAndSave;
 - (void)updateSignBackground:(AWBRoadsignBackground *)signBackground willAnimateAndSave:(BOOL)animateAndSave;
+- (void)clearSignBackgroundWithSignId:(NSUInteger)signBackgroundId willAnimateAndSave:(BOOL)animateAndSave;
 
 @end

@@ -106,6 +106,8 @@ enum {
     
     FBRequest *currentFacebookRequest;
     Facebook *facebook;
+    CAShapeLayer *selectionMarquee1;
+    CAShapeLayer *selectionMarquee2;    
 }
 
 @property (nonatomic, retain) UIBarButtonItem *signBackgroundPickerButton;
@@ -168,6 +170,8 @@ enum {
 @property (nonatomic, retain) UIColor *roadsignBackgroundColor;
 @property (nonatomic, retain) NSString *roadsignBackgroundTexture;
 @property (nonatomic, assign) BOOL useBackgroundTexture;
+@property (nonatomic, retain) CAShapeLayer *selectionMarquee1;
+@property (nonatomic, retain) CAShapeLayer *selectionMarquee2;    
 
 - (void) updateLayoutForNewOrientation: (UIInterfaceOrientation) orientation;
 - (id)initWithRoadsignDescriptor:(AWBRoadsignDescriptor *)roadsign;
@@ -175,6 +179,9 @@ enum {
 - (void)loadChanges;
 - (NSString *)archivePath;
 - (NSString *)thumbnailArchivePath;
+- (void)initialiseSelectionMarquees;
+- (void)showSelectionMarquees;
+- (void)hideSelectionMarquees;
 
 @end
 

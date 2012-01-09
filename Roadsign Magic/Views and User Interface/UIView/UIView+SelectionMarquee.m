@@ -20,6 +20,11 @@
         selectionMarquee.lineWidth = 3.0f;
         selectionMarquee.lineJoin = kCALineJoinRound;
         selectionMarquee.lineDashPattern = [NSArray arrayWithObjects:[NSNumber numberWithInt:(isWhite ? 10 : 5)],[NSNumber numberWithInt:(isWhite ? 5 : 10)], nil];
+
+//        selectionMarquee.lineWidth = 60.0f;
+//        selectionMarquee.lineJoin = kCALineJoinRound;
+//        selectionMarquee.lineDashPattern = [NSArray arrayWithObjects:[NSNumber numberWithInt:(isWhite ? 200 : 100)],[NSNumber numberWithInt:(isWhite ? 100 : 200)], nil];
+        
         selectionMarquee.bounds = CGRectZero;
         selectionMarquee.position = CGPointZero;        
     }
@@ -30,6 +35,18 @@
 - (void)showSelectionMarquee:(CAShapeLayer *)marquee
 {    
     CGRect frame = self.frame;    
+    marquee.bounds = CGRectMake(frame.origin.x, frame.origin.y, 0, 0);
+    marquee.position = CGPointMake(frame.origin.x, frame.origin.y);
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathAddRect(path, NULL, frame);        
+    [marquee setPath:path];
+    CGPathRelease(path);
+    marquee.hidden = NO;
+}
+
+- (void)showSelectionMarquee2:(CAShapeLayer *)marquee
+{    
+    CGRect frame = self.bounds;    
     marquee.bounds = CGRectMake(frame.origin.x, frame.origin.y, 0, 0);
     marquee.position = CGPointMake(frame.origin.x, frame.origin.y);
     CGMutablePathRef path = CGPathCreateMutable();

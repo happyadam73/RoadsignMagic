@@ -126,9 +126,9 @@
     return [[[self alloc] initWithText:nil controlType:AWBSettingControlTypeZFont value:aValue key:nil] autorelease];
 }
 
-+ (AWBSetting *)myFontPreviewSettingWithValue:(id)aValue
++ (AWBSetting *)myFontPreviewSettingWithText:(NSString *)text value:(id)aValue
 {
-    return [[[self alloc] initWithText:nil controlType:AWBSettingControlTypeMyFontPreview value:aValue key:nil] autorelease];
+    return [[[self alloc] initWithText:text controlType:AWBSettingControlTypeMyFontPreview value:aValue key:nil] autorelease];
 }
 
 + (AWBSetting *)drilldownSettingWithText:(NSString *)aText value:(id)aValue key:(NSString *)aKey childSettings:(AWBSettings *)settings
@@ -244,7 +244,7 @@
             tableCell.selectionStyle = UITableViewCellSelectionStyleBlue;
             break;
         case AWBSettingControlTypeMyFontPreview:
-            tableCell = [[AWBMyFontPreviewTableCell alloc] initWithFontFileUrl:settingValue reuseIdentifier:self.cellReuseIdentifier];
+            tableCell = [[AWBMyFontPreviewTableCell alloc] initWithFontFileUrl:settingValue previewText:self.text reuseIdentifier:self.cellReuseIdentifier];
             tableCell.selectionStyle = UITableViewCellSelectionStyleNone;
             break;
         case AWBSettingControlTypeDrilldown:

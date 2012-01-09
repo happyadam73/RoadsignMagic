@@ -12,7 +12,7 @@
 
 @implementation AWBMyFontPreviewTableCell
 
-- (id)initWithFontFileUrl:(NSURL *)fontFileUrl reuseIdentifier:(NSString *)reuseIdentifier;
+- (id)initWithFontFileUrl:(NSURL *)fontFileUrl previewText:(NSString *)previewText reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     if (self) {
@@ -32,7 +32,8 @@
         fontLabel.backgroundColor = [UIColor clearColor];
         fontLabel.textAlignment = UITextAlignmentCenter;
         fontLabel.numberOfLines = 0;
-        fontLabel.text = @"ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789";
+        fontLabel.text = previewText;
+        //fontLabel.text = @"ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789";
         [[self contentView] addSubview:fontLabel];
         [fontLabel release];
     }

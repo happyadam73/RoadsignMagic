@@ -24,6 +24,7 @@
 #import "AWBRoadsignMagicViewController+Sign.h"
 #import "AWBRoadsignMagicViewController+Edit.h"
 #import "UIColor+Texture.h"
+#import "UIApplication+AppDimensions.h"
 
 @implementation AWBRoadsignMagicMainViewController
 
@@ -40,6 +41,7 @@
 @synthesize exportFormatSelectedIndex, pngExportTransparentBackground, jpgExportQualityValue;
 @synthesize roadsignBackgroundTexture, roadsignBackgroundColor, useBackgroundTexture;
 @synthesize useMyFonts, labelMyFont;
+@synthesize selectionMarquee1, selectionMarquee2;
 
 - (id)init
 {
@@ -171,6 +173,8 @@
     self.busyView = nil;
     self.textBorderColor = nil;
     self.textBackgroundColor = nil;
+    self.selectionMarquee1 = nil;
+    self.selectionMarquee2 = nil;
 }
 
 - (void)viewDidLoad
@@ -238,12 +242,45 @@
     self.mainScrollView = scrollView;
     [scrollView release];
     [[self view] addSubview:self.mainScrollView];
+
+//    CGSize frameSize = [UIApplication currentSize];
+//    CGFloat backgroundViewWidth;
+//    CGFloat backgroundViewHeight;
+//    if (frameSize.width > frameSize.height) {
+//        backgroundViewWidth = 1400.0;
+//        backgroundViewHeight = (frameSize.height/frameSize.width)*1400;
+//    } else {
+//        backgroundViewHeight = 1400.0;
+//        backgroundViewWidth = (frameSize.width/frameSize.height)*1400;        
+//    }
     
-    UIImageView *backgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 1400.0, 1400.0)];
+    UIImageView *backgroundView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    //UIImageView *backgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 1400, 1400)];
+    //UIImageView *backgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, backgroundViewWidth, backgroundViewHeight)];
     backgroundView.userInteractionEnabled = YES;
+    
+//    CAShapeLayer *marquee1 = [UIView selectionMarqueeWithWhitePhase:YES];
+//    CAShapeLayer *marquee2 = [UIView selectionMarqueeWithWhitePhase:NO];
+//    [[backgroundView layer] addSublayer:marquee1];
+//    [[backgroundView layer] addSublayer:marquee2]; 
+//    [backgroundView showSelectionMarquee:marquee1];
+//    [backgroundView showSelectionMarquee:marquee2];
+    
     self.signBackgroundView = backgroundView;
-    AWBAppDelegate *delegate = (AWBAppDelegate *) [[UIApplication sharedApplication] delegate];
-    delegate.signBackgroundSize = signBackgroundView.bounds.size;
+    [self initialiseSelectionMarquees];
+    
+    NSUInteger signBackgroundId;
+    CGSize frameSize = [UIApplication currentSize];
+    if (frameSize.width > frameSize.height) {
+        signBackgroundId = 8002;
+    } else {
+        signBackgroundId = 8001;
+    }
+    AWBRoadsignBackground *signBackground = [AWBRoadsignBackground signBackgroundWithIdentifier:signBackgroundId];
+    [self updateSignBackground:signBackground willAnimateAndSave:NO];
+    
+//    AWBAppDelegate *delegate = (AWBAppDelegate *) [[UIApplication sharedApplication] delegate];
+//    delegate.signBackgroundSize = signBackgroundView.bounds.size;
     [self.mainScrollView addSubview:self.signBackgroundView];
     [backgroundView release];
     
@@ -485,6 +522,8 @@
     [mainScrollView release];
     [roadsignBackgroundColor release];
     [roadsignBackgroundTexture release];
+    [selectionMarquee1 release];
+    [selectionMarquee2 release];
     [super dealloc];
 }
 
@@ -492,5 +531,26 @@
 {
     self.mainScrollView.scrollEnabled = !anchored;
 }
+
+- (void)initialiseSelectionMarquees
+{
+    self.selectionMarquee1 = [UIView selectionMarqueeWithWhitePhase:YES];
+    self.selectionMarquee2 = [UIView selectionMarqueeWithWhitePhase:NO];
+    [[self.signBackgroundView layer] addSublayer:self.selectionMarquee1];
+    [[self.signBackgroundView layer] addSublayer:self.selectionMarquee2];   
+}
+
+- (void)showSelectionMarquees
+{
+    [self.signBackgroundView showSelectionMarquee2:self.selectionMarquee1];
+    [self.signBackgroundView showSelectionMarquee2:self.selectionMarquee2];
+}
+
+- (void)hideSelectionMarquees
+{
+    self.selectionMarquee1.hidden = YES;
+    self.selectionMarquee2.hidden = YES;   
+}
+
 
 @end

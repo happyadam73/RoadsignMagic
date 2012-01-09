@@ -59,12 +59,20 @@
 - (void)updateSignBackgroundWithImageFromFile:(NSString *)name willAnimateAndSave:(BOOL)animateAndSave
 {    
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    [self hideSelectionMarquees];
     //UIImage *image = [[UIImage imageFromFile:name] imageScaledToMaxResolution:MAX_SIGN_BACKGROUND_PIXELS withTransparentBorderThickness:0.0];
     UIImage *image = [UIImage imageFromFile:name];
     [signBackgroundView setImage:image];
     [signBackgroundView sizeToFit];
     signBackgroundView.alpha = 0.0;
     [mainScrollView setContentSize:[signBackgroundView bounds].size];
+    
+    NSLog(@"mainScrollView: %f %f %f %f", mainScrollView.frame.origin.x, mainScrollView.frame.origin.y, mainScrollView.frame.size.width, mainScrollView.frame.size.height);
+    NSLog(@"signBackgroundView: %f %f %f %f", signBackgroundView.frame.origin.x, signBackgroundView.frame.origin.y, signBackgroundView.frame.size.width, signBackgroundView.frame.size.height);    
+    NSLog(@"mainScrollView: %f %f %f %f", mainScrollView.bounds.origin.x, mainScrollView.bounds.origin.y, mainScrollView.bounds.size.width, mainScrollView.bounds.size.height);
+    NSLog(@"signBackgroundView: %f %f %f %f", signBackgroundView.bounds.origin.x, signBackgroundView.bounds.origin.y, signBackgroundView.bounds.size.width, signBackgroundView.bounds.size.height);    
+
+    
     float minWidthScale  = ((mainScrollView.bounds.size.width)  / signBackgroundView.bounds.size.width) * 0.96;
     float minHeightScale  = ((mainScrollView.bounds.size.height)  / signBackgroundView.bounds.size.height) * 0.96;
     [mainScrollView setMinimumZoomScale:MIN(minWidthScale, minHeightScale)];
@@ -100,8 +108,79 @@
     self.labelTextColor = [UIColor foregroundColorWithBackgroundSignColorCode:signBackground.primaryColorCode];
     self.textBorderColor = [UIColor foregroundColorWithBackgroundSignColorCode:signBackground.primaryColorCode];
     self.textBackgroundColor = [UIColor backgroundColorWithBackgroundSignColorCode:signBackground.primaryColorCode];
-    NSString *filename = signBackground.fullsizeImageFilename;        
-    [self updateSignBackgroundWithImageFromFile:filename willAnimateAndSave:animateAndSave];    
+    
+    if ((signBackground.signBackgroundId >= 8000) && (signBackground.signBackgroundId < 9000)) {
+        //clear blackground
+        [self clearSignBackgroundWithSignId:signBackground.signBackgroundId willAnimateAndSave:animateAndSave];
+    } else {
+        NSString *filename = signBackground.fullsizeImageFilename;        
+        [self updateSignBackgroundWithImageFromFile:filename willAnimateAndSave:animateAndSave];            
+    }
+    
+}
+
+- (void)clearSignBackgroundWithSignId:(NSUInteger)signBackgroundId willAnimateAndSave:(BOOL)animateAndSave
+{    
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    [signBackgroundView setImage:nil];
+    
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    CGFloat aspectRatio;
+    if (screenSize.width < screenSize.height) {
+        aspectRatio = screenSize.width / screenSize.height;
+    } else {
+        aspectRatio = screenSize.height / screenSize.width;
+    }
+    CGFloat backgroundViewWidth;
+    CGFloat backgroundViewHeight;
+    if (signBackgroundId == 8001) {
+        backgroundViewHeight = 1400.0;
+        backgroundViewWidth = aspectRatio * backgroundViewHeight;
+    } else if (signBackgroundId == 8002) {
+        backgroundViewWidth = 1400.0;
+        backgroundViewHeight = aspectRatio * backgroundViewWidth;
+    } else if (signBackgroundId == 8003) {
+        backgroundViewWidth = 1400.0;
+        backgroundViewHeight = 1400.0;        
+    } else {
+        backgroundViewWidth = 1400.0;
+        backgroundViewHeight = 1400.0;                
+    }
+//    CGRect signBackgroundFrame = signBackgroundView.frame;
+//    signBackgroundFrame.size.width = backgroundViewWidth;
+//    signBackgroundFrame.size.height = backgroundViewHeight;
+//    signBackgroundView.frame = signBackgroundFrame;
+    signBackgroundView.bounds = CGRectMake(0.0, 0.0, backgroundViewWidth, backgroundViewHeight);
+    //signBackgroundView.center = mainScrollView.center;
+    
+    [mainScrollView setContentSize:[signBackgroundView bounds].size];
+
+    NSLog(@"mainScrollView: %f %f %f %f", mainScrollView.frame.origin.x, mainScrollView.frame.origin.y, mainScrollView.frame.size.width, mainScrollView.frame.size.height);
+    NSLog(@"signBackgroundView: %f %f %f %f", signBackgroundView.frame.origin.x, signBackgroundView.frame.origin.y, signBackgroundView.frame.size.width, signBackgroundView.frame.size.height);    
+    NSLog(@"mainScrollView: %f %f %f %f", mainScrollView.bounds.origin.x, mainScrollView.bounds.origin.y, mainScrollView.bounds.size.width, mainScrollView.bounds.size.height);
+    NSLog(@"signBackgroundView: %f %f %f %f", signBackgroundView.bounds.origin.x, signBackgroundView.bounds.origin.y, signBackgroundView.bounds.size.width, signBackgroundView.bounds.size.height);    
+
+    float minWidthScale  = ((mainScrollView.bounds.size.width)  / signBackgroundView.bounds.size.width) * 0.96;
+    float minHeightScale  = ((mainScrollView.bounds.size.height)  / signBackgroundView.bounds.size.height) * 0.96;
+    
+    NSLog(@"Scales: %f %f", minWidthScale, minHeightScale);
+    
+    [mainScrollView setMinimumZoomScale:MIN(minWidthScale, minHeightScale)];
+    [mainScrollView setMaximumZoomScale:2.0];
+    [mainScrollView setZoomScale:MIN(minWidthScale, minHeightScale)];
+    [mainScrollView setContentOffset:CGPointZero];
+    
+    [self showSelectionMarquees];
+    
+    AWBAppDelegate *delegate = (AWBAppDelegate *) [[UIApplication sharedApplication] delegate];
+    delegate.signBackgroundSize = signBackgroundView.bounds.size;
+    
+    if (animateAndSave) {
+        //no animation at the moment
+        [self saveChanges:YES];
+    } 
+    
+    [pool drain];
 }
 
 @end
