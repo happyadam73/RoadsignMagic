@@ -49,6 +49,8 @@ enum {
     UIBarButtonItem *fixedToolbarSpacing;
         
     AWBRoadsignBackground *selectedSignBackground;
+    NSUInteger currentSignBackgroundCategoryIndex;
+    NSUInteger currentSignBackgroundId;
     AWBRoadsignSymbol *selectedSignSymbol;
         
     UIRotationGestureRecognizer *rotationGestureRecognizer;
@@ -154,6 +156,8 @@ enum {
 @property (nonatomic, retain) UIColor *textBorderColor;
 @property (nonatomic, retain) UIColor *textBackgroundColor;
 @property (nonatomic, retain) AWBRoadsignBackground *selectedSignBackground;
+@property (nonatomic, assign) NSUInteger currentSignBackgroundCategoryIndex;
+@property (nonatomic, assign) NSUInteger currentSignBackgroundId;
 @property (nonatomic, retain) AWBRoadsignSymbol *selectedSignSymbol;
 @property (assign) BOOL isSignInEditMode;
 @property (nonatomic, retain) UIActionSheet *deleteConfirmationSheet;

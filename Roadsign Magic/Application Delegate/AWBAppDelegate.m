@@ -159,29 +159,12 @@ static NSString* kAppId = @"289600444412359";
 }
 
 - (BOOL)handleOpenURL:(NSURL *)url
-{
-    NSLog(@"URL: %@", url);
-    NSLog(@"Last Path Component: %@", [url lastPathComponent]);
-    NSLog(@"Path: %@", [url path]);
-    
+{    
     if ([[url absoluteString] hasPrefix:[self.facebook getOwnBaseUrl]]) {
         return [self.facebook handleOpenURL:url];
     } else {
         if ([url isFileURL]) {
-//            //my font stuff
-//            AWBMyFont *myFont = [[AWBMyFont alloc] initWithUrl:url];
-//            if (myFont) {
-//                NSLog(@"Font: %@ %@ %@ %@ %@ %@ %d", myFont.familyName, myFont.fontName, myFont.postScriptName, myFont.filename, myFont.fileUrl, myFont.createdDate, myFont.fileSizeBytes);
-//                BOOL success = [[AWBMyFontStore defaultStore] installMyFont:myFont];
-//                if (success) {
-//                    NSLog(@"Installed Font: %@ %@ %@ %@ %@ %@ %d", myFont.familyName, myFont.fontName, myFont.postScriptName, myFont.filename, myFont.fileUrl, myFont.createdDate, myFont.fileSizeBytes);
-//                }
-//            } else {
-//                NSLog(@"No Font loaded!");
-//            }
-//            [myFont release];
             [self.mainNavigationController.visibleViewController dismissModalViewControllerAnimated:YES];
-            NSLog(@"Top View Controller: %@", self.mainNavigationController.topViewController);
             
             if (![self.mainNavigationController.topViewController isKindOfClass:[AWBMyFontsListViewController class]]) {
                 AWBMyFontsListViewController *controller = [[AWBMyFontsListViewController alloc] init];

@@ -105,4 +105,50 @@
     return primaryColorCode;
 }
 
++ (NSUInteger)signCategoryIndexFromSignId:(NSUInteger)signId
+{
+    NSUInteger signCategoryIndex;
+    
+    switch (signId) {
+        case 8000 ... 8999:
+            signCategoryIndex = 0;
+            break;
+        case 6000 ... 6999:
+            signCategoryIndex = 1;
+            break;
+        case 7000 ... 7999:
+            signCategoryIndex = 2;
+            break;
+        case 0 ... 999:
+            signCategoryIndex = 3;
+            break;
+        case 1000 ... 1999:
+            signCategoryIndex = 4;
+            break;
+        case 2000 ... 2999:
+            signCategoryIndex = 5;
+            break;
+        case 3000 ... 3999:
+            signCategoryIndex = 6;
+            break;
+        case 4000 ... 4999:
+            signCategoryIndex = 7;
+            break;
+        case 5000 ... 5999:
+            signCategoryIndex = 8;
+            break;
+        default:
+            signCategoryIndex = 0;
+            break;
+    }
+    
+    return signCategoryIndex;
+}
+
++ (NSUInteger)signIndexFromSignId:(NSUInteger)signId
+{
+    NSUInteger index = (int)(fmodf((float)signId, 1000.0));
+    return (index-1);
+}
+
 @end

@@ -42,6 +42,7 @@
 @synthesize roadsignBackgroundTexture, roadsignBackgroundColor, useBackgroundTexture;
 @synthesize useMyFonts, labelMyFont;
 @synthesize selectionMarquee1, selectionMarquee2;
+@synthesize currentSignBackgroundCategoryIndex, currentSignBackgroundId;
 
 - (id)init
 {
@@ -242,45 +243,22 @@
     self.mainScrollView = scrollView;
     [scrollView release];
     [[self view] addSubview:self.mainScrollView];
-
-//    CGSize frameSize = [UIApplication currentSize];
-//    CGFloat backgroundViewWidth;
-//    CGFloat backgroundViewHeight;
-//    if (frameSize.width > frameSize.height) {
-//        backgroundViewWidth = 1400.0;
-//        backgroundViewHeight = (frameSize.height/frameSize.width)*1400;
-//    } else {
-//        backgroundViewHeight = 1400.0;
-//        backgroundViewWidth = (frameSize.width/frameSize.height)*1400;        
-//    }
     
     UIImageView *backgroundView = [[UIImageView alloc] initWithFrame:CGRectZero];
-    //UIImageView *backgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 1400, 1400)];
-    //UIImageView *backgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, backgroundViewWidth, backgroundViewHeight)];
     backgroundView.userInteractionEnabled = YES;
-    
-//    CAShapeLayer *marquee1 = [UIView selectionMarqueeWithWhitePhase:YES];
-//    CAShapeLayer *marquee2 = [UIView selectionMarqueeWithWhitePhase:NO];
-//    [[backgroundView layer] addSublayer:marquee1];
-//    [[backgroundView layer] addSublayer:marquee2]; 
-//    [backgroundView showSelectionMarquee:marquee1];
-//    [backgroundView showSelectionMarquee:marquee2];
-    
     self.signBackgroundView = backgroundView;
     [self initialiseSelectionMarquees];
     
-    NSUInteger signBackgroundId;
     CGSize frameSize = [UIApplication currentSize];
     if (frameSize.width > frameSize.height) {
-        signBackgroundId = 8002;
+        currentSignBackgroundId = 8002;
     } else {
-        signBackgroundId = 8001;
+        currentSignBackgroundId = 8001;
     }
-    AWBRoadsignBackground *signBackground = [AWBRoadsignBackground signBackgroundWithIdentifier:signBackgroundId];
-    [self updateSignBackground:signBackground willAnimateAndSave:NO];
+    currentSignBackgroundCategoryIndex = 0;
     
-//    AWBAppDelegate *delegate = (AWBAppDelegate *) [[UIApplication sharedApplication] delegate];
-//    delegate.signBackgroundSize = signBackgroundView.bounds.size;
+    AWBRoadsignBackground *signBackground = [AWBRoadsignBackground signBackgroundWithIdentifier:currentSignBackgroundId];
+    [self updateSignBackground:signBackground willAnimateAndSave:NO];
     [self.mainScrollView addSubview:self.signBackgroundView];
     [backgroundView release];
     
@@ -356,6 +334,10 @@
         [roadsign release];
         
         if (saveThumbnail) {
+            BOOL selectionMarqueesVisible = !self.selectionMarquee1.hidden;
+            if (selectionMarqueesVisible) {
+                [self hideSelectionMarquees];        
+            }
             CGSize signSize = self.signBackgroundView.bounds.size;
             CGFloat scale = MIN((256.0/signSize.width), (192.0/signSize.height));
             UIGraphicsBeginImageContextWithOptions(signSize, NO, scale);
@@ -364,6 +346,9 @@
             UIGraphicsEndImageContext();
             NSData *imageData = UIImagePNGRepresentation(roadsignImage);
             [imageData writeToFile:[self thumbnailArchivePath] atomically:YES];
+            if (selectionMarqueesVisible) {
+                [self showSelectionMarquees];
+            }
         }
     }
     [pool drain];
@@ -381,6 +366,8 @@
         NSUInteger signBackgroundId = roadsign.roadsignBackgroundId;
         if (signBackgroundId > 0) {
             AWBRoadsignBackground *signBackground = [AWBRoadsignBackground signBackgroundWithIdentifier:signBackgroundId];
+            self.currentSignBackgroundCategoryIndex = [AWBRoadsignBackground signCategoryIndexFromSignId:signBackground.signBackgroundId];
+            self.currentSignBackgroundId = signBackground.signBackgroundId;
             [self updateSignBackground:signBackground willAnimateAndSave:NO];
         }
         

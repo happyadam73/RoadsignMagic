@@ -294,7 +294,6 @@
         if (pendingMyFont) {
             [self confirmMyFontInstall:pendingMyFont.fontName];
         } else {
-            NSLog(@"No Font loaded!");
             NSString *path = [pendingMyFontInstallURL path];
             [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
             [self showFontInstallError:path.lastPathComponent];
@@ -335,11 +334,9 @@
 {
     if (alertView == self.installMyFontAlertView) {
         if (buttonIndex == alertView.firstOtherButtonIndex) {
-            NSLog(@"Install the font!");
             [[AWBMyFontStore defaultStore] installMyFont:pendingMyFont];
             [self.theTableView reloadData];
         } else {
-            NSLog(@"Installation of font cancelled");
             [pendingMyFont removeFromInbox];
         }
     }

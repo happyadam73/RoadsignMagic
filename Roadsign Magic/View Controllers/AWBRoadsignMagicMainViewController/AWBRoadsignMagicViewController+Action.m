@@ -124,6 +124,11 @@
 - (UIImage *)generateRoadsignImageWithScaleFactor:(CGFloat)scaleFactor
 {
     //first determine if we need to include the background and whether it's opaque or not
+    BOOL selectionMarqueesVisible = !self.selectionMarquee1.hidden;
+    if (selectionMarqueesVisible) {
+        [self hideSelectionMarquees];        
+    }
+    
     BOOL isOpaque = (self.exportFormatSelectedIndex == kAWBExportFormatIndexJPEG) || (!self.pngExportTransparentBackground);
     CGSize backgroundViewSize = self.signBackgroundView.bounds.size;
     CGFloat leftMargin = 0.0;
@@ -159,7 +164,9 @@
     UIImage *roadsignImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    NSLog(@"Roadsign Image %f x %f", roadsignImage.size.width, roadsignImage.size.height);
+    if (selectionMarqueesVisible) {
+        [self showSelectionMarquees];
+    }
     
     return roadsignImage;
 }
@@ -186,10 +193,8 @@
     NSData *data;
     if (self.exportFormatSelectedIndex == kAWBExportFormatIndexJPEG) {
         data = UIImageJPEGRepresentation(image, self.jpgExportQualityValue);
-        NSLog(@"Exporting as JPEG with quality: %f", self.jpgExportQualityValue);
     } else {
         data = UIImagePNGRepresentation(image);
-        NSLog(@"Exporting as PNG");        
     }
         
     ALAssetsLibrary *al = [[ALAssetsLibrary alloc] init];
@@ -233,11 +238,9 @@
     if (self.exportFormatSelectedIndex == kAWBExportFormatIndexJPEG) {
         imageData = UIImageJPEGRepresentation(image, self.jpgExportQualityValue);
         [picker addAttachmentData:imageData mimeType:@"image/jpeg" fileName:@"roadsign.jpg"];
-        NSLog(@"Emailing as JPEG with quality: %f", self.jpgExportQualityValue);
     } else {
         imageData = UIImagePNGRepresentation(image);
         [picker addAttachmentData:imageData mimeType:@"image/png" fileName:@"roadsign.png"];
-        NSLog(@"Emailing as PNG");        
     }
         
     // Fill out the email body text
@@ -275,6 +278,10 @@
         [self toggleFullscreen];
     }
     self.busyView.hidden = YES;
+    BOOL selectionMarqueesVisible = !self.selectionMarquee1.hidden;
+    if (selectionMarqueesVisible) {
+        [self hideSelectionMarquees];        
+    }
     
     // calculate the scaling factor that will reduce the image size to maxPixels
     CGFloat actualHeight = self.signBackgroundView.bounds.size.height;
@@ -345,6 +352,9 @@
     
     self.busyView.hidden = NO;
     [self toggleFullscreen];
+    if (selectionMarqueesVisible) {
+        [self showSelectionMarquees];
+    }
     
     UIPrintInteractionController *printController = [UIPrintInteractionController sharedPrintController];
     

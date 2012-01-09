@@ -108,7 +108,6 @@
  */
 -(void)fbDidNotLogin:(BOOL)cancelled 
 {
-    NSLog(@"did not login");
     [self.busyView removeFromParentView];
     self.busyView = nil;
     
@@ -148,8 +147,6 @@
             facebook.expirationDate = nil;
         }
     }    
-
-    NSLog(@"fbDidLogout");
 }
 
 #pragma mark - FBRequestDelegate Methods
@@ -160,7 +157,7 @@
  * which is passed the parsed response object.
  */
 - (void)request:(FBRequest *)request didReceiveResponse:(NSURLResponse *)response {
-    NSLog(@"received response: %@", response);
+
 }
 
 /**
@@ -215,7 +212,6 @@
     } else {
         [self.busyView removeFromParentView];
         self.busyView = nil;
-        NSLog(@"Cancelled image upload to Facebook.");
     }
 }
 

@@ -20,11 +20,6 @@
         selectionMarquee.lineWidth = 3.0f;
         selectionMarquee.lineJoin = kCALineJoinRound;
         selectionMarquee.lineDashPattern = [NSArray arrayWithObjects:[NSNumber numberWithInt:(isWhite ? 10 : 5)],[NSNumber numberWithInt:(isWhite ? 5 : 10)], nil];
-
-//        selectionMarquee.lineWidth = 60.0f;
-//        selectionMarquee.lineJoin = kCALineJoinRound;
-//        selectionMarquee.lineDashPattern = [NSArray arrayWithObjects:[NSNumber numberWithInt:(isWhite ? 200 : 100)],[NSNumber numberWithInt:(isWhite ? 100 : 200)], nil];
-        
         selectionMarquee.bounds = CGRectZero;
         selectionMarquee.position = CGPointZero;        
     }

@@ -148,8 +148,6 @@ static AWBMyFontStore *defaultStore = nil;
         [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:kAWBInfoKeyMyFontSequenceNumber];
         allMyFonts = [[NSMutableArray alloc] init];
     }
-    
-    //NSLog(@"MyFont Count: %d", [allMyFonts count]);
 }
 
 @end

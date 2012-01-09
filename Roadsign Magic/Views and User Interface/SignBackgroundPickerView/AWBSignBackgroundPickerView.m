@@ -13,15 +13,22 @@
 
 @implementation AWBSignBackgroundPickerView
 
-@synthesize carouselCategory, carouselSubcategory, signBackgroundCategories, selectedSignBackground, delegate;
+@synthesize carouselCategory, carouselSubcategory, signBackgroundCategories, selectedSignBackground, delegate, currentSignBackgroundId, currentSignBackgroundCategoryIndex;
 
 - (id)initWithFrame:(CGRect)frame
+{
+    return [self initWithFrame:frame signBackgroundCategoryIndex:0 signBackgroundId:8001];
+}
+
+- (id)initWithFrame:(CGRect)frame signBackgroundCategoryIndex:(NSUInteger)signBackgroundCategoryIndex signBackgroundId:(NSUInteger)signBackgroundId
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.signBackgroundCategories = [AWBRoadsignBackgroundGroup allSignBackgroundCategories];   
-        selectedSignBackgroundCategory = 0;
+        self.signBackgroundCategories = [AWBRoadsignBackgroundGroup allSignBackgroundCategories];  
+        currentSignBackgroundCategoryIndex = signBackgroundCategoryIndex;
+        selectedSignBackgroundCategoryIndex = signBackgroundCategoryIndex;
+        currentSignBackgroundId = signBackgroundId;
         
         //slideup view background
         self.backgroundColor = [UIColor asphaltTextureColor];
@@ -43,7 +50,7 @@
         carouselCategory.type = iCarouselTypeLinear;
         carouselCategory.delegate = self;
         carouselCategory.dataSource = self; 
-        [carouselCategory scrollToItemAtIndex:selectedSignBackgroundCategory animated:YES];
+        [carouselCategory scrollToItemAtIndex:currentSignBackgroundCategoryIndex animated:YES];
         
         //subcategory carousel
         tempCarousel = [[iCarousel alloc] initWithFrame:CGRectMake(0.0, 70.0, frame.size.width, 100.0)];
@@ -53,12 +60,15 @@
         carouselSubcategory.type = iCarouselTypeLinear;
         carouselSubcategory.delegate = self;
         carouselSubcategory.dataSource = self;
-        
+        NSUInteger scrollIndex = [AWBRoadsignBackground signIndexFromSignId:currentSignBackgroundId];
+        [carouselSubcategory scrollToItemAtIndex:scrollIndex animated:YES];
+
         //add views together
         [self addSubview:categoryBackgroundView];
         [self addSubview:carouselSubcategory];
         [self addSubview:carouselCategory];
         [categoryBackgroundView release];
+        
     }
     return self;
 }
@@ -81,7 +91,7 @@
     if (carousel == self.carouselCategory) {
         return [self.signBackgroundCategories count];
     } else {
-        AWBRoadsignBackgroundGroup *signGroup = [self.signBackgroundCategories objectAtIndex:selectedSignBackgroundCategory];
+        AWBRoadsignBackgroundGroup *signGroup = [self.signBackgroundCategories objectAtIndex:selectedSignBackgroundCategoryIndex];
         return [signGroup.signBackgrounds count];
     }    
 }
@@ -105,13 +115,13 @@
     if (carousel == self.carouselCategory) {
         AWBRoadsignBackgroundGroup *signGroup = [self.signBackgroundCategories objectAtIndex:index];
         filename = signGroup.thumbnailImageFilename;
-        if (index == selectedSignBackgroundCategory) {
+        if (index == selectedSignBackgroundCategoryIndex) {
             alpha = 1.0;
         } else {
             alpha = 0.5;
         }
     } else {        
-        AWBRoadsignBackgroundGroup *signGroup = [self.signBackgroundCategories objectAtIndex:selectedSignBackgroundCategory];
+        AWBRoadsignBackgroundGroup *signGroup = [self.signBackgroundCategories objectAtIndex:selectedSignBackgroundCategoryIndex];
         AWBRoadsignBackground *signBackground = [signGroup.signBackgrounds objectAtIndex:index];
         signBackgroundId = signBackground.signBackgroundId;
         filename = signBackground.thumbnailImageFilename;
@@ -122,19 +132,19 @@
     view.alpha = alpha;
     
     if (carousel == self.carouselCategory) {
-        if (index == selectedSignBackgroundCategory) {
+        if (index == selectedSignBackgroundCategoryIndex) {
             view.layer.borderWidth = 1.0;
             view.layer.cornerRadius = 5.0;
             view.layer.borderColor = [[UIColor yellowSignBackgroundColor] CGColor];
         }
     } else {
-        if (signBackgroundId == selectedSignBackground.signBackgroundId) {
+        if (signBackgroundId == currentSignBackgroundId) {
             view.layer.borderWidth = 1.0;
             view.layer.cornerRadius = 5.0;
             view.layer.borderColor = [[UIColor yellowSignBackgroundColor] CGColor];            
         }
     }
-    
+        
 	return view;
 }
 
@@ -183,24 +193,24 @@
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
 {
     if (carousel == self.carouselCategory) {
-        selectedSignBackgroundCategory = index;
+        selectedSignBackgroundCategoryIndex = index;
         [self.carouselCategory reloadData];
         [self.carouselSubcategory reloadData];
-        if (selectedSignBackgroundCategory == selectedSignBackgroundCategoryIndex) {
+        if (selectedSignBackgroundCategoryIndex == currentSignBackgroundCategoryIndex) {
             [self.carouselSubcategory scrollToItemAtIndex:selectedSignBackgroundCarouselIndex animated:YES];
         }
     } else {
-        AWBRoadsignBackgroundGroup *signGroup = [self.signBackgroundCategories objectAtIndex:selectedSignBackgroundCategory];
+        AWBRoadsignBackgroundGroup *signGroup = [self.signBackgroundCategories objectAtIndex:selectedSignBackgroundCategoryIndex];
         AWBRoadsignBackground *signBackground = [signGroup.signBackgrounds objectAtIndex:index];
         self.selectedSignBackground = signBackground;
+        currentSignBackgroundId = self.selectedSignBackground.signBackgroundId;
         selectedSignBackgroundCarouselIndex = index;
-        selectedSignBackgroundCategoryIndex = selectedSignBackgroundCategory;        
+        currentSignBackgroundCategoryIndex = selectedSignBackgroundCategoryIndex;        
         if([delegate respondsToSelector:@selector(awbSignBackgroundPickerView:didSelectSignBackground:)]) {
             [delegate performSelector:@selector(awbSignBackgroundPickerView:didSelectSignBackground:) withObject:self withObject:self.selectedSignBackground];
         }
         [self.carouselSubcategory reloadData];
     }
 }
-
 
 @end

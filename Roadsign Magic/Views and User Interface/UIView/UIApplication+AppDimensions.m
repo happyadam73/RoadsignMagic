@@ -18,7 +18,6 @@
 +(CGSize) sizeInOrientation:(UIInterfaceOrientation)orientation
 {
     CGSize size = [UIScreen mainScreen].bounds.size;
-    NSLog(@"Width: %f  Height: %f", size.width, size.height);
     if (UIInterfaceOrientationIsLandscape(orientation))
     {
         size = CGSizeMake(size.height, size.width);

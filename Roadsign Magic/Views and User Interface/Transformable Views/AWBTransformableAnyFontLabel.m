@@ -297,22 +297,14 @@
     CGRect fontRect = CGFontGetFontBBox(font.cgFont);
     CGFloat fontRectHeight = (fontRect.size.height - fontRect.origin.y) * font.ratio;
     CGFloat diffRatio = (fontRectHeight - font.leading)/font.leading;
-    NSLog(@"zFont:%@ Leading: %f  FontRectHeight: %f  Diff: %f", font.fontName, font.leading, fontRectHeight, diffRatio);
-    NSLog(@"maxWidth: %f maxHeight: %f totalHeight: %f", maxWidth, maxHeight, totalHeight);
-    NSLog(@"zFont - Leading: %f  Ascender: %f  Descender: %f", font.leading, font.ascender, font.descender);
     
     if (diffRatio > 1.5) {
         if ([lines count] > 1) {
             totalHeight = totalHeight * 1.3;
-            NSLog(@"Font Height Trigger - add 25%% to total height");
         } else {
             totalHeight = totalHeight * 1.6;
-            NSLog(@"Font Height Trigger - add 50%% to total height");
         }
-    }
-    
-//    NSLog(@"fontRect: %f %f %f %f", fontRect.origin.x, fontRect.origin.y, fontRect.size.width, fontRect.size.height);
-//    NSLog(@"Ratio: %f", font.ratio);
+    }    
 }
 
 - (void)updateTextDimensionsWithLines:(NSArray *)lines iOSFont:(UIFont *)font
@@ -332,10 +324,6 @@
         }        
         totalHeight += textLineSize.height;
     } 
-    
-    NSLog(@"iOSFont: LineHeight: %f", font.lineHeight);
-
-        
 }
 
 - (void)updateLabelTextLines:(NSArray *)lines withFontName:(NSString *)fontName fontSize:(CGFloat)fontSize 
