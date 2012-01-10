@@ -239,7 +239,7 @@
             tableCell.selectionStyle = UITableViewCellSelectionStyleNone;
             break;
         case AWBSettingControlTypeWebView:
-            tableCell = [[AWBWebViewCell alloc] initWithReuseIdentifier:self.cellReuseIdentifier];
+            tableCell = [[AWBWebViewCell alloc] initWithUrl:settingValue ReuseIdentifier:self.cellReuseIdentifier];
             tableCell.selectionStyle = UITableViewCellSelectionStyleNone;
             break;
         case AWBSettingControlTypeColorPicker:

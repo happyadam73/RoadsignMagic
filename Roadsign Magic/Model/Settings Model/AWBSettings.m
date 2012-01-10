@@ -102,7 +102,7 @@
 
 + (AWBSettings *)mainSettingsWithInfo:(NSDictionary *)info
 {
-    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup mainSettingsDrilldownSettingsGroupWithInfo:info], [AWBSettingsGroup aboutSettingsDrilldownSettingsGroupWithInfo:info], nil];
+    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup mainSettingsDrilldownSettingsGroupWithInfo:info], [AWBSettingsGroup helpSettingsDrilldownSettingsGroupWithInfo:info], nil];
     AWBSettings *mainSettings = [[self alloc] initWithSettingsGroups:settings title:@"Settings"];
     
     return [mainSettings autorelease];        
@@ -126,24 +126,20 @@
     return [exportSettings autorelease];        
 }
 
-+ (AWBSettings *)aboutSettingsWithInfo:(NSDictionary *)info
-{
-    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup aboutTextSettingsGroupWithInfo:info], nil];
-    AWBSettings *aboutSettings = [[self alloc] initWithSettingsGroups:settings title:@"About"];
+//+ (AWBSettings *)aboutSettingsWithInfo:(NSDictionary *)info
+//{
+//    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup aboutTextSettingsGroupWithInfo:info], nil];
+//    AWBSettings *aboutSettings = [[self alloc] initWithSettingsGroups:settings title:@"About"];
+//    
+//    return [aboutSettings autorelease];    
+//}
 
-//    AWBSettings *aboutSettings = [[self alloc] initWithSettingsGroups:nil title:@"About"];
-//
-//    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 480.0)];
-//    NSString *path = AWBPathInMainBundleSubdirectory(@"Help Files", @"AboutRoadsignMagic.rtf");
-//    NSURL *url = [NSURL fileURLWithPath:path];
-//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-//    webView.scalesPageToFit = YES;
-//    [webView loadRequest:request];
-//    [webView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-//    aboutSettings.headerView = webView;
-//    [webView release];
++ (AWBSettings *)helpSettingsWithFilename:(NSString *)filename title:(NSString *)title
+{
+    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup helpTextSettingsGroupWithFilename:filename], nil];
+    AWBSettings *helpSettings = [[self alloc] initWithSettingsGroups:settings title:title];
     
-    return [aboutSettings autorelease];    
+    return [helpSettings autorelease];    
 }
 
 + (AWBSettings *)drawingAidsSettingsWithInfo:(NSDictionary *)info

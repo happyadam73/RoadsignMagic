@@ -13,7 +13,7 @@
 
 @implementation AWBMyFontsListViewController
 
-@synthesize theTableView, pendingMyFontInstall, pendingMyFontInstallURL, installMyFontAlertView;
+@synthesize theTableView, pendingMyFontInstall, pendingMyFontInstallURL, installMyFontAlertView, helpButton, toolbarSpacing;
 
 - (void)initialise
 {
@@ -60,6 +60,8 @@
 	[theTableView release];
     [pendingMyFontInstallURL release];
     [installMyFontAlertView release];
+    [helpButton release];
+    [toolbarSpacing release];
 	[super dealloc];
 }
 
@@ -91,7 +93,8 @@
     [super viewWillAppear:animated];
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [self.navigationController setToolbarHidden:YES animated:YES];
+    self.toolbarItems = [self myFontsToolbarButtons];
+    [self.navigationController setToolbarHidden:NO animated:YES];
     self.navigationItem.title = @"My Fonts";
     [[self navigationItem] setRightBarButtonItem:[self editButtonItem]];    
 
@@ -343,6 +346,40 @@
     self.installMyFontAlertView = nil;
     self.pendingMyFontInstallURL = nil;
     [pendingMyFont release];
+}
+
+- (UIBarButtonItem *)helpButton
+{
+    if (!helpButton) {
+        helpButton = [[UIBarButtonItem alloc] initWithTitle:@"Help" style:UIBarButtonItemStyleBordered target:self action:@selector(showHelp)];
+    }
+    return helpButton;    
+}
+
+- (UIBarButtonItem *)toolbarSpacing
+{
+    if (!toolbarSpacing) {
+        toolbarSpacing = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    }
+    return toolbarSpacing;    
+}
+
+- (void)showHelp
+{
+    AWBRoadsignMagicSettingsTableViewController *settingsController = [[AWBRoadsignMagicSettingsTableViewController alloc] initWithSettings:[AWBSettings helpSettingsWithFilename:@"MyFonts.rtfd.zip" title:@"MyFonts Help"] settingsInfo:nil rootController:nil]; 
+    settingsController.delegate = nil;
+    settingsController.controllerType = AWBSettingsControllerTypeMainSettings;
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsController];
+    navController.modalPresentationStyle = UIModalPresentationPageSheet;
+    navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;  
+    [self presentModalViewController:navController animated:YES];
+    [settingsController release];   
+    [navController release];                
+}
+
+- (NSArray *)myFontsToolbarButtons
+{
+    return [NSArray arrayWithObjects:self.toolbarSpacing, self.helpButton, nil];    
 }
 
 @end

@@ -88,8 +88,9 @@ static NSString *const kAWBBackgroundSettingsFooterText = @"By default, this bac
 + (AWBSettingsGroup *)pngExportSettingsGroupWithInfo:(NSDictionary *)info;
 + (AWBSettingsGroup *)jpgExportSettingsGroupWithInfo:(NSDictionary *)info;
 + (AWBSettingsGroup *)mainSettingsDrilldownSettingsGroupWithInfo:(NSDictionary *)info;
-+ (AWBSettingsGroup *)aboutSettingsDrilldownSettingsGroupWithInfo:(NSDictionary *)info;
-+ (AWBSettingsGroup *)aboutTextSettingsGroupWithInfo:(NSDictionary *)info;
++ (AWBSettingsGroup *)helpSettingsDrilldownSettingsGroupWithInfo:(NSDictionary *)info;
+//+ (AWBSettingsGroup *)aboutTextSettingsGroupWithInfo:(NSDictionary *)info;
++ (AWBSettingsGroup *)helpTextSettingsGroupWithFilename:(NSString *)filename;
 + (AWBSettingsGroup *)canvasLockSettingsGroupWithInfo:(NSDictionary *)info;
 + (AWBSettingsGroup *)objectLockSettingsGroupWithInfo:(NSDictionary *)info;
 + (AWBSettingsGroup *)snapToGridSettingsGroupWithInfo:(NSDictionary *)info;

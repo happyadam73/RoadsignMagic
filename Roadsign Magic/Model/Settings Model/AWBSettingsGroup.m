@@ -188,23 +188,53 @@
     return [[[self alloc] initWithSettings:buttonSettings header:nil footer:nil] autorelease];    
 }
 
-+ (AWBSettingsGroup *)aboutSettingsDrilldownSettingsGroupWithInfo:(NSDictionary *)info
++ (AWBSettingsGroup *)helpSettingsDrilldownSettingsGroupWithInfo:(NSDictionary *)info
 {
-    NSMutableArray *buttonSettings = [NSMutableArray arrayWithObjects:[AWBSetting drilldownSettingWithText:@"About" value:nil key:nil childSettings:[AWBSettings aboutSettingsWithInfo:info]], nil];
+    NSMutableArray *buttonSettings = [NSMutableArray arrayWithObjects:[AWBSetting drilldownSettingWithText:@"Help" value:nil key:nil childSettings:[AWBSettings helpSettingsWithFilename:@"Help.rtf" title:@"Help"]], [AWBSetting drilldownSettingWithText:@"About" value:nil key:nil childSettings:[AWBSettings helpSettingsWithFilename:@"AboutRoadsignMagic.rtf" title:@"About"]], nil];
     
     return [[[self alloc] initWithSettings:buttonSettings header:nil footer:@"Roadsign Magic is intended for personal use - DO NOT use Roadsigns in a misleading context (e.g. not on roadside billboards where they could mislead drivers).  Some materials are UK Crown Copyright reproduced with permission under the UK Open Government License - tap on About for more information."] autorelease];    
 }
 
-+ (AWBSettingsGroup *)aboutTextSettingsGroupWithInfo:(NSDictionary *)info
-{
-    NSString *aboutText = @"\r\nRoadsign Magic is developed by happyadam development.\r\n\r\nRoadsign Magic is intended for personal use.  It is not intended for commercial use or for actual traffic sign making.  You must not reproduce roadsigns in a misleading context (e.g. not on roadside billboards where they could mislead drivers) or in any other way that may contravene local and international highway laws.\r\n\r\nThe majority of roadsign backgrounds and symbols as well as the Roadsign Typeface are Crown Copyright and reproduced with permission under the UK Open Government License v1.0.\r\nMore information on the terms of this license can be found at http://www.nationalarchives.gov.uk/doc/open-government-licence.\r\n\r\nThe Roadsign Typeface is based on the Transport Medium Typeface which is also UK Crown Copyright reproduced from the Department of Transport Working Drawings available under the UK Open Government License 1.0.  It was created between 1957 and 1963 by Jock Kinneir and Margaret Calvert as part of their work as designers for the Department of Transport's Anderson and Worboys committees.";
+//+ (AWBSettingsGroup *)aboutTextSettingsGroupWithInfo:(NSDictionary *)info
+//{    
+//    NSString *path = AWBPathInMainBundleSubdirectory(@"Help Files", @"AboutRoadsignMagic.rtf");
+//    NSURL *url = [NSURL fileURLWithPath:path];
+//    NSMutableArray *aboutTextSettings = [NSMutableArray arrayWithObjects:[AWBSetting webViewSettingWithValue:url andKey:nil], nil];
+//    AWBSettingsGroup *aboutTextSettingsGroup = [[self alloc] initWithSettings:aboutTextSettings header:nil footer:nil];
+//    
+//    //ensure the table cell fills screen (this will be capped by the settings controller)
+//    aboutTextSettingsGroup.iPhoneRowHeight = 480;
+//    aboutTextSettingsGroup.iPadRowHeight = 1024;
+//    
+//    return [aboutTextSettingsGroup autorelease];
+//}
+//
+//+ (AWBSettingsGroup *)helpTextSettingsGroupWithInfo:(NSDictionary *)info
+//{    
+//    NSString *path = AWBPathInMainBundleSubdirectory(@"Help Files", @"Help.rtf");
+//    NSURL *url = [NSURL fileURLWithPath:path];
+//    NSMutableArray *helpTextSettings = [NSMutableArray arrayWithObjects:[AWBSetting webViewSettingWithValue:url andKey:nil], nil];
+//    AWBSettingsGroup *helpTextSettingsGroup = [[self alloc] initWithSettings:helpTextSettings header:nil footer:nil];
+//    
+//    //ensure the table cell fills screen (this will be capped by the settings controller)
+//    helpTextSettingsGroup.iPhoneRowHeight = 480;
+//    helpTextSettingsGroup.iPadRowHeight = 1024;
+//    
+//    return [helpTextSettingsGroup autorelease];
+//}
+
++ (AWBSettingsGroup *)helpTextSettingsGroupWithFilename:(NSString *)filename
+{    
+    NSString *path = AWBPathInMainBundleSubdirectory(@"Help Files", filename);
+    NSURL *url = [NSURL fileURLWithPath:path];
+    NSMutableArray *helpTextSettings = [NSMutableArray arrayWithObjects:[AWBSetting webViewSettingWithValue:url andKey:nil], nil];
+    AWBSettingsGroup *helpTextSettingsGroup = [[self alloc] initWithSettings:helpTextSettings header:nil footer:nil];
     
-    //NSMutableArray *aboutTextSettings = [NSMutableArray arrayWithObjects:[AWBSetting textViewSettingWithValue:aboutText andKey:nil], nil];
-    NSMutableArray *aboutTextSettings = [NSMutableArray arrayWithObjects:[AWBSetting webViewSettingWithValue:nil andKey:nil], nil];
-    AWBSettingsGroup *aboutTextSettingsGroup = [[self alloc] initWithSettings:aboutTextSettings header:nil footer:nil];
-    aboutTextSettingsGroup.iPhoneRowHeight = 400;
-    aboutTextSettingsGroup.iPadRowHeight = 880;
-    return [aboutTextSettingsGroup autorelease];
+    //ensure the table cell fills screen (this will be capped by the settings controller)
+    helpTextSettingsGroup.iPhoneRowHeight = 480;
+    helpTextSettingsGroup.iPadRowHeight = 1024;
+    
+    return [helpTextSettingsGroup autorelease];
 }
 
 + (AWBSettingsGroup *)canvasLockSettingsGroupWithInfo:(NSDictionary *)info

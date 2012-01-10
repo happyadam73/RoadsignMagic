@@ -22,6 +22,8 @@
     AWBBusyView *busyView;
     BOOL animateTransition;
     UIBarButtonItem *myFontsButton;
+    UIBarButtonItem *helpButton;
+    UIBarButtonItem *toolbarSpacing;
     BOOL changingSegmentIndex;
 }
 
@@ -31,6 +33,8 @@
 @property (nonatomic, retain) AWBBusyView *busyView;
 @property (nonatomic, assign) NSUInteger selectedDataSource;
 @property (nonatomic, retain) UIBarButtonItem *myFontsButton;
+@property (nonatomic, retain) UIBarButtonItem *helpButton;
+@property (nonatomic, retain) UIBarButtonItem *toolbarSpacing;
 
 //- (id)initWithDataSource:(id <UITableViewDataSource, UITableViewDelegate, AWBRoadsignDataSource>)theDataSource;
 - (id)initWithDataSources:(NSArray *)theDataSources;

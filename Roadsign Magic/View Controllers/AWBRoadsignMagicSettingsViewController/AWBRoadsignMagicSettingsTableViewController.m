@@ -92,6 +92,12 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.toolbar.barStyle = UIBarStyleBlack;
+    self.navigationController.toolbar.translucent = YES;
+
     if (forceReload) {
         forceReload = NO;
         [self.tableView reloadData];
@@ -101,6 +107,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
     self.navigationItem.title = settings.settingsTitle;
 }
 
@@ -238,6 +245,14 @@
             rowHeight = settingsGroup.iPhoneRowHeight;
         }    
     }
+    
+    CGFloat maxHeight = (tableView.bounds.size.height - 30.0);
+    
+    if ((maxHeight > 10.0) && (rowHeight > maxHeight)) {
+        rowHeight = maxHeight;
+        NSLog(@"Max Exceeded - Table View Height: %f  Row height: %f", tableView.bounds.size.height, rowHeight);
+    }
+        
     return rowHeight;
 }
 

@@ -14,6 +14,6 @@
 
 @property (nonatomic, readonly) UIWebView *webView;
 
-- (id)initWithReuseIdentifier:(NSString *)reuseIdentifier;
+- (id)initWithUrl:(NSURL *)url ReuseIdentifier:(NSString *)reuseIdentifier;
 
 @end

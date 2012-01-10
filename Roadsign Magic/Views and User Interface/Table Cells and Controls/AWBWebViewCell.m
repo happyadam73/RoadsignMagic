@@ -13,14 +13,14 @@
 
 @synthesize webView;
 
-- (id)initWithReuseIdentifier:(NSString *)reuseIdentifier
+- (id)initWithUrl:(NSURL *)url ReuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
         webView = [[UIWebView alloc] initWithFrame:CGRectZero];
-        NSString *path = AWBPathInMainBundleSubdirectory(@"Help Files", @"AboutRoadsignMagic.rtf");
-        NSURL *url = [NSURL fileURLWithPath:path];
+//        NSString *path = AWBPathInMainBundleSubdirectory(@"Help Files", @"AboutRoadsignMagic.rtfd.zip");
+//        NSURL *url = [NSURL fileURLWithPath:path];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         webView.scalesPageToFit = YES;
         [webView loadRequest:request];
@@ -34,8 +34,8 @@
 - (void)layoutSubviews  
 {
     [super layoutSubviews];
-    CGFloat marginX = 5.0;
-    CGFloat marginY = 5.0;
+    CGFloat marginX = 4.0;
+    CGFloat marginY = 4.0;
     CGSize contentViewSize = self.contentView.bounds.size;
     webView.frame = CGRectMake(marginX, marginY, contentViewSize.width - (2.0 * marginX), contentViewSize.height - (2.0 * marginY));
 }

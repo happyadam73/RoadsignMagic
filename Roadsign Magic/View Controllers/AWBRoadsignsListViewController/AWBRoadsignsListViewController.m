@@ -21,7 +21,7 @@
 @synthesize dataSources;
 @synthesize busyView;
 @synthesize selectedDataSource;
-@synthesize myFontsButton;
+@synthesize myFontsButton, toolbarSpacing, helpButton;
 
 // this is the custom initialization method for the ElementsTableViewController
 // it expects an object that conforms to both the UITableViewDataSource protocol
@@ -78,6 +78,8 @@
 	[dataSources release];
     [busyView release];
     [myFontsButton release];
+    [toolbarSpacing release];
+    [helpButton release];
 	[super dealloc];
 }
 
@@ -117,7 +119,14 @@
 
 - (void)viewDidUnload
 {
+    theTableView.delegate = nil;
+	theTableView.dataSource = nil;
     self.busyView = nil;
+    self.myFontsButton = nil;
+    self.helpButton = nil;
+    self.toolbarSpacing = nil;
+    self.dataSources = nil;
+    self.theTableView = nil;
     [super viewDidUnload];
 }
 
@@ -339,6 +348,35 @@
     return myFontsButton;    
 }
 
+- (UIBarButtonItem *)helpButton
+{
+    if (!helpButton) {
+        helpButton = [[UIBarButtonItem alloc] initWithTitle:@"Help" style:UIBarButtonItemStyleBordered target:self action:@selector(showHelp)];
+    }
+    return helpButton;    
+}
+
+- (UIBarButtonItem *)toolbarSpacing
+{
+    if (!toolbarSpacing) {
+        toolbarSpacing = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    }
+    return toolbarSpacing;    
+}
+
+- (void)showHelp
+{
+    AWBRoadsignMagicSettingsTableViewController *settingsController = [[AWBRoadsignMagicSettingsTableViewController alloc] initWithSettings:[AWBSettings helpSettingsWithFilename:@"MySigns.rtfd.zip" title:@"My Signs Help"] settingsInfo:nil rootController:nil]; 
+    settingsController.delegate = nil;
+    settingsController.controllerType = AWBSettingsControllerTypeMainSettings;
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsController];
+    navController.modalPresentationStyle = UIModalPresentationPageSheet;
+    navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;  
+    [self presentModalViewController:navController animated:YES];
+    [settingsController release];   
+    [navController release];                
+}
+
 - (void)showMyFonts
 {
     AWBMyFontsListViewController *controller = [[AWBMyFontsListViewController alloc] init];
@@ -348,7 +386,7 @@
 
 - (NSArray *)mySignsToolbarButtons
 {
-    return [NSArray arrayWithObjects:self.myFontsButton, nil];    
+    return [NSArray arrayWithObjects:self.myFontsButton, self.toolbarSpacing, self.helpButton, nil];    
 }
 
 @end
