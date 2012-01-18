@@ -16,5 +16,6 @@
 - (void)confirmUploadImageToFacebook;
 - (void)uploadImageToFacebook;
 - (void) facebookPostImage:(UIImage *)image;
+- (void)facebookExportNotPurchased;
 
 @end

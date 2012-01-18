@@ -11,6 +11,7 @@
 #import "AWBRoadsignMagicMainViewController+UI.h"
 #import "AWBRoadsignMagicViewController+Action.h"
 #import "AWBDeviceHelper.h"
+#import "AWBRoadsignMagicStoreViewController.h"
 
 @implementation AWBRoadsignMagicMainViewController (Facebook)
 
@@ -19,19 +20,41 @@
 - (void)loginToFacebook
 {   
     // Check and retrieve authorization information
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if ([defaults objectForKey:@"FBAccessTokenKey"] 
-        && [defaults objectForKey:@"FBExpirationDateKey"]) {
-        facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
-        facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
-    }
-    if (![facebook isSessionValid]) {
-        facebook.sessionDelegate = self;
-        NSArray *myPermissions = [NSArray arrayWithObjects: @"publish_stream", nil];
-        [facebook authorize:myPermissions];
+    if (IS_GOPRO_PURCHASED) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        if ([defaults objectForKey:@"FBAccessTokenKey"] 
+            && [defaults objectForKey:@"FBExpirationDateKey"]) {
+            facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
+            facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
+        }
+        if (![facebook isSessionValid]) {
+            facebook.sessionDelegate = self;
+            NSArray *myPermissions = [NSArray arrayWithObjects: @"publish_stream", nil];
+            [facebook authorize:myPermissions];
+        } else {
+            [self confirmUploadImageToFacebook];
+        }        
     } else {
-        [self confirmUploadImageToFacebook];
+        [self facebookExportNotPurchased];
     }
+}
+
+- (void)facebookExportNotPurchased
+{
+    //message - then push onto the store
+    UIAlertView *alertView = [[UIAlertView alloc] 
+                              initWithTitle:@"\"Go Pro\" not installed" 
+                              message:@"Sharing with Facebook requires the \"Go Pro\" in-app purchase available through the In-App Store.  If you have purchased it already, you can also restore your purchase in the In-App Store." 
+                              delegate:nil 
+                              cancelButtonTitle:@"OK" 
+                              otherButtonTitles:nil, 
+                              nil];
+    [alertView show];
+    [alertView release];  
+    
+    AWBRoadsignMagicStoreViewController *controller = [[AWBRoadsignMagicStoreViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];      
 }
 
 - (void)confirmUploadImageToFacebook
@@ -43,6 +66,7 @@
                               cancelButtonTitle:@"No" 
                               otherButtonTitles:@"Yes", 
                               nil];
+    
     [alertView show];
     [alertView release];   
 

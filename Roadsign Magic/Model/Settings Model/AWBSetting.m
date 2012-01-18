@@ -163,6 +163,12 @@
     return [setting autorelease];
 }
 
++ (AWBSetting *)goToInAppStoreSettingWithText
+{
+    AWBSetting *setting = [[self alloc] initWithText:nil controlType:AWBSettingControlTypeGoToInAppStore value:nil key:nil];
+    return [setting autorelease];
+}
+
 + (AWBSetting *)defaultSettingWithText:(NSString *)text
 {
     AWBSetting *setting = [[self alloc] initWithText:text controlType:AWBSettingControlTypeDefault value:nil key:nil];
@@ -203,7 +209,9 @@
         case AWBSettingControlTypeMyFontPreview:
             return @"AWBSettingControlTypeMyFontPreview"; 
         case AWBSettingControlTypeWebView:
-            return @"AWBSettingControlTypeWebView"; 
+            return @"AWBSettingControlTypeWebView";
+        case AWBSettingControlTypeGoToInAppStore:
+            return @"AWBSettingControlTypeGoToInAppStore";
         default:
             return @"AWBSettingControlTypeDefault";
     }    
@@ -280,6 +288,13 @@
             tableCell = [[AWBSubtitleTableCell alloc] initWithWithText:self.text detailText:self.detailText image:settingValue reuseIdentifier:self.cellReuseIdentifier];
             tableCell.selectionStyle = UITableViewCellSelectionStyleBlue;
             break;
+        case AWBSettingControlTypeGoToInAppStore:
+            tableCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.cellReuseIdentifier];
+            tableCell.textLabel.textAlignment = UITextAlignmentCenter;
+            tableCell.textLabel.textColor = TABLE_CELL_BLUE_TEXT_COLOR;
+            tableCell.textLabel.text = @"Go To In-App Store";
+            tableCell.selectionStyle = UITableViewCellSelectionStyleBlue;
+            break;
         case AWBSettingControlTypeDefault:
             tableCell = [[AWBSettingTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.cellReuseIdentifier];
             tableCell.selectionStyle = UITableViewCellSelectionStyleBlue;
@@ -346,6 +361,9 @@
             self.settingValue = nil;
             break;
         case AWBSettingControlTypeMyFontPreview:
+            self.settingValue = nil;
+            break;
+        case AWBSettingControlTypeGoToInAppStore:
             self.settingValue = nil;
             break;
         case AWBSettingControlTypeDefault:

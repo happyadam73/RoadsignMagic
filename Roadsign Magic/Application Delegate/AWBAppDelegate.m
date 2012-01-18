@@ -21,6 +21,7 @@
 #import "AWBMyFont.h"
 #import "AWBMyFontStore.h"
 #import "AWBDeviceHelper.h"
+#import "InAppStore.h"
 
 static NSString* kAppId = @"289600444412359";
 
@@ -43,13 +44,14 @@ static NSString* kAppId = @"289600444412359";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    //initialise in-app store
+    [[SKPaymentQueue defaultQueue] addTransactionObserver:[InAppStore defaultStore]];
+    
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     self.signBackgroundSize = CGSizeZero;
-    // Initialize Facebook
-    facebook = [[Facebook alloc] initWithAppId:kAppId urlSchemeSuffix:@"rsm" andDelegate:nil];
     
-    // Initialize user permissions
-    //    userPermissions = [[NSMutableDictionary alloc] initWithCapacity:1];
+    // Initialize Facebook
+    facebook = [[Facebook alloc] initWithAppId:kAppId urlSchemeSuffix:@"rsm" andDelegate:nil];    
 
     AWBRoadsignDescriptor *roadsign = nil;
     NSUInteger totalSavedRoadsigns = [[[AWBRoadsignStore defaultStore] myRoadsigns] count];

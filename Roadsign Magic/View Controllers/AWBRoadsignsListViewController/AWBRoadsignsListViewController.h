@@ -22,6 +22,7 @@
     AWBBusyView *busyView;
     BOOL animateTransition;
     UIBarButtonItem *myFontsButton;
+    UIBarButtonItem *inAppStoreButton;
     UIBarButtonItem *helpButton;
     UIBarButtonItem *toolbarSpacing;
     BOOL changingSegmentIndex;
@@ -33,6 +34,7 @@
 @property (nonatomic, retain) AWBBusyView *busyView;
 @property (nonatomic, assign) NSUInteger selectedDataSource;
 @property (nonatomic, retain) UIBarButtonItem *myFontsButton;
+@property (nonatomic, retain) UIBarButtonItem *inAppStoreButton;
 @property (nonatomic, retain) UIBarButtonItem *helpButton;
 @property (nonatomic, retain) UIBarButtonItem *toolbarSpacing;
 
@@ -46,6 +48,7 @@
 - (void)switchDatasource:(id)sender;
 - (void)switchDatasourceWithSelectedIndex:(NSUInteger)selectedIndex;
 - (void)showMyFonts;
+- (void)showInAppStore;
 - (NSArray *)mySignsToolbarButtons;
 
 @end

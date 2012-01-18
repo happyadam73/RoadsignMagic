@@ -15,6 +15,11 @@
 
 #import "AWBTransforms.h"
 
+#define TABLE_CELL_BLUE_TEXT_COLOR [UIColor colorWithRed:0.22 green:0.33 blue:0.53 alpha:1.0];
+
 #define DEVICE_IS_IPAD ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
 #define DEVICE_IS_IPHONE ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+
+#define IS_MYFONTS_PURCHASED [[NSUserDefaults standardUserDefaults] boolForKey:@"com.happyadam.roadsignmagic.myfonts"]
+#define IS_GOPRO_PURCHASED [[NSUserDefaults standardUserDefaults] boolForKey:@"com.happyadam.roadsignmagic.gopro"]

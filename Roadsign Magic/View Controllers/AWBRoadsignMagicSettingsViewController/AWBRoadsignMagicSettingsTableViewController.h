@@ -38,7 +38,7 @@ typedef enum {
     NSMutableDictionary *settingsInfo;
     AWBRoadsignMagicSettingsTableViewController *parentSettingsController;
     BOOL forceReload;
-    
+    BOOL dismissAndGoToAppStore;
     BOOL assetGroupsLoaded;
     UITextField *currentlyEditingCellTextField;
 }
@@ -49,6 +49,7 @@ typedef enum {
 @property (nonatomic, assign) AWBSettingsControllerType controllerType; 
 @property (nonatomic, readonly) AWBRoadsignMagicSettingsTableViewController *parentSettingsController;
 @property (nonatomic, assign) BOOL forceReload;
+@property (nonatomic, assign) BOOL dismissAndGoToAppStore;
 @property (nonatomic, retain) NSMutableDictionary *settingsInfo;
 
 - (id)initWithSettings:(AWBSettings *)aSettings settingsInfo:(NSMutableDictionary *)aSettingsInfo rootController:(AWBRoadsignMagicSettingsTableViewController *)rootController;

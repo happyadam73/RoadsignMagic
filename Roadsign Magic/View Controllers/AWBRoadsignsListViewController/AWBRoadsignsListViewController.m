@@ -14,6 +14,7 @@
 #import "AWBSettingsGroup.h"
 #import "AWBSizeableImageTableCell.h"
 #import "AWBMyFontsListViewController.h"
+#import "AWBRoadsignMagicStoreViewController.h"
 
 @implementation AWBRoadsignsListViewController
 
@@ -21,7 +22,7 @@
 @synthesize dataSources;
 @synthesize busyView;
 @synthesize selectedDataSource;
-@synthesize myFontsButton, toolbarSpacing, helpButton;
+@synthesize myFontsButton, toolbarSpacing, helpButton, inAppStoreButton;
 
 // this is the custom initialization method for the ElementsTableViewController
 // it expects an object that conforms to both the UITableViewDataSource protocol
@@ -78,6 +79,7 @@
 	[dataSources release];
     [busyView release];
     [myFontsButton release];
+    [inAppStoreButton release];
     [toolbarSpacing release];
     [helpButton release];
 	[super dealloc];
@@ -123,9 +125,10 @@
 	theTableView.dataSource = nil;
     self.busyView = nil;
     self.myFontsButton = nil;
+    self.inAppStoreButton = nil;
     self.helpButton = nil;
     self.toolbarSpacing = nil;
-    self.dataSources = nil;
+//    self.dataSources = nil;
     self.theTableView = nil;
     [super viewDidUnload];
 }
@@ -348,6 +351,14 @@
     return myFontsButton;    
 }
 
+- (UIBarButtonItem *)inAppStoreButton
+{
+    if (!inAppStoreButton) {
+        inAppStoreButton = [[UIBarButtonItem alloc] initWithTitle:@"In App Store" style:UIBarButtonItemStyleBordered target:self action:@selector(showInAppStore)];
+    }
+    return inAppStoreButton;    
+}
+
 - (UIBarButtonItem *)helpButton
 {
     if (!helpButton) {
@@ -384,9 +395,16 @@
     [controller release];                
 }
 
+- (void)showInAppStore
+{
+    AWBRoadsignMagicStoreViewController *controller = [[AWBRoadsignMagicStoreViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];                
+}
+
 - (NSArray *)mySignsToolbarButtons
 {
-    return [NSArray arrayWithObjects:self.myFontsButton, self.toolbarSpacing, self.helpButton, nil];    
+    return [NSArray arrayWithObjects:self.myFontsButton, self.toolbarSpacing, self.inAppStoreButton, self.toolbarSpacing, self.helpButton, nil];    
 }
 
 @end

@@ -110,20 +110,31 @@
 
 + (AWBSettings *)exportSettingsWithInfo:(NSDictionary *)info
 {
-    AWBSettingsGroup *exportQualityAndFormatSettings = [AWBSettingsGroup exportQualityAndFormatSettingsGroupWithInfo:info];
-    AWBSettingsGroup *pngExportSettings = [AWBSettingsGroup pngExportSettingsGroupWithInfo:info];
-    AWBSettingsGroup *jpgExportSettings = [AWBSettingsGroup jpgExportSettingsGroupWithInfo:info];
-    
-    NSMutableArray *settings = [NSMutableArray arrayWithObjects:exportQualityAndFormatSettings, pngExportSettings, jpgExportSettings, nil];
-    AWBSettings *exportSettings = [[self alloc] initWithSettingsGroups:settings title:@"Export Settings"];
-    
-    exportQualityAndFormatSettings.parentSettings = exportSettings;
-    exportQualityAndFormatSettings.dependentVisibleSettingsGroup = jpgExportSettings;
-    exportQualityAndFormatSettings.dependentHiddenSettingsGroup = pngExportSettings;
-    jpgExportSettings.visible = exportQualityAndFormatSettings.masterSwitchIsOn;
-    pngExportSettings.visible = !exportQualityAndFormatSettings.masterSwitchIsOn;
-    
-    return [exportSettings autorelease];        
+    if (IS_GOPRO_PURCHASED) {
+        AWBSettingsGroup *exportQualityAndFormatSettings = [AWBSettingsGroup exportQualityAndFormatSettingsGroupWithInfo:info];
+        AWBSettingsGroup *pngExportSettings = [AWBSettingsGroup pngExportSettingsGroupWithInfo:info];
+        AWBSettingsGroup *jpgExportSettings = [AWBSettingsGroup jpgExportSettingsGroupWithInfo:info];
+        
+        NSMutableArray *settings = [NSMutableArray arrayWithObjects:exportQualityAndFormatSettings, pngExportSettings, jpgExportSettings, nil];
+        AWBSettings *exportSettings = [[self alloc] initWithSettingsGroups:settings title:@"Export Settings"];
+        
+        exportQualityAndFormatSettings.parentSettings = exportSettings;
+        exportQualityAndFormatSettings.dependentVisibleSettingsGroup = jpgExportSettings;
+        exportQualityAndFormatSettings.dependentHiddenSettingsGroup = pngExportSettings;
+        jpgExportSettings.visible = exportQualityAndFormatSettings.masterSwitchIsOn;
+        pngExportSettings.visible = !exportQualityAndFormatSettings.masterSwitchIsOn;
+        
+        return [exportSettings autorelease];        
+        
+    } else {
+        AWBSettingsGroup *exportQualitySettings = [AWBSettingsGroup exportQualitySettingsGroupWithInfo:info];
+        AWBSettingsGroup *goToAppStoreSettings = [AWBSettingsGroup goToAppStoreSettingsGroup];
+        
+        NSMutableArray *settings = [NSMutableArray arrayWithObjects:exportQualitySettings, goToAppStoreSettings, nil];
+        AWBSettings *exportSettings = [[self alloc] initWithSettingsGroups:settings title:@"Export Settings"];        
+        
+        return [exportSettings autorelease];        
+    }
 }
 
 //+ (AWBSettings *)aboutSettingsWithInfo:(NSDictionary *)info

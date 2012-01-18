@@ -31,6 +31,12 @@
         exportSizeSlider = [[UISlider alloc] initWithFrame:CGRectZero];
         [exportSizeSlider setMinimumValue:0.1];
         [exportSizeSlider setMaximumValue:2.0];
+        
+        if (!IS_GOPRO_PURCHASED) {
+            value = 0.5;
+            exportSizeSlider.enabled = NO;
+        }
+        
         [exportSizeSlider setValue:value];
         [exportSizeSlider setMinimumValueImage:[UIImage imageNamed:@"0.1x.png"]];
         [exportSizeSlider setMaximumValueImage:[UIImage imageNamed:@"2x.png"]];

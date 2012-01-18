@@ -153,6 +153,16 @@
     return [[[self alloc] initWithSettings:roadsignNameSettings header:nil footer:nil] autorelease];
 }
 
++ (AWBSettingsGroup *)exportQualitySettingsGroupWithInfo:(NSDictionary *)info
+{
+    AWBSetting *exportSizeSetting = [AWBSetting exportSizeSliderSettingWithValue:[info objectForKey:kAWBInfoKeyExportSizeValue] andKey:kAWBInfoKeyExportSizeValue];
+    NSMutableArray *exportQualitySettings = [NSMutableArray arrayWithObjects:exportSizeSetting, nil];
+    
+    AWBSettingsGroup *exportQualitySettingsGroup = [[self alloc] initWithSettings:exportQualitySettings header:@"Quality" footer:@"Enable changes to export size, format & transparency with the \"Go Pro\" In-App purchase."];
+    
+    return [exportQualitySettingsGroup autorelease];    
+}
+
 + (AWBSettingsGroup *)exportQualityAndFormatSettingsGroupWithInfo:(NSDictionary *)info
 {
     AWBSetting *exportSizeSetting = [AWBSetting exportSizeSliderSettingWithValue:[info objectForKey:kAWBInfoKeyExportSizeValue] andKey:kAWBInfoKeyExportSizeValue];
@@ -183,7 +193,11 @@
 
 + (AWBSettingsGroup *)mainSettingsDrilldownSettingsGroupWithInfo:(NSDictionary *)info
 {
-    NSMutableArray *buttonSettings = [NSMutableArray arrayWithObjects:[AWBSetting drilldownSettingWithText:@"Drawing Aids" value:nil key:nil childSettings:[AWBSettings drawingAidsSettingsWithInfo:info]], [AWBSetting drilldownSettingWithText:@"Background" value:nil key:nil childSettings:[AWBSettings backgroundSettingsWithInfo:info]], [AWBSetting drilldownSettingWithText:@"Export" value:nil key:nil childSettings:[AWBSettings exportSettingsWithInfo:info]], [AWBSetting drilldownSettingWithText:@"Facebook" value:nil key:nil childSettings:[AWBSettings facebookSettingsWithInfo:info]], nil];
+    NSMutableArray *buttonSettings = [NSMutableArray arrayWithObjects:[AWBSetting drilldownSettingWithText:@"Drawing Aids" value:nil key:nil childSettings:[AWBSettings drawingAidsSettingsWithInfo:info]], [AWBSetting drilldownSettingWithText:@"Background" value:nil key:nil childSettings:[AWBSettings backgroundSettingsWithInfo:info]], [AWBSetting drilldownSettingWithText:@"Export" value:nil key:nil childSettings:[AWBSettings exportSettingsWithInfo:info]], nil];
+    
+    if (IS_GOPRO_PURCHASED) {
+        [buttonSettings addObject:[AWBSetting drilldownSettingWithText:@"Facebook" value:nil key:nil childSettings:[AWBSettings facebookSettingsWithInfo:info]]];
+    }
     
     return [[[self alloc] initWithSettings:buttonSettings header:nil footer:nil] autorelease];    
 }
@@ -465,5 +479,9 @@
     return [myFontPreviewSettingsGroup autorelease];
 }
 
++ (AWBSettingsGroup *)goToAppStoreSettingsGroup
+{
+    return [[[self alloc] initWithSettings:[NSMutableArray arrayWithObject:[AWBSetting goToInAppStoreSettingWithText]] header:nil footer:@"\"Go Pro\" is an In-App purchase that allows different export sizes, formats and transparency as well as exporting to Facebook. If you have purchased it already, you can also restore your purchase in the In-App Store."] autorelease];
+}
 
 @end

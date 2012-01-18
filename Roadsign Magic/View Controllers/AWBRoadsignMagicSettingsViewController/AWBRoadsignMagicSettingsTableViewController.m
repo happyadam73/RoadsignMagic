@@ -9,11 +9,12 @@
 #import "AWBRoadsignMagicSettingsTableViewController.h"
 #import "AWBSettingTableCell.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "AWBRoadsignMagicStoreViewController.h"
 
 @implementation AWBRoadsignMagicSettingsTableViewController
 
 @synthesize delegate, settings, isRootController, controllerType;
-@synthesize settingsInfo, parentSettingsController, forceReload;
+@synthesize settingsInfo, parentSettingsController, forceReload, dismissAndGoToAppStore;
 
 - (id)initWithSettings:(AWBSettings *)aSettings settingsInfo:(NSMutableDictionary *)aSettingsInfo rootController:(AWBRoadsignMagicSettingsTableViewController *)rootController
 {
@@ -98,7 +99,9 @@
     self.navigationController.toolbar.barStyle = UIBarStyleBlack;
     self.navigationController.toolbar.translucent = YES;
 
-    if (forceReload) {
+    if (self.dismissAndGoToAppStore) {
+        [self finishSettingsWithInfo:self]; 
+    } else if (forceReload) {
         forceReload = NO;
         [self.tableView reloadData];
     }
@@ -201,7 +204,15 @@
             AWBRoadsignMagicSettingsTableViewController *settingsController = [[AWBRoadsignMagicSettingsTableViewController alloc] initWithSettings:setting.childSettings settingsInfo:[self settingsInfo] rootController:self]; 
             settingsController.delegate = nil;  
             [[self navigationController] pushViewController:settingsController animated:YES];
-            [settingsController release];        
+            [settingsController release];
+        } else if (setting.controlType == AWBSettingControlTypeGoToInAppStore) {
+            [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+            parentSettingsController.dismissAndGoToAppStore = YES;
+            [self.navigationController popViewControllerAnimated:YES];
+//            forceReload = YES;
+//            AWBRoadsignMagicStoreViewController *controller = [[AWBRoadsignMagicStoreViewController alloc] init];
+//            [self.navigationController pushViewController:controller animated:YES];
+//            [controller release];      
         } else {
             [self cellSelectedOrCellControlValueChanged:nil];            
         }
@@ -225,6 +236,10 @@
 {
     //first merge root controller's settings with the settings info object and then return this in the delegate
     [[self settingsInfo] addEntriesFromDictionary:[self.settings infoFromSettings]];
+    
+    if (self.dismissAndGoToAppStore) {
+        [self.settingsInfo setObject:[NSNumber numberWithBool:YES] forKey:kAWBInfoKeyGoToInAppStore];
+    }
     
     [[self parentViewController] dismissModalViewControllerAnimated:YES];
     if([delegate respondsToSelector:@selector(awbRoadsignMagicSettingsTableViewController:didFinishSettingsWithInfo:)]) {

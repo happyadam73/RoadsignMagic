@@ -14,6 +14,7 @@
 #import "AWBRoadsignMagicViewController+Symbol.h"
 #import "AWBRoadsignMagicViewController+Action.h"
 #import "UIColor+Texture.h"
+#import "AWBRoadsignMagicStoreViewController.h"
 
 @implementation AWBRoadsignMagicMainViewController (UI)
 
@@ -198,7 +199,12 @@
             [self setExportSettingsFromSettingsInfo:info];
             [self setBackgroundSettingsFromSettingsInfo:info];
             [self setCollageDrawingAidsFromSettingsInfo:info];
-            [self saveChanges:NO];            
+            [self saveChanges:NO]; 
+            if ([[info objectForKey:kAWBInfoKeyGoToInAppStore] boolValue]) {
+                AWBRoadsignMagicStoreViewController *controller = [[AWBRoadsignMagicStoreViewController alloc] init];
+                [self.navigationController pushViewController:controller animated:YES];
+                [controller release];      
+            }
             break;
         case AWBSettingsControllerTypeAddTextSettings:
             self.labelTextLine1 = [info objectForKey:kAWBInfoKeyLabelTextLine1];

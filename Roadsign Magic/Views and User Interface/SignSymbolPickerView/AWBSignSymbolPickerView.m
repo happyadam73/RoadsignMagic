@@ -123,6 +123,12 @@
     view.alpha = alpha;
     
     if (carousel == self.carouselCategory) {
+        
+//        UIView *subview = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"signpack1.png"]];
+//        [view addSubview:subview];
+//        subview.center = CGPointMake(35.0, 35.0);
+//        [subview release];
+        
         if (index == selectedSignSymbolCategory) {
             view.layer.borderWidth = 1.0;
             view.layer.cornerRadius = 5.0;

@@ -25,6 +25,7 @@
     UIAlertView *installMyFontAlertView;
     UIBarButtonItem *helpButton;
     UIBarButtonItem *toolbarSpacing;
+    BOOL showPurchaseWarning;
 }
 
 @property (nonatomic, retain) UITableView *theTableView;
@@ -38,6 +39,7 @@
 - (void)attemptMyFontInstall;
 - (void)confirmMyFontInstall:(NSString *)fontName;
 - (void)showFontInstallError:(NSString *)filename;
+- (void)showMyFontsNotPurchased;
 - (UIBarButtonItem *)helpButton;
 - (void)showHelp;
 - (NSArray *)myFontsToolbarButtons;

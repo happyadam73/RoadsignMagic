@@ -74,6 +74,7 @@
         id methodObject = nil;
         NSString *busyText = nil;
         NSString *busyTextDetail = nil;
+        BOOL showProgressIndicator = YES;
         
         if (buttonIndex == [actionSheet firstOtherButtonIndex]) {
             //Save Image
@@ -86,8 +87,11 @@
             busyTextDetail = [NSString stringWithFormat:@"(Size: %@)", AWBImageSizeFromExportSizeValue(self.exportSize)];
             methodSelector = @selector(emailRoadsignAsPhoto);
         } else if (buttonIndex == ([actionSheet firstOtherButtonIndex]+2)) {
-            //Email Image
-            busyText = @"Uploading to Facebook";
+            //Facebook
+            if (!IS_GOPRO_PURCHASED) {
+                showProgressIndicator = NO;
+            }
+            busyText = @"Uploading to Facebook";                
             CGFloat quality = 1.0;
             busyTextDetail = [NSString stringWithFormat:@"(Size: %@)", AWBImageSizeFromExportSizeValue(quality)];
             methodSelector = @selector(loginToFacebook);            
@@ -113,9 +117,11 @@
         }
         
         if (busyText) {
-            AWBBusyView *busyIndicatorView = [[AWBBusyView alloc] initWithText:busyText detailText:busyTextDetail parentView:self.view centerAtPoint:self.view.center];
-            self.busyView = busyIndicatorView;
-            [busyIndicatorView release];
+            if (showProgressIndicator) {
+                AWBBusyView *busyIndicatorView = [[AWBBusyView alloc] initWithText:busyText detailText:busyTextDetail parentView:self.view centerAtPoint:self.view.center];
+                self.busyView = busyIndicatorView;
+                [busyIndicatorView release];                
+            }
             [self performSelector:methodSelector withObject:methodObject afterDelay:0.0];	
         }	
     }

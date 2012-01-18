@@ -10,6 +10,7 @@
 #import "FileHelpers.h"
 #import "AWBMyFontStore.h"
 #import "AWBSettingsGroup.h"
+#import "AWBRoadsignMagicStoreViewController.h"
 
 @implementation AWBMyFontsListViewController
 
@@ -25,6 +26,9 @@
 {    
     self = [super init];
     if (self) {
+        if (!IS_MYFONTS_PURCHASED) {
+            showPurchaseWarning = YES;
+        }
         // Custom initialization
         //[self initialise];
     }
@@ -90,6 +94,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    NSLog(@"viewWillAppear");
+    
     [super viewWillAppear:animated];
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
@@ -98,18 +104,26 @@
     self.navigationItem.title = @"My Fonts";
     [[self navigationItem] setRightBarButtonItem:[self editButtonItem]];    
 
+    if (!IS_MYFONTS_PURCHASED && showPurchaseWarning) {
+        showPurchaseWarning = NO;
+        [self showMyFontsNotPurchased];
+    }
+    
 //    [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:kAWBInfoKeyMyRoadsignStoreRoadsignIndex];
     [self.theTableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    NSLog(@"viewDidAppear");
+
     [super viewDidAppear:animated];
     
-    if (pendingMyFontInstall) {
+    if (pendingMyFontInstall && IS_MYFONTS_PURCHASED) {
         pendingMyFontInstall = NO;
         [self attemptMyFontInstall];
     }
+    
 //    [self becomeFirstResponder];
 //    
 //    scrollToRow = [[NSUserDefaults standardUserDefaults] integerForKey:kAWBInfoKeyScrollToRoadsignStoreMyRoadsignIndex];
@@ -225,14 +239,18 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section 
 {
-    NSUInteger totalMyFontCount = [[[AWBMyFontStore defaultStore] allMyFonts] count];
-    if (totalMyFontCount > 0) {
-        self.navigationItem.rightBarButtonItem = [self editButtonItem];
-        return nil;
+    if (!IS_MYFONTS_PURCHASED) {
+        return @"MyFonts is not currently installed.  MyFonts is an in-app purchase available through the In-App Store.  If you have purchased it already, you can also restore your purchase in the In-App Store.";
     } else {
-        [self setEditing:NO];
-        self.navigationItem.rightBarButtonItem = nil;
-        return @"There are no MyFonts installed.  You can install TrueType and OpenType fonts by opening them from apps such as Mail and Safari.";
+        NSUInteger totalMyFontCount = [[[AWBMyFontStore defaultStore] allMyFonts] count];
+        if (totalMyFontCount > 0) {
+            self.navigationItem.rightBarButtonItem = [self editButtonItem];
+            return nil;
+        } else {
+            [self setEditing:NO];
+            self.navigationItem.rightBarButtonItem = nil;
+            return @"There are no MyFonts installed.  You can install TrueType and OpenType fonts by opening them from apps such as Mail and Safari.";
+        }        
     }
 }
 
@@ -304,6 +322,25 @@
     }
 }
 
+- (void)showMyFontsNotPurchased
+{
+    if (pendingMyFontInstall) {
+        pendingMyFontInstall = NO;
+        NSString *path = [pendingMyFontInstallURL path];
+        [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
+    }
+        
+    UIAlertView *alertView = [[UIAlertView alloc] 
+                              initWithTitle:@"MyFonts not installed" 
+                              message:@"MyFonts is an in-app purchase available through the In-App Store.  If you have purchased it already, you can also restore your purchase in the In-App Store." 
+                              delegate:self 
+                              cancelButtonTitle:@"OK" 
+                              otherButtonTitles:nil, 
+                              nil];
+    [alertView show];
+    [alertView release];       
+}
+
 - (void)showFontInstallError:(NSString *)filename
 {
     NSString *message = [NSString stringWithFormat:@"%@ was invalid and could not be installed", filename];
@@ -335,17 +372,28 @@
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    if (alertView == self.installMyFontAlertView) {
-        if (buttonIndex == alertView.firstOtherButtonIndex) {
-            [[AWBMyFontStore defaultStore] installMyFont:pendingMyFont];
-            [self.theTableView reloadData];
+    if (!IS_MYFONTS_PURCHASED) {
+        NSUInteger viewControllerCount = self.navigationController.viewControllers.count;
+        if ((viewControllerCount > 1) && ([[self.navigationController.viewControllers objectAtIndex:(viewControllerCount - 2)] isKindOfClass:[AWBRoadsignMagicStoreViewController class]])) {
+            [self.navigationController popViewControllerAnimated:YES];
         } else {
-            [pendingMyFont removeFromInbox];
+            AWBRoadsignMagicStoreViewController *storeController = [[AWBRoadsignMagicStoreViewController alloc] init];
+            [self.navigationController pushViewController:storeController animated:YES];
+            [storeController release];     
         }
+    } else {
+        if (alertView == self.installMyFontAlertView) {
+            if (buttonIndex == alertView.firstOtherButtonIndex) {
+                [[AWBMyFontStore defaultStore] installMyFont:pendingMyFont];
+                [self.theTableView reloadData];
+            } else {
+                [pendingMyFont removeFromInbox];
+            }
+        }
+        self.installMyFontAlertView = nil;
+        self.pendingMyFontInstallURL = nil;
+        [pendingMyFont release];        
     }
-    self.installMyFontAlertView = nil;
-    self.pendingMyFontInstallURL = nil;
-    [pendingMyFont release];
 }
 
 - (UIBarButtonItem *)helpButton

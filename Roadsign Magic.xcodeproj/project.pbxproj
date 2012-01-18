@@ -780,6 +780,10 @@
 		06C6AA80149569C60087AA4B /* asphalt100@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 06C6AA7D149569C60087AA4B /* asphalt100@2x.jpg */; };
 		06C6AA81149569C60087AA4B /* concrete100@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 06C6AA7E149569C60087AA4B /* concrete100@2x.jpg */; };
 		06C6AA82149569C60087AA4B /* wood100@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 06C6AA7F149569C60087AA4B /* wood100@2x.jpg */; };
+		06C930C314C6DA900051B355 /* signpack2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06C930C214C6DA900051B355 /* signpack2@2x.png */; };
+		06C930C814C6F58B0051B355 /* signpack1.png in Resources */ = {isa = PBXBuildFile; fileRef = 06C930C514C6F58B0051B355 /* signpack1.png */; };
+		06C930C914C6F58B0051B355 /* signpack1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06C930C614C6F58B0051B355 /* signpack1@2x.png */; };
+		06C930CA14C6F58B0051B355 /* signpack2.png in Resources */ = {isa = PBXBuildFile; fileRef = 06C930C714C6F58B0051B355 /* signpack2.png */; };
 		06D1AEE41494D9560096099B /* AWBExportQualitySliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D1AEE31494D9560096099B /* AWBExportQualitySliderCell.m */; };
 		06D1AEE91494DDD60096099B /* HiQuality.png in Resources */ = {isa = PBXBuildFile; fileRef = 06D1AEE51494DDD60096099B /* HiQuality.png */; };
 		06D1AEEA1494DDD60096099B /* HiQuality@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06D1AEE61494DDD60096099B /* HiQuality@2x.png */; };
@@ -792,6 +796,8 @@
 		06DA20ED149A3F29006390D6 /* 27014.png in Resources */ = {isa = PBXBuildFile; fileRef = 06DA20EB149A3F29006390D6 /* 27014.png */; };
 		06DA20EE149A3F29006390D6 /* 27015.png in Resources */ = {isa = PBXBuildFile; fileRef = 06DA20EC149A3F29006390D6 /* 27015.png */; };
 		06E37436147FF42600EA536C /* AWBLockedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E37435147FF42600EA536C /* AWBLockedView.m */; };
+		06E982EE14C214D600636A34 /* MAConfirmButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E982EB14C214D600636A34 /* MAConfirmButton.m */; };
+		06E982EF14C214D600636A34 /* UIColor-Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E982ED14C214D600636A34 /* UIColor-Expanded.m */; };
 		06F15E89147BC0AE007071D0 /* 00@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06F15E68147BC0AE007071D0 /* 00@2x.png */; };
 		06F15E8A147BC0AE007071D0 /* 10001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06F15E6A147BC0AE007071D0 /* 10001@2x.png */; };
 		06F15E8B147BC0AE007071D0 /* 10002@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06F15E6B147BC0AE007071D0 /* 10002@2x.png */; };
@@ -880,6 +886,13 @@
 		06F15FBC147BC0E8007071D0 /* 15013@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06F15F60147BC0E8007071D0 /* 15013@2x.png */; };
 		06F15FBD147BC0E8007071D0 /* 15014@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06F15F61147BC0E8007071D0 /* 15014@2x.png */; };
 		06F15FBE147BC0E8007071D0 /* 15015@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06F15F62147BC0E8007071D0 /* 15015@2x.png */; };
+		B552269C14BEEB1B00B0C569 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B552269B14BEEB1B00B0C569 /* SystemConfiguration.framework */; };
+		B552269F14BEEB2100B0C569 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B552269E14BEEB2100B0C569 /* StoreKit.framework */; };
+		B55226A914BEEB6100B0C569 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B55226A214BEEB6100B0C569 /* IAPHelper.m */; };
+		B55226AA14BEEB6100B0C569 /* InAppStore.m in Sources */ = {isa = PBXBuildFile; fileRef = B55226A414BEEB6100B0C569 /* InAppStore.m */; };
+		B55226AB14BEEB6100B0C569 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B55226A614BEEB6100B0C569 /* MBProgressHUD.m */; };
+		B55226AC14BEEB6100B0C569 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = B55226A814BEEB6100B0C569 /* Reachability.m */; };
+		B55226B014BEF0E200B0C569 /* AWBRoadsignMagicStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B55226AF14BEF0E200B0C569 /* AWBRoadsignMagicStoreViewController.m */; };
 		B59DE99314BB57000073578E /* AWBWebViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B59DE99214BB57000073578E /* AWBWebViewCell.m */; };
 		B5E0448014784406006A8D5C /* blackbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E0445F14784406006A8D5C /* blackbutton.png */; };
 		B5E0448114784406006A8D5C /* blackbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E0446014784406006A8D5C /* blackbutton@2x.png */; };
@@ -1781,6 +1794,10 @@
 		06C6AA7D149569C60087AA4B /* asphalt100@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "asphalt100@2x.jpg"; sourceTree = "<group>"; };
 		06C6AA7E149569C60087AA4B /* concrete100@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "concrete100@2x.jpg"; sourceTree = "<group>"; };
 		06C6AA7F149569C60087AA4B /* wood100@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "wood100@2x.jpg"; sourceTree = "<group>"; };
+		06C930C214C6DA900051B355 /* signpack2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signpack2@2x.png"; sourceTree = "<group>"; };
+		06C930C514C6F58B0051B355 /* signpack1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signpack1.png; sourceTree = "<group>"; };
+		06C930C614C6F58B0051B355 /* signpack1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signpack1@2x.png"; sourceTree = "<group>"; };
+		06C930C714C6F58B0051B355 /* signpack2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signpack2.png; sourceTree = "<group>"; };
 		06D1AEE21494D9560096099B /* AWBExportQualitySliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBExportQualitySliderCell.h; sourceTree = "<group>"; };
 		06D1AEE31494D9560096099B /* AWBExportQualitySliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBExportQualitySliderCell.m; sourceTree = "<group>"; };
 		06D1AEE51494DDD60096099B /* HiQuality.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HiQuality.png; sourceTree = "<group>"; };
@@ -1797,6 +1814,10 @@
 		06DA20EC149A3F29006390D6 /* 27015.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 27015.png; sourceTree = "<group>"; };
 		06E37434147FF42600EA536C /* AWBLockedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBLockedView.h; path = "Views and User Interface/LockedView/AWBLockedView.h"; sourceTree = "<group>"; };
 		06E37435147FF42600EA536C /* AWBLockedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBLockedView.m; path = "Views and User Interface/LockedView/AWBLockedView.m"; sourceTree = "<group>"; };
+		06E982EA14C214D600636A34 /* MAConfirmButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAConfirmButton.h; sourceTree = "<group>"; };
+		06E982EB14C214D600636A34 /* MAConfirmButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAConfirmButton.m; sourceTree = "<group>"; };
+		06E982EC14C214D600636A34 /* UIColor-Expanded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor-Expanded.h"; sourceTree = "<group>"; };
+		06E982ED14C214D600636A34 /* UIColor-Expanded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor-Expanded.m"; sourceTree = "<group>"; };
 		06F15E68147BC0AE007071D0 /* 00@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "00@2x.png"; sourceTree = "<group>"; };
 		06F15E6A147BC0AE007071D0 /* 10001@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "10001@2x.png"; sourceTree = "<group>"; };
 		06F15E6B147BC0AE007071D0 /* 10002@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "10002@2x.png"; sourceTree = "<group>"; };
@@ -1885,6 +1906,18 @@
 		06F15F60147BC0E8007071D0 /* 15013@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "15013@2x.png"; sourceTree = "<group>"; };
 		06F15F61147BC0E8007071D0 /* 15014@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "15014@2x.png"; sourceTree = "<group>"; };
 		06F15F62147BC0E8007071D0 /* 15015@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "15015@2x.png"; sourceTree = "<group>"; };
+		B552269B14BEEB1B00B0C569 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		B552269E14BEEB2100B0C569 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		B55226A114BEEB6100B0C569 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
+		B55226A214BEEB6100B0C569 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
+		B55226A314BEEB6100B0C569 /* InAppStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppStore.h; sourceTree = "<group>"; };
+		B55226A414BEEB6100B0C569 /* InAppStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppStore.m; sourceTree = "<group>"; };
+		B55226A514BEEB6100B0C569 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		B55226A614BEEB6100B0C569 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		B55226A714BEEB6100B0C569 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		B55226A814BEEB6100B0C569 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		B55226AE14BEF0E200B0C569 /* AWBRoadsignMagicStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBRoadsignMagicStoreViewController.h; path = AWBRoadsignMagicStoreViewController/AWBRoadsignMagicStoreViewController.h; sourceTree = "<group>"; };
+		B55226AF14BEF0E200B0C569 /* AWBRoadsignMagicStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBRoadsignMagicStoreViewController.m; path = AWBRoadsignMagicStoreViewController/AWBRoadsignMagicStoreViewController.m; sourceTree = "<group>"; };
 		B59DE99114BB57000073578E /* AWBWebViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBWebViewCell.h; sourceTree = "<group>"; };
 		B59DE99214BB57000073578E /* AWBWebViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBWebViewCell.m; sourceTree = "<group>"; };
 		B5E0445F14784406006A8D5C /* blackbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackbutton.png; sourceTree = "<group>"; };
@@ -1987,6 +2020,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B552269F14BEEB2100B0C569 /* StoreKit.framework in Frameworks */,
+				B552269C14BEEB1B00B0C569 /* SystemConfiguration.framework in Frameworks */,
 				06903FDB148EC50300232B9E /* AssetsLibrary.framework in Frameworks */,
 				06A960221478209C00915359 /* QuartzCore.framework in Frameworks */,
 				06A960201478209000915359 /* MessageUI.framework in Frameworks */,
@@ -2524,6 +2559,7 @@
 		0668E185147920400089937B /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B55226AD14BEED7600B0C569 /* AWBRoadsignMagicStoreViewController */,
 				06BB8769148D21C80051F9CB /* AWBRoadsignsListViewController */,
 				06978EF1147D60C800171A51 /* AWBRoadsignMagicSettingsViewController */,
 				0668E1A414792A150089937B /* AWBRoadsignMagicMainViewController */,
@@ -2630,6 +2666,8 @@
 		06A95FE914781B6000915359 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B552269E14BEEB2100B0C569 /* StoreKit.framework */,
+				B552269B14BEEB1B00B0C569 /* SystemConfiguration.framework */,
 				06903FDA148EC50200232B9E /* AssetsLibrary.framework */,
 				06A960211478209C00915359 /* QuartzCore.framework */,
 				06A9601F1478209000915359 /* MessageUI.framework */,
@@ -2651,6 +2689,7 @@
 				0668E185147920400089937B /* View Controllers */,
 				B5E0450414784861006A8D5C /* Helpers and Miscellaneous */,
 				0611EBF314A0BC3200A3588C /* Facebook */,
+				B55226A014BEEB6100B0C569 /* InAppPurchasing */,
 				06A95FF114781B6000915359 /* Supporting Files */,
 			);
 			path = "Roadsign Magic";
@@ -3201,6 +3240,17 @@
 			name = LockedView;
 			sourceTree = "<group>";
 		};
+		06E982E914C214D600636A34 /* MAConfirmButton */ = {
+			isa = PBXGroup;
+			children = (
+				06E982EA14C214D600636A34 /* MAConfirmButton.h */,
+				06E982EB14C214D600636A34 /* MAConfirmButton.m */,
+				06E982EC14C214D600636A34 /* UIColor-Expanded.h */,
+				06E982ED14C214D600636A34 /* UIColor-Expanded.m */,
+			);
+			path = MAConfirmButton;
+			sourceTree = "<group>";
+		};
 		06F15E67147BC0AE007071D0 /* 0 Blue Rectangular Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
@@ -3515,6 +3565,31 @@
 			path = "25 Full Size";
 			sourceTree = "<group>";
 		};
+		B55226A014BEEB6100B0C569 /* InAppPurchasing */ = {
+			isa = PBXGroup;
+			children = (
+				06E982E914C214D600636A34 /* MAConfirmButton */,
+				B55226A114BEEB6100B0C569 /* IAPHelper.h */,
+				B55226A214BEEB6100B0C569 /* IAPHelper.m */,
+				B55226A314BEEB6100B0C569 /* InAppStore.h */,
+				B55226A414BEEB6100B0C569 /* InAppStore.m */,
+				B55226A514BEEB6100B0C569 /* MBProgressHUD.h */,
+				B55226A614BEEB6100B0C569 /* MBProgressHUD.m */,
+				B55226A714BEEB6100B0C569 /* Reachability.h */,
+				B55226A814BEEB6100B0C569 /* Reachability.m */,
+			);
+			path = InAppPurchasing;
+			sourceTree = "<group>";
+		};
+		B55226AD14BEED7600B0C569 /* AWBRoadsignMagicStoreViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B55226AE14BEF0E200B0C569 /* AWBRoadsignMagicStoreViewController.h */,
+				B55226AF14BEF0E200B0C569 /* AWBRoadsignMagicStoreViewController.m */,
+			);
+			name = AWBRoadsignMagicStoreViewController;
+			sourceTree = "<group>";
+		};
 		B5E0445E14784406006A8D5C /* Color Buttons */ = {
 			isa = PBXGroup;
 			children = (
@@ -3584,6 +3659,10 @@
 				06978EFE147E76C200171A51 /* leftalignment@2x.png */,
 				06978EFF147E76C200171A51 /* rightalignment.png */,
 				06978F00147E76C200171A51 /* rightalignment@2x.png */,
+				06C930C514C6F58B0051B355 /* signpack1.png */,
+				06C930C614C6F58B0051B355 /* signpack1@2x.png */,
+				06C930C714C6F58B0051B355 /* signpack2.png */,
+				06C930C214C6DA900051B355 /* signpack2@2x.png */,
 			);
 			name = Icons;
 			path = "Resources/Buttons and Icons/Icons";
@@ -4670,6 +4749,10 @@
 				0606FDF214B73CF100C180C8 /* 18002@2x.png in Resources */,
 				0606FDF314B73CF100C180C8 /* 18003@2x.png in Resources */,
 				0606FDF514B7420B00C180C8 /* 08@2x.png in Resources */,
+				06C930C314C6DA900051B355 /* signpack2@2x.png in Resources */,
+				06C930C814C6F58B0051B355 /* signpack1.png in Resources */,
+				06C930C914C6F58B0051B355 /* signpack1@2x.png in Resources */,
+				06C930CA14C6F58B0051B355 /* signpack2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4770,6 +4853,13 @@
 				068D7EB914B368C100C2964D /* AWBMyFontPreviewTableCell.m in Sources */,
 				0606FDE614B71DA600C180C8 /* UIApplication+AppDimensions.m in Sources */,
 				B59DE99314BB57000073578E /* AWBWebViewCell.m in Sources */,
+				B55226A914BEEB6100B0C569 /* IAPHelper.m in Sources */,
+				B55226AA14BEEB6100B0C569 /* InAppStore.m in Sources */,
+				B55226AB14BEEB6100B0C569 /* MBProgressHUD.m in Sources */,
+				B55226AC14BEEB6100B0C569 /* Reachability.m in Sources */,
+				B55226B014BEF0E200B0C569 /* AWBRoadsignMagicStoreViewController.m in Sources */,
+				06E982EE14C214D600636A34 /* MAConfirmButton.m in Sources */,
+				06E982EF14C214D600636A34 /* UIColor-Expanded.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4844,11 +4934,14 @@
 		06A95FFF14781B6000915359 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Adam Buckley (UMUZ9AP3AR)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Roadsign Magic/Roadsign Magic-Prefix.pch";
 				INFOPLIST_FILE = "Roadsign Magic/Roadsign Magic-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A53529A8-358B-4102-8BDE-EA247F783088";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;

@@ -63,11 +63,20 @@
         self.snapRotation = YES;
         self.snapToGridSize = SNAP_TO_GRID_SIZE;
         self.labelTextAlignment = UITextAlignmentCenter;
-        self.exportSize = 1.0;
         self.isSignInEditMode = NO;
-        self.exportFormatSelectedIndex = kAWBExportFormatIndexPNG;
-        self.pngExportTransparentBackground = YES;
-        self.jpgExportQualityValue = 0.7;
+        
+        if (IS_GOPRO_PURCHASED) {
+            self.exportSize = 1.0;
+            self.exportFormatSelectedIndex = kAWBExportFormatIndexPNG;
+            self.pngExportTransparentBackground = YES;
+            self.jpgExportQualityValue = 0.7;
+        } else {
+            self.exportSize = 0.5;
+            self.exportFormatSelectedIndex = kAWBExportFormatIndexPNG;
+            self.pngExportTransparentBackground = NO;
+            self.jpgExportQualityValue = 0.7;            
+        }
+        
         self.roadsignBackgroundColor = [UIColor yellowSignBackgroundColor];
         self.roadsignBackgroundTexture = @"Metal";
         self.useBackgroundTexture = YES;  
@@ -215,6 +224,16 @@
             frame.origin.y = (self.view.bounds.size.height);                        
         }
         signBackgroundPickerView.frame = frame;
+    }  
+
+    if (signSymbolPickerView) {        
+        CGRect frame = signSymbolPickerView.frame;
+        if (signSymbolPickerViewShowing) {
+            frame.origin.y = (self.view.bounds.size.height - self.navigationController.toolbar.bounds.size.height - frame.size.height);            
+        } else {
+            frame.origin.y = (self.view.bounds.size.height);                        
+        }
+        signSymbolPickerView.frame = frame;
     }  
 }
 
@@ -371,15 +390,18 @@
             [self updateSignBackground:signBackground willAnimateAndSave:NO];
         }
         
-        self.exportSize = roadsign.exportSize;
+        if (IS_GOPRO_PURCHASED) {
+            self.exportSize = roadsign.exportSize;
+            self.exportFormatSelectedIndex = roadsign.exportFormatSelectedIndex;
+            self.pngExportTransparentBackground = roadsign.pngExportTransparentBackground;
+            self.jpgExportQualityValue = roadsign.jpgExportQualityValue;            
+        }
+        
         self.lockedView.objectsLocked = roadsign.objectsLocked;
         self.lockedView.canvasAnchored = roadsign.canvasAnchored;
         self.snapToGrid = roadsign.snapToGrid;
         self.snapRotation = roadsign.snapRotation;
         self.snapToGridSize = roadsign.snapToGridSize;
-        self.exportFormatSelectedIndex = roadsign.exportFormatSelectedIndex;
-        self.pngExportTransparentBackground = roadsign.pngExportTransparentBackground;
-        self.jpgExportQualityValue = roadsign.jpgExportQualityValue;
         self.useBackgroundTexture = roadsign.useBackgroundTexture;
         self.labelTextAlignment = roadsign.labelTextAlignment;
         self.addTextBorders = roadsign.addTextBorders;

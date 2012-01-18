@@ -33,6 +33,7 @@ static NSString *const kAWBInfoKeyTextBorderColor = @"TextBorderColor";
 static NSString *const kAWBInfoKeyTextBackground = @"TextBackground";
 static NSString *const kAWBInfoKeyTextBackgroundColor = @"TextBackgroundColor";
 static NSString *const kAWBInfoKeyTextRoundedBorders = @"TextRoundedBorders";
+static NSString *const kAWBInfoKeyGoToInAppStore = @"GoToInAppStore";
 
 static NSString *const kAWBBackgroundSettingsFooterText = @"By default, this background is not included when exporting or sharing.  You can change this in Export Settings.";
 
@@ -85,6 +86,7 @@ static NSString *const kAWBBackgroundSettingsFooterText = @"By default, this bac
 + (AWBSettingsGroup *)roadsignInfoMetricsSettingsGroupWithInfo:(NSDictionary *)info;
 + (AWBSettingsGroup *)roadsignNameSettingsGroupWithInfo:(NSDictionary *)info;
 + (AWBSettingsGroup *)exportQualityAndFormatSettingsGroupWithInfo:(NSDictionary *)info;
++ (AWBSettingsGroup *)exportQualitySettingsGroupWithInfo:(NSDictionary *)info;
 + (AWBSettingsGroup *)pngExportSettingsGroupWithInfo:(NSDictionary *)info;
 + (AWBSettingsGroup *)jpgExportSettingsGroupWithInfo:(NSDictionary *)info;
 + (AWBSettingsGroup *)mainSettingsDrilldownSettingsGroupWithInfo:(NSDictionary *)info;
@@ -108,6 +110,7 @@ static NSString *const kAWBBackgroundSettingsFooterText = @"By default, this bac
 + (AWBSettingsGroup *)myFontNameWithHeaderSettingsGroupWithInfo:(NSDictionary *)info;
 + (AWBSettingsGroup *)myFontInfoMetricsSettingsGroupWithInfo:(NSDictionary *)info;
 + (AWBSettingsGroup *)myFontPreviewSettingsGroupWithInfo:(NSDictionary *)info;
++ (AWBSettingsGroup *)goToAppStoreSettingsGroup;
 
 @end
 
