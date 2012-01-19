@@ -80,6 +80,10 @@ static AWBRoadsignStore *defaultStore = nil;
     
     NSInteger sequenceId = [[NSUserDefaults standardUserDefaults] integerForKey:kAWBInfoKeyMyRoadsignSequenceNumber];
     sequenceId += 1;
+    //for some reason - this can still end of 1 (and overwrite the help sign) so guard against this
+    if (sequenceId < 2) {
+        sequenceId = 2;
+    }
     [[NSUserDefaults standardUserDefaults] setInteger:sequenceId forKey:kAWBInfoKeyMyRoadsignSequenceNumber];
     AWBRoadsignDescriptor *roadsign = [[[AWBRoadsignDescriptor alloc] initWithRoadsignDocumentsSubdirectory:[NSString stringWithFormat:@"Roadsign %d", sequenceId]] autorelease];
     if (roadsign) {
@@ -97,6 +101,10 @@ static AWBRoadsignStore *defaultStore = nil;
     
     NSInteger sequenceId = [[NSUserDefaults standardUserDefaults] integerForKey:kAWBInfoKeyMyRoadsignSequenceNumber];
     sequenceId += 1;
+    //for some reason - this can still end of 1 (and overwrite the help sign) so guard against this
+    if (sequenceId < 2) {
+        sequenceId = 2;
+    }
     [[NSUserDefaults standardUserDefaults] setInteger:sequenceId forKey:kAWBInfoKeyMyRoadsignSequenceNumber];
 
     NSString *bundleSubPath = @"Template Roadsigns";
@@ -123,6 +131,10 @@ static AWBRoadsignStore *defaultStore = nil;
 {
     NSInteger sequenceId = [[NSUserDefaults standardUserDefaults] integerForKey:kAWBInfoKeyMyRoadsignSequenceNumber];
     sequenceId += 1;
+    //for some reason - this can still end of 1 (and overwrite the help sign) so guard against this
+    if (sequenceId < 2) {
+        sequenceId = 2;
+    }
     return [NSString stringWithFormat:@"Roadsign %d", sequenceId];
 }
 

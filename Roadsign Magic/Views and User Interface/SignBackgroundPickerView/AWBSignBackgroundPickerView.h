@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "iCarousel.h"
 #import "AWBRoadsignBackground.h"
+#import "AWBRoadsignBackgroundGroup.h"
 
 @class AWBSignBackgroundPickerView;
 
 @protocol AWBSignBackgroundPickerViewDelegate
 @optional
 - (void)awbSignBackgroundPickerView:(AWBSignBackgroundPickerView *)backgroundPicker didSelectSignBackground:(AWBRoadsignBackground *)signBackground;
+- (void)awbSignBackgroundPickerView:(AWBSignBackgroundPickerView *)backgroundPicker didSelectNonPurchasedSignBackgroundCategory:(AWBRoadsignBackgroundGroup *)signBackgroundCategory;
 @end
 
 @interface AWBSignBackgroundPickerView : UIView <iCarouselDataSource, iCarouselDelegate> {
@@ -27,7 +29,6 @@
     NSUInteger currentSignBackgroundCategoryIndex;
     NSUInteger currentSignBackgroundId;
     AWBRoadsignBackground *selectedSignBackground;
-    
 }
 
 @property (nonatomic, assign) id delegate;
@@ -39,5 +40,6 @@
 @property (nonatomic, assign) NSUInteger currentSignBackgroundId;
 
 - (id)initWithFrame:(CGRect)frame signBackgroundCategoryIndex:(NSUInteger)signBackgroundCategoryIndex signBackgroundId:(NSUInteger)signBackgroundId;
+- (void)reload;
 
 @end

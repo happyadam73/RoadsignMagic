@@ -77,6 +77,9 @@
             self.jpgExportQualityValue = 0.7;            
         }
         
+        signPack1Purchased = IS_SIGNPACK1_PURCHASED;
+        signPack2Purchased = IS_SIGNPACK2_PURCHASED;
+        
         self.roadsignBackgroundColor = [UIColor yellowSignBackgroundColor];
         self.roadsignBackgroundTexture = @"Metal";
         self.useBackgroundTexture = YES;  
@@ -108,14 +111,12 @@
         }
     }  
     
-    if (!self.modalViewController) {
-        if (roadsignLoadRequired) {
-            roadsignLoadRequired = NO;
-            [self loadChanges];
-        }        
+    if ((!self.modalViewController) && roadsignLoadRequired) {
+        [self loadChanges];
     } else {
         [self updateLayoutForNewOrientation:self.interfaceOrientation];
     }
+    roadsignLoadRequired = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated

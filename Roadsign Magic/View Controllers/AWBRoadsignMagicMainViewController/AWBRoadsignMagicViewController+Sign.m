@@ -10,6 +10,7 @@
 #import "UIImage+NonCached.h"
 #import "AWBRoadsignMagicMainViewController+UI.h"
 #import "UIImage+Scale.h"
+#import "AWBRoadsignMagicStoreViewController.h"
 
 #define MAX_SIGN_BACKGROUND_PIXELS 1000000
 
@@ -35,8 +36,17 @@
     
     if (!signBackgroundPickerView) {
         [self initialiseSignBackgroundPickerView];
+    } else {
+        if ((!signPack1Purchased && IS_SIGNPACK1_PURCHASED) || (!signPack2Purchased && IS_SIGNPACK2_PURCHASED)) {
+            [signBackgroundPickerView reload];
+            if (signSymbolPickerView) {
+                [signSymbolPickerView reload];
+            }
+        }
     }
-    
+    signPack1Purchased = IS_SIGNPACK1_PURCHASED;
+    signPack2Purchased = IS_SIGNPACK2_PURCHASED;
+
     CGRect frame = signBackgroundPickerView.frame;
     if (!signBackgroundPickerViewShowing) {
         frame.origin.y = (self.view.bounds.size.height - self.navigationController.toolbar.bounds.size.height - frame.size.height);            
@@ -97,6 +107,36 @@
     currentSignBackgroundId = signBackground.signBackgroundId;
     currentSignBackgroundCategoryIndex = [AWBRoadsignBackground signCategoryIndexFromSignId:signBackground.signBackgroundId];
     [self updateSignBackground:signBackground willAnimateAndSave:YES];
+}
+
+- (void)awbSignBackgroundPickerView:(AWBSignBackgroundPickerView *)backgroundPicker didSelectNonPurchasedSignBackgroundCategory:(AWBRoadsignBackgroundGroup *)signBackgroundCategory
+{
+    [self dismissSignBackgroundPickerView];
+    
+    NSString *symbolPackDescription = nil;
+    if (signBackgroundCategory && signBackgroundCategory.purchasePackDescription) {
+        symbolPackDescription = signBackgroundCategory.purchasePackDescription;
+    } else {
+        symbolPackDescription = @"Signs & Symbols Pack";
+    }
+    
+    NSString *title = [NSString stringWithFormat:@"\"%@\" not installed", symbolPackDescription];
+    NSString *message = [NSString stringWithFormat:@"This sign requires the \"%@\" in-app purchase available through the In-App Store.  If you have purchased it already, you can also restore your purchase in the In-App Store.", symbolPackDescription]; 
+    
+    //message - then push onto the store
+    UIAlertView *alertView = [[UIAlertView alloc] 
+                              initWithTitle:title 
+                              message:message 
+                              delegate:nil 
+                              cancelButtonTitle:@"OK" 
+                              otherButtonTitles:nil, 
+                              nil];
+    [alertView show];
+    [alertView release];
+    
+    AWBRoadsignMagicStoreViewController *controller = [[AWBRoadsignMagicStoreViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];     
 }
 
 - (void)updateSignBackground:(AWBRoadsignBackground *)signBackground willAnimateAndSave:(BOOL)animateAndSave

@@ -87,6 +87,7 @@
     [pinchGestureRecognizer release];
     [singleTapGestureRecognizer release];
     [doubleTapGestureRecognizer release];
+    [doubleDoubleTapGestureRecognizer release];
     [swipeGestureRecognizer release];
     [longPressGestureRecognizer release];
     [longDoublePressGestureRecognizer release];
@@ -99,6 +100,7 @@
     self.pinchGestureRecognizer = nil;
     self.singleTapGestureRecognizer = nil;
     self.doubleTapGestureRecognizer = nil;
+    self.doubleDoubleTapGestureRecognizer = nil;
     self.swipeGestureRecognizer = nil; 
     self.longPressGestureRecognizer = nil;
     self.longDoublePressGestureRecognizer = nil;

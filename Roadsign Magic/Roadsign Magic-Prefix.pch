@@ -23,3 +23,5 @@
 
 #define IS_MYFONTS_PURCHASED [[NSUserDefaults standardUserDefaults] boolForKey:@"com.happyadam.roadsignmagic.myfonts"]
 #define IS_GOPRO_PURCHASED [[NSUserDefaults standardUserDefaults] boolForKey:@"com.happyadam.roadsignmagic.gopro"]
+#define IS_SIGNPACK1_PURCHASED [[NSUserDefaults standardUserDefaults] boolForKey:@"com.happyadam.roadsignmagic.signpack1"]
+#define IS_SIGNPACK2_PURCHASED [[NSUserDefaults standardUserDefaults] boolForKey:@"com.happyadam.roadsignmagic.signpack2"]

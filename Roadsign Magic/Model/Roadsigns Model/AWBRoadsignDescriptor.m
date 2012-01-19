@@ -12,6 +12,7 @@
 @implementation AWBRoadsignDescriptor
 
 @synthesize roadsignName, roadsignSaveDocumentsSubdirectory, createdDate, totalObjects, totalSymbolObjects, totalLabelObjects, totalImageMemoryBytes;
+@synthesize templatePurchasePack, isTemplateAvailable;
 
 - (id)initWithRoadsignName:(NSString *)name documentsSubdirectory:(NSString *)subDirectory
 {
@@ -195,6 +196,77 @@
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"%@ (saved in %@), created %@", roadsignName, roadsignSaveDocumentsSubdirectory, createdDate];
+}
+
+- (AWBRoadsignSymbolGroupPurchasePack)templatePurchasePack
+{
+    AWBRoadsignSymbolGroupPurchasePack purchasePack = AWBRoadsignSymbolGroupPurchasePackNone;
+    
+    if (self.roadsignSaveDocumentsSubdirectory && [self.roadsignSaveDocumentsSubdirectory hasPrefix:@"Roadsign "]) {
+        
+        NSInteger subDirNumber = [[self.roadsignSaveDocumentsSubdirectory substringFromIndex:9] integerValue];
+        switch (subDirNumber) {
+            case 2 ... 19:
+                purchasePack = AWBRoadsignSymbolGroupPurchasePack1;
+                break;
+            case 24:
+                purchasePack = AWBRoadsignSymbolGroupPurchasePack1;
+                break;
+            case 48:
+                purchasePack = AWBRoadsignSymbolGroupPurchasePack1;
+                break;
+            case 40:
+                purchasePack = AWBRoadsignSymbolGroupPurchasePack2;
+                break;
+            case 50:
+                purchasePack = AWBRoadsignSymbolGroupPurchasePack2;
+                break;                    
+        }
+    }
+    
+    return purchasePack;
+}
+
+- (BOOL)isTemplateAvailable
+{
+    switch (self.templatePurchasePack) {
+        case AWBRoadsignSymbolGroupPurchasePack1:
+            return IS_SIGNPACK1_PURCHASED;
+            break;
+        case AWBRoadsignSymbolGroupPurchasePack2:
+            return IS_SIGNPACK2_PURCHASED;
+        default:
+            return YES;
+            break;
+    }
+}
+
+- (UIImage *)templatePurchasePackImage
+{
+    switch (self.templatePurchasePack) {
+        case AWBRoadsignSymbolGroupPurchasePack1:
+            return [UIImage imageNamed:@"signpack1"];
+            break;
+        case AWBRoadsignSymbolGroupPurchasePack2:
+            return [UIImage imageNamed:@"signpack2"];
+        default:
+            return nil;
+            break;
+    }    
+}
+
+- (NSString *)templatePurchasePackDescription
+{
+    switch (self.templatePurchasePack) {
+        case AWBRoadsignSymbolGroupPurchasePack1:
+            return @"Signs & Symbols (Pack 1)";
+            break;
+        case AWBRoadsignSymbolGroupPurchasePack2:
+            return @"Signs & Symbols (Pack 2)";
+        default:
+            return nil;
+            break;
+    }    
 }
 
 @end

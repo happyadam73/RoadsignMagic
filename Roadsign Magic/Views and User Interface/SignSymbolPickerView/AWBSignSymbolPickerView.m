@@ -7,7 +7,6 @@
 //
 
 #import "AWBSignSymbolPickerView.h"
-#import "AWBRoadsignSymbolGroup.h"
 #import "UIImage+NonCached.h"
 #import "UIColor+SignColors.h"
 #import "UIColor+Texture.h"
@@ -102,9 +101,10 @@
     CGFloat alpha = 1.0;
     NSString *filename = nil;
     NSUInteger signSymbolId = 0;
+    AWBRoadsignSymbolGroup *symbolGroup = nil;
     
     if (carousel == self.carouselCategory) {
-        AWBRoadsignSymbolGroup *symbolGroup = [self.signSymbolCategories objectAtIndex:index];
+        symbolGroup = [self.signSymbolCategories objectAtIndex:index];
         filename = symbolGroup.thumbnailImageFilename;
         if (index == selectedSignSymbolCategory) {
             alpha = 1.0;
@@ -112,23 +112,27 @@
             alpha = 0.5;
         }
     } else {        
-        AWBRoadsignSymbolGroup *symbolGroup = [self.signSymbolCategories objectAtIndex:selectedSignSymbolCategory];
+        symbolGroup = [self.signSymbolCategories objectAtIndex:selectedSignSymbolCategory];
         AWBRoadsignSymbol *signSymbol = [symbolGroup.signSymbols objectAtIndex:index];
         signSymbolId = signSymbol.signSymbolId;
         filename = signSymbol.thumbnailImageFilename;
-        alpha = 1.0;
+        if (symbolGroup.isAvailable) {
+            alpha = 1.0;            
+        } else {
+            alpha = 0.4;
+        }
     }
     
 	UIView *view = [[[UIImageView alloc] initWithImage:[UIImage imageFromFile:filename]] autorelease];
     view.alpha = alpha;
     
     if (carousel == self.carouselCategory) {
-        
-//        UIView *subview = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"signpack1.png"]];
-//        [view addSubview:subview];
-//        subview.center = CGPointMake(35.0, 35.0);
-//        [subview release];
-        
+        if (!symbolGroup.isAvailable) {
+            UIView *subview = [[UIImageView alloc] initWithImage:symbolGroup.purchasePackImage];
+            [view addSubview:subview];
+            subview.center = CGPointMake(35.0, 35.0);
+            [subview release];            
+        }
         if (index == selectedSignSymbolCategory) {
             view.layer.borderWidth = 1.0;
             view.layer.cornerRadius = 5.0;
@@ -201,12 +205,26 @@
         AWBRoadsignSymbol *signSymbol = [signSymbolGroup.signSymbols objectAtIndex:index];
         self.selectedSignSymbol = signSymbol;
         selectedSignSymbolCarouselIndex = index;
-        selectedSignSymbolCategoryIndex = selectedSignSymbolCategory;        
-        if([delegate respondsToSelector:@selector(awbSignSymbolPickerView:didSelectSignSymbol:)]) {
-            [delegate performSelector:@selector(awbSignSymbolPickerView:didSelectSignSymbol:) withObject:self withObject:self.selectedSignSymbol];
+        selectedSignSymbolCategoryIndex = selectedSignSymbolCategory; 
+        
+        if (signSymbolGroup.isAvailable) {
+            if([delegate respondsToSelector:@selector(awbSignSymbolPickerView:didSelectSignSymbol:)]) {
+                [delegate performSelector:@selector(awbSignSymbolPickerView:didSelectSignSymbol:) withObject:self withObject:self.selectedSignSymbol];
+            }            
+        } else {
+            if([delegate respondsToSelector:@selector(awbSignSymbolPickerView:didSelectNonPurchasedSignSymbolCategory:)]) {
+                [delegate performSelector:@selector(awbSignSymbolPickerView:didSelectNonPurchasedSignSymbolCategory:) withObject:self withObject:signSymbolGroup];
+            }            
         }
+        
         [self.carouselSubcategory reloadData];
     }
+}
+
+- (void)reload
+{
+    [self.carouselCategory reloadData];
+    [self.carouselSubcategory reloadData];    
 }
 
 @end

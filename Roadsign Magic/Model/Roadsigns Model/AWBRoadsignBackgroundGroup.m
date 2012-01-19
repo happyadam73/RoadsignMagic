@@ -13,6 +13,7 @@
 @implementation AWBRoadsignBackgroundGroup
 
 @synthesize signBackgrounds, signBackgroundGroupId, groupDescription, thumbnailImageFilename;
+@synthesize purchasePack, isAvailable;
 
 - (id)initWithIdentifier:(NSUInteger)backgroundGroupId description:(NSString *)description thumbnailImageFilename:(NSString *)imageFilename signBackgrounds:(NSArray *)backgrounds
 {
@@ -34,7 +35,49 @@
     [super dealloc];
 }
 
-+ (AWBRoadsignBackgroundGroup *)roadsignBackgroundGroupWithCategoryId:(NSUInteger)categoryId count:(NSUInteger)count description:(NSString *)description
+- (BOOL)isAvailable
+{
+    switch (self.purchasePack) {
+        case AWBRoadsignSymbolGroupPurchasePack1:
+            return IS_SIGNPACK1_PURCHASED;
+            break;
+        case AWBRoadsignSymbolGroupPurchasePack2:
+            return IS_SIGNPACK2_PURCHASED;
+        default:
+            return YES;
+            break;
+    }
+}
+
+- (UIImage *)purchasePackImage
+{
+    switch (self.purchasePack) {
+        case AWBRoadsignSymbolGroupPurchasePack1:
+            return [UIImage imageNamed:@"signpack1"];
+            break;
+        case AWBRoadsignSymbolGroupPurchasePack2:
+            return [UIImage imageNamed:@"signpack2"];
+        default:
+            return nil;
+            break;
+    }    
+}
+
+- (NSString *)purchasePackDescription
+{
+    switch (self.purchasePack) {
+        case AWBRoadsignSymbolGroupPurchasePack1:
+            return @"Signs & Symbols (Pack 1)";
+            break;
+        case AWBRoadsignSymbolGroupPurchasePack2:
+            return @"Signs & Symbols (Pack 2)";
+        default:
+            return nil;
+            break;
+    }    
+}
+
++ (AWBRoadsignBackgroundGroup *)roadsignBackgroundGroupWithCategoryId:(NSUInteger)categoryId count:(NSUInteger)count description:(NSString *)description purchasePack:(AWBRoadsignSymbolGroupPurchasePack)purchasePackCode
 {
     NSUInteger signBackgroundId = (categoryId * 1000) + 1;
     NSMutableArray *signs = [[NSMutableArray alloc] initWithCapacity:count];
@@ -46,22 +89,23 @@
     NSString *thumbnailFilename = [NSString stringWithFormat:@"%@.png", imageNumberString];    
     AWBRoadsignBackgroundGroup *signGroup = [[[self alloc] initWithIdentifier:categoryId description:description thumbnailImageFilename:thumbnailFilename signBackgrounds:signs] autorelease];
     [signs release];
-    
+    signGroup.purchasePack = purchasePackCode;
+
     return signGroup;
 }
 
 + (NSArray *)allSignBackgroundCategories
 {
     return [NSArray arrayWithObjects:
-            [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:8 count:3 description:@"No Sign Backgrounds"],            
-            [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:6 count:28 description:@"Signpost Backgrounds"],            
-            [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:7 count:15 description:@"Triangles and Circular Backgrounds"],            
-            [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:0 count:15 description:@"Blue Rectangular Backgrounds"],
-            [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:1 count:9 description:@"Green Rectangular Backgrounds"],
-            [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:2 count:14 description:@"Brown Rectangular Backgrounds"],
-            [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:3 count:19 description:@"White Rectangular Backgrounds"],
-            [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:4 count:10 description:@"Red Rectangular Backgrounds"],
-            [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:5 count:15 description:@"Yellow Rectangular Backgrounds"],
+            [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:8 count:3 description:@"No Sign Backgrounds" purchasePack:AWBRoadsignSymbolGroupPurchasePackNone],            
+            [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:0 count:15 description:@"Blue Rectangular Backgrounds" purchasePack:AWBRoadsignSymbolGroupPurchasePackNone],
+            [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:1 count:9 description:@"Green Rectangular Backgrounds" purchasePack:AWBRoadsignSymbolGroupPurchasePackNone],
+            [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:2 count:14 description:@"Brown Rectangular Backgrounds" purchasePack:AWBRoadsignSymbolGroupPurchasePackNone],
+            [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:3 count:19 description:@"White Rectangular Backgrounds" purchasePack:AWBRoadsignSymbolGroupPurchasePackNone],
+            [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:4 count:10 description:@"Red Rectangular Backgrounds" purchasePack:AWBRoadsignSymbolGroupPurchasePackNone],
+            [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:5 count:15 description:@"Yellow Rectangular Backgrounds" purchasePack:AWBRoadsignSymbolGroupPurchasePackNone],
+            [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:7 count:15 description:@"Triangles and Circular Backgrounds" purchasePack:AWBRoadsignSymbolGroupPurchasePack1],            
+            [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:6 count:28 description:@"Signpost Backgrounds" purchasePack:AWBRoadsignSymbolGroupPurchasePack2],            
             nil];
 }
 

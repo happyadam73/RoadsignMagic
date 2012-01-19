@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AWBRoadsignSymbolGroup.h"
 
 static NSString *const kAWBInfoKeyRoadsignName = @"RoadsignName";
 static NSString *const kAWBInfoKeyRoadsignDocumentsSubdirectory = @"RoadsignDocumentsSubdirectory";
@@ -32,6 +33,8 @@ static NSString *const kAWBInfoKeyRoadsignTotalDiskBytes = @"RoadsignTotalDiskBy
 @property (nonatomic, assign) NSUInteger totalLabelObjects;
 @property (nonatomic, readonly) NSUInteger totalObjects;
 @property (nonatomic, assign) NSUInteger totalImageMemoryBytes; 
+@property (nonatomic, readonly) AWBRoadsignSymbolGroupPurchasePack templatePurchasePack;
+@property (nonatomic, readonly) BOOL isTemplateAvailable;
 
 - (id)initWithRoadsignName:(NSString *)name documentsSubdirectory:(NSString *)subDirectory;
 - (id)initWithRoadsignDocumentsSubdirectory:(NSString *)subDirectory;
@@ -40,5 +43,7 @@ static NSString *const kAWBInfoKeyRoadsignTotalDiskBytes = @"RoadsignTotalDiskBy
 - (UILabel *)roadsignNameLabel;
 - (UILabel *)roadsignCreatedDateLabel;
 - (UILabel *)roadsignUpdatedDateLabel;
+- (UIImage *)templatePurchasePackImage;
+- (NSString *)templatePurchasePackDescription;
 
 @end

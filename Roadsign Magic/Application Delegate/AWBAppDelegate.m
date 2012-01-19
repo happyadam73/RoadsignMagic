@@ -44,6 +44,8 @@ static NSString* kAppId = @"289600444412359";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onNotification:) name:nil object:nil];
+
     //initialise in-app store
     [[SKPaymentQueue defaultQueue] addTransactionObserver:[InAppStore defaultStore]];
     
@@ -188,5 +190,10 @@ static NSString* kAppId = @"289600444412359";
         }
     }   
 }
+
+//-(void)onNotification:(NSNotification*)notification
+//{
+//    NSLog(@"Notification name is %@ sent by %@",[notification name], [[notification object] description] );
+//}
 
 @end

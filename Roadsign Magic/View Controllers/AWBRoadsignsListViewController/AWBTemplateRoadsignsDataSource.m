@@ -12,7 +12,7 @@
 #import "AWBRoadsignDescriptor.h"
 #import "AWBRoadsignStore.h"
 #import "AWBSettingsGroup.h"
-#import "AWBSizeableImageTableCell2.h"
+#import "AWBSizeableImageTableCell.h"
 #import "AWBRoadsignsListViewController.h"
 
 @implementation AWBTemplateRoadsignsDataSource
@@ -39,12 +39,12 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[AWBSizeableImageTableCell2 alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[AWBSizeableImageTableCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
     AWBRoadsignDescriptor *roadsign = [[[AWBRoadsignStore defaultStore] templateRoadsigns] objectAtIndex:[indexPath row]];
     NSString *subDir = roadsign.roadsignSaveDocumentsSubdirectory;
-    
+    NSLog(@"Template subDir: %@", subDir);
     if (roadsign.roadsignName && ([roadsign.roadsignName length] > 0)) {
         cell.textLabel.text = [NSString stringWithFormat:@"%@", roadsign.roadsignName];
     } else {
@@ -52,11 +52,23 @@
     }
     
     UIImage *thumbnail = [UIImage imageWithContentsOfFile:AWBPathInMainBundleTemplateSubdirectory(subDir, @"thumbnail.png")];
-    
     cell.imageView.image = thumbnail;
-//    cell.detailTextLabel.numberOfLines = 2;
-//    cell.detailTextLabel.text = [NSString stringWithFormat:@"Created %@", AWBDateStringForCurrentLocale(roadsign.createdDate)];        
-//    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+    
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    cell.detailTextLabel.numberOfLines = 2;
+
+    if (!roadsign.isTemplateAvailable) {
+        UIImageView *signPackView = [[UIImageView alloc] initWithImage:roadsign.templatePurchasePackImage];
+        cell.accessoryView = signPackView;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [signPackView release];        
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"Requires purchase of\r\n%@", roadsign.templatePurchasePackDescription];        
+    } else {
+        cell.accessoryView = nil;
+        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+        cell.detailTextLabel.text = nil;        
+    }
+        
     
     return cell;
 }
@@ -104,11 +116,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     AWBRoadsignDescriptor *templateRoadsign = [[[AWBRoadsignStore defaultStore] templateRoadsigns] objectAtIndex:[indexPath row]];
-    AWBRoadsignDescriptor *newRoadsign =  [[AWBRoadsignStore defaultStore] createMyRoadsignFromTemplateRoadsign:templateRoadsign];
     
-    if (newRoadsign) {
-        NSIndexPath *myRoadsignIndexPath = [NSIndexPath indexPathForRow:([[[AWBRoadsignStore defaultStore] myRoadsigns] count] - 1) inSection:0];
-        [parentViewController loadRoadsignAtIndexPath:myRoadsignIndexPath withSettingsInfo:nil];
+    if ([templateRoadsign isTemplateAvailable]) {
+        AWBRoadsignDescriptor *newRoadsign =  [[AWBRoadsignStore defaultStore] createMyRoadsignFromTemplateRoadsign:templateRoadsign];
+        
+        if (newRoadsign) {
+            NSIndexPath *myRoadsignIndexPath = [NSIndexPath indexPathForRow:([[[AWBRoadsignStore defaultStore] myRoadsigns] count] - 1) inSection:0];
+            [parentViewController loadRoadsignAtIndexPath:myRoadsignIndexPath withSettingsInfo:nil];
+        }        
     }
 }
 

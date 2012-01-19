@@ -10,6 +10,7 @@
 #import "AWBRoadsignMagicMainViewController+UI.h"
 #import "AWBTransformableSymbolImageView.h"
 #import "AWBRoadsignMagicMainViewController+Toolbar.h"
+#import "AWBRoadsignMagicStoreViewController.h"
 
 @implementation AWBRoadsignMagicMainViewController (Symbol)
 
@@ -32,8 +33,17 @@
     
     if (!signSymbolPickerView) {
         [self initialiseSignSymbolPickerView];
+    } else {
+        if ((!signPack1Purchased && IS_SIGNPACK1_PURCHASED) || (!signPack2Purchased && IS_SIGNPACK2_PURCHASED)) {
+            [signSymbolPickerView reload];
+            if (signBackgroundPickerView) {
+                [signBackgroundPickerView reload];
+            }
+        }
     }
-    
+    signPack1Purchased = IS_SIGNPACK1_PURCHASED;
+    signPack2Purchased = IS_SIGNPACK2_PURCHASED;
+        
     CGRect frame = signSymbolPickerView.frame;
     if (!signSymbolPickerViewShowing) {
         frame.origin.y = (self.view.bounds.size.height - self.navigationController.toolbar.bounds.size.height - frame.size.height);            
@@ -77,9 +87,40 @@
 
 - (void)awbSignSymbolPickerView:(AWBSignSymbolPickerView *)symbolPicker didSelectSignSymbol:(AWBRoadsignSymbol *)signSymbol 
 {
+    NSLog(@"didSelectSignSymbol");
     [self dismissSignSymbolPickerView];
     self.selectedSignSymbol = signSymbol;
     [self addSignSymbolImageViewFromSymbol:signSymbol];
+}
+
+- (void)awbSignSymbolPickerView:(AWBSignSymbolPickerView *)symbolPicker didSelectNonPurchasedSignSymbolCategory:(AWBRoadsignSymbolGroup *)signSymbolCategory 
+{
+    [self dismissSignSymbolPickerView];
+    
+    NSString *symbolPackDescription = nil;
+    if (signSymbolCategory && signSymbolCategory.purchasePackDescription) {
+        symbolPackDescription = signSymbolCategory.purchasePackDescription;
+    } else {
+        symbolPackDescription = @"Signs & Symbols Pack";
+    }
+    
+    NSString *title = [NSString stringWithFormat:@"\"%@\" not installed", symbolPackDescription];
+    NSString *message = [NSString stringWithFormat:@"This symbol requires the \"%@\" in-app purchase available through the In-App Store.  If you have purchased it already, you can also restore your purchase in the In-App Store.", symbolPackDescription]; 
+    
+    //message - then push onto the store
+    UIAlertView *alertView = [[UIAlertView alloc] 
+                              initWithTitle:title 
+                              message:message 
+                              delegate:nil 
+                              cancelButtonTitle:@"OK" 
+                              otherButtonTitles:nil, 
+                              nil];
+    [alertView show];
+    [alertView release];
+    
+    AWBRoadsignMagicStoreViewController *controller = [[AWBRoadsignMagicStoreViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];      
 }
 
 @end

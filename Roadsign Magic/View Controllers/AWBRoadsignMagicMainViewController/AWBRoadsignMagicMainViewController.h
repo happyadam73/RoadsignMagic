@@ -109,7 +109,10 @@ enum {
     FBRequest *currentFacebookRequest;
     Facebook *facebook;
     CAShapeLayer *selectionMarquee1;
-    CAShapeLayer *selectionMarquee2;    
+    CAShapeLayer *selectionMarquee2; 
+
+    BOOL signPack1Purchased;
+    BOOL signPack2Purchased;
 }
 
 @property (nonatomic, retain) UIBarButtonItem *signBackgroundPickerButton;

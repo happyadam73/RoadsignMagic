@@ -7,7 +7,6 @@
 //
 
 #import "AWBSignBackgroundPickerView.h"
-#import "AWBRoadsignBackgroundGroup.h"
 #import "UIImage+NonCached.h"
 #import "UIColor+Texture.h"
 
@@ -111,9 +110,10 @@
     CGFloat alpha = 1.0;
     NSString *filename = nil;
     NSUInteger signBackgroundId = 0;
+    AWBRoadsignBackgroundGroup *signGroup = nil;
     
     if (carousel == self.carouselCategory) {
-        AWBRoadsignBackgroundGroup *signGroup = [self.signBackgroundCategories objectAtIndex:index];
+        signGroup = [self.signBackgroundCategories objectAtIndex:index];
         filename = signGroup.thumbnailImageFilename;
         if (index == selectedSignBackgroundCategoryIndex) {
             alpha = 1.0;
@@ -121,17 +121,29 @@
             alpha = 0.5;
         }
     } else {        
-        AWBRoadsignBackgroundGroup *signGroup = [self.signBackgroundCategories objectAtIndex:selectedSignBackgroundCategoryIndex];
+        signGroup = [self.signBackgroundCategories objectAtIndex:selectedSignBackgroundCategoryIndex];
         AWBRoadsignBackground *signBackground = [signGroup.signBackgrounds objectAtIndex:index];
         signBackgroundId = signBackground.signBackgroundId;
         filename = signBackground.thumbnailImageFilename;
-        alpha = 1.0;
+        if (signGroup.isAvailable) {
+            alpha = 1.0;            
+        } else {
+            alpha = 0.4;
+        }
     }
     
 	UIView *view = [[[UIImageView alloc] initWithImage:[UIImage imageFromFile:filename]] autorelease];
     view.alpha = alpha;
     
     if (carousel == self.carouselCategory) {
+        
+        if (!signGroup.isAvailable) {
+            UIView *subview = [[UIImageView alloc] initWithImage:signGroup.purchasePackImage];
+            [view addSubview:subview];
+            subview.center = CGPointMake(25.0, 25.0);
+            [subview release];            
+        }
+        
         if (index == selectedSignBackgroundCategoryIndex) {
             view.layer.borderWidth = 1.0;
             view.layer.cornerRadius = 5.0;
@@ -206,11 +218,25 @@
         currentSignBackgroundId = self.selectedSignBackground.signBackgroundId;
         selectedSignBackgroundCarouselIndex = index;
         currentSignBackgroundCategoryIndex = selectedSignBackgroundCategoryIndex;        
-        if([delegate respondsToSelector:@selector(awbSignBackgroundPickerView:didSelectSignBackground:)]) {
-            [delegate performSelector:@selector(awbSignBackgroundPickerView:didSelectSignBackground:) withObject:self withObject:self.selectedSignBackground];
+        
+        if (signGroup.isAvailable) {
+            if([delegate respondsToSelector:@selector(awbSignBackgroundPickerView:didSelectSignBackground:)]) {
+                [delegate performSelector:@selector(awbSignBackgroundPickerView:didSelectSignBackground:) withObject:self withObject:self.selectedSignBackground];
+            }
+        } else {
+            if([delegate respondsToSelector:@selector(awbSignBackgroundPickerView:didSelectNonPurchasedSignBackgroundCategory:)]) {
+                [delegate performSelector:@selector(awbSignBackgroundPickerView:didSelectNonPurchasedSignBackgroundCategory:) withObject:self withObject:signGroup];
+            }            
         }
+                
         [self.carouselSubcategory reloadData];
     }
+}
+
+- (void)reload
+{
+    [self.carouselCategory reloadData];
+    [self.carouselSubcategory reloadData];    
 }
 
 @end
