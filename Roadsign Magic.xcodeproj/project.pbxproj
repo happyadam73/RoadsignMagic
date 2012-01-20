@@ -362,6 +362,14 @@
 		063D8814149655BA0040A03C /* Help Files in Resources */ = {isa = PBXBuildFile; fileRef = 063D8813149655BA0040A03C /* Help Files */; };
 		06420DFB147C10D800E6CE9A /* NSString+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 06420DFA147C10D800E6CE9A /* NSString+Helpers.m */; };
 		06420DFF147C15DB00E6CE9A /* AWBRoadsignMagicMainViewController+Gestures.m in Sources */ = {isa = PBXBuildFile; fileRef = 06420DFE147C15DA00E6CE9A /* AWBRoadsignMagicMainViewController+Gestures.m */; };
+		064EA46514C9B7C200CBA6B9 /* inappsignpack1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064EA46414C9B7C200CBA6B9 /* inappsignpack1@2x.png */; };
+		064EA46A14C9BDF200CBA6B9 /* inappsignpack1.png in Resources */ = {isa = PBXBuildFile; fileRef = 064EA46714C9BDF200CBA6B9 /* inappsignpack1.png */; };
+		064EA46B14C9BDF200CBA6B9 /* inappsignpack2.png in Resources */ = {isa = PBXBuildFile; fileRef = 064EA46814C9BDF200CBA6B9 /* inappsignpack2.png */; };
+		064EA46C14C9BDF200CBA6B9 /* inappsignpack2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064EA46914C9BDF200CBA6B9 /* inappsignpack2@2x.png */; };
+		064EA46F14C9C0D000CBA6B9 /* inappmyfonts.png in Resources */ = {isa = PBXBuildFile; fileRef = 064EA46D14C9C0D000CBA6B9 /* inappmyfonts.png */; };
+		064EA47014C9C0D000CBA6B9 /* inappmyfonts@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064EA46E14C9C0D000CBA6B9 /* inappmyfonts@2x.png */; };
+		064EA47314C9C58E00CBA6B9 /* inappgopro.png in Resources */ = {isa = PBXBuildFile; fileRef = 064EA47114C9C58D00CBA6B9 /* inappgopro.png */; };
+		064EA47414C9C58E00CBA6B9 /* inappgopro@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064EA47214C9C58D00CBA6B9 /* inappgopro@2x.png */; };
 		06565DB01481008B00B4F2CF /* AWBTransformableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 06565DAF1481008B00B4F2CF /* AWBTransformableLabel.m */; };
 		06565DB51481072300B4F2CF /* unanchored.png in Resources */ = {isa = PBXBuildFile; fileRef = 06565DB11481072300B4F2CF /* unanchored.png */; };
 		06565DB61481072300B4F2CF /* unanchored@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06565DB21481072300B4F2CF /* unanchored@2x.png */; };
@@ -1343,6 +1351,14 @@
 		06420DFA147C10D800E6CE9A /* NSString+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Helpers.m"; path = "String Handling/NSString+Helpers.m"; sourceTree = "<group>"; };
 		06420DFD147C15DA00E6CE9A /* AWBRoadsignMagicMainViewController+Gestures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AWBRoadsignMagicMainViewController+Gestures.h"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainViewController+Gestures.h"; sourceTree = "<group>"; };
 		06420DFE147C15DA00E6CE9A /* AWBRoadsignMagicMainViewController+Gestures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AWBRoadsignMagicMainViewController+Gestures.m"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainViewController+Gestures.m"; sourceTree = "<group>"; };
+		064EA46414C9B7C200CBA6B9 /* inappsignpack1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "inappsignpack1@2x.png"; sourceTree = "<group>"; };
+		064EA46714C9BDF200CBA6B9 /* inappsignpack1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inappsignpack1.png; sourceTree = "<group>"; };
+		064EA46814C9BDF200CBA6B9 /* inappsignpack2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inappsignpack2.png; sourceTree = "<group>"; };
+		064EA46914C9BDF200CBA6B9 /* inappsignpack2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "inappsignpack2@2x.png"; sourceTree = "<group>"; };
+		064EA46D14C9C0D000CBA6B9 /* inappmyfonts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inappmyfonts.png; sourceTree = "<group>"; };
+		064EA46E14C9C0D000CBA6B9 /* inappmyfonts@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "inappmyfonts@2x.png"; sourceTree = "<group>"; };
+		064EA47114C9C58D00CBA6B9 /* inappgopro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inappgopro.png; sourceTree = "<group>"; };
+		064EA47214C9C58D00CBA6B9 /* inappgopro@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "inappgopro@2x.png"; sourceTree = "<group>"; };
 		06565DAE1481008B00B4F2CF /* AWBTransformableLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBTransformableLabel.h; sourceTree = "<group>"; };
 		06565DAF1481008B00B4F2CF /* AWBTransformableLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBTransformableLabel.m; sourceTree = "<group>"; };
 		06565DB11481072300B4F2CF /* unanchored.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unanchored.png; sourceTree = "<group>"; };
@@ -3033,11 +3049,11 @@
 				06BB876B148D22250051F9CB /* AWBMyFontsListViewController.m */,
 				069F442C14A4F8060037C72C /* AWBRoadsignsListViewController.h */,
 				069F442D14A4F8060037C72C /* AWBRoadsignsListViewController.m */,
+				069F443514A51EB00037C72C /* AWBRoadsignDataSource.h */,
 				069F442F14A4F82B0037C72C /* AWBMyRoadsignsDataSource.h */,
 				069F443014A4F82B0037C72C /* AWBMyRoadsignsDataSource.m */,
 				069F443214A4F8420037C72C /* AWBTemplateRoadsignsDataSource.h */,
 				069F443314A4F8420037C72C /* AWBTemplateRoadsignsDataSource.m */,
-				069F443514A51EB00037C72C /* AWBRoadsignDataSource.h */,
 			);
 			name = AWBRoadsignsListViewController;
 			sourceTree = "<group>";
@@ -3687,6 +3703,14 @@
 				061A0C2014C985210087DA12 /* help@2x.png */,
 				061A0C2614C98FAF0087DA12 /* inappstore.png */,
 				061A0C2414C98E510087DA12 /* inappstore@2x.png */,
+				064EA46414C9B7C200CBA6B9 /* inappsignpack1@2x.png */,
+				064EA46714C9BDF200CBA6B9 /* inappsignpack1.png */,
+				064EA46814C9BDF200CBA6B9 /* inappsignpack2.png */,
+				064EA46914C9BDF200CBA6B9 /* inappsignpack2@2x.png */,
+				064EA46D14C9C0D000CBA6B9 /* inappmyfonts.png */,
+				064EA46E14C9C0D000CBA6B9 /* inappmyfonts@2x.png */,
+				064EA47114C9C58D00CBA6B9 /* inappgopro.png */,
+				064EA47214C9C58D00CBA6B9 /* inappgopro@2x.png */,
 			);
 			name = Icons;
 			path = "Resources/Buttons and Icons/Icons";
@@ -4785,6 +4809,14 @@
 				061A0C2314C989370087DA12 /* help.png in Resources */,
 				061A0C2514C98E510087DA12 /* inappstore@2x.png in Resources */,
 				061A0C2714C98FAF0087DA12 /* inappstore.png in Resources */,
+				064EA46514C9B7C200CBA6B9 /* inappsignpack1@2x.png in Resources */,
+				064EA46A14C9BDF200CBA6B9 /* inappsignpack1.png in Resources */,
+				064EA46B14C9BDF200CBA6B9 /* inappsignpack2.png in Resources */,
+				064EA46C14C9BDF200CBA6B9 /* inappsignpack2@2x.png in Resources */,
+				064EA46F14C9C0D000CBA6B9 /* inappmyfonts.png in Resources */,
+				064EA47014C9C0D000CBA6B9 /* inappmyfonts@2x.png in Resources */,
+				064EA47314C9C58E00CBA6B9 /* inappgopro.png in Resources */,
+				064EA47414C9C58E00CBA6B9 /* inappgopro@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

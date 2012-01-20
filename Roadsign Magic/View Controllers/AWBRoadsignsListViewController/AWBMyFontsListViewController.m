@@ -16,12 +16,6 @@
 
 @synthesize theTableView, pendingMyFontInstall, pendingMyFontInstallURL, installMyFontAlertView, helpButton, toolbarSpacing;
 
-- (void)initialise
-{
-    self.navigationItem.title = @"My Fonts";
-    [[self navigationItem] setRightBarButtonItem:[self editButtonItem]];    
-}
-
 - (id)init
 {    
     self = [super init];
@@ -29,8 +23,6 @@
         if (!IS_MYFONTS_PURCHASED) {
             showPurchaseWarning = YES;
         }
-        // Custom initialization
-        //[self initialise];
     }
     return self;
 }
@@ -79,12 +71,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-//    if (DEVICE_IS_IPAD) {
-//        [self tableView].rowHeight = 212;
-//    } else {
-        self.theTableView.rowHeight = 70;    
-//    } 
+    self.theTableView.rowHeight = 70;    
 }
 
 - (void)viewDidUnload
@@ -93,15 +80,12 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated
-{
-    NSLog(@"viewWillAppear");
-    
+{    
     [super viewWillAppear:animated];
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.toolbarItems = [self myFontsToolbarButtons];
     [self.navigationController setToolbarHidden:NO animated:YES];
-    //self.navigationItem.title = @"My Fonts";
     UIImageView *titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"myfonts"]];
     self.navigationItem.titleView = titleView;
     [titleView release];
@@ -112,7 +96,6 @@
         [self showMyFontsNotPurchased];
     }
     
-//    [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:kAWBInfoKeyMyRoadsignStoreRoadsignIndex];
     [self.theTableView reloadData];
 }
 
@@ -125,22 +108,7 @@
     if (pendingMyFontInstall && IS_MYFONTS_PURCHASED) {
         pendingMyFontInstall = NO;
         [self attemptMyFontInstall];
-    }
-    
-//    [self becomeFirstResponder];
-//    
-//    scrollToRow = [[NSUserDefaults standardUserDefaults] integerForKey:kAWBInfoKeyScrollToRoadsignStoreMyRoadsignIndex];
-//    if (scrollToRow >= 0) {
-//        @try {
-//            [[self tableView] scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:scrollToRow inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-//        }
-//        @catch (NSException *e) {
-//            NSLog(@"%@", [e reason]);
-//        }
-//        @finally {
-//            scrollToRow = -1;
-//        }
-//    } 
+    }    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -243,7 +211,7 @@
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section 
 {
     if (!IS_MYFONTS_PURCHASED) {
-        return @"MyFonts is not currently installed.  MyFonts is an in-app purchase available through the In-App Store.  If you have purchased it already, you can also restore your purchase in the In-App Store.";
+        return @"MyFonts is not currently installed.  MyFonts is an in-app purchase available through the In-App Store that lets you install any TrueType and OpenType font for use within Roadsign Magic.  If you have purchased it already, you can also restore your purchase in the In-App Store.";
     } else {
         NSUInteger totalMyFontCount = [[[AWBMyFontStore defaultStore] allMyFonts] count];
         if (totalMyFontCount > 0) {
@@ -252,7 +220,7 @@
         } else {
             [self setEditing:NO];
             self.navigationItem.rightBarButtonItem = nil;
-            return @"There are no MyFonts installed.  You can install TrueType and OpenType fonts by opening them from apps such as Mail and Safari.";
+            return @"There are no MyFonts installed.  You can install TrueType and OpenType fonts by opening them from apps such as Mail and Safari.  Tap on the Help button for more information.";
         }        
     }
 }
@@ -272,7 +240,6 @@
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath    
 {
     AWBMyFont *myFont = [[[AWBMyFontStore defaultStore] allMyFonts] objectAtIndex:[indexPath row]];
-    //[[NSUserDefaults standardUserDefaults] setInteger:[indexPath row] forKey:kAWBInfoKeyScrollToRoadsignStoreMyRoadsignIndex]; 
     
     NSMutableDictionary *settingsInfo = [NSMutableDictionary dictionaryWithObjectsAndKeys:myFont.fontName, kAWBInfoKeyMyFontFontName, myFont.fileUrl, kAWBInfoKeyMyFontFileUrl, myFont.filename, kAWBInfoKeyMyFontFilename, myFont.createdDate, kAWBInfoKeyMyFontCreatedDate, [NSNumber numberWithInteger:myFont.fileSizeBytes], kAWBInfoKeyMyFontFileSizeBytes, [NSNumber numberWithInt:[indexPath row]], kAWBInfoKeyMyFontStoreMyFontIndex, nil];
     
@@ -402,7 +369,6 @@
 - (UIBarButtonItem *)helpButton
 {
     if (!helpButton) {
-        //helpButton = [[UIBarButtonItem alloc] initWithTitle:@"Help" style:UIBarButtonItemStyleBordered target:self action:@selector(showHelp)];
         helpButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"help"] style:UIBarButtonItemStyleBordered target:self action:@selector(showHelp)];
     }
     return helpButton;    

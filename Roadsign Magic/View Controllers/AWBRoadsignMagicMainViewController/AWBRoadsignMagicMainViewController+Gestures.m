@@ -28,7 +28,6 @@
     UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGestures:)];
     [panRecognizer setMinimumNumberOfTouches:1];
     [panRecognizer setMaximumNumberOfTouches:1];
-    //panRecognizer.cancelsTouchesInView = NO;
     self.panGestureRecognizer = panRecognizer;
     [panRecognizer release];
     [self.view addGestureRecognizer:self.panGestureRecognizer];
@@ -66,18 +65,7 @@
     swipeRecognizer.direction = UISwipeGestureRecognizerDirectionLeft | UISwipeGestureRecognizerDirectionRight;
     self.swipeGestureRecognizer = swipeRecognizer;
     [swipeRecognizer release];
-    [self.view addGestureRecognizer:self.swipeGestureRecognizer]; 
-    
-//    UILongPressGestureRecognizer *longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPresses:)];
-//    self.longPressGestureRecognizer = longPressRecognizer;
-//    [longPressRecognizer release];
-//    [self.view addGestureRecognizer:self.longPressGestureRecognizer];
-    
-//    UILongPressGestureRecognizer *longDoublePressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongDoublePresses:)];
-//    longDoublePressRecognizer.numberOfTouchesRequired = 2;
-//    self.longDoublePressGestureRecognizer = longDoublePressRecognizer;
-//    [longDoublePressRecognizer release];
-//    [self.view addGestureRecognizer:self.longDoublePressGestureRecognizer];
+    [self.view addGestureRecognizer:self.swipeGestureRecognizer];     
 }
 
 - (void)deallocGestureRecognizers
@@ -89,8 +77,6 @@
     [doubleTapGestureRecognizer release];
     [doubleDoubleTapGestureRecognizer release];
     [swipeGestureRecognizer release];
-    [longPressGestureRecognizer release];
-    [longDoublePressGestureRecognizer release];
 }
 
 - (void)dereferenceGestureRecognizers
@@ -102,8 +88,6 @@
     self.doubleTapGestureRecognizer = nil;
     self.doubleDoubleTapGestureRecognizer = nil;
     self.swipeGestureRecognizer = nil; 
-    self.longPressGestureRecognizer = nil;
-    self.longDoublePressGestureRecognizer = nil;
 }
 
 - (void)handleRotations:(UIRotationGestureRecognizer *)paramSender
@@ -322,44 +306,6 @@
     if (view) {
         view.horizontalFlip = view.horizontalFlip ? NO : YES; 
         [view rotateAndScaleWithSnapToGrid:snapToGrid gridSize:snapToGridSize snapRotation:snapRotation];       
-    }
-}
-
-- (void)handleLongPresses:(UILongPressGestureRecognizer *)paramSender
-{
-
-//    if (self.isSignInEditMode || self.lockedView.objectsLocked) {
-//        return;
-//    } else {
-//        if (!self.navigationController.toolbarHidden) {
-//            [self toggleFullscreen];
-//        }
-//    }
-//
-//    CGPoint point = [paramSender locationInView:self.signBackgroundView]; 
-//    UIView <AWBTransformableView> *view = [self.signBackgroundView topTransformableViewAtPoint:point];
-//    
-//    if (view) {
-//        [self.signBackgroundView sendSubviewToBack:view];
-//    }    
-    
-    
-//    if (paramSender.state == UIGestureRecognizerStateEnded) {
-//        if (!self.isSignInEditMode && self.navigationController.toolbarHidden) {
-//            [self toggleFullscreen];
-//        }
-//        lockedView.canvasAnchored = !lockedView.canvasAnchored;
-//        mainScrollView.scrollEnabled = !lockedView.canvasAnchored;
-//    }
-}
-
-- (void)handleLongDoublePresses:(UILongPressGestureRecognizer *)paramSender
-{
-    if (paramSender.state == UIGestureRecognizerStateEnded) {
-        if (!self.isSignInEditMode && self.navigationController.toolbarHidden) {
-            [self toggleFullscreen];
-        }
-        lockedView.objectsLocked = !lockedView.objectsLocked;
     }
 }
 

@@ -24,30 +24,6 @@
 @synthesize selectedDataSource;
 @synthesize myFontsButton, toolbarSpacing, helpButton, inAppStoreButton;
 
-// this is the custom initialization method for the ElementsTableViewController
-// it expects an object that conforms to both the UITableViewDataSource protocol
-// which provides data to the tableview, and the ElementDataSource protocol which
-// provides information about the elements data that is displayed,
-//- (id)initWithDataSource:(id <UITableViewDataSource, UITableViewDelegate, AWBRoadsignDataSource>)theDataSource 
-//{
-//	if ([self init]) {
-//		theTableView = nil;
-//		
-//		// retain the data source
-//		self.dataSource = theDataSource;
-//        self.dataSource.parentViewController = self;
-//        
-//        // Custom initialization
-//        scrollToRow = -1;
-//        //self.navigationItem.title = @"My Signs";
-//        UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewRoadsignDescriptor:)];
-//        [[self navigationItem] setRightBarButtonItem:addButton];
-//        [addButton release];
-//        [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
-//	}
-//	return self;
-//}
-
 - (id)initWithDataSources:(NSArray *)theDataSources 
 {
     self = [super init];
@@ -128,7 +104,6 @@
     self.inAppStoreButton = nil;
     self.helpButton = nil;
     self.toolbarSpacing = nil;
-//    self.dataSources = nil;
     self.theTableView = nil;
     [super viewDidUnload];
 }
@@ -265,9 +240,8 @@
         CGFloat totalWidth = bottomRight.x - topLeft.x;
         CGFloat totalHeight = bottomRight.y - topLeft.y;
         center = CGPointMake(topLeft.x + (totalWidth/2.0), topLeft.y + (totalHeight/2.0));
-    } else {
-        NSLog(@"No Visible Rows!");
-    }
+    } 
+    
     return center;
 }
 
@@ -346,7 +320,6 @@
 - (UIBarButtonItem *)myFontsButton
 {
     if (!myFontsButton) {
-        //myFontsButton = [[UIBarButtonItem alloc] initWithTitle:@"My Fonts" style:UIBarButtonItemStyleBordered target:self action:@selector(showMyFonts)];
         myFontsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"myfonts"] style:UIBarButtonItemStyleBordered target:self action:@selector(showMyFonts)];
     }
     return myFontsButton;    
@@ -355,7 +328,6 @@
 - (UIBarButtonItem *)inAppStoreButton
 {
     if (!inAppStoreButton) {
-        //inAppStoreButton = [[UIBarButtonItem alloc] initWithTitle:@"In App Store" style:UIBarButtonItemStyleBordered target:self action:@selector(showInAppStore)];
         inAppStoreButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"trolley"] style:UIBarButtonItemStyleBordered target:self action:@selector(showInAppStore)];
     }
     return inAppStoreButton;    
@@ -364,7 +336,6 @@
 - (UIBarButtonItem *)helpButton
 {
     if (!helpButton) {
-        //helpButton = [[UIBarButtonItem alloc] initWithTitle:@"Help" style:UIBarButtonItemStyleBordered target:self action:@selector(showHelp)];
         helpButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"help"] style:UIBarButtonItemStyleBordered target:self action:@selector(showHelp)];
     }
     return helpButton;    

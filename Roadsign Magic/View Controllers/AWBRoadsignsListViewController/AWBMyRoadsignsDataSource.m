@@ -96,11 +96,11 @@
     NSUInteger totalRoadsignCount = [[[AWBRoadsignStore defaultStore] myRoadsigns] count];
     if (totalRoadsignCount > 0) {
         parentViewController.navigationItem.leftBarButtonItem = [parentViewController editButtonItem];
-        return @"Click the + button to create a new roadsign.";
+        return @"Tap the + button or choose a Template to create a new roadsign.";
     } else {
         [parentViewController setEditing:NO];
         parentViewController.navigationItem.leftBarButtonItem = nil;
-        return @"There are no saved roadsigns.  Click the + button to create a new roadsign.";
+        return @"There are no saved roadsigns.  Tap the + button or choose a Template to create a new roadsign.";
     }
 }
 
@@ -117,7 +117,6 @@
     
     NSMutableDictionary *settingsInfo = [NSMutableDictionary dictionaryWithObjectsAndKeys:roadsign.roadsignName, kAWBInfoKeyRoadsignName, [NSNumber numberWithInt:roadsign.totalSymbolObjects], kAWBInfoKeyRoadsignTotalImageObjects, [NSNumber numberWithInt:roadsign.totalLabelObjects], kAWBInfoKeyRoadsignTotalLabelObjects, [NSNumber numberWithInt:[indexPath row]], kAWBInfoKeyMyRoadsignStoreRoadsignIndex, [NSNumber numberWithInt:roadsign.totalImageMemoryBytes], kAWBInfoKeyRoadsignTotalImageMemoryBytes, [NSNumber numberWithInt:totalDiskBytes], kAWBInfoKeyRoadsignTotalDiskBytes, nil];
     AWBRoadsignMagicSettingsTableViewController *settingsController = [[AWBRoadsignMagicSettingsTableViewController alloc] initWithSettings:[AWBSettings roadsignDescriptionSettingsWithInfo:settingsInfo header:[roadsign roadsignInfoHeaderView]] settingsInfo:settingsInfo rootController:nil]; 
-    //settingsController.delegate = self;
     settingsController.delegate = parentViewController;
     settingsController.controllerType = AWBSettingsControllerTypeRoadsignInfoSettings;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsController];

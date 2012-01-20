@@ -209,10 +209,6 @@
             [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
             parentSettingsController.dismissAndGoToAppStore = YES;
             [self.navigationController popViewControllerAnimated:YES];
-//            forceReload = YES;
-//            AWBRoadsignMagicStoreViewController *controller = [[AWBRoadsignMagicStoreViewController alloc] init];
-//            [self.navigationController pushViewController:controller animated:YES];
-//            [controller release];      
         } else {
             [self cellSelectedOrCellControlValueChanged:nil];            
         }
@@ -265,7 +261,6 @@
     
     if ((maxHeight > 10.0) && (rowHeight > maxHeight)) {
         rowHeight = maxHeight;
-        NSLog(@"Max Exceeded - Table View Height: %f  Row height: %f", tableView.bounds.size.height, rowHeight);
     }
         
     return rowHeight;

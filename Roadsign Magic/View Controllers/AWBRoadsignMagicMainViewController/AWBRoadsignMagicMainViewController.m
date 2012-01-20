@@ -31,7 +31,7 @@
 @synthesize mainScrollView, signBackgroundView;
 @synthesize signBackgroundPickerButton, toolbarSpacing, textButton, editButton, editTextButton, cancelButton, deleteButton, selectNoneOrAllButton, signSymbolPickerButton, actionButton, settingsButton, fixedToolbarSpacing;
 @synthesize signBackgroundPickerView, signSymbolPickerView; 
-@synthesize rotationGestureRecognizer, panGestureRecognizer, pinchGestureRecognizer, singleTapGestureRecognizer, doubleTapGestureRecognizer, doubleDoubleTapGestureRecognizer, swipeGestureRecognizer, longPressGestureRecognizer, longDoublePressGestureRecognizer;
+@synthesize rotationGestureRecognizer, panGestureRecognizer, pinchGestureRecognizer, singleTapGestureRecognizer, doubleTapGestureRecognizer, doubleDoubleTapGestureRecognizer, swipeGestureRecognizer;
 @synthesize labelTextColor, labelTextFont, labelTextLine1, labelTextLine2, labelTextLine3, labelTextAlignment;
 @synthesize addTextBorders, addTextBackground, textRoundedBorders, textBorderColor, textBackgroundColor;
 @synthesize exportSize, snapToGrid, snapRotation, snapToGridSize, lockedView;
@@ -134,9 +134,6 @@
     if (!self.modalViewController) {
         [self resetEditMode:nil];
         BOOL saveThumbnail = YES;
-//        if (self.excessiveSubviewCount) {
-//            saveThumbnail = NO;
-//        }
         [self saveChanges:saveThumbnail];
     }
     [super viewWillDisappear:YES];
@@ -303,14 +300,7 @@
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     BOOL success = NO;
     
-    if (self.signBackgroundView) {
-        
-        //if excessive objects, then reset the selected collage index
-        //trying to avoid memory crash when loading the app
-//        if (self.excessiveSubviewCount) {
-//            [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:kAWBInfoKeyCollageStoreCollageIndex];
-//        }
-        
+    if (self.signBackgroundView) {        
         AWBRoadsign *roadsign = [[AWBRoadsign alloc] init];
         if (self.selectedSignBackground) {
             roadsign.roadsignBackgroundId = self.selectedSignBackground.signBackgroundId;
@@ -561,6 +551,5 @@
     self.selectionMarquee1.hidden = YES;
     self.selectionMarquee2.hidden = YES;   
 }
-
 
 @end

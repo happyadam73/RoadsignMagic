@@ -79,7 +79,7 @@
     }
     
     self.busyView.hidden = YES;
-    CGFloat quality = 1.0;
+    CGFloat quality = (IS_GOPRO_PURCHASED ? 1.0 : 0.5);
     UIImage *roadsignImage = [self generateRoadsignImageWithScaleFactor:quality];
     [self toggleFullscreen];
     self.busyView.hidden = NO;
@@ -137,7 +137,7 @@
     
     UIAlertView *alertView = [[UIAlertView alloc] 
                               initWithTitle:@"Facebook Not Connected" 
-                              message:@"You have not logged in to Facebook.  Image upload is cancelled." 
+                              message:@"You have not logged in to Facebook.  Image upload cancelled." 
                               delegate:nil 
                               cancelButtonTitle:@"OK" 
                               otherButtonTitles:nil, 
@@ -201,7 +201,7 @@
     NSLog(@"Result: %@", result);
     
     UIAlertView *alertView = [[UIAlertView alloc] 
-                              initWithTitle:@"Facebook Succeeded!" 
+                              initWithTitle:@"Facebook Upload Succeeded!" 
                               message:@"Image has been uploaded to Facebook." 
                               delegate:nil 
                               cancelButtonTitle:@"OK" 

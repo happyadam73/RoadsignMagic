@@ -68,14 +68,12 @@
 
 - (void)timeout:(id)arg 
 {    
-    NSLog(@"Timeout!");
     [self dismissHUD:nil]; 
     [self.tableView reloadData];
 }
 
 - (void)updateInterfaceWithReachability:(NSNotification *)notification 
 {
-    NSLog(@"updateInterfaceWithReachability");
     currentlyConnected = ([self.reach currentReachabilityStatus] != NotReachable);
     [self productLoadRequestHandler];
 }
@@ -121,19 +119,15 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSLog(@"viewWillAppear");
-    
     [super viewWillAppear:animated];
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationController setToolbarHidden:YES animated:YES];
-    //self.navigationItem.title = @"In-App Store";
     UIImageView *titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inappstore"]];
     self.navigationItem.titleView = titleView;
     [titleView release];
 
     [[self navigationItem] setRightBarButtonItem:nil]; 
-    //self.tableView.rowHeight = 100;
 
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productsLoaded:) name:kProductsLoadedNotification object:nil];
@@ -149,23 +143,18 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    NSLog(@"viewDidAppear");
     [self.tableView reloadData];
     [super viewDidAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    NSLog(@"viewWillDisappear");
-
     [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];  
-
     [super viewWillDisappear:animated];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    NSLog(@"viewDidDisappear");
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super viewDidDisappear:animated];
 }
@@ -234,8 +223,8 @@
         
         cell.textLabel.text = product.localizedTitle;
         cell.detailTextLabel.numberOfLines = 4;
-        //cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\r\n%@", product.localizedDescription, formattedString];
         cell.detailTextLabel.text = product.localizedDescription;
+        cell.imageView.image = [InAppStore productImageWithIdentifier:product.productIdentifier];
         
         MAConfirmButton *buyButton;
         if ([[InAppStore defaultStore].purchasedProducts containsObject:product.productIdentifier]) {
@@ -261,16 +250,9 @@
         cell.textLabel.textAlignment = UITextAlignmentCenter;
         cell.textLabel.textColor = TABLE_CELL_BLUE_TEXT_COLOR;
         cell.textLabel.text = @"Restore Purchases";
-//        UIButton *button =[UIButton buttonWithType:UIButtonTypeRoundedRect];
-//        button.frame = cell.contentView.bounds;
-//        button.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-//        [button setTitle:@"Restore Purchases" forState:UIControlStateNormal];
-//        [cell.contentView addSubview:button];
         
         return cell;
-    }
-    
-
+    }    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -318,11 +300,8 @@
     } else {
         if ([[InAppStore defaultStore] canMakePurchases]) {
             MAConfirmButton *buyButton = (MAConfirmButton *)sender;    
-            SKProduct *product = [[InAppStore defaultStore].products objectAtIndex:buyButton.tag];
-            
-            NSLog(@"Buying %@...", product.productIdentifier);
+            SKProduct *product = [[InAppStore defaultStore].products objectAtIndex:buyButton.tag];            
             [[InAppStore defaultStore] buyProduct:product];
-            
             self.hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
             self.hud.labelText = [NSString stringWithFormat:@"Buying %@ ...", product.localizedTitle];
             [self performSelector:@selector(timeout:) withObject:nil afterDelay:60];            
@@ -342,10 +321,6 @@
     
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];    
-    
-    NSString *productIdentifier = (NSString *) notification.object;
-    NSLog(@"Purchased: %@", productIdentifier);
-    
     [self.tableView reloadData];    
 }
 
@@ -363,9 +338,7 @@
                                                otherButtonTitles:@"OK", nil] autorelease];
         
         [alert show];
-    } else {
-        NSLog(@"Didn't make a purchase");
-    }
+    } 
 }
 
 - (void)restorePurchasesFailed:(NSNotification *)notification 
@@ -382,9 +355,7 @@
                                                otherButtonTitles:@"OK", nil] autorelease];
         
         [alert show];
-    } else {
-        NSLog(@"Restore cancelled");
-    }
+    } 
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section 
@@ -396,7 +367,13 @@
             if ([InAppStore defaultStore].products == nil) {
                 return @"No Internet Connection available.  No Product information can be retrieved until a connection is available.";
             } else {
-                return @"No Internet Connection available.  You will not be able to make any in-app purchases until a connection is available";            
+                NSUInteger productCount = [[InAppStore defaultStore].products count];
+                NSUInteger purchaseCount = [[InAppStore defaultStore].purchasedProducts count];
+                if (purchaseCount < productCount) {
+                    return @"No Internet Connection available.  You will not be able to make any in-app purchases until a connection is available";                                
+                } else {
+                    return nil;
+                }
             }
         }         
     } else {

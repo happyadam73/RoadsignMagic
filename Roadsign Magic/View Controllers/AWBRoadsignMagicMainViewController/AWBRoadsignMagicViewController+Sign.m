@@ -19,7 +19,6 @@
 - (void)initialiseSignBackgroundPickerView
 {
     CGRect backgroundFrame = CGRectMake(0.0, self.view.bounds.size.height, self.view.bounds.size.width, 180);
-    //AWBSignBackgroundPickerView *backgroundPicker = [[AWBSignBackgroundPickerView alloc] initWithFrame:backgroundFrame];
     AWBSignBackgroundPickerView *backgroundPicker = [[AWBSignBackgroundPickerView alloc] initWithFrame:backgroundFrame signBackgroundCategoryIndex:currentSignBackgroundCategoryIndex signBackgroundId:currentSignBackgroundId];
     backgroundPicker.delegate = self;
     self.signBackgroundPickerView = backgroundPicker;
@@ -71,7 +70,6 @@
 {    
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     [self hideSelectionMarquees];
-    //UIImage *image = [[UIImage imageFromFile:name] imageScaledToMaxResolution:MAX_SIGN_BACKGROUND_PIXELS withTransparentBorderThickness:0.0];
     UIImage *image = [UIImage imageFromFile:name];
     [signBackgroundView setImage:image];
     [signBackgroundView sizeToFit];
@@ -187,16 +185,9 @@
     
     [mainScrollView setContentSize:[signBackgroundView bounds].size];
 
-//    NSLog(@"mainScrollView: %f %f %f %f", mainScrollView.frame.origin.x, mainScrollView.frame.origin.y, mainScrollView.frame.size.width, mainScrollView.frame.size.height);
-//    NSLog(@"signBackgroundView: %f %f %f %f", signBackgroundView.frame.origin.x, signBackgroundView.frame.origin.y, signBackgroundView.frame.size.width, signBackgroundView.frame.size.height);    
-//    NSLog(@"mainScrollView: %f %f %f %f", mainScrollView.bounds.origin.x, mainScrollView.bounds.origin.y, mainScrollView.bounds.size.width, mainScrollView.bounds.size.height);
-//    NSLog(@"signBackgroundView: %f %f %f %f", signBackgroundView.bounds.origin.x, signBackgroundView.bounds.origin.y, signBackgroundView.bounds.size.width, signBackgroundView.bounds.size.height);    
-
     float minWidthScale  = ((mainScrollView.bounds.size.width)  / signBackgroundView.bounds.size.width) * 0.96;
     float minHeightScale  = ((mainScrollView.bounds.size.height)  / signBackgroundView.bounds.size.height) * 0.96;
-    
-//    NSLog(@"Scales: %f %f", minWidthScale, minHeightScale);
-    
+        
     [mainScrollView setMinimumZoomScale:MIN(minWidthScale, minHeightScale)];
     [mainScrollView setMaximumZoomScale:2.0];
     [mainScrollView setZoomScale:MIN(minWidthScale, minHeightScale)];

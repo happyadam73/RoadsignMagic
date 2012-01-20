@@ -100,7 +100,6 @@
 
 - (id)initWithTextLines:(NSArray *)lines fontName:(NSString *)fontName fontSize:(CGFloat)fontSize offset:(CGPoint)point rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip color:(UIColor *)color alignment:(UITextAlignment)alignment
 {
-    //BOOL isMyFont = [AWBRoadsignFont isMyFont:fontName];
     BOOL isMyFont = [AWBRoadsignFont isFontNameMyFontFilename:fontName];
     BOOL isZFont = [AWBRoadsignFont isZFont:fontName];
     
@@ -109,7 +108,6 @@
         NSString *fontFilename = nil;
         if (isMyFont) {
             fontFilename = fontName;
-            //zFont = [[FontManager sharedManager] zFontWithURL:[NSURL URLWithString:fontName] pointSize:fontSize];
             zFont = [[FontManager sharedManager] zFontWithURL:[AWBRoadsignFont myFontUrlFromFontFilename:fontName] pointSize:fontSize];
         } else {
             zFont = [[FontManager sharedManager] zFontWithName:fontName pointSize:fontSize];
@@ -136,19 +134,12 @@
     CGFloat frameWidth = (1.2 * maxWidth) + (0.25 * maxHeight);
     CGFloat frameHeight = (1.3 * totalHeight) + 10.0;
 
-//    CGFloat frameWidth = maxWidth;
-//    CGFloat frameHeight = totalHeight;
-
     self = [super initWithFrame:CGRectMake(point.x, point.y, frameWidth, frameHeight)];
     if (self) { 
         self.myFontFilename = fontFilename;
         isZFontLabel = YES;
         initialHeight = frameHeight;
-        FontLabel *label = [[FontLabel alloc] initWithFrame:CGRectMake(0.0, 0.0, frameWidth, frameHeight) zFont:textFont];
-                
-//        [label setText:[lines componentsJoinedByString:@"\r\n"]];
-//        [label adjustsFontSizeToFitWidth];
-        
+        FontLabel *label = [[FontLabel alloc] initWithFrame:CGRectMake(0.0, 0.0, frameWidth, frameHeight) zFont:textFont];                
         label.layer.masksToBounds = YES;
         self.labelView = label;
         [label release];
@@ -328,7 +319,6 @@
 
 - (void)updateLabelTextLines:(NSArray *)lines withFontName:(NSString *)fontName fontSize:(CGFloat)fontSize 
 {   
-    //BOOL isMyFont = [AWBRoadsignFont isMyFont:fontName];
     BOOL isMyFont = [AWBRoadsignFont isFontNameMyFontFilename:fontName];
     BOOL isZFont = [AWBRoadsignFont isZFont:fontName];
     
@@ -337,7 +327,6 @@
         NSString *fontFilename = nil;
         if (isMyFont) {
             fontFilename = fontName;
-            //zFont = [[FontManager sharedManager] zFontWithURL:[NSURL URLWithString:fontName] pointSize:fontSize];
             zFont = [[FontManager sharedManager] zFontWithURL:[AWBRoadsignFont myFontUrlFromFontFilename:fontName] pointSize:fontSize];
         } else {
             zFont = [[FontManager sharedManager] zFontWithName:fontName pointSize:fontSize];
@@ -351,25 +340,22 @@
 
 - (void)updateLabelTextLines:(NSArray *)lines withZFont:(ZFont *)font myFontFilename:(NSString *)fontFilename
 {    
-    //OK, we're expecting a ZFont label - if it's not currently then we need to remove the iOS font label and create a new ZFont label
-    //if (!isZFontLabel) {
-        //before removing the iOS label, we need to get the alignment and color values
-        UITextAlignment alignment = self.labelView.textAlignment;
-        CGColorRef colorRef = [self.labelView.textColor  CGColor];
-        [self.labelView removeFromSuperview];
-        FontLabel *label = [[FontLabel alloc] initWithFrame:CGRectZero];
-        label.layer.masksToBounds = YES;
-        label.numberOfLines = 0;
-        label.backgroundColor = [UIColor clearColor];
-        label.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
-        label.textAlignment = alignment;
-        label.textColor = [UIColor colorWithCGColor:colorRef];
-        self.labelView = label;
-        [label release];
-        [self addSubview:self.labelView];
-        isZFontLabel = YES;
-        self.myFontFilename = fontFilename;
-    //}
+    //before removing the iOS label, we need to get the alignment and color values
+    UITextAlignment alignment = self.labelView.textAlignment;
+    CGColorRef colorRef = [self.labelView.textColor  CGColor];
+    [self.labelView removeFromSuperview];
+    FontLabel *label = [[FontLabel alloc] initWithFrame:CGRectZero];
+    label.layer.masksToBounds = YES;
+    label.numberOfLines = 0;
+    label.backgroundColor = [UIColor clearColor];
+    label.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
+    label.textAlignment = alignment;
+    label.textColor = [UIColor colorWithCGColor:colorRef];
+    self.labelView = label;
+    [label release];
+    [self addSubview:self.labelView];
+    isZFontLabel = YES;
+    self.myFontFilename = fontFilename;
     
     [self updateTextDimensionsWithLines:lines zFont:font];
     CGRect newBounds = CGRectMake(0.0, 0.0, (1.2 * maxWidth) + (0.25 * maxHeight), (1.3 * totalHeight) + 10.0);
@@ -451,7 +437,6 @@
 
 - (void)updateLabelTextWithFontName:(NSString *)fontName fontSize:(CGFloat)fontSize 
 {
-    //BOOL isMyFont = [AWBRoadsignFont isMyFont:fontName];
     BOOL isMyFont = [AWBRoadsignFont isFontNameMyFontFilename:fontName];
     BOOL isZFont = [AWBRoadsignFont isZFont:fontName];
     
@@ -460,7 +445,6 @@
         NSString *fontFilename = nil;
         if (isMyFont) {
             fontFilename = fontName;
-            //zFont = [[FontManager sharedManager] zFontWithURL:[NSURL URLWithString:fontName] pointSize:fontSize];
             zFont = [[FontManager sharedManager] zFontWithURL:[AWBRoadsignFont myFontUrlFromFontFilename:fontName] pointSize:fontSize];
         } else {
             zFont = [[FontManager sharedManager] zFontWithName:fontName pointSize:fontSize];

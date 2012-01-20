@@ -35,7 +35,6 @@
 @property (nonatomic, retain) UIBarButtonItem *helpButton;
 @property (nonatomic, retain) UIBarButtonItem *toolbarSpacing;
 
-- (void)initialise;
 - (void)attemptMyFontInstall;
 - (void)confirmMyFontInstall:(NSString *)fontName;
 - (void)showFontInstallError:(NSString *)filename;

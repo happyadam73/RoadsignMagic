@@ -22,7 +22,6 @@
         // resize the image
         CGRect rect = CGRectMake(0.0, 0.0, floorf(actualWidth / scale), floorf(actualHeight / scale));
         UIGraphicsBeginImageContext(rect.size);
-        //UIGraphicsBeginImageContextWithOptions(rect.size, NO, image.scale);
         [image drawInRect:CGRectMake(borderPixels, borderPixels, floorf(actualWidth / scale) - (2.0 * borderPixels), floorf(actualHeight / scale) - (2.0 * borderPixels))];
         image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();      

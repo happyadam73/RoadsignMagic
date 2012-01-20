@@ -31,21 +31,17 @@ static NSString* kAppId = @"289600444412359";
 @synthesize mainNavigationController;
 @synthesize signBackgroundSize;
 @synthesize facebook;
-//@synthesize userPermissions;
 
 - (void)dealloc
 {
     [_window release];
     [mainNavigationController release];
     [facebook release];
-//    [userPermissions release];
     [super dealloc];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onNotification:) name:nil object:nil];
-
     //initialise in-app store
     [[SKPaymentQueue defaultQueue] addTransactionObserver:[InAppStore defaultStore]];
     
@@ -72,14 +68,9 @@ static NSString* kAppId = @"289600444412359";
         //if it's -1 (last used the list view) or it's outside array bounds, then roadsign not set
         if ((roadsignIndex >= 0) && (roadsignIndex < totalSavedRoadsigns)) {
             roadsign = [[[AWBRoadsignStore defaultStore] myRoadsigns] objectAtIndex:roadsignIndex];
-//            if (collage.totalObjects >= [CollageMakerViewController excessiveSubviewCountThreshold]) {
-//                NSLog(@"Collage Total Objects: %d - exceed threshold (%d), so don't load", collage.totalObjects, [CollageMakerViewController excessiveSubviewCountThreshold]);
-//                collage = nil;
-//            }
         }
     }
     
-    //AWBMyRoadsignsListViewController *listController = [[AWBMyRoadsignsListViewController alloc] init];
     AWBMyRoadsignsDataSource *myRoadsignsDataSource = [[AWBMyRoadsignsDataSource alloc] init];
     AWBTemplateRoadsignsDataSource *templateRoadsignsDataSource = [[AWBTemplateRoadsignsDataSource alloc] init];
     NSArray *dataSources = [NSArray arrayWithObjects:myRoadsignsDataSource, templateRoadsignsDataSource, nil];
@@ -190,10 +181,5 @@ static NSString* kAppId = @"289600444412359";
         }
     }   
 }
-
-//-(void)onNotification:(NSNotification*)notification
-//{
-//    NSLog(@"Notification name is %@ sent by %@",[notification name], [[notification object] description] );
-//}
 
 @end

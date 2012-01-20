@@ -11,5 +11,6 @@
 }
 
 + (InAppStore *) defaultStore;
++ (UIImage *)productImageWithIdentifier:(NSString *)productId;
 
 @end

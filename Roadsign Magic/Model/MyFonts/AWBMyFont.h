@@ -22,7 +22,6 @@ static NSString *const kAWBInfoKeyMyFontFileSizeBytes = @"MyFontFileSizeBytes";
     NSString *postScriptName;
     NSString *filename;
     NSURL *installUrl;
-    //NSURL *fileUrl;
     NSDate *createdDate;
     NSUInteger fileSizeBytes;
 }

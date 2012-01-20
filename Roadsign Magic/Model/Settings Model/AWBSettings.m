@@ -137,14 +137,6 @@
     }
 }
 
-//+ (AWBSettings *)aboutSettingsWithInfo:(NSDictionary *)info
-//{
-//    NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup aboutTextSettingsGroupWithInfo:info], nil];
-//    AWBSettings *aboutSettings = [[self alloc] initWithSettingsGroups:settings title:@"About"];
-//    
-//    return [aboutSettings autorelease];    
-//}
-
 + (AWBSettings *)helpSettingsWithFilename:(NSString *)filename title:(NSString *)title
 {
     NSMutableArray *settings = [NSMutableArray arrayWithObjects:[AWBSettingsGroup helpTextSettingsGroupWithFilename:filename], nil];

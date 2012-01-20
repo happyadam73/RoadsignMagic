@@ -17,7 +17,6 @@
     CGFloat contentViewWidth = self.contentView.frame.size.width;
     CGFloat contentViewHeight = self.contentView.frame.size.height;
     CGFloat marginWidth = floorf(0.03 * contentViewWidth);
-    //CGFloat marginHeight = floorf(0.08 * contentViewHeight);
     CGFloat imageViewWidth = floorf(0.3 * contentViewWidth);
     CGFloat labelViewWidth = floorf(0.64 * contentViewWidth);
     

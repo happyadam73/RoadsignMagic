@@ -19,8 +19,6 @@
     if (self) {
         // Initialization code
         webView = [[UIWebView alloc] initWithFrame:CGRectZero];
-//        NSString *path = AWBPathInMainBundleSubdirectory(@"Help Files", @"AboutRoadsignMagic.rtfd.zip");
-//        NSURL *url = [NSURL fileURLWithPath:path];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         webView.scalesPageToFit = YES;
         [webView loadRequest:request];

@@ -110,7 +110,6 @@
         } else if (buttonIndex == ([actionSheet firstOtherButtonIndex]+5)) {
             // Twitter Image
             busyText = @"Preparing for Twitter";
-            //CGFloat quality = (DEVICE_IS_IPAD? 1.0 : 2.0);
             CGFloat quality = 1.0;
             busyTextDetail = [NSString stringWithFormat:@"(Size: %@)", AWBImageSizeFromExportSizeValue(quality)];
             methodSelector = @selector(twitterRoadsignAsPhoto);
@@ -418,7 +417,7 @@
             [self toggleFullscreen];
         }
         self.busyView.hidden = YES;
-        CGFloat quality = 1.0;
+        CGFloat quality = (IS_GOPRO_PURCHASED ? 1.0 : 0.5);
         UIImage *roadsignImage = [self generateRoadsignImageWithScaleFactor:quality];
         [self toggleFullscreen];
         self.busyView.hidden = NO;

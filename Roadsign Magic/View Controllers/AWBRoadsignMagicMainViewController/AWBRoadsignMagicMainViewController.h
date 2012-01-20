@@ -60,8 +60,6 @@ enum {
     UITapGestureRecognizer *doubleTapGestureRecognizer;
     UITapGestureRecognizer *doubleDoubleTapGestureRecognizer;
     UISwipeGestureRecognizer *swipeGestureRecognizer;
-    UILongPressGestureRecognizer *longPressGestureRecognizer;
-    UILongPressGestureRecognizer *longDoublePressGestureRecognizer;
     
     UIView <AWBTransformableView> *capturedView;
     CGPoint capturedCenterOffset;
@@ -138,8 +136,6 @@ enum {
 @property (nonatomic, retain) UITapGestureRecognizer *doubleTapGestureRecognizer;
 @property (nonatomic, retain) UITapGestureRecognizer *doubleDoubleTapGestureRecognizer;
 @property (nonatomic, retain) UISwipeGestureRecognizer *swipeGestureRecognizer;
-@property (nonatomic, retain) UILongPressGestureRecognizer *longPressGestureRecognizer;
-@property (nonatomic, retain) UILongPressGestureRecognizer *longDoublePressGestureRecognizer;
 @property (nonatomic, retain) AWBLockedView *lockedView;
 @property (nonatomic, assign) BOOL snapToGrid;
 @property (nonatomic, assign) BOOL snapRotation;

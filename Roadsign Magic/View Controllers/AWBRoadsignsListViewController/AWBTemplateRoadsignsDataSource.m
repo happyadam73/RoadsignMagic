@@ -44,7 +44,7 @@
     
     AWBRoadsignDescriptor *roadsign = [[[AWBRoadsignStore defaultStore] templateRoadsigns] objectAtIndex:[indexPath row]];
     NSString *subDir = roadsign.roadsignSaveDocumentsSubdirectory;
-    NSLog(@"Template subDir: %@", subDir);
+
     if (roadsign.roadsignName && ([roadsign.roadsignName length] > 0)) {
         cell.textLabel.text = [NSString stringWithFormat:@"%@", roadsign.roadsignName];
     } else {
@@ -73,41 +73,6 @@
     return cell;
 }
 
-//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath 
-//{
-//    // If the table view is asking to commit a delete command...
-//    if (editingStyle == UITableViewCellEditingStyleDelete)
-//    {
-//        AWBRoadsignStore *rs = [AWBRoadsignStore defaultStore];
-//        NSUInteger roadsignCountBeforeDelete = [[rs myRoadsigns] count];
-//        NSArray *roadsigns = [rs myRoadsigns];
-//        AWBRoadsignDescriptor *roadsign = [roadsigns objectAtIndex:[indexPath row]];
-//        [rs removeMyRoadsign:roadsign];
-//        [[AWBRoadsignStore defaultStore] saveMyRoadsigns];
-//        NSUInteger roadsignCountAfterDelete = [[[AWBRoadsignStore defaultStore] myRoadsigns] count];
-//        
-//        // We also remove that row from the table view with an animation
-//        if ((roadsignCountBeforeDelete - roadsignCountAfterDelete) == 1) {
-//            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-//                             withRowAnimation:YES];
-//        }
-//        
-//        if (roadsignCountAfterDelete == 0) {
-//            [tableView reloadData];
-//        }        
-//    }
-//}
-//
-//- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath 
-//{
-//    [[AWBRoadsignStore defaultStore] moveMyRoadsignAtIndex:[fromIndexPath row] toIndex:[toIndexPath row]];
-//}
-
-//- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section 
-//{
-//    return @"Select a template to create a new roadsign.";    
-//}
-
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section 
 {
     return @"Select a template to make an editable copy in My Signs.";
@@ -126,23 +91,5 @@
         }        
     }
 }
-
-//- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath    
-//{
-//    AWBRoadsignDescriptor *roadsign = [[[AWBRoadsignStore defaultStore] templateRoadsigns] objectAtIndex:[indexPath row]];
-//    NSUInteger totalDiskBytes = AWBDocumentSubdirectoryFolderSize(roadsign.roadsignSaveDocumentsSubdirectory);
-//    [[NSUserDefaults standardUserDefaults] setInteger:[indexPath row] forKey:kAWBInfoKeyScrollToRoadsignStoreMyRoadsignIndex]; 
-//    
-//    NSMutableDictionary *settingsInfo = [NSMutableDictionary dictionaryWithObjectsAndKeys:roadsign.roadsignName, kAWBInfoKeyRoadsignName, [NSNumber numberWithInt:roadsign.totalSymbolObjects], kAWBInfoKeyRoadsignTotalImageObjects, [NSNumber numberWithInt:roadsign.totalLabelObjects], kAWBInfoKeyRoadsignTotalLabelObjects, [NSNumber numberWithInt:[indexPath row]], kAWBInfoKeyMyRoadsignStoreRoadsignIndex, [NSNumber numberWithInt:roadsign.totalImageMemoryBytes], kAWBInfoKeyRoadsignTotalImageMemoryBytes, [NSNumber numberWithInt:totalDiskBytes], kAWBInfoKeyRoadsignTotalDiskBytes, nil];
-//    AWBRoadsignMagicSettingsTableViewController *settingsController = [[AWBRoadsignMagicSettingsTableViewController alloc] initWithSettings:[AWBSettings roadsignDescriptionSettingsWithInfo:settingsInfo header:[roadsign roadsignInfoHeaderView]] settingsInfo:settingsInfo rootController:nil]; 
-//    settingsController.delegate = self;
-//    settingsController.controllerType = AWBSettingsControllerTypeRoadsignInfoSettings;
-//    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsController];
-//    navController.modalPresentationStyle = UIModalPresentationPageSheet;
-//    navController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;  
-//    [parentViewController presentModalViewController:navController animated:YES];
-//    [settingsController release];   
-//    [navController release];
-//}
 
 @end

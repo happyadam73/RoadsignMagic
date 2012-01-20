@@ -15,7 +15,6 @@
 
 @interface AWBRoadsignsListViewController : UIViewController <UITableViewDelegate> {
 	UITableView *theTableView;
-	//id <UITableViewDataSource, UITableViewDelegate, AWBRoadsignDataSource> dataSource;
     NSArray *dataSources;
     NSUInteger selectedDataSource;
     NSInteger scrollToRow;
@@ -29,7 +28,6 @@
 }
 
 @property (nonatomic,retain) UITableView *theTableView;
-//@property (nonatomic,retain) id <UITableViewDataSource, UITableViewDelegate, AWBRoadsignDataSource> dataSource;
 @property (nonatomic, retain) NSArray *dataSources;
 @property (nonatomic, retain) AWBBusyView *busyView;
 @property (nonatomic, assign) NSUInteger selectedDataSource;
@@ -38,7 +36,6 @@
 @property (nonatomic, retain) UIBarButtonItem *helpButton;
 @property (nonatomic, retain) UIBarButtonItem *toolbarSpacing;
 
-//- (id)initWithDataSource:(id <UITableViewDataSource, UITableViewDelegate, AWBRoadsignDataSource>)theDataSource;
 - (id)initWithDataSources:(NSArray *)theDataSources;
 - (void)addNewRoadsignDescriptor:(id)sender;
 - (void)loadRoadsignAtIndexPath:(NSIndexPath *)indexPath withSettingsInfo:(NSDictionary *)info;

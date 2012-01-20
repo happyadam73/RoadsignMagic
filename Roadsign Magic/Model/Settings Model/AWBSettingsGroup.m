@@ -124,7 +124,7 @@
 
 + (AWBSettingsGroup *)qualitySliderSettingsGroupWithInfo:(NSDictionary *)info
 {
-    return [[[self alloc] initWithSettings:[NSMutableArray arrayWithObject:[AWBSetting exportSizeSliderSettingWithValue:[info objectForKey:kAWBInfoKeyExportSizeValue] andKey:kAWBInfoKeyExportSizeValue]] header:@"Export Quality" footer:@"Applies only to saving & emailing the roadsign as a photo."] autorelease];
+    return [[[self alloc] initWithSettings:[NSMutableArray arrayWithObject:[AWBSetting exportSizeSliderSettingWithValue:[info objectForKey:kAWBInfoKeyExportSizeValue] andKey:kAWBInfoKeyExportSizeValue]] header:@"Export Quality" footer:@"Applies to saving & emailing the roadsign as a photo."] autorelease];
 }
 
 + (AWBSettingsGroup *)roadsignNameWithHeaderSettingsGroupWithInfo:(NSDictionary *)info
@@ -209,34 +209,6 @@
     return [[[self alloc] initWithSettings:buttonSettings header:nil footer:@"Roadsign Magic is intended for personal use - DO NOT use Roadsigns in a misleading context (e.g. not on roadside billboards where they could mislead drivers).  Some materials are UK Crown Copyright reproduced with permission under the UK Open Government License - tap on About for more information."] autorelease];    
 }
 
-//+ (AWBSettingsGroup *)aboutTextSettingsGroupWithInfo:(NSDictionary *)info
-//{    
-//    NSString *path = AWBPathInMainBundleSubdirectory(@"Help Files", @"AboutRoadsignMagic.rtf");
-//    NSURL *url = [NSURL fileURLWithPath:path];
-//    NSMutableArray *aboutTextSettings = [NSMutableArray arrayWithObjects:[AWBSetting webViewSettingWithValue:url andKey:nil], nil];
-//    AWBSettingsGroup *aboutTextSettingsGroup = [[self alloc] initWithSettings:aboutTextSettings header:nil footer:nil];
-//    
-//    //ensure the table cell fills screen (this will be capped by the settings controller)
-//    aboutTextSettingsGroup.iPhoneRowHeight = 480;
-//    aboutTextSettingsGroup.iPadRowHeight = 1024;
-//    
-//    return [aboutTextSettingsGroup autorelease];
-//}
-//
-//+ (AWBSettingsGroup *)helpTextSettingsGroupWithInfo:(NSDictionary *)info
-//{    
-//    NSString *path = AWBPathInMainBundleSubdirectory(@"Help Files", @"Help.rtf");
-//    NSURL *url = [NSURL fileURLWithPath:path];
-//    NSMutableArray *helpTextSettings = [NSMutableArray arrayWithObjects:[AWBSetting webViewSettingWithValue:url andKey:nil], nil];
-//    AWBSettingsGroup *helpTextSettingsGroup = [[self alloc] initWithSettings:helpTextSettings header:nil footer:nil];
-//    
-//    //ensure the table cell fills screen (this will be capped by the settings controller)
-//    helpTextSettingsGroup.iPhoneRowHeight = 480;
-//    helpTextSettingsGroup.iPadRowHeight = 1024;
-//    
-//    return [helpTextSettingsGroup autorelease];
-//}
-
 + (AWBSettingsGroup *)helpTextSettingsGroupWithFilename:(NSString *)filename
 {    
     NSString *path = AWBPathInMainBundleSubdirectory(@"Help Files", filename);
@@ -269,7 +241,7 @@
 {
     NSMutableArray *snapToGridSettings = [NSMutableArray arrayWithObjects:[AWBSetting switchSettingWithText:@"Snap to Grid" value:[info objectForKey:kAWBInfoKeySnapToGrid] key:kAWBInfoKeySnapToGrid], [AWBSetting switchSettingWithText:@"Snap Rotation" value:[info objectForKey:kAWBInfoKeySnapRotation] key:kAWBInfoKeySnapRotation], nil];
     
-    return [[[self alloc] initWithSettings:snapToGridSettings header:nil footer:@"Snap to Grid limits sizing and position. Snap Rotation limits the angle of rotation."] autorelease];
+    return [[[self alloc] initWithSettings:snapToGridSettings header:nil footer:@"Snap to Grid limits sizing and position. Snap Rotation limits angles of rotation."] autorelease];
 }
 
 + (AWBSettingsGroup *)backgroundColorPickerSettingsGroupWithInfo:(NSDictionary *)info header:(NSString *)header footer:(NSString *)footer 
@@ -324,12 +296,16 @@
     
     NSString *osVersion = [[UIDevice currentDevice] systemVersion];
     NSString *versionWithExtraFonts = @"5.0";
+    NSString *footer = nil;
     BOOL extraFontsAvailable = ([versionWithExtraFonts compare:osVersion options:NSNumericSearch] != NSOrderedDescending);
     if (extraFontsAvailable) {
         [fontSettings addObject:[AWBSetting fontSettingWithValue:[NSNumber numberWithInteger:AWBRoadsignFontTypeGillSans]]];
+        footer = @"The British Roadsign Font does not support all international languages - for full international keyboard support, select Arial, Helvetica or Gill Sans.";
+    } else {
+        footer = @"The British Roadsign Font does not support all international languages - for full international keyboard support, select Arial or Helvetica.";        
     }
     
-    AWBSettingsGroup *fontGroup = [[self alloc] initWithSettings:fontSettings header:@"Select a Font" footer:@"The British Roadsign Font does not support all international languages - for full international keyboard support, select Arial or Helvetica."];
+    AWBSettingsGroup *fontGroup = [[self alloc] initWithSettings:fontSettings header:@"Select a Font" footer:footer];
     fontGroup.isMutuallyExclusive = YES;
     fontGroup.settingKeyForMutuallyExclusiveObjects = kAWBInfoKeyTextFontName;
     fontGroup.mutuallyExclusiveObjects = [NSMutableArray arrayWithObjects:@"BritishRoadsign", @"ArialRoundedMTBold", @"Helvetica", nil]; 

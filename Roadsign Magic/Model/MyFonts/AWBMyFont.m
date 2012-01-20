@@ -35,7 +35,6 @@
         self.familyName = font.familyName;
         self.postScriptName = font.postScriptName;
         self.filename = [url lastPathComponent];
-        //self.fileUrl = url;
         self.installUrl = url;
         if (font.fontName) {
             self.fontName = font.fontName;            
@@ -57,7 +56,6 @@
         self.fontName = [decoder decodeObjectForKey:kAWBInfoKeyMyFontFontName];
         self.postScriptName = [decoder decodeObjectForKey:kAWBInfoKeyMyFontPostscriptName];
         self.filename = [decoder decodeObjectForKey:kAWBInfoKeyMyFontFilename];
-        //self.fileUrl = [decoder decodeObjectForKey:kAWBInfoKeyMyFontFileUrl];
         self.fileSizeBytes = [decoder decodeIntegerForKey:kAWBInfoKeyMyFontFileSizeBytes];
         createdDate = [[decoder decodeObjectForKey:kAWBInfoKeyMyFontCreatedDate] retain];
     }
@@ -70,7 +68,6 @@
     [encoder encodeObject:self.fontName forKey:kAWBInfoKeyMyFontFontName];
     [encoder encodeObject:self.postScriptName forKey:kAWBInfoKeyMyFontPostscriptName];
     [encoder encodeObject:self.filename forKey:kAWBInfoKeyMyFontFilename];
-    //[encoder encodeObject:self.fileUrl forKey:kAWBInfoKeyMyFontFileUrl];
     [encoder encodeObject:self.createdDate forKey:kAWBInfoKeyMyFontCreatedDate];
     [encoder encodeInteger:self.fileSizeBytes forKey:kAWBInfoKeyMyFontFileSizeBytes];
 }
@@ -90,7 +87,6 @@
 - (NSURL *)fileUrl
 {   
     NSString *filePath = AWBPathInMyFontsDocumentsSubdirectory(self.filename);
-    //NSString *filePath = AWBPathInDocumentSubdirectory(@"My Fonts", self.filename);
     return [NSURL fileURLWithPath:filePath];
 }
 
@@ -101,7 +97,6 @@
     [postScriptName release];
     [filename release];
     [installUrl release];
-    //[fileUrl release];
     [createdDate release];
     [super dealloc];
 }
