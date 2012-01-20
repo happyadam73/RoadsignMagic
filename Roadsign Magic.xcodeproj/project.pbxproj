@@ -217,6 +217,14 @@
 		0611EC1614A0BC3200A3588C /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0611EC0B14A0BC3200A3588C /* SBJsonWriter.m */; };
 		0611EC1A14A0E2EB00A3588C /* AWBRoadsignMagicMainViewController+Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 0611EC1914A0E2EA00A3588C /* AWBRoadsignMagicMainViewController+Facebook.m */; };
 		0611EC2314A1F81D00A3588C /* AWBFacebookSignoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0611EC2214A1F81D00A3588C /* AWBFacebookSignoutView.m */; };
+		061A0C1814C97CEA0087DA12 /* trolley@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 061A0C1714C97CEA0087DA12 /* trolley@2x.png */; };
+		061A0C1B14C981B80087DA12 /* myfonts@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 061A0C1A14C981B80087DA12 /* myfonts@2x.png */; };
+		061A0C1D14C985080087DA12 /* myfonts.png in Resources */ = {isa = PBXBuildFile; fileRef = 061A0C1C14C985080087DA12 /* myfonts.png */; };
+		061A0C1F14C985160087DA12 /* trolley.png in Resources */ = {isa = PBXBuildFile; fileRef = 061A0C1E14C985150087DA12 /* trolley.png */; };
+		061A0C2114C985210087DA12 /* help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 061A0C2014C985210087DA12 /* help@2x.png */; };
+		061A0C2314C989370087DA12 /* help.png in Resources */ = {isa = PBXBuildFile; fileRef = 061A0C2214C989370087DA12 /* help.png */; };
+		061A0C2514C98E510087DA12 /* inappstore@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 061A0C2414C98E510087DA12 /* inappstore@2x.png */; };
+		061A0C2714C98FAF0087DA12 /* inappstore.png in Resources */ = {isa = PBXBuildFile; fileRef = 061A0C2614C98FAF0087DA12 /* inappstore.png */; };
 		0620CB211483E71600A39703 /* AWBSignBackgroundPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0620CB201483E71600A39703 /* AWBSignBackgroundPickerView.m */; };
 		0626C9BE149B79CC00B8FB63 /* AWBTransformableAnyFontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0626C9BD149B79CC00B8FB63 /* AWBTransformableAnyFontLabel.m */; };
 		0633D8A914903069000CEDA5 /* S12004@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0633D89E14903069000CEDA5 /* S12004@2x.png */; };
@@ -1185,6 +1193,14 @@
 		0611EC1914A0E2EA00A3588C /* AWBRoadsignMagicMainViewController+Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AWBRoadsignMagicMainViewController+Facebook.m"; path = "AWBRoadsignMagicMainViewController/AWBRoadsignMagicMainViewController+Facebook.m"; sourceTree = "<group>"; };
 		0611EC2114A1F81D00A3588C /* AWBFacebookSignoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBFacebookSignoutView.h; path = "Views and User Interface/FacebookSignoutView/AWBFacebookSignoutView.h"; sourceTree = "<group>"; };
 		0611EC2214A1F81D00A3588C /* AWBFacebookSignoutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBFacebookSignoutView.m; path = "Views and User Interface/FacebookSignoutView/AWBFacebookSignoutView.m"; sourceTree = "<group>"; };
+		061A0C1714C97CEA0087DA12 /* trolley@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trolley@2x.png"; sourceTree = "<group>"; };
+		061A0C1A14C981B80087DA12 /* myfonts@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "myfonts@2x.png"; sourceTree = "<group>"; };
+		061A0C1C14C985080087DA12 /* myfonts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myfonts.png; sourceTree = "<group>"; };
+		061A0C1E14C985150087DA12 /* trolley.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trolley.png; sourceTree = "<group>"; };
+		061A0C2014C985210087DA12 /* help@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "help@2x.png"; sourceTree = "<group>"; };
+		061A0C2214C989370087DA12 /* help.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = help.png; sourceTree = "<group>"; };
+		061A0C2414C98E510087DA12 /* inappstore@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "inappstore@2x.png"; sourceTree = "<group>"; };
+		061A0C2614C98FAF0087DA12 /* inappstore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inappstore.png; sourceTree = "<group>"; };
 		0620CB1F1483E71600A39703 /* AWBSignBackgroundPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBSignBackgroundPickerView.h; path = "Views and User Interface/SignBackgroundPickerView/AWBSignBackgroundPickerView.h"; sourceTree = "<group>"; };
 		0620CB201483E71600A39703 /* AWBSignBackgroundPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBSignBackgroundPickerView.m; path = "Views and User Interface/SignBackgroundPickerView/AWBSignBackgroundPickerView.m"; sourceTree = "<group>"; };
 		0626C9BC149B79CC00B8FB63 /* AWBTransformableAnyFontLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBTransformableAnyFontLabel.h; sourceTree = "<group>"; };
@@ -3663,6 +3679,14 @@
 				06C930C614C6F58B0051B355 /* signpack1@2x.png */,
 				06C930C714C6F58B0051B355 /* signpack2.png */,
 				06C930C214C6DA900051B355 /* signpack2@2x.png */,
+				061A0C1E14C985150087DA12 /* trolley.png */,
+				061A0C1714C97CEA0087DA12 /* trolley@2x.png */,
+				061A0C1C14C985080087DA12 /* myfonts.png */,
+				061A0C1A14C981B80087DA12 /* myfonts@2x.png */,
+				061A0C2214C989370087DA12 /* help.png */,
+				061A0C2014C985210087DA12 /* help@2x.png */,
+				061A0C2614C98FAF0087DA12 /* inappstore.png */,
+				061A0C2414C98E510087DA12 /* inappstore@2x.png */,
 			);
 			name = Icons;
 			path = "Resources/Buttons and Icons/Icons";
@@ -4753,6 +4777,14 @@
 				06C930C814C6F58B0051B355 /* signpack1.png in Resources */,
 				06C930C914C6F58B0051B355 /* signpack1@2x.png in Resources */,
 				06C930CA14C6F58B0051B355 /* signpack2.png in Resources */,
+				061A0C1814C97CEA0087DA12 /* trolley@2x.png in Resources */,
+				061A0C1B14C981B80087DA12 /* myfonts@2x.png in Resources */,
+				061A0C1D14C985080087DA12 /* myfonts.png in Resources */,
+				061A0C1F14C985160087DA12 /* trolley.png in Resources */,
+				061A0C2114C985210087DA12 /* help@2x.png in Resources */,
+				061A0C2314C989370087DA12 /* help.png in Resources */,
+				061A0C2514C98E510087DA12 /* inappstore@2x.png in Resources */,
+				061A0C2714C98FAF0087DA12 /* inappstore.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

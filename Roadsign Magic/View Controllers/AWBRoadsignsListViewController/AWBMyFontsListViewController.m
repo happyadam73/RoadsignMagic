@@ -101,7 +101,10 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.toolbarItems = [self myFontsToolbarButtons];
     [self.navigationController setToolbarHidden:NO animated:YES];
-    self.navigationItem.title = @"My Fonts";
+    //self.navigationItem.title = @"My Fonts";
+    UIImageView *titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"myfonts"]];
+    self.navigationItem.titleView = titleView;
+    [titleView release];
     [[self navigationItem] setRightBarButtonItem:[self editButtonItem]];    
 
     if (!IS_MYFONTS_PURCHASED && showPurchaseWarning) {
@@ -399,7 +402,8 @@
 - (UIBarButtonItem *)helpButton
 {
     if (!helpButton) {
-        helpButton = [[UIBarButtonItem alloc] initWithTitle:@"Help" style:UIBarButtonItemStyleBordered target:self action:@selector(showHelp)];
+        //helpButton = [[UIBarButtonItem alloc] initWithTitle:@"Help" style:UIBarButtonItemStyleBordered target:self action:@selector(showHelp)];
+        helpButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"help"] style:UIBarButtonItemStyleBordered target:self action:@selector(showHelp)];
     }
     return helpButton;    
 }

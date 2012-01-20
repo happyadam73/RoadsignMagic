@@ -127,7 +127,11 @@
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationController setToolbarHidden:YES animated:YES];
-    self.navigationItem.title = @"In-App Store";
+    //self.navigationItem.title = @"In-App Store";
+    UIImageView *titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inappstore"]];
+    self.navigationItem.titleView = titleView;
+    [titleView release];
+
     [[self navigationItem] setRightBarButtonItem:nil]; 
     //self.tableView.rowHeight = 100;
 

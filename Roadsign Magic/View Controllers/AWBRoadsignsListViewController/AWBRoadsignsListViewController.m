@@ -346,7 +346,8 @@
 - (UIBarButtonItem *)myFontsButton
 {
     if (!myFontsButton) {
-        myFontsButton = [[UIBarButtonItem alloc] initWithTitle:@"My Fonts" style:UIBarButtonItemStyleBordered target:self action:@selector(showMyFonts)];
+        //myFontsButton = [[UIBarButtonItem alloc] initWithTitle:@"My Fonts" style:UIBarButtonItemStyleBordered target:self action:@selector(showMyFonts)];
+        myFontsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"myfonts"] style:UIBarButtonItemStyleBordered target:self action:@selector(showMyFonts)];
     }
     return myFontsButton;    
 }
@@ -354,7 +355,8 @@
 - (UIBarButtonItem *)inAppStoreButton
 {
     if (!inAppStoreButton) {
-        inAppStoreButton = [[UIBarButtonItem alloc] initWithTitle:@"In App Store" style:UIBarButtonItemStyleBordered target:self action:@selector(showInAppStore)];
+        //inAppStoreButton = [[UIBarButtonItem alloc] initWithTitle:@"In App Store" style:UIBarButtonItemStyleBordered target:self action:@selector(showInAppStore)];
+        inAppStoreButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"trolley"] style:UIBarButtonItemStyleBordered target:self action:@selector(showInAppStore)];
     }
     return inAppStoreButton;    
 }
@@ -362,7 +364,8 @@
 - (UIBarButtonItem *)helpButton
 {
     if (!helpButton) {
-        helpButton = [[UIBarButtonItem alloc] initWithTitle:@"Help" style:UIBarButtonItemStyleBordered target:self action:@selector(showHelp)];
+        //helpButton = [[UIBarButtonItem alloc] initWithTitle:@"Help" style:UIBarButtonItemStyleBordered target:self action:@selector(showHelp)];
+        helpButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"help"] style:UIBarButtonItemStyleBordered target:self action:@selector(showHelp)];
     }
     return helpButton;    
 }
