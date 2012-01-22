@@ -87,7 +87,6 @@
 
 - (void)awbSignSymbolPickerView:(AWBSignSymbolPickerView *)symbolPicker didSelectSignSymbol:(AWBRoadsignSymbol *)signSymbol 
 {
-    NSLog(@"didSelectSignSymbol");
     [self dismissSignSymbolPickerView];
     self.selectedSignSymbol = signSymbol;
     [self addSignSymbolImageViewFromSymbol:signSymbol];

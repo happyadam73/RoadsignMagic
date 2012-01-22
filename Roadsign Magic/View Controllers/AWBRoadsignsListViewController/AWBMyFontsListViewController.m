@@ -101,8 +101,6 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    NSLog(@"viewDidAppear");
-
     [super viewDidAppear:animated];
     
     if (pendingMyFontInstall && IS_MYFONTS_PURCHASED) {

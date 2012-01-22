@@ -119,7 +119,6 @@
  */
 - (void)fbDidLogout
 {
-    NSLog(@"fbDidLogout");
     [self removeFacebookSession];
     [self showLoggedOut];
 }

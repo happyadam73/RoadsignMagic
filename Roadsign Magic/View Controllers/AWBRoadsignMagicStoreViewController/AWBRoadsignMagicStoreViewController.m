@@ -270,7 +270,6 @@
             [self.tableView reloadData];
         } else {
             if ([[InAppStore defaultStore] canMakePurchases]) {                
-                NSLog(@"Restoring Purchases");
                 [[InAppStore defaultStore] restoreCompletedTransactions];
                 self.hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
                 self.hud.labelText = @"Restoring Purchases";

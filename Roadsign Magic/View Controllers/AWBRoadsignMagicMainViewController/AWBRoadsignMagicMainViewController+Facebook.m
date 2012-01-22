@@ -198,8 +198,6 @@
         result = [result objectAtIndex:0];
     }
     
-    NSLog(@"Result: %@", result);
-    
     UIAlertView *alertView = [[UIAlertView alloc] 
                               initWithTitle:@"Facebook Upload Succeeded!" 
                               message:@"Image has been uploaded to Facebook." 
@@ -216,8 +214,6 @@
  * successfully.
  */
 - (void)request:(FBRequest *)request didFailWithError:(NSError *)error {
-    NSLog(@"Error: %@", error);
-    NSLog(@"Error message: %@", [[error userInfo] objectForKey:@"error_msg"]);
     UIAlertView *alertView = [[UIAlertView alloc] 
                               initWithTitle:@"Facebook Failed!" 
                               message:@"Image could not be uploaded to Facebook." 

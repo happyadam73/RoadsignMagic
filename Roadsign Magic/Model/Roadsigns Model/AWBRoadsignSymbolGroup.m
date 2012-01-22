@@ -98,6 +98,7 @@
     return [NSArray arrayWithObjects:
             [AWBRoadsignSymbolGroup roadsignSymbolGroupWithCategoryId:0 count:42 description:@"Arrow Sign Symbols" purchasePack:AWBRoadsignSymbolGroupPurchasePackNone],
             [AWBRoadsignSymbolGroup roadsignSymbolGroupWithCategoryId:3 count:26 description:@"Junction Sign Symbols" purchasePack:AWBRoadsignSymbolGroupPurchasePackNone],
+            [AWBRoadsignSymbolGroup roadsignSymbolGroupWithCategoryId:7 count:27 description:@"Road Hazard Sign Symbols" purchasePack:AWBRoadsignSymbolGroupPurchasePackNone],
             [AWBRoadsignSymbolGroup roadsignSymbolGroupWithCategoryId:1 count:31 description:@"Regulatory Sign Symbols" purchasePack:AWBRoadsignSymbolGroupPurchasePackNone],
             [AWBRoadsignSymbolGroup roadsignSymbolGroupWithCategoryId:4 count:40 description:@"People and Animal Sign Symbols" purchasePack:AWBRoadsignSymbolGroupPurchasePack1],
             [AWBRoadsignSymbolGroup roadsignSymbolGroupWithCategoryId:5 count:38 description:@"Vehicle Sign Symbols" purchasePack:AWBRoadsignSymbolGroupPurchasePack1],
