@@ -79,7 +79,7 @@
             primaryColorCode = kAWBSignColorCodeWhiteBackgroundColor;
             break;
         case 3013 ... 3014:
-        case 3019:
+        case 3019 ... 3021:
         case 6025 ... 6026:
         case 7011:
             primaryColorCode = kAWBSignColorCodeBlackBackgroundColor;

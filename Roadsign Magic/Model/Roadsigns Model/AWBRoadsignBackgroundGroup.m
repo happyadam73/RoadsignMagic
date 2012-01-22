@@ -101,7 +101,7 @@
             [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:0 count:15 description:@"Blue Rectangular Backgrounds" purchasePack:AWBRoadsignSymbolGroupPurchasePackNone],
             [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:1 count:9 description:@"Green Rectangular Backgrounds" purchasePack:AWBRoadsignSymbolGroupPurchasePackNone],
             [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:2 count:14 description:@"Brown Rectangular Backgrounds" purchasePack:AWBRoadsignSymbolGroupPurchasePackNone],
-            [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:3 count:19 description:@"White Rectangular Backgrounds" purchasePack:AWBRoadsignSymbolGroupPurchasePackNone],
+            [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:3 count:21 description:@"White Rectangular Backgrounds" purchasePack:AWBRoadsignSymbolGroupPurchasePackNone],
             [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:4 count:10 description:@"Red Rectangular Backgrounds" purchasePack:AWBRoadsignSymbolGroupPurchasePackNone],
             [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:5 count:15 description:@"Yellow Rectangular Backgrounds" purchasePack:AWBRoadsignSymbolGroupPurchasePackNone],
             [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:7 count:15 description:@"Triangles and Circular Backgrounds" purchasePack:AWBRoadsignSymbolGroupPurchasePack1],            
