@@ -50,6 +50,7 @@ typedef enum {
     BOOL visible;
     AWBSettingsGroup *parentGroup;
     AWBSettingMasterSlaveType masterSlaveType;
+    BOOL disableControl;
 }
 
 @property (nonatomic, retain) NSString *text;
@@ -65,6 +66,7 @@ typedef enum {
 @property (nonatomic, readonly) BOOL isSwitchedOn;
 @property (nonatomic, assign) AWBSettingsGroup *parentGroup;
 @property (nonatomic, assign) AWBSettingMasterSlaveType masterSlaveType;
+@property (nonatomic, assign) BOOL disableControl;
 
 + (AWBSetting *)colorSettingWithValue:(id)aValue andKey:(NSString *)aKey;
 + (AWBSetting *)exportSizeSliderSettingWithValue:(id)aValue andKey:(NSString *)aKey;

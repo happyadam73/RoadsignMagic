@@ -206,21 +206,12 @@
         
         NSInteger subDirNumber = [[self.roadsignSaveDocumentsSubdirectory substringFromIndex:9] integerValue];
         switch (subDirNumber) {
-            case 2 ... 19:
+            case 30 ... 49:
                 purchasePack = AWBRoadsignSymbolGroupPurchasePack1;
                 break;
-            case 24:
-                purchasePack = AWBRoadsignSymbolGroupPurchasePack1;
-                break;
-            case 48:
-                purchasePack = AWBRoadsignSymbolGroupPurchasePack1;
-                break;
-            case 40:
+            case 50 ... 61:
                 purchasePack = AWBRoadsignSymbolGroupPurchasePack2;
-                break;
-            case 50:
-                purchasePack = AWBRoadsignSymbolGroupPurchasePack2;
-                break;                    
+                break;            
         }
     }
     

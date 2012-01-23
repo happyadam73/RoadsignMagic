@@ -29,6 +29,7 @@
 @implementation AWBSetting
 
 @synthesize text, detailText, settingValue, settingKey, controlType, childSettings, readonly, items, visible, parentGroup, masterSlaveType;
+@synthesize disableControl;
 
 - (id)initWithText:(NSString *)aText controlType:(AWBSettingControlType)aControlType value:(id)aValue key:(NSString *)aKey
 {
@@ -225,6 +226,9 @@
         case AWBSettingControlTypeSwitch:
             tableCell = [[AWBSwitchCell alloc] initWithText:self.text value:[settingValue boolValue] reuseIdentifier:self.cellReuseIdentifier];
             tableCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            if (self.disableControl) {
+                [[(AWBSwitchCell *)tableCell cellSwitch] setEnabled:NO];
+            }
             [[(AWBSwitchCell *)tableCell cellSwitch] addTarget:self action:@selector(controlValueChanged:) forControlEvents:UIControlEventValueChanged];
             break;
         case AWBSettingControlTypeTextEdit:

@@ -356,9 +356,20 @@
 + (AWBSettingsGroup *)myFontsSwitchSettingsGroupWithInfo:(NSDictionary *)info
 {    
     AWBSetting *useMyFontsSetting = [AWBSetting switchSettingWithText:@"Use MyFonts" value:[info objectForKey:kAWBInfoKeyUseMyFonts] key:kAWBInfoKeyUseMyFonts];
+    NSString *footer = nil;
+    if (([[[AWBMyFontStore defaultStore] allMyFonts] count] > 0)) {
+        useMyFontsSetting.disableControl = NO;
+    } else {
+        useMyFontsSetting.disableControl = YES;
+        if (IS_MYFONTS_PURCHASED) {
+            footer = @"No extra fonts installed - go to the MyFonts screen or Help to find out how to install more fonts.";
+        } else {
+            footer = @"MyFonts allows you to install your own fonts.  You first need to purchase it from the In-App Store (go to the MySigns screen).";            
+        }
+    }
     useMyFontsSetting.masterSlaveType = AWBSettingMasterSlaveTypeMasterSwitch;
     NSMutableArray *buttonSettings = [NSMutableArray arrayWithObject:useMyFontsSetting];
-    AWBSettingsGroup *myFontsSettings = [[self alloc] initWithSettings:buttonSettings header:nil footer:nil];
+    AWBSettingsGroup *myFontsSettings = [[self alloc] initWithSettings:buttonSettings header:nil footer:footer];
     myFontsSettings.masterSwitchIsOn = useMyFontsSetting.isSwitchedOn;
     useMyFontsSetting.parentGroup = myFontsSettings;
     return [myFontsSettings autorelease];    
@@ -368,7 +379,12 @@
 {
     NSMutableArray *buttonSettings = [NSMutableArray arrayWithObjects:[AWBSetting drilldownSettingWithText:@"Fonts" value:nil key:nil childSettings:[AWBSettings fontSettingsWithInfo:info]], [AWBSetting drilldownSettingWithText:@"Borders & Background" value:nil key:nil childSettings:[AWBSettings extraTextSettingsWithInfo:info]], nil];
     
-    return [[[self alloc] initWithSettings:buttonSettings header:nil footer:nil] autorelease];    
+    NSString *footer = nil;
+    if (!IS_MYFONTS_PURCHASED) {
+        footer = @"You can also install and use your own fonts with MyFonts available as a purchase from the In-App Store (go to the MySigns screen).";
+    }
+    
+    return [[[self alloc] initWithSettings:buttonSettings header:nil footer:footer] autorelease];    
 }
 
 + (AWBSettingsGroup *)textBordersSettingsGroupWithInfo:(NSDictionary *)info

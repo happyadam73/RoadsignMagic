@@ -235,7 +235,7 @@
         builtInFontSettings.visible = !fontTypeSettings.masterSwitchIsOn;
     } else {
         //no my fonts installed
-        fontSettings = [[self alloc] initWithSettingsGroups:[NSMutableArray arrayWithObjects:[AWBSettingsGroup fontSettingsGroupWithInfo:info], nil] title:settingsTitle];
+        fontSettings = [[self alloc] initWithSettingsGroups:[NSMutableArray arrayWithObjects:[AWBSettingsGroup myFontsSwitchSettingsGroupWithInfo:info], [AWBSettingsGroup fontSettingsGroupWithInfo:info], nil] title:settingsTitle];
     }
        
     return [fontSettings autorelease];

@@ -376,7 +376,14 @@
             }
         }         
     } else {
-        return nil;
+        
+        NSUInteger productCount = [[InAppStore defaultStore].products count];
+        NSUInteger purchaseCount = [[InAppStore defaultStore].purchasedProducts count];
+        if (purchaseCount < productCount) {
+            return @"If you have previously purchased items (also on a different device), you can buy them again or restore them for free.";
+        } else {
+            return nil;
+        }
     }
 }
 
