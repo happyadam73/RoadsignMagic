@@ -11,6 +11,6 @@
 
 @interface UIView (HitTest)
 
-- (UIView <AWBTransformableView> *)topTransformableViewAtPoint:(CGPoint)point; //withDistanceThreshold:(CGFloat)distance;
+- (UIView <AWBTransformableView> *)topTransformableViewAtPoint:(CGPoint)point; 
 
 @end

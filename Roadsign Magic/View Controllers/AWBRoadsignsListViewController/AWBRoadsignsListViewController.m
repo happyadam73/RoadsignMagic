@@ -353,7 +353,7 @@
 {
     AWBRoadsignMagicSettingsTableViewController *settingsController = [[AWBRoadsignMagicSettingsTableViewController alloc] initWithSettings:[AWBSettings helpSettingsWithFilename:@"MySigns.rtfd.zip" title:@"My Signs Help"] settingsInfo:nil rootController:nil]; 
     settingsController.delegate = nil;
-    settingsController.controllerType = AWBSettingsControllerTypeMainSettings;
+    settingsController.controllerType = AWBSettingsControllerTypeHelpSettings;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsController];
     navController.modalPresentationStyle = UIModalPresentationPageSheet;
     navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;  

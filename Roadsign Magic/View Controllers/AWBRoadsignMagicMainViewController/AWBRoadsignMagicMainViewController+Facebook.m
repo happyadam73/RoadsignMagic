@@ -200,10 +200,6 @@
  *      didReceiveResponse:(NSURLResponse *)response
  */
 - (void)request:(FBRequest *)request didLoad:(id)result {
-//    if ([result isKindOfClass:[NSArray class]] && ([result count] > 0)) {
-//        result = [result objectAtIndex:0];
-//    }
-    
     UIAlertView *alertView = [[UIAlertView alloc] 
                               initWithTitle:@"Facebook Upload Succeeded!" 
                               message:@"Image has been uploaded to Facebook." 

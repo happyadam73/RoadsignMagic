@@ -16,7 +16,8 @@ typedef enum {
     AWBSettingsControllerTypeNewRoadsignSettings,
     AWBSettingsControllerTypeRoadsignInfoSettings,
     AWBSettingsControllerTypeMyFontInfoSettings,
-    AWBSettingsControllerTypeLuckyDipSettings
+    AWBSettingsControllerTypeLuckyDipSettings,
+    AWBSettingsControllerTypeHelpSettings
 } AWBSettingsControllerType;
 
 @class AWBRoadsignMagicSettingsTableViewController;

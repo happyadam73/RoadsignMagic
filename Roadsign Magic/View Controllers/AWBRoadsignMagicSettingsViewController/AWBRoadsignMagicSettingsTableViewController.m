@@ -72,7 +72,7 @@
         self.navigationItem.rightBarButtonItem = doneButton; 
         [doneButton release];
         
-        if (DEVICE_IS_IPHONE || (self.controllerType != AWBSettingsControllerTypeLuckyDipSettings)) {
+        if (self.controllerType != AWBSettingsControllerTypeHelpSettings) {
             UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismissSettings:)];
             self.navigationItem.leftBarButtonItem = cancelButton;
             [cancelButton release];

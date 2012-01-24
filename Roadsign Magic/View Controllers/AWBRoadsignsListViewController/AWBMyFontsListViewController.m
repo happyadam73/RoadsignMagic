@@ -77,6 +77,11 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    theTableView.delegate = nil;
+	theTableView.dataSource = nil;
+    self.theTableView = nil;
+    self.helpButton = nil;
+    self.toolbarSpacing = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -391,7 +396,7 @@
 {
     AWBRoadsignMagicSettingsTableViewController *settingsController = [[AWBRoadsignMagicSettingsTableViewController alloc] initWithSettings:[AWBSettings helpSettingsWithFilename:@"MyFonts.rtfd.zip" title:@"MyFonts Help"] settingsInfo:nil rootController:nil]; 
     settingsController.delegate = nil;
-    settingsController.controllerType = AWBSettingsControllerTypeMainSettings;
+    settingsController.controllerType = AWBSettingsControllerTypeHelpSettings;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsController];
     navController.modalPresentationStyle = UIModalPresentationPageSheet;
     navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;  

@@ -16,7 +16,6 @@
 
 - (NSArray *)normalToolbarButtons
 {
-//    return [NSArray arrayWithObjects:self.actionButton, self.toolbarSpacing, self.textButton, self.toolbarSpacing, self.signBackgroundPickerButton, self.toolbarSpacing, self.signSymbolPickerButton, self.toolbarSpacing, self.settingsButton, nil];
     return [NSArray arrayWithObjects:self.actionButton, self.toolbarSpacing, self.signBackgroundPickerButton, self.toolbarSpacing, self.signSymbolPickerButton, self.toolbarSpacing, self.textButton, self.toolbarSpacing, self.settingsButton, nil];
 }
 

@@ -10,7 +10,7 @@
 
 @interface UIApplication (AppDimensions)
 
-+(CGSize) currentSize;
-+(CGSize) sizeInOrientation:(UIInterfaceOrientation)orientation;
++ (CGSize)currentSize;
++ (CGSize)sizeInOrientation:(UIInterfaceOrientation)orientation;
 
 @end

@@ -10,12 +10,12 @@
 
 @implementation UIApplication (AppDimensions)
 
-+(CGSize) currentSize
++ (CGSize)currentSize
 {
     return [UIApplication sizeInOrientation:[UIApplication sharedApplication].statusBarOrientation];
 }
 
-+(CGSize) sizeInOrientation:(UIInterfaceOrientation)orientation
++ (CGSize)sizeInOrientation:(UIInterfaceOrientation)orientation
 {
     CGSize size = [UIScreen mainScreen].bounds.size;
     if (UIInterfaceOrientationIsLandscape(orientation))
