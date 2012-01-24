@@ -81,8 +81,8 @@ static AWBRoadsignStore *defaultStore = nil;
     NSInteger sequenceId = [[NSUserDefaults standardUserDefaults] integerForKey:kAWBInfoKeyMyRoadsignSequenceNumber];
     sequenceId += 1;
     //for some reason - this can still end of 1 (and overwrite the help sign) so guard against this
-    if (sequenceId < 2) {
-        sequenceId = 2;
+    if (sequenceId < 3) {
+        sequenceId = 3;
     }
     [[NSUserDefaults standardUserDefaults] setInteger:sequenceId forKey:kAWBInfoKeyMyRoadsignSequenceNumber];
     AWBRoadsignDescriptor *roadsign = [[[AWBRoadsignDescriptor alloc] initWithRoadsignDocumentsSubdirectory:[NSString stringWithFormat:@"Roadsign %d", sequenceId]] autorelease];
@@ -102,8 +102,8 @@ static AWBRoadsignStore *defaultStore = nil;
     NSInteger sequenceId = [[NSUserDefaults standardUserDefaults] integerForKey:kAWBInfoKeyMyRoadsignSequenceNumber];
     sequenceId += 1;
     //for some reason - this can still end of 1 (and overwrite the help sign) so guard against this
-    if (sequenceId < 2) {
-        sequenceId = 2;
+    if (sequenceId < 3) {
+        sequenceId = 3;
     }
     [[NSUserDefaults standardUserDefaults] setInteger:sequenceId forKey:kAWBInfoKeyMyRoadsignSequenceNumber];
 
@@ -132,8 +132,8 @@ static AWBRoadsignStore *defaultStore = nil;
     NSInteger sequenceId = [[NSUserDefaults standardUserDefaults] integerForKey:kAWBInfoKeyMyRoadsignSequenceNumber];
     sequenceId += 1;
     //for some reason - this can still end of 1 (and overwrite the help sign) so guard against this
-    if (sequenceId < 2) {
-        sequenceId = 2;
+    if (sequenceId < 3) {
+        sequenceId = 3;
     }
     return [NSString stringWithFormat:@"Roadsign %d", sequenceId];
 }
@@ -193,7 +193,7 @@ static AWBRoadsignStore *defaultStore = nil;
     
     // If we tried to read one from disk but does not exist, then first try and copy the help collages from the bundle 
     if (!myRoadsigns) {
-        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:kAWBInfoKeyMyRoadsignSequenceNumber];
+        [[NSUserDefaults standardUserDefaults] setInteger:2 forKey:kAWBInfoKeyMyRoadsignSequenceNumber];
         [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:kAWBInfoKeyMyRoadsignStoreRoadsignIndex];
         BOOL success = AWBCopyRoadsignHelpFilesForDevice();  
         if (success) {

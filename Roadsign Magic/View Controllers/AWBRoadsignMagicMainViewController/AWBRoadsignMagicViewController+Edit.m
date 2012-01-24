@@ -65,6 +65,17 @@
         totalSelectedInEditMode = 0;
         totalSelectedLabelsInEditMode = 0;
         [self updateUserInterfaceWithTotalSelectedInEditMode];
+        
+        if (!self.suppressEditMessage) {
+            self.suppressEditMessage = YES;
+            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"You've enabled Edit Mode" 
+                                                             message:@"Use Edit Mode to remove one or more objects, or edit one or more text labels.  You don't need Edit Mode to move, resize and rotate objects." 
+                                                            delegate:nil 
+                                                   cancelButtonTitle:nil 
+                                                   otherButtonTitles:@"OK", nil] autorelease];
+            
+            [alert show];        
+        }
     }
 }
 

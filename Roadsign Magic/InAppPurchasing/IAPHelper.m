@@ -27,9 +27,9 @@
             BOOL productPurchased = [[NSUserDefaults standardUserDefaults] boolForKey:productIdentifier];
             if (productPurchased) {
                 [purchasedProducts addObject:productIdentifier];
-                NSLog(@"Previously purchased: %@", productIdentifier);
+//                NSLog(@"Previously purchased: %@", productIdentifier);
             }
-            NSLog(@"Not purchased: %@", productIdentifier);
+//            NSLog(@"Not purchased: %@", productIdentifier);
         }
         self.purchasedProducts = purchasedProducts;
                         
@@ -47,7 +47,7 @@
 
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
     
-    NSLog(@"Received products results - count: %d", [response.products count]);   
+//    NSLog(@"Received products results - count: %d", [response.products count]);   
     self.products = response.products;
     self.request = nil;    
     
@@ -60,7 +60,7 @@
 
 - (void)provideContent:(NSString *)productIdentifier {
     
-    NSLog(@"Toggling flag for: %@", productIdentifier);
+//    NSLog(@"Toggling flag for: %@", productIdentifier);
     [[NSUserDefaults standardUserDefaults] setBool:TRUE forKey:productIdentifier];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [_purchasedProducts addObject:productIdentifier];
@@ -71,7 +71,7 @@
 
 - (void)completeTransaction:(SKPaymentTransaction *)transaction {
     
-    NSLog(@"completeTransaction...");
+//    NSLog(@"completeTransaction...");
     
     [self recordTransaction: transaction];
     [self provideContent: transaction.payment.productIdentifier];
@@ -81,7 +81,7 @@
 
 - (void)restoreTransaction:(SKPaymentTransaction *)transaction {
     
-    NSLog(@"restoreTransaction...");
+//    NSLog(@"restoreTransaction...");
     
     [self recordTransaction: transaction];
     [self provideContent: transaction.originalTransaction.payment.productIdentifier];
@@ -91,12 +91,12 @@
 
 - (void)failedTransaction:(SKPaymentTransaction *)transaction {
     
-    if (transaction.error.code != SKErrorPaymentCancelled)
-    {
-        NSLog(@"Transaction error: %@", transaction.error.localizedDescription);
-    } else {
-        NSLog(@"Transaction Cancelled");
-    }
+//    if (transaction.error.code != SKErrorPaymentCancelled)
+//    {
+//        NSLog(@"Transaction error: %@", transaction.error.localizedDescription);
+//    } else {
+//        NSLog(@"Transaction Cancelled");
+//    }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kProductPurchaseFailedNotification object:transaction];
     
@@ -126,19 +126,19 @@
 
 - (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
 {
-    NSLog(@"Product Payments Restored");
+//    NSLog(@"Product Payments Restored");
     [[NSNotificationCenter defaultCenter] postNotificationName:kProductsRestoredNotification object:nil];    
 }
 
 - (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error   
 {
-    NSLog(@"Payment Restore error (%d): %@", error.code, error.localizedDescription);
+//    NSLog(@"Payment Restore error (%d): %@", error.code, error.localizedDescription);
     [[NSNotificationCenter defaultCenter] postNotificationName:kProductsRestoredFailedNotification object:error];    
 }
 
 - (void)buyProduct:(SKProduct *)product 
 {    
-    NSLog(@"Buying %@...", product.productIdentifier);
+//    NSLog(@"Buying %@...", product.productIdentifier);
     
     SKPayment *payment = [SKPayment paymentWithProduct:product];
     [[SKPaymentQueue defaultQueue] addPayment:payment];
@@ -151,7 +151,7 @@
 
 - (void)restoreCompletedTransactions
 {
-    NSLog(@"Restoring Completed Transactions ...");
+//    NSLog(@"Restoring Completed Transactions ...");
     [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
 }
 

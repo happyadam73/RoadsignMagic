@@ -92,7 +92,14 @@
                 showProgressIndicator = NO;
             }
             busyText = @"Uploading to Facebook";                
-            CGFloat quality = 1.0;
+            CGFloat quality = 0.5;
+            if (IS_GOPRO_PURCHASED) {
+                if (self.exportSize > 1.0) {
+                    quality = 1.0;
+                } else {
+                    quality = self.exportSize;
+                }
+            }
             busyTextDetail = [NSString stringWithFormat:@"(Size: %@)", AWBImageSizeFromExportSizeValue(quality)];
             methodSelector = @selector(loginToFacebook);            
         } else if (buttonIndex == ([actionSheet firstOtherButtonIndex]+3)) {
@@ -110,7 +117,14 @@
         } else if (buttonIndex == ([actionSheet firstOtherButtonIndex]+5)) {
             // Twitter Image
             busyText = @"Preparing for Twitter";
-            CGFloat quality = 1.0;
+            CGFloat quality = 0.5;
+            if (IS_GOPRO_PURCHASED) {
+                if (self.exportSize > 1.0) {
+                    quality = 1.0;
+                } else {
+                    quality = self.exportSize;
+                }
+            }
             busyTextDetail = [NSString stringWithFormat:@"(Size: %@)", AWBImageSizeFromExportSizeValue(quality)];
             methodSelector = @selector(twitterRoadsignAsPhoto);
         }
@@ -203,16 +217,19 @@
     }
         
     ALAssetsLibrary *al = [[ALAssetsLibrary alloc] init];
-	[al writeImageDataToSavedPhotosAlbum:data metadata:nil completionBlock:^(NSURL *assetURL, NSError *error) {}];
+	[al writeImageDataToSavedPhotosAlbum:data metadata:nil completionBlock:^(NSURL *assetURL, NSError *error) {
+        if ((!IS_GOPRO_PURCHASED) && (!self.suppressExportMessage)) {
+            self.suppressExportMessage = YES;
+            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Want more from Export?" 
+                                                             message:@"The \"Go Pro\" In-App purchase lets you export in different sizes, and use transparent backgrounds - ideal for icons, t-shirts or combining with other artwork (see Export in Settings)" 
+                                                            delegate:nil 
+                                                   cancelButtonTitle:nil 
+                                                   otherButtonTitles:@"OK", nil] autorelease];
+            
+            [alert show];        
+        }    
+    }];
     [al release];    
-}
-
-- (void)image:(UIImage *)image didFinishSavingWithError: (NSError *) error contextInfo: (void *) contextInfo 
-{
-    if(error != nil) {
-        NSLog(@"ERROR SAVING:%@",[error localizedDescription]);
-    }
-    [image release];
 }
 
 - (void)emailRoadsignAsPhoto
@@ -273,6 +290,17 @@
             break;
     }
     [self dismissModalViewControllerAnimated:YES];
+    
+    if ((!IS_GOPRO_PURCHASED) && (!self.suppressExportMessage)) {
+        self.suppressExportMessage = YES;
+        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Want more from Export?" 
+                                                         message:@"The \"Go Pro\" In-App purchase lets you export in different sizes, and use transparent backgrounds - ideal for icons, t-shirts or combining with other artwork (see Export in Settings)" 
+                                                        delegate:nil 
+                                               cancelButtonTitle:nil 
+                                               otherButtonTitles:@"OK", nil] autorelease];
+        
+        [alert show];        
+    }
 }
 
 - (void)printItemWithSize:(NSNumber *)sizeNumber
@@ -384,7 +412,7 @@
         
         void (^completionHandler)(UIPrintInteractionController *, BOOL, NSError *) = ^(UIPrintInteractionController *printController, BOOL completed, NSError *error) {
             if (!completed && error) {
-                NSLog(@"FAILED! due to error in domain %@ with error code %u", error.domain, error.code);
+//                NSLog(@"FAILED! due to error in domain %@ with error code %u", error.domain, error.code);
             }
         };
         
@@ -417,7 +445,16 @@
             [self toggleFullscreen];
         }
         self.busyView.hidden = YES;
-        CGFloat quality = (IS_GOPRO_PURCHASED ? 1.0 : 0.5);
+        
+        CGFloat quality = 0.5;
+        if (IS_GOPRO_PURCHASED) {
+            if (self.exportSize > 1.0) {
+                quality = 1.0;
+            } else {
+                quality = self.exportSize;
+            }
+        }
+        
         UIImage *roadsignImage = [self generateRoadsignImageWithScaleFactor:quality];
         [self toggleFullscreen];
         self.busyView.hidden = NO;

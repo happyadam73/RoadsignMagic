@@ -43,6 +43,7 @@
 @synthesize useMyFonts, labelMyFont;
 @synthesize selectionMarquee1, selectionMarquee2;
 @synthesize currentSignBackgroundCategoryIndex, currentSignBackgroundId;
+@synthesize suppressExportMessage, suppressEditMessage;
 
 - (id)init
 {
@@ -550,6 +551,28 @@
 {
     self.selectionMarquee1.hidden = YES;
     self.selectionMarquee2.hidden = YES;   
+}
+
+- (BOOL)suppressExportMessage
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"SuppressExportMessage"];
+}
+
+- (void)setSuppressExportMessage:(BOOL)suppressMessage
+{
+    [[NSUserDefaults standardUserDefaults] setBool:suppressMessage forKey:@"SuppressExportMessage"];
+    [[NSUserDefaults standardUserDefaults] synchronize];    
+}
+
+- (BOOL)suppressEditMessage
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"SuppressEditMessage"];
+}
+
+- (void)setSuppressEditMessage:(BOOL)suppressMessage
+{
+    [[NSUserDefaults standardUserDefaults] setBool:suppressMessage forKey:@"SuppressEditMessage"];
+    [[NSUserDefaults standardUserDefaults] synchronize];    
 }
 
 @end

@@ -214,7 +214,7 @@
         NSUInteger totalMyFontCount = [[[AWBMyFontStore defaultStore] allMyFonts] count];
         if (totalMyFontCount > 0) {
             self.navigationItem.rightBarButtonItem = [self editButtonItem];
-            return nil;
+            return @"Tap the Blue Disclosure button to see a preview of each font.  You can also edit the font name.";
         } else {
             [self setEditing:NO];
             self.navigationItem.rightBarButtonItem = nil;
@@ -354,6 +354,13 @@
             if (buttonIndex == alertView.firstOtherButtonIndex) {
                 [[AWBMyFontStore defaultStore] installMyFont:pendingMyFont];
                 [self.theTableView reloadData];
+                NSUInteger scrollToRow = [theTableView numberOfRowsInSection:0] - 1;
+                @try {
+                    [theTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:scrollToRow inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+                }
+                @catch (NSException *e) {
+//                    NSLog(@"%@", [e reason]);
+                }
             } else {
                 [pendingMyFont removeFromInbox];
             }

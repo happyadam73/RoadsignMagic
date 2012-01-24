@@ -243,6 +243,7 @@ BOOL AWBCopyRoadsignHelpFilesForDevice(void)
 {
     NSString *bundleSubdirectory = (DEVICE_IS_IPAD ? @"Help Files/iPad" : @"Help Files/iPhone");
     BOOL success = AWBCopyBundleItemAtPathToDocumentsFolder(bundleSubdirectory, @"Roadsign 1");
+    success = success && AWBCopyBundleItemAtPathToDocumentsFolder(bundleSubdirectory, @"Roadsign 2");
     success = success && AWBCopyBundleItemAtPathToDocumentsFolder(bundleSubdirectory, @"roadsignDescriptors.data");
     
     return success;

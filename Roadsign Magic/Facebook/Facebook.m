@@ -410,7 +410,7 @@ static NSString* kSDKVersion = @"2";
 - (FBRequest*)requestWithParams:(NSMutableDictionary *)params
                     andDelegate:(id <FBRequestDelegate>)delegate {
   if ([params objectForKey:@"method"] == nil) {
-    NSLog(@"API Method must be specified");
+//    NSLog(@"API Method must be specified");
     return nil;
   }
 
@@ -649,7 +649,7 @@ static NSString* kSDKVersion = @"2";
  * Handle the auth.ExpireSession api call failure
  */
 - (void)request:(FBRequest*)request didFailWithError:(NSError*)error{
-  NSLog(@"Failed to expire the session");
+//  NSLog(@"Failed to expire the session");
 }
 
 @end

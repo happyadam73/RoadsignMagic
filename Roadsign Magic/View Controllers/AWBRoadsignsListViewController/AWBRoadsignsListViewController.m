@@ -139,7 +139,7 @@
             [theTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:scrollToRow inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
         }
         @catch (NSException *e) {
-            NSLog(@"%@", [e reason]);
+//            NSLog(@"%@", [e reason]);
         }
         @finally {
             scrollToRow = -1;

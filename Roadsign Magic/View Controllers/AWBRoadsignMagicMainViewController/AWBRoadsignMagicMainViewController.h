@@ -174,7 +174,9 @@ enum {
 @property (nonatomic, retain) NSString *roadsignBackgroundTexture;
 @property (nonatomic, assign) BOOL useBackgroundTexture;
 @property (nonatomic, retain) CAShapeLayer *selectionMarquee1;
-@property (nonatomic, retain) CAShapeLayer *selectionMarquee2;    
+@property (nonatomic, retain) CAShapeLayer *selectionMarquee2;  
+@property (nonatomic, assign) BOOL suppressExportMessage;
+@property (nonatomic, assign) BOOL suppressEditMessage;
 
 - (void) updateLayoutForNewOrientation: (UIInterfaceOrientation) orientation;
 - (id)initWithRoadsignDescriptor:(AWBRoadsignDescriptor *)roadsign;

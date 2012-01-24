@@ -77,9 +77,15 @@
     if (!self.navigationController.toolbarHidden) {
         [self toggleFullscreen];
     }
-    
     self.busyView.hidden = YES;
-    CGFloat quality = (IS_GOPRO_PURCHASED ? 1.0 : 0.5);
+    CGFloat quality = 0.5;
+    if (IS_GOPRO_PURCHASED) {
+        if (self.exportSize > 1.0) {
+            quality = 1.0;
+        } else {
+            quality = self.exportSize;
+        }
+    }    
     UIImage *roadsignImage = [self generateRoadsignImageWithScaleFactor:quality];
     [self toggleFullscreen];
     self.busyView.hidden = NO;
