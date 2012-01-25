@@ -83,8 +83,10 @@
   self = [super initWithFrame:CGRectZero];
   if(self != nil){
     
-    self.title = [titleString retain];
-    self.confirm = [confirmString retain];
+//    self.title = [titleString retain];
+//    self.confirm = [confirmString retain];
+    self.title = titleString;
+    self.confirm = confirmString;
     
     toggleAnimation = MAConfirmButtonToggleAnimationLeft;
     
@@ -248,7 +250,8 @@
 }
 
 - (void)disableWithTitle:(NSString *)disabledString{
-  self.disabled = [disabledString retain];
+  //self.disabled = [disabledString retain];
+  self.disabled = disabledString;
   [self toggle];	
 }
 
