@@ -101,6 +101,10 @@
 - (id)initWithTextLines:(NSArray *)lines fontName:(NSString *)fontName fontSize:(CGFloat)fontSize offset:(CGPoint)point rotation:(CGFloat)rotation scale:(CGFloat)scale horizontalFlip:(BOOL)flip color:(UIColor *)color alignment:(UITextAlignment)alignment
 {
     BOOL isMyFont = [AWBRoadsignFont isFontNameMyFontFilename:fontName];
+    if (isMyFont && (![AWBRoadsignFont myFontDoesExistWithFilename:fontName])) {
+        isMyFont = NO;
+        fontName = @"BritishRoadsign";
+    }
     BOOL isZFont = [AWBRoadsignFont isZFont:fontName];
     
     if (isZFont || isMyFont) {
@@ -111,6 +115,11 @@
             zFont = [[FontManager sharedManager] zFontWithURL:[AWBRoadsignFont myFontUrlFromFontFilename:fontName] pointSize:fontSize];
         } else {
             zFont = [[FontManager sharedManager] zFontWithName:fontName pointSize:fontSize];
+        }
+        //AWB, 26/1/2012 - zFont could be nil; if so set to British Roadsign to prevent a crash
+        if (zFont == nil) {
+            zFont = [[FontManager sharedManager] zFontWithName:@"BritishRoadsign" pointSize:fontSize];
+            fontFilename = nil;
         }
         return [self initWithTextLines:lines zFont:zFont offset:point rotation:rotation scale:scale horizontalFlip:flip color:color alignment:alignment myFontFilename:fontFilename];
     } else {
@@ -320,6 +329,10 @@
 - (void)updateLabelTextLines:(NSArray *)lines withFontName:(NSString *)fontName fontSize:(CGFloat)fontSize 
 {   
     BOOL isMyFont = [AWBRoadsignFont isFontNameMyFontFilename:fontName];
+    if (isMyFont && (![AWBRoadsignFont myFontDoesExistWithFilename:fontName])) {
+        isMyFont = NO;
+        fontName = @"BritishRoadsign";
+    }
     BOOL isZFont = [AWBRoadsignFont isZFont:fontName];
     
     if (isZFont || isMyFont) {
@@ -330,7 +343,11 @@
             zFont = [[FontManager sharedManager] zFontWithURL:[AWBRoadsignFont myFontUrlFromFontFilename:fontName] pointSize:fontSize];
         } else {
             zFont = [[FontManager sharedManager] zFontWithName:fontName pointSize:fontSize];
-        }        
+        }   
+        //AWB, 26/1/2012 - zFont could be nil; if so set to British Roadsign to prevent a crash
+        if (zFont == nil) {
+            zFont = [[FontManager sharedManager] zFontWithName:@"BritishRoadsign" pointSize:fontSize];
+        }
         [self updateLabelTextLines:lines withZFont:zFont myFontFilename:fontFilename];
     } else {
         UIFont *iOSFont = [UIFont fontWithName:fontName size:fontSize];
@@ -438,6 +455,10 @@
 - (void)updateLabelTextWithFontName:(NSString *)fontName fontSize:(CGFloat)fontSize 
 {
     BOOL isMyFont = [AWBRoadsignFont isFontNameMyFontFilename:fontName];
+    if (isMyFont && (![AWBRoadsignFont myFontDoesExistWithFilename:fontName])) {
+        isMyFont = NO;
+        fontName = @"BritishRoadsign";
+    }
     BOOL isZFont = [AWBRoadsignFont isZFont:fontName];
     
     if (isZFont || isMyFont) {
@@ -448,7 +469,11 @@
             zFont = [[FontManager sharedManager] zFontWithURL:[AWBRoadsignFont myFontUrlFromFontFilename:fontName] pointSize:fontSize];
         } else {
             zFont = [[FontManager sharedManager] zFontWithName:fontName pointSize:fontSize];
-        }        
+        } 
+        //AWB, 26/1/2012 - zFont could be nil; if so set to British Roadsign to prevent a crash
+        if (zFont == nil) {
+            zFont = [[FontManager sharedManager] zFontWithName:@"BritishRoadsign" pointSize:fontSize];
+        }
         [self updateLabelTextLines:[self.labelView.text componentsSeparatedByString:@"\r\n"] withZFont:zFont myFontFilename:fontFilename];
     } else {
         UIFont *iOSFont = [UIFont fontWithName:fontName size:fontSize];

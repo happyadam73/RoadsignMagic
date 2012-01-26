@@ -32,5 +32,6 @@ typedef enum {
 + (BOOL)isFontNameMyFontURL:(NSString *)fontName;
 + (BOOL)isFontNameMyFontFilename:(NSString *)fontName;
 + (NSURL *)myFontUrlFromFontFilename:(NSString *)fontFilename;
++ (BOOL)myFontDoesExistWithFilename:(NSString *)fontFilename;
 
 @end

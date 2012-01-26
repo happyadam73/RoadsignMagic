@@ -9,6 +9,7 @@
 #import "AWBRoadsignMagicMainViewController+Text.h"
 #import "AWBRoadsignMagicMainViewController+UI.h"
 #import "AWBRoadsignMagicViewController+Edit.h"
+#import "AWBRoadsignFont.h"
 
 @implementation AWBRoadsignMagicMainViewController (Text)
 
@@ -63,8 +64,13 @@
     
     if (isZFontLabel) {
         if (fontFilename) {
-            self.useMyFonts = YES;
-            self.labelMyFont = fontFilename;
+            if ([AWBRoadsignFont myFontDoesExistWithFilename:fontFilename]) {
+                self.useMyFonts = YES;
+                self.labelMyFont = fontFilename;                
+            } else {
+                self.useMyFonts = NO;
+                self.labelMyFont = @"BritishRoadsign";
+            }
         } else {
             self.useMyFonts = NO;
             self.labelTextFont = ((FontLabel *)selectedLabelView).zFont.familyName;            

@@ -125,4 +125,10 @@
     return [NSURL fileURLWithPath:filepath];
 }
 
++ (BOOL)myFontDoesExistWithFilename:(NSString *)fontFilename
+{
+    NSString *filepath = AWBPathInMyFontsDocumentsSubdirectory(fontFilename);
+    return [[NSFileManager defaultManager] fileExistsAtPath:filepath];
+}
+
 @end

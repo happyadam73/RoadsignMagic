@@ -129,8 +129,12 @@
     [defaults setObject:[facebook expirationDate] forKey:@"FBExpirationDateKey"];
     [defaults synchronize];
     
-    //complete facebook upload
-    [self confirmUploadImageToFacebook];
+    //complete facebook upload    
+    if (IS_GOPRO_PURCHASED) {
+        [self confirmUploadImageToFacebook];
+    } else {
+        [self facebookExportNotPurchased];
+    }
 }
 
 /**

@@ -209,7 +209,7 @@
             case 30 ... 49:
                 purchasePack = AWBRoadsignSymbolGroupPurchasePack1;
                 break;
-            case 50 ... 61:
+            case 50 ... 62:
                 purchasePack = AWBRoadsignSymbolGroupPurchasePack2;
                 break;            
         }
