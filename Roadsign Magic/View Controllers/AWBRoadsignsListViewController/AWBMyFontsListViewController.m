@@ -15,6 +15,7 @@
 @implementation AWBMyFontsListViewController
 
 @synthesize theTableView, pendingMyFontInstall, pendingMyFontInstallURL, installMyFontAlertView, helpButton, toolbarSpacing;
+@synthesize pendingMyFont;
 
 - (id)init
 {    
@@ -55,6 +56,7 @@
 	theTableView.dataSource = nil;
 	[theTableView release];
     [pendingMyFontInstallURL release];
+    [pendingMyFont release];
     [installMyFontAlertView release];
     [helpButton release];
     [toolbarSpacing release];
@@ -117,6 +119,14 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [[AWBMyFontStore defaultStore] saveAllMyFonts];
+    
+    //dismiss alert view if neccessary
+    if (self.installMyFontAlertView) {
+        self.installMyFontAlertView.delegate = nil;
+        [self.installMyFontAlertView dismissWithClickedButtonIndex:self.installMyFontAlertView.cancelButtonIndex animated:NO];
+        [self alertView:self.installMyFontAlertView didDismissWithButtonIndex:self.installMyFontAlertView.cancelButtonIndex];
+    }
+    
     [super viewWillDisappear:animated];
 }
 
@@ -284,11 +294,13 @@
 {
     //need a URL
     if (self.pendingMyFontInstallURL) {
-        pendingMyFont = [[AWBMyFont alloc] initWithUrl:pendingMyFontInstallURL];
-        if (pendingMyFont) {
-            [self confirmMyFontInstall:pendingMyFont.fontName];
+        AWBMyFont *font = [[AWBMyFont alloc] initWithUrl:self.pendingMyFontInstallURL];
+        self.pendingMyFont = font;
+        [font release];
+        if (self.pendingMyFont) {
+            [self confirmMyFontInstall:self.pendingMyFont.fontName];
         } else {
-            NSString *path = [pendingMyFontInstallURL path];
+            NSString *path = [self.pendingMyFontInstallURL path];
             [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
             [self showFontInstallError:path.lastPathComponent];
         }
@@ -297,9 +309,9 @@
 
 - (void)showMyFontsNotPurchased
 {
-    if (pendingMyFontInstall) {
-        pendingMyFontInstall = NO;
-        NSString *path = [pendingMyFontInstallURL path];
+    if (self.pendingMyFontInstall) {
+        self.pendingMyFontInstall = NO;
+        NSString *path = [self.pendingMyFontInstallURL path];
         [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
     }
         
@@ -320,7 +332,7 @@
     UIAlertView *alertView = [[UIAlertView alloc] 
                               initWithTitle:@"Install Failed" 
                               message:message 
-                              delegate:self 
+                              delegate:nil 
                               cancelButtonTitle:@"OK" 
                               otherButtonTitles:nil, 
                               nil];
@@ -357,7 +369,7 @@
     } else {
         if (alertView == self.installMyFontAlertView) {
             if (buttonIndex == alertView.firstOtherButtonIndex) {
-                [[AWBMyFontStore defaultStore] installMyFont:pendingMyFont];
+                [[AWBMyFontStore defaultStore] installMyFont:self.pendingMyFont];
                 [self.theTableView reloadData];
                 NSUInteger scrollToRow = [theTableView numberOfRowsInSection:0] - 1;
                 @try {
@@ -367,12 +379,12 @@
 //                    NSLog(@"%@", [e reason]);
                 }
             } else {
-                [pendingMyFont removeFromInbox];
+                [self.pendingMyFont removeFromInbox];
             }
         }
         self.installMyFontAlertView = nil;
         self.pendingMyFontInstallURL = nil;
-        [pendingMyFont release];        
+        self.pendingMyFont = nil;
     }
 }
 

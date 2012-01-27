@@ -24,13 +24,13 @@
 
 - (id)initWithUrl:(NSURL *)url
 {
-    ZFont *font = [[FontManager sharedManager] zFontWithURL:url pointSize:DEFAULT_FONT_POINT_SIZE];
-    if (font == nil) {
-        return nil;
-    }
-    
     self = [super init];
     if (self) {
+        ZFont *font = [[FontManager sharedManager] zFontWithURL:url pointSize:DEFAULT_FONT_POINT_SIZE];
+        if (font == nil) {
+            [self release];
+            return nil;
+        }
         createdDate = [[NSDate alloc] init];
         self.familyName = font.familyName;
         self.postScriptName = font.postScriptName;
@@ -44,7 +44,6 @@
         NSDictionary *info = [[NSFileManager defaultManager] attributesOfItemAtPath:[url path] error:NULL];
         self.fileSizeBytes = [info fileSize];
     }
-    
     return self;
 }
 

@@ -31,6 +31,7 @@
 @property (nonatomic, retain) UITableView *theTableView;
 @property (nonatomic, assign) BOOL pendingMyFontInstall;
 @property (nonatomic, retain) NSURL *pendingMyFontInstallURL;
+@property (nonatomic, retain) AWBMyFont *pendingMyFont;
 @property (nonatomic, retain) UIAlertView *installMyFontAlertView;
 @property (nonatomic, retain) UIBarButtonItem *helpButton;
 @property (nonatomic, retain) UIBarButtonItem *toolbarSpacing;
