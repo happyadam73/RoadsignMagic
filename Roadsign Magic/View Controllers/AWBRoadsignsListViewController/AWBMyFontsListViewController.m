@@ -113,7 +113,21 @@
     if (pendingMyFontInstall && IS_MYFONTS_PURCHASED) {
         pendingMyFontInstall = NO;
         [self attemptMyFontInstall];
-    }    
+    } else {
+        //there's still a rare case where MyFonts not purchased, and the only viewDidAppear fired from
+        //app delegate so we still have a pending url that needs cleaning up - also fire the purchase
+        //warning if this hasn't been done so
+        if (pendingMyFontInstall) {
+            if (showPurchaseWarning) {
+                showPurchaseWarning = NO;
+                [self showMyFontsNotPurchased];
+            } else {
+                self.pendingMyFontInstall = NO;
+                NSString *path = [self.pendingMyFontInstallURL path];
+                [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
+            }
+        }
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
