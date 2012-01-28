@@ -355,9 +355,17 @@
 
 + (AWBSettingsGroup *)myFontsSwitchSettingsGroupWithInfo:(NSDictionary *)info
 {    
-    AWBSetting *useMyFontsSetting = [AWBSetting switchSettingWithText:@"Use MyFonts" value:[info objectForKey:kAWBInfoKeyUseMyFonts] key:kAWBInfoKeyUseMyFonts];
+    NSUInteger myFontCount = [[[AWBMyFontStore defaultStore] allMyFonts] count];
+    id settingValue;
+    if (myFontCount > 0) {
+        settingValue = [info objectForKey:kAWBInfoKeyUseMyFonts];
+    } else {
+        settingValue = [NSNumber numberWithBool:NO];
+    }
+    
+    AWBSetting *useMyFontsSetting = [AWBSetting switchSettingWithText:@"Use MyFonts" value:settingValue key:kAWBInfoKeyUseMyFonts];
     NSString *footer = nil;
-    if (([[[AWBMyFontStore defaultStore] allMyFonts] count] > 0)) {
+    if (myFontCount > 0) {
         useMyFontsSetting.disableControl = NO;
     } else {
         useMyFontsSetting.disableControl = YES;

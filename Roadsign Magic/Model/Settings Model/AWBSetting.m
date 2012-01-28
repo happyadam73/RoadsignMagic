@@ -227,6 +227,7 @@
             tableCell = [[AWBSwitchCell alloc] initWithText:self.text value:[settingValue boolValue] reuseIdentifier:self.cellReuseIdentifier];
             tableCell.selectionStyle = UITableViewCellSelectionStyleNone;
             if (self.disableControl) {
+                tableCell.textLabel.enabled = NO;
                 [[(AWBSwitchCell *)tableCell cellSwitch] setEnabled:NO];
             }
             [[(AWBSwitchCell *)tableCell cellSwitch] addTarget:self action:@selector(controlValueChanged:) forControlEvents:UIControlEventValueChanged];

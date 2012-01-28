@@ -55,10 +55,15 @@
                                          otherButtonTitles:@"Save Roadsign as Photo", @"Email Roadsign", @"Facebook", nil];
     }
     
+    actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
     self.chooseActionTypeSheet = actionSheet;
     [actionSheet release];
     
-    [self.chooseActionTypeSheet showFromBarButtonItem:self.actionButton animated:YES];
+    if (IS_IPAD) {
+        [self.chooseActionTypeSheet showFromBarButtonItem:self.actionButton animated:YES];        
+    } else {
+        [self.chooseActionTypeSheet showInView:[self.navigationController view]];
+    }
 
 }
 

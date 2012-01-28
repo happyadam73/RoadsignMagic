@@ -34,10 +34,18 @@
                                                     cancelButtonTitle:@"Cancel" 
                                                destructiveButtonTitle:deleteDescription 
                                                     otherButtonTitles:nil];
+    
+    actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
     self.deleteConfirmationSheet = actionSheet;
     [actionSheet release];
     
-    [self.deleteConfirmationSheet showFromBarButtonItem:self.deleteButton animated:YES];    
+    if (IS_IPAD) {
+        [self.deleteConfirmationSheet showFromBarButtonItem:self.deleteButton animated:YES];    
+    } else {
+        [self.deleteConfirmationSheet showInView:[self.navigationController view]];
+    }
+    
+
 }
 
 - (void)deleteConfirmationActionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
