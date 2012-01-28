@@ -17,11 +17,6 @@
 
 @synthesize familyName, fontName, postScriptName, filename, fileUrl, createdDate, fileSizeBytes, installUrl;
 
-- (id)init
-{
-    return nil;
-}
-
 - (id)initWithUrl:(NSURL *)url
 {
     self = [super init];

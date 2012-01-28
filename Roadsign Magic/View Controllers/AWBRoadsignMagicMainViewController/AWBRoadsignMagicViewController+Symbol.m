@@ -27,6 +27,7 @@
 
 - (void)toggleSignSymbolPickerView:(id)sender 
 {
+    [self dismissAllActionSheetsAndPopovers];
     [self dismissSignBackgroundPickerView];
     UIButton *button = (UIButton *)sender;
     [self performSelector:@selector(highlightSignSymbolPickerButton:) withObject:button afterDelay:0];
