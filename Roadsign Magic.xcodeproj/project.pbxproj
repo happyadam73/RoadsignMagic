@@ -947,6 +947,9 @@
 		06DA20E9149A3F1F006390D6 /* 17015@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06DA20E7149A3F1F006390D6 /* 17015@2x.png */; };
 		06DA20ED149A3F29006390D6 /* 27014.png in Resources */ = {isa = PBXBuildFile; fileRef = 06DA20EB149A3F29006390D6 /* 27014.png */; };
 		06DA20EE149A3F29006390D6 /* 27015.png in Resources */ = {isa = PBXBuildFile; fileRef = 06DA20EC149A3F29006390D6 /* 27015.png */; };
+		06E0A52A14E2976600AEF969 /* 28004.png in Resources */ = {isa = PBXBuildFile; fileRef = 06E0A52814E2976600AEF969 /* 28004.png */; };
+		06E0A52B14E2976600AEF969 /* 28004b.png in Resources */ = {isa = PBXBuildFile; fileRef = 06E0A52914E2976600AEF969 /* 28004b.png */; };
+		06E0A53014E298BD00AEF969 /* 18004@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06E0A52F14E298BD00AEF969 /* 18004@2x.png */; };
 		06E37436147FF42600EA536C /* AWBLockedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E37435147FF42600EA536C /* AWBLockedView.m */; };
 		06E982EE14C214D600636A34 /* MAConfirmButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E982EB14C214D600636A34 /* MAConfirmButton.m */; };
 		06E982EF14C214D600636A34 /* UIColor-Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E982ED14C214D600636A34 /* UIColor-Expanded.m */; };
@@ -2116,6 +2119,9 @@
 		06DA20E7149A3F1F006390D6 /* 17015@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "17015@2x.png"; sourceTree = "<group>"; };
 		06DA20EB149A3F29006390D6 /* 27014.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 27014.png; sourceTree = "<group>"; };
 		06DA20EC149A3F29006390D6 /* 27015.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 27015.png; sourceTree = "<group>"; };
+		06E0A52814E2976600AEF969 /* 28004.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 28004.png; sourceTree = "<group>"; };
+		06E0A52914E2976600AEF969 /* 28004b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 28004b.png; sourceTree = "<group>"; };
+		06E0A52F14E298BD00AEF969 /* 18004@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "18004@2x.png"; sourceTree = "<group>"; };
 		06E37434147FF42600EA536C /* AWBLockedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWBLockedView.h; path = "Views and User Interface/LockedView/AWBLockedView.h"; sourceTree = "<group>"; };
 		06E37435147FF42600EA536C /* AWBLockedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWBLockedView.m; path = "Views and User Interface/LockedView/AWBLockedView.m"; sourceTree = "<group>"; };
 		06E982EA14C214D600636A34 /* MAConfirmButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAConfirmButton.h; sourceTree = "<group>"; };
@@ -2345,6 +2351,7 @@
 			children = (
 				0606FDF414B7420B00C180C8 /* 08@2x.png */,
 				0606FDEC14B73CF100C180C8 /* 18 Thumbnails */,
+				06E0A52714E2976600AEF969 /* 28 Full Size */,
 			);
 			name = "8 No Sign Backgrounds";
 			path = "Resources/Roadsign Graphics/8 No Sign Backgrounds";
@@ -2356,6 +2363,7 @@
 				0606FDED14B73CF100C180C8 /* 18001@2x.png */,
 				0606FDEE14B73CF100C180C8 /* 18002@2x.png */,
 				0606FDEF14B73CF100C180C8 /* 18003@2x.png */,
+				06E0A52F14E298BD00AEF969 /* 18004@2x.png */,
 			);
 			path = "18 Thumbnails";
 			sourceTree = "<group>";
@@ -3690,6 +3698,15 @@
 				06C3451E14850B5D000A3CC8 /* AWBSignSymbolPickerView.m */,
 			);
 			name = SignSymbolPickerView;
+			sourceTree = "<group>";
+		};
+		06E0A52714E2976600AEF969 /* 28 Full Size */ = {
+			isa = PBXGroup;
+			children = (
+				06E0A52814E2976600AEF969 /* 28004.png */,
+				06E0A52914E2976600AEF969 /* 28004b.png */,
+			);
+			path = "28 Full Size";
 			sourceTree = "<group>";
 		};
 		06E37432147FF3F600EA536C /* LockedView */ = {
@@ -5386,6 +5403,9 @@
 				06969F5A14CEBAD300B0C30F /* Icon-Small-50.png in Resources */,
 				06969F5B14CEBAD300B0C30F /* Icon-Small.png in Resources */,
 				06969F5C14CEBAD300B0C30F /* Icon-Small@2x.png in Resources */,
+				06E0A52A14E2976600AEF969 /* 28004.png in Resources */,
+				06E0A52B14E2976600AEF969 /* 28004b.png in Resources */,
+				06E0A53014E298BD00AEF969 /* 18004@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

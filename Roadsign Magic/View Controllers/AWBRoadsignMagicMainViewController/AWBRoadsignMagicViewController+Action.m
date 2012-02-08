@@ -159,7 +159,7 @@
     CGFloat topMargin = 0.0;
     CGFloat marginScaleFactor = 0.07;
     
-    if (isOpaque) {
+    if (isOpaque && (!selectionMarqueesVisible)) {
         //want to resize so you get some of the background all around the sign - 12.5% margins all around
         leftMargin = backgroundViewSize.width * marginScaleFactor;
         topMargin = backgroundViewSize.height * marginScaleFactor;

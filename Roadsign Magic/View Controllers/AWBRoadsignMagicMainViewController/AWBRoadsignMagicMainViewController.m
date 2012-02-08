@@ -545,12 +545,27 @@
 {
     [self.signBackgroundView showSelectionMarquee2:self.selectionMarquee1];
     [self.signBackgroundView showSelectionMarquee2:self.selectionMarquee2];
+    
+    if (currentSignBackgroundId == 8004) {
+        NSString *imageFilename = nil;
+        if (IS_IPAD) {
+            imageFilename = @"28004b.png";
+        } else {
+            imageFilename = @"28004.png";            
+        }
+        [signBackgroundView setImage:[UIImage imageFromFile:imageFilename]];
+    }
+
 }
 
 - (void)hideSelectionMarquees
 {
     self.selectionMarquee1.hidden = YES;
-    self.selectionMarquee2.hidden = YES;   
+    self.selectionMarquee2.hidden = YES;
+    
+    if (currentSignBackgroundId == 8004) {
+        [signBackgroundView setImage:nil];
+    }
 }
 
 - (BOOL)suppressExportMessage

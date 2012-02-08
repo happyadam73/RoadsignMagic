@@ -97,7 +97,7 @@
 + (NSArray *)allSignBackgroundCategories
 {
     return [NSArray arrayWithObjects:
-            [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:8 count:3 description:@"No Sign Backgrounds" purchasePack:AWBRoadsignSymbolGroupPurchasePackNone],            
+            [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:8 count:4 description:@"No Sign Backgrounds" purchasePack:AWBRoadsignSymbolGroupPurchasePackNone],            
             [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:0 count:15 description:@"Blue Rectangular Backgrounds" purchasePack:AWBRoadsignSymbolGroupPurchasePackNone],
             [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:1 count:9 description:@"Green Rectangular Backgrounds" purchasePack:AWBRoadsignSymbolGroupPurchasePackNone],
             [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:2 count:14 description:@"Brown Rectangular Backgrounds" purchasePack:AWBRoadsignSymbolGroupPurchasePackNone],

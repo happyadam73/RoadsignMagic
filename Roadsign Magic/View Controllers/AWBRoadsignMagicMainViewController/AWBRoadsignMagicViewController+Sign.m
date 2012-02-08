@@ -169,7 +169,7 @@
     }
     CGFloat backgroundViewWidth;
     CGFloat backgroundViewHeight;
-    if (signBackgroundId == 8001) {
+    if ((signBackgroundId == 8001) || (signBackgroundId == 8004)) {
         backgroundViewHeight = 1400.0;
         backgroundViewWidth = aspectRatio * backgroundViewHeight;
     } else if (signBackgroundId == 8002) {
@@ -182,8 +182,9 @@
         backgroundViewWidth = 1400.0;
         backgroundViewHeight = 1400.0;                
     }
+        
     signBackgroundView.bounds = CGRectMake(0.0, 0.0, backgroundViewWidth, backgroundViewHeight);
-    
+        
     [mainScrollView setContentSize:[signBackgroundView bounds].size];
 
     float minWidthScale  = ((mainScrollView.bounds.size.width)  / signBackgroundView.bounds.size.width) * 0.96;
