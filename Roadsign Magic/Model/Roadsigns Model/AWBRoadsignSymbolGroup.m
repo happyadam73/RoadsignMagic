@@ -76,7 +76,7 @@
         case AWBRoadsignSymbolGroupPurchasePack2:
             return @"Signs & Symbols (Pack 2)";
         case AWBRoadsignSymbolGroupPurchasePack3:
-            return @"US Highway Signs & Symbols";
+            return @"US Traffic Signs";
         default:
             return nil;
             break;

@@ -14,11 +14,12 @@
     MBProgressHUD *hud; 
     Reachability *reach;
     BOOL currentlyConnected;
-    
+    BOOL scrollStoreToBottom;
 }
 
 @property (retain) MBProgressHUD *hud;
 @property (nonatomic, retain) Reachability *reach;
+@property (nonatomic, assign) BOOL scrollStoreToBottom;
 
 - (void)productsLoaded:(NSNotification *)notification;
 - (void)productsRestored:(NSNotification *)notification;

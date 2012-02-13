@@ -119,6 +119,11 @@
         symbolPackDescription = @"Signs & Symbols Pack";
     }
     
+    BOOL scrollStoreToBottom = NO;
+    if ((signBackgroundCategory.purchasePack == AWBRoadsignSymbolGroupPurchasePack2) || (signBackgroundCategory.purchasePack == AWBRoadsignSymbolGroupPurchasePack3)) {
+        scrollStoreToBottom = YES;
+    }
+    
     NSString *title = [NSString stringWithFormat:@"\"%@\" not installed", symbolPackDescription];
     NSString *message = [NSString stringWithFormat:@"This sign requires the \"%@\" in-app purchase available through the In-App Store.  If you have purchased it already, you can also restore your purchase in the In-App Store.", symbolPackDescription]; 
     
@@ -134,6 +139,7 @@
     [alertView release];
     
     AWBRoadsignMagicStoreViewController *controller = [[AWBRoadsignMagicStoreViewController alloc] init];
+    controller.scrollStoreToBottom = scrollStoreToBottom;
     [self.navigationController pushViewController:controller animated:YES];
     [controller release];     
 }

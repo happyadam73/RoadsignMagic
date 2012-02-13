@@ -13,7 +13,7 @@
 
 @implementation AWBRoadsignMagicStoreViewController
 
-@synthesize hud, reach;
+@synthesize hud, reach, scrollStoreToBottom;
 
 - (id)init
 {
@@ -23,6 +23,7 @@
         self.reach = [Reachability reachabilityForInternetConnection];
         [self.reach startNotifier];
         currentlyConnected = ([self.reach currentReachabilityStatus] != NotReachable);
+        scrollStoreToBottom = NO;
     }
     return self;    
 }
@@ -102,6 +103,22 @@
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     [self dismissHUD:nil];    
     [self.tableView reloadData];
+    
+    if (scrollStoreToBottom) {
+        scrollStoreToBottom = NO;
+        NSUInteger productCount = [[InAppStore defaultStore].products count];
+        if (productCount > 0) {
+            @try {
+                [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:(productCount-1) inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+            }
+            @catch (NSException *e) {
+                //            NSLog(@"%@", [e reason]);
+            }
+            @finally {
+                // todo 
+            }
+        }
+    }
 }
 
 #pragma mark - View lifecycle
