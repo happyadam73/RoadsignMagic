@@ -292,7 +292,15 @@
 + (AWBSettingsGroup *)fontSettingsGroupWithInfo:(NSDictionary *)info
 {
     NSMutableArray *fontSettings = nil;
-    fontSettings = [NSMutableArray arrayWithObjects:[AWBSetting zFontSettingWithValue:[NSNumber numberWithInteger:AWBRoadsignFontTypeBritishRoadsign]], [AWBSetting fontSettingWithValue:[NSNumber numberWithInteger:AWBRoadsignFontTypeArialRoundedMTBold]], [AWBSetting fontSettingWithValue:[NSNumber numberWithInteger:AWBRoadsignFontTypeHelvetica]], nil];
+    fontSettings = [NSMutableArray arrayWithObjects:[AWBSetting zFontSettingWithValue:[NSNumber numberWithInteger:AWBRoadsignFontTypeBritishRoadsign]], nil];
+    if (IS_SIGNPACK3_PURCHASED) {
+        [fontSettings addObject:[AWBSetting zFontSettingWithValue:[NSNumber numberWithInteger:AWBRoadsignFontTypeUSHighwayNarrow]]];
+        [fontSettings addObject:[AWBSetting zFontSettingWithValue:[NSNumber numberWithInteger:AWBRoadsignFontTypeUSHighwayWide]]];
+        [fontSettings addObject:[AWBSetting zFontSettingWithValue:[NSNumber numberWithInteger:AWBRoadsignFontTypeUSFreeway]]];
+    }
+    [fontSettings addObject:[AWBSetting zFontSettingWithValue:[NSNumber numberWithInteger:AWBRoadsignFontTypeGraffiti]]];
+    [fontSettings addObject:[AWBSetting fontSettingWithValue:[NSNumber numberWithInteger:AWBRoadsignFontTypeArialRoundedMTBold]]];
+    [fontSettings addObject:[AWBSetting fontSettingWithValue:[NSNumber numberWithInteger:AWBRoadsignFontTypeHelvetica]]];
     
     NSString *osVersion = [[UIDevice currentDevice] systemVersion];
     NSString *versionWithExtraFonts = @"5.0";
@@ -300,15 +308,26 @@
     BOOL extraFontsAvailable = ([versionWithExtraFonts compare:osVersion options:NSNumericSearch] != NSOrderedDescending);
     if (extraFontsAvailable) {
         [fontSettings addObject:[AWBSetting fontSettingWithValue:[NSNumber numberWithInteger:AWBRoadsignFontTypeGillSans]]];
-        footer = @"The British Roadsign Font does not support all international languages - for full international keyboard support, select Arial, Helvetica or Gill Sans.";
+        footer = @"The Roadsign & Graffiti Fonts do not support all international languages - for full international keyboard support, select Arial, Helvetica or Gill Sans.";
     } else {
-        footer = @"The British Roadsign Font does not support all international languages - for full international keyboard support, select Arial or Helvetica.";        
+        footer = @"The Roadsign & Graffiti Fonts do not support all international languages - for full international keyboard support, select Arial or Helvetica.";  
     }
     
     AWBSettingsGroup *fontGroup = [[self alloc] initWithSettings:fontSettings header:@"Select a Font" footer:footer];
     fontGroup.isMutuallyExclusive = YES;
     fontGroup.settingKeyForMutuallyExclusiveObjects = kAWBInfoKeyTextFontName;
-    fontGroup.mutuallyExclusiveObjects = [NSMutableArray arrayWithObjects:@"BritishRoadsign", @"ArialRoundedMTBold", @"Helvetica", nil]; 
+    //fontGroup.mutuallyExclusiveObjects = [NSMutableArray arrayWithObjects:@"BritishRoadsign", @"ArialRoundedMTBold", @"Helvetica", nil]; 
+    
+    fontGroup.mutuallyExclusiveObjects = [NSMutableArray arrayWithObjects:@"BritishRoadsign", nil]; 
+    if (IS_SIGNPACK3_PURCHASED) {
+        [fontGroup.mutuallyExclusiveObjects addObject:@"Highway Gothic Narrow"];
+        [fontGroup.mutuallyExclusiveObjects addObject:@"Highway Gothic Wide"];
+        [fontGroup.mutuallyExclusiveObjects addObject:@"Freeway Gothic"];
+    }
+    [fontGroup.mutuallyExclusiveObjects addObject:@"Most Wasted"];
+    [fontGroup.mutuallyExclusiveObjects addObject:@"ArialRoundedMTBold"];
+    [fontGroup.mutuallyExclusiveObjects addObject:@"Helvetica"];
+    
     if (extraFontsAvailable) {
         [fontGroup.mutuallyExclusiveObjects addObject:@"GillSans"];
     }

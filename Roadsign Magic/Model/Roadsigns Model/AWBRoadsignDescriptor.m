@@ -211,7 +211,10 @@
                 break;
             case 50 ... 62:
                 purchasePack = AWBRoadsignSymbolGroupPurchasePack2;
-                break;            
+                break; 
+            case 63 ... 82:
+                purchasePack = AWBRoadsignSymbolGroupPurchasePack3;
+                break;
         }
     }
     
@@ -226,6 +229,8 @@
             break;
         case AWBRoadsignSymbolGroupPurchasePack2:
             return IS_SIGNPACK2_PURCHASED;
+        case AWBRoadsignSymbolGroupPurchasePack3:
+            return IS_SIGNPACK3_PURCHASED;     
         default:
             return YES;
             break;
@@ -240,6 +245,8 @@
             break;
         case AWBRoadsignSymbolGroupPurchasePack2:
             return [UIImage imageNamed:@"signpack2"];
+        case AWBRoadsignSymbolGroupPurchasePack3:
+            return [UIImage imageNamed:@"signpack3"];
         default:
             return nil;
             break;
@@ -254,6 +261,8 @@
             break;
         case AWBRoadsignSymbolGroupPurchasePack2:
             return @"Signs & Symbols (Pack 2)";
+        case AWBRoadsignSymbolGroupPurchasePack3:
+            return @"US Highway Signs & Symbols";
         default:
             return nil;
             break;

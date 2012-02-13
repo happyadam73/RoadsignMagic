@@ -13,7 +13,11 @@ typedef enum {
     AWBRoadsignFontTypeHelvetica,
     AWBRoadsignFontTypeArialRoundedMTBold,              
     AWBRoadsignFontTypeBritishRoadsign,
-    AWBRoadsignFontTypeGillSans
+    AWBRoadsignFontTypeGillSans,
+    AWBRoadsignFontTypeUSHighwayNarrow,
+    AWBRoadsignFontTypeUSHighwayWide,
+    AWBRoadsignFontTypeUSFreeway,
+    AWBRoadsignFontTypeGraffiti
 } AWBRoadsignFontType;
 
 @interface AWBRoadsignFont : NSObject {

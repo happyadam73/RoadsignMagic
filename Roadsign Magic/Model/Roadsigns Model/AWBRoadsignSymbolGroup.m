@@ -43,6 +43,8 @@
             break;
         case AWBRoadsignSymbolGroupPurchasePack2:
             return IS_SIGNPACK2_PURCHASED;
+        case AWBRoadsignSymbolGroupPurchasePack3:
+            return IS_SIGNPACK3_PURCHASED;
         default:
             return YES;
             break;
@@ -57,6 +59,8 @@
             break;
         case AWBRoadsignSymbolGroupPurchasePack2:
             return [UIImage imageNamed:@"signpack2"];
+        case AWBRoadsignSymbolGroupPurchasePack3:
+            return [UIImage imageNamed:@"signpack3"];
         default:
             return nil;
             break;
@@ -71,6 +75,8 @@
             break;
         case AWBRoadsignSymbolGroupPurchasePack2:
             return @"Signs & Symbols (Pack 2)";
+        case AWBRoadsignSymbolGroupPurchasePack3:
+            return @"US Highway Signs & Symbols";
         default:
             return nil;
             break;
@@ -104,6 +110,8 @@
             [AWBRoadsignSymbolGroup roadsignSymbolGroupWithCategoryId:5 count:41 description:@"Vehicle Sign Symbols" purchasePack:AWBRoadsignSymbolGroupPurchasePack1],
             [AWBRoadsignSymbolGroup roadsignSymbolGroupWithCategoryId:2 count:44 description:@"Tourist Sign Symbols" purchasePack:AWBRoadsignSymbolGroupPurchasePack2],
             [AWBRoadsignSymbolGroup roadsignSymbolGroupWithCategoryId:6 count:30 description:@"Hazard Warning Sign Symbols" purchasePack:AWBRoadsignSymbolGroupPurchasePack2],
+            [AWBRoadsignSymbolGroup roadsignSymbolGroupWithCategoryId:8 count:55 description:@"US Highway Symbols 1" purchasePack:AWBRoadsignSymbolGroupPurchasePack3],
+            [AWBRoadsignSymbolGroup roadsignSymbolGroupWithCategoryId:9 count:45 description:@"US Highway Symbols 2" purchasePack:AWBRoadsignSymbolGroupPurchasePack3],
             nil];
 }
 

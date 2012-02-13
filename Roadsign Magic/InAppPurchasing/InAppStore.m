@@ -26,6 +26,7 @@ static InAppStore * _sharedHelper;
         @"com.happyadam.roadsignmagic.gopro",
         @"com.happyadam.roadsignmagic.signpack1",
         @"com.happyadam.roadsignmagic.signpack2",                                 
+        @"com.happyadam.roadsignmagic.signpack3",                                 
         nil];
     
     if ((self = [super initWithProductIdentifiers:productIdentifiers])) {                
@@ -45,6 +46,8 @@ static InAppStore * _sharedHelper;
         return [UIImage imageNamed:@"inappsignpack1.png"];
     } else if ([productId isEqualToString:@"com.happyadam.roadsignmagic.signpack2"]) {
         return [UIImage imageNamed:@"inappsignpack2.png"];
+    } else if ([productId isEqualToString:@"com.happyadam.roadsignmagic.signpack3"]) {
+        return [UIImage imageNamed:@"inappsignpack3.png"];
     } else {
         return nil;
     }

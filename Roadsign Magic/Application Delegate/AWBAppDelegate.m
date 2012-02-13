@@ -45,6 +45,8 @@ static NSString* kAppId = @"289600444412359";
     //initialise in-app store
     [[SKPaymentQueue defaultQueue] addTransactionObserver:[InAppStore defaultStore]];
     
+    [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:kAWBInfoKeyScrollToTemplateStoreMyTemplateIndex]; 
+    
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     self.signBackgroundSize = CGSizeZero;
     

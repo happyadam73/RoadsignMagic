@@ -86,6 +86,7 @@
         AWBRoadsignDescriptor *newRoadsign =  [[AWBRoadsignStore defaultStore] createMyRoadsignFromTemplateRoadsign:templateRoadsign];
         
         if (newRoadsign) {
+            [[NSUserDefaults standardUserDefaults] setInteger:[indexPath row] forKey:kAWBInfoKeyScrollToTemplateStoreMyTemplateIndex]; 
             NSIndexPath *myRoadsignIndexPath = [NSIndexPath indexPathForRow:([[[AWBRoadsignStore defaultStore] myRoadsigns] count] - 1) inSection:0];
             [parentViewController loadRoadsignAtIndexPath:myRoadsignIndexPath withSettingsInfo:nil];
         }        

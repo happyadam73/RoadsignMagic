@@ -11,7 +11,8 @@
 typedef enum {
     AWBRoadsignSymbolGroupPurchasePackNone,
     AWBRoadsignSymbolGroupPurchasePack1,              
-    AWBRoadsignSymbolGroupPurchasePack2
+    AWBRoadsignSymbolGroupPurchasePack2,
+    AWBRoadsignSymbolGroupPurchasePack3    
 } AWBRoadsignSymbolGroupPurchasePack;
 
 @interface AWBRoadsignSymbolGroup : NSObject {

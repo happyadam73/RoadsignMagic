@@ -11,6 +11,7 @@
 static NSString *const kAWBInfoKeyMyRoadsignSequenceNumber = @"RoadsignSequenceNumber";
 static NSString *const kAWBInfoKeyMyRoadsignStoreRoadsignIndex = @"RoadsignStoreRoadsignIndex";
 static NSString *const kAWBInfoKeyScrollToRoadsignStoreMyRoadsignIndex = @"ScrollToRoadsignStoreRoadsignIndex";
+static NSString *const kAWBInfoKeyScrollToTemplateStoreMyTemplateIndex = @"ScrollToTemplateStoreMyTemplateIndex";
 
 @class AWBRoadsignDescriptor;
 

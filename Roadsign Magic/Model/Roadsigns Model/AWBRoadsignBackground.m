@@ -57,14 +57,19 @@
         case 13 ... 15:
         case 6019 ... 6022:
         case 7012 ... 7013:
+        case 9001:
+        case 9045:
             primaryColorCode = kAWBSignColorCodeBlueSignBackgroundColor; 
             break;
         case 1001 ... 1009:
         case 7014:
+        case 9002 ... 9008:
+        case 9047 ... 9049:
             primaryColorCode = kAWBSignColorCodeDarkGreenSignBackgroundColor;
             break;
         case 2001 ... 2014:
         case 6011 ... 6018:
+        case 9050:
             primaryColorCode = kAWBSignColorCodeBrownSignBackgroundColor;
             break;
         case 3:
@@ -76,25 +81,31 @@
         case 7007:
         case 7009 ... 7010:
         case 7015:
+        case 9022 ... 9039:
             primaryColorCode = kAWBSignColorCodeWhiteBackgroundColor;
             break;
         case 3013 ... 3014:
         case 3019 ... 3021:
         case 6025 ... 6026:
         case 7011:
+        case 9040 ... 9042:
+        case 9046:
             primaryColorCode = kAWBSignColorCodeBlackBackgroundColor;
             break;
         case 4001 ... 4010:
         case 6027 ... 6028:
         case 7006:
         case 7008:
+        case 9043 ... 9044:
             primaryColorCode = kAWBSignColorCodeRedSignBackgroundColor;
             break;
         case 5001 ... 5015:
         case 6005 ... 6010:
+        case 9009 ... 9020:
             primaryColorCode = kAWBSignColorCodeYellowSignBackgroundColor;
             break;
         case 6023 ... 6024:
+        case 9021:
             primaryColorCode = kAWBSignColorCodeLightGreenSignBackgroundColor;
             break;
         default:
@@ -136,6 +147,9 @@
             break;
         case 6000 ... 6999:
             signCategoryIndex = 8;
+            break;
+        case 9000 ... 9999:
+            signCategoryIndex = 9;
             break;
         default:
             signCategoryIndex = 0;

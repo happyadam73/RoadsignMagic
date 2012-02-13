@@ -34,6 +34,14 @@
             return NO;            
         case AWBRoadsignFontTypeBritishRoadsign:
             return YES;
+        case AWBRoadsignFontTypeUSFreeway:
+            return YES;
+        case AWBRoadsignFontTypeUSHighwayNarrow:
+            return YES;
+        case AWBRoadsignFontTypeUSHighwayWide:
+            return YES;
+        case AWBRoadsignFontTypeGraffiti:
+            return YES;    
         default:
             return NO;
     }
@@ -50,6 +58,14 @@
             return @"GillSans";            
         case AWBRoadsignFontTypeBritishRoadsign:
             return @"BritishRoadsign";
+        case AWBRoadsignFontTypeUSFreeway:
+            return @"Freeway Gothic";
+        case AWBRoadsignFontTypeUSHighwayNarrow:
+            return @"Highway Gothic Narrow";
+        case AWBRoadsignFontTypeUSHighwayWide:
+            return @"Highway Gothic Wide";
+        case AWBRoadsignFontTypeGraffiti:
+            return @"Most Wasted";
         default:
             return @"Helvetica";
     }
@@ -66,6 +82,14 @@
             return @"Gill Sans";            
         case AWBRoadsignFontTypeBritishRoadsign:
             return @"British Roadsign";
+        case AWBRoadsignFontTypeUSFreeway:
+            return @"US Freeway";
+        case AWBRoadsignFontTypeUSHighwayNarrow:
+            return @"US Highway Narrow";
+        case AWBRoadsignFontTypeUSHighwayWide:
+            return @"US Highway Wide";
+        case AWBRoadsignFontTypeGraffiti:
+            return @"Graffiti";
         default:
             return @"Helvetica";
     }
@@ -90,6 +114,14 @@
 + (BOOL)isZFont:(NSString *)fontName
 {
     if ([fontName isEqualToString:@"BritishRoadsign"]) {
+        return YES;
+    } else if ([fontName isEqualToString:@"Freeway Gothic"]) {
+        return YES;
+    } else if ([fontName isEqualToString:@"Highway Gothic Narrow"]) {
+        return YES;
+    } else if ([fontName isEqualToString:@"Highway Gothic Wide"]) {
+        return YES;
+    } else if ([fontName isEqualToString:@"Most Wasted"]) {
         return YES;
     } else {
         return NO;

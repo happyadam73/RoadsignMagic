@@ -43,6 +43,8 @@
             break;
         case AWBRoadsignSymbolGroupPurchasePack2:
             return IS_SIGNPACK2_PURCHASED;
+        case AWBRoadsignSymbolGroupPurchasePack3:
+            return IS_SIGNPACK3_PURCHASED;   
         default:
             return YES;
             break;
@@ -57,6 +59,8 @@
             break;
         case AWBRoadsignSymbolGroupPurchasePack2:
             return [UIImage imageNamed:@"signpack2"];
+        case AWBRoadsignSymbolGroupPurchasePack3:
+            return [UIImage imageNamed:@"signpack3"];
         default:
             return nil;
             break;
@@ -71,6 +75,8 @@
             break;
         case AWBRoadsignSymbolGroupPurchasePack2:
             return @"Signs & Symbols (Pack 2)";
+        case AWBRoadsignSymbolGroupPurchasePack3:
+            return @"US Highway Signs & Symbols";
         default:
             return nil;
             break;
@@ -105,7 +111,8 @@
             [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:4 count:10 description:@"Red Rectangular Backgrounds" purchasePack:AWBRoadsignSymbolGroupPurchasePackNone],
             [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:5 count:15 description:@"Yellow Rectangular Backgrounds" purchasePack:AWBRoadsignSymbolGroupPurchasePackNone],
             [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:7 count:15 description:@"Triangles and Circular Backgrounds" purchasePack:AWBRoadsignSymbolGroupPurchasePack1],            
-            [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:6 count:28 description:@"Signpost Backgrounds" purchasePack:AWBRoadsignSymbolGroupPurchasePack2],            
+            [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:6 count:28 description:@"Signpost Backgrounds" purchasePack:AWBRoadsignSymbolGroupPurchasePack2],  
+            [AWBRoadsignBackgroundGroup roadsignBackgroundGroupWithCategoryId:9 count:50 description:@"US Signpost Backgrounds" purchasePack:AWBRoadsignSymbolGroupPurchasePack3],  
             nil];
 }
 

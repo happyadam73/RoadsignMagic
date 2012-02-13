@@ -136,7 +136,7 @@
     scrollToRow = [[NSUserDefaults standardUserDefaults] integerForKey:kAWBInfoKeyScrollToRoadsignStoreMyRoadsignIndex];
     if (scrollToRow >= 0) {
         @try {
-            [theTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:scrollToRow inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+            [theTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:scrollToRow inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
         }
         @catch (NSException *e) {
 //            NSLog(@"%@", [e reason]);
@@ -314,7 +314,22 @@
     }
     theTableView.delegate = [dataSources objectAtIndex:selectedDataSource];
     theTableView.dataSource = [dataSources objectAtIndex:selectedDataSource];
-    [theTableView reloadData];        
+    [theTableView reloadData];  
+    
+    if (selectedDataSource != 0) {
+        NSInteger scrollToTemplate = [[NSUserDefaults standardUserDefaults] integerForKey:kAWBInfoKeyScrollToTemplateStoreMyTemplateIndex];
+        if (scrollToTemplate >= 0) {
+            @try {
+                [theTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:scrollToTemplate inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+            }
+            @catch (NSException *e) {
+                //            NSLog(@"%@", [e reason]);
+            }
+            @finally {
+                [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:kAWBInfoKeyScrollToTemplateStoreMyTemplateIndex]; 
+            }
+        }
+    }
 }
 
 - (UIBarButtonItem *)myFontsButton
